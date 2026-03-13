@@ -6,17 +6,18 @@ public class MovimentoNavicella : MonoBehaviour
 {
     [Header("Monitoring")]
     [SerializeField] float currentSpeed = 0f;
+    public float CurrentSpeed => currentSpeed; // Permette ad altri script di leggere la velocita attuale senza modificarla
 
 
     [Header("Camera Settings")]
     [SerializeField] CinemachineCamera cinemachineCamera; // Riferimento alla Cinemachine Camera
     [SerializeField] float minFOV = 40f; // FOV minimo
     [SerializeField] float maxFOV = 70f; // FOV massimo
-    [SerializeField] float fovSensitivity = 0.5f; // Sensibilità del FOV
+    [SerializeField] float fovSensitivity = 0.5f; // Sensibilitï¿½ del FOV
 
 
     [Header("Control Configuration / Mapping Input")]
-    [SerializeField] bool useAlternativeControls = false; // Se true, usa la modalità alternativa
+    [SerializeField] bool useAlternativeControls = false; // Se true, usa la modalitï¿½ alternativa
     private float targetH = 0f; // Input orizzontale target
     private float targetV = 0f; // Input verticale target
     private bool isAccelerating = false;
@@ -28,7 +29,7 @@ public class MovimentoNavicella : MonoBehaviour
     [SerializeField] float rotationSpeed = 90f;
     [SerializeField] float acceleration = 10f;
     [SerializeField] float maxSpeed = 50f;
-    [SerializeField] float maxPitchAngle = 60f; // Angolo massimo di pitch (su/giù)
+    [SerializeField] float maxPitchAngle = 60f; // Angolo massimo di pitch (su/giï¿½)
     [SerializeField] float maxRollAngle = 40f;  // Angolo massimo di roll (inclinazione ali)
 
 
@@ -51,12 +52,12 @@ public class MovimentoNavicella : MonoBehaviour
         Speed();
         CamEffect();
 
-        //Muove l'oggetto in avanti in base alla velocità attuale
+        //Muove l'oggetto in avanti in base alla velocitï¿½ attuale
         transform.Translate(Vector3.forward * currentSpeed * Time.deltaTime);
     }
 
     /// <summary>
-    /// Mappatura degli input, il giocatore può cambiare tra 2 input differenti
+    /// Mappatura degli input, il giocatore puï¿½ cambiare tra 2 input differenti
     /// </summary>
     void MapInputs()  //Espandibile se si vuole
     {
@@ -65,12 +66,12 @@ public class MovimentoNavicella : MonoBehaviour
             -> W/S: accellera/decellera
             -> ctrl/shift: su/giu
          useAlternativeControls = false
-            -> W/S: su/giù
+            -> W/S: su/giï¿½
             -> ctrl/shift: accellera/decellera
         */
         if (!useAlternativeControls)
         {
-            // Modalità Standard: WASD ruota, Ctrl/Shift accelera
+            // Modalitï¿½ Standard: WASD ruota, Ctrl/Shift accelera
             targetH = Input.GetAxis("Horizontal"); // A - D
             targetV = Input.GetAxis("Vertical");   // W - S
             float speedeProfondita = Input.GetAxis("Profondita");
@@ -79,13 +80,13 @@ public class MovimentoNavicella : MonoBehaviour
         }
         else
         {
-            // Modalità Alternativa: AD e Ctrl/Shift ruotano, WS accelera
+            // Modalitï¿½ Alternativa: AD e Ctrl/Shift ruotano, WS accelera
             targetH = Input.GetAxis("Horizontal"); // A - D (Yaw)
 
-            // Pitch gestito da Ctrl (Su) e Shift (Giù)
+            // Pitch gestito da Ctrl (Su) e Shift (Giï¿½)
             targetV = Input.GetAxis("Profondita");
 
-            // Velocità gestita da W e S
+            // Velocitï¿½ gestita da W e S
             float speedAxis = Input.GetAxis("Vertical");
             isAccelerating = speedAxis > 0.1f;
             isDecelerating = speedAxis < -0.1f;
@@ -97,18 +98,18 @@ public class MovimentoNavicella : MonoBehaviour
     /// </summary>
     void Rotation()
     {
-        // Interpolazione degli input per una risposta più fluida
+        // Interpolazione degli input per una risposta piï¿½ fluida
         hInputSmooth = Mathf.Lerp(hInputSmooth, targetH, Time.deltaTime * fluidityInput);
         vInputSmooth = Mathf.Lerp(vInputSmooth, targetV, Time.deltaTime * fluidityInput);
 
-        // Logica PITCH (Su/Giù)
+        // Logica PITCH (Su/Giï¿½)
         // Definiamo un "angolo bersaglio" (es. max 60 gradi)
         float targetPitchAngle = vInputSmooth * maxPitchAngle;
 
         // Usiamo il Lerp per raggiungerlo. returnSpeed controlla la morbidezza del movimento.
         realTimePitch = Mathf.Lerp(realTimePitch, targetPitchAngle, Time.deltaTime * returnSpeed);
 
-        // Logica YAW (Destra/Sinistra) - Invariata (perché deve essere cumulativa)
+        // Logica YAW (Destra/Sinistra) - Invariata (perchï¿½ deve essere cumulativa)
         if (Mathf.Abs(hInputSmooth) > 0.05f)
         {
             realTimeYaw += hInputSmooth * rotationSpeed * Time.deltaTime;
@@ -123,7 +124,7 @@ public class MovimentoNavicella : MonoBehaviour
     }
 
     /// <summary>
-    /// Gestione velocità/accellerazione
+    /// Gestione velocitï¿½/accellerazione
     /// </summary>
     void Speed()
     {
@@ -140,7 +141,7 @@ public class MovimentoNavicella : MonoBehaviour
         }
 
 
-        //Limita la velocità massima e minima
+        //Limita la velocitï¿½ massima e minima
         currentSpeed = Mathf.Clamp(currentSpeed, 0f, maxSpeed);
     }
 
