@@ -22,7 +22,6 @@ public class MangerBattery : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); 
         }
         else
         {
@@ -35,7 +34,7 @@ public class MangerBattery : MonoBehaviour
     /// </summary>
     public void UpdateBatteryDisplay()
     {
-        /*chiamare tramite evento quando c'è bisogno di cambiare la carica della batteria*/
+        /*chiamare tramite evento quando c'ï¿½ bisogno di cambiare la carica della batteria*/
         if (batteryFillImage != null)
         {
             // Il FillAmount richiede un valore tra 0 e 1. Permette alla barra di riempirsi in modo proporzionale alla carica attuale.
@@ -49,7 +48,7 @@ public class MangerBattery : MonoBehaviour
             batteryText.text = $"{currentBattery:F0}%"; // F0 formatta il numero senza decimali
         }
 
-        if (currentBattery < sogliaPericolo)  // Se la batteria è sotto la soglia di pericolo, cambia il colore del testo in rosso per avvisare il giocatore
+        if (currentBattery < sogliaPericolo)  // Se la batteria ï¿½ sotto la soglia di pericolo, cambia il colore del testo in rosso per avvisare il giocatore
             batteryText.color = colorDanger; // O il tuo colore del pericolo specifico
         else
             batteryText.color = colorOk; // O il tuo colore neon specifico

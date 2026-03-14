@@ -8,7 +8,7 @@ public class ManagerMusic : MonoBehaviour
     public static ManagerMusic Instance { get; private set; }
 
     [Header("Riferimenti Audio")]
-    [SerializeField] AudioSource musicSource;  //In futuro ci sarà la sorgente audio
+    [SerializeField] AudioSource musicSource;  //In futuro ci sarï¿½ la sorgente audio
 
     [Header("Riferimenti UI")]
     [SerializeField] GameObject musicUIElement; // Oggetto che contiene la scritta "Musica in riproduzione"
@@ -20,7 +20,6 @@ public class ManagerMusic : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -36,12 +35,12 @@ public class ManagerMusic : MonoBehaviour
         if (musicSource != null && musicUIElement != null)
         {
             // SetActive attiva o disattiva l'oggetto in base a una condizione.
-            // In questo caso, l'oggetto è attivo SOLO SE la musica sta suonando.
+            // In questo caso, l'oggetto ï¿½ attivo SOLO SE la musica sta suonando.
             musicUIElement.SetActive(musicSource.isPlaying);
         }
         else if (musicUIElement != null)
         {
-            // Se non c'è ancora una sorgente audio, teniamo la scritta spenta per sicurezza
+            // Se non c'ï¿½ ancora una sorgente audio, teniamo la scritta spenta per sicurezza
             musicUIElement.SetActive(false);
         }
     }

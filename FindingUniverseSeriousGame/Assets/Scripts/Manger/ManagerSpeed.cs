@@ -16,7 +16,6 @@ public class ManagerSpeed : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -26,7 +25,7 @@ public class ManagerSpeed : MonoBehaviour
 
 
     /// <summary>
-    /// Aggiorna la visualizzazione della velocità
+    /// Aggiorna la visualizzazione della velocitï¿½
     /// </summary>
     public void UpdateSpeedDisplay(MovimentoNavicella spaceship)
     {
