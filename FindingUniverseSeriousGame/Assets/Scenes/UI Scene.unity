@@ -1342,17 +1342,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4728ae2b1be62614899be60bf48b9c36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spaceship: {fileID: 625973633}
-  batteryFillImage: {fileID: 1208628141}
-  batteryText: {fileID: 2081203744}
-  maxBattery: 100
-  currentBattery: 100
-  colorOk: {r: 0.33333334, g: 0.654902, b: 0.33333334, a: 1}
-  colorDanger: {r: 1, g: 0, b: 0, a: 1}
-  sogliaPericolo: 20
-  musicSource: {fileID: 0}
-  speedUIText: {fileID: 1560016582}
-  musicUIElement: {fileID: 686193386}
 --- !u!1 &680530258
 GameObject:
   m_ObjectHideFlags: 0
@@ -1421,8 +1410,8 @@ Canvas:
   m_GameObject: {fileID: 680530258}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 330585545}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -2290,6 +2279,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1718878798}
+  - component: {fileID: 1718878802}
+  - component: {fileID: 1718878801}
+  - component: {fileID: 1718878800}
+  - component: {fileID: 1718878799}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -2313,6 +2306,64 @@ Transform:
   - {fileID: 678903213}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1718878799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718878796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 241d1a760b28bf24589798e000d06a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  batteryFillImage: {fileID: 1346186222}
+  batteryText: {fileID: 2081203744}
+  maxBattery: 100
+  currentBattery: 100
+  colorOk: {r: 0, g: 1, b: 0, a: 1}
+  colorDanger: {r: 1, g: 0, b: 0, a: 1}
+  sogliaPericolo: 20
+--- !u!114 &1718878800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718878796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d761a2e632b06af4ea7497dc85c37002, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedUIText: {fileID: 1560016582}
+--- !u!114 &1718878801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718878796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 931ad10d4b3075d4eaa7e9fbc99fa559, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicSource: {fileID: 0}
+  musicUIElement: {fileID: 686193386}
+--- !u!114 &1718878802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718878796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f427696b4581e4a924ddb5c949a9a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1756135680
 GameObject:
   m_ObjectHideFlags: 0
