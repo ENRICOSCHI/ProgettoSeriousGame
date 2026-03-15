@@ -4,8 +4,6 @@ using UnityEngine.UI;
 
 public class ManagerMusic : MonoBehaviour
 {
-    //singleton
-    public static ManagerMusic Instance { get; private set; }
 
     [Header("Riferimenti Audio")]
     [SerializeField] AudioSource musicSource;  //In futuro ci sar� la sorgente audio
@@ -13,19 +11,6 @@ public class ManagerMusic : MonoBehaviour
     [Header("Riferimenti UI")]
     [SerializeField] GameObject musicUIElement; // Oggetto che contiene la scritta "Musica in riproduzione"
 
-
-    //controllo che effettivamente sia l'unico oggetto attivo nelle scene (singleton)
-    void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
 
     /// <summary>
     /// Aggiorna la visualizzazione dello stato della musica
