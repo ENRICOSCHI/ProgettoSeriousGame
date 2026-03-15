@@ -15,7 +15,7 @@ public class HUD_Controller : MonoBehaviour
     void Update()
     {
         // Richiama le varie funzione per gli aggiornamenti dell'HUD
-        ManagerSpeed.Instance.UpdateSpeedDisplay(spaceship);
+        ManagerHandler.ManagerInstance.SpeedManager.UpdateSpeedDisplay(spaceship);
         // In futuro ci aggiungeremo tutti i controlli dell'HUD, come ad esempio la batteria, la minimappa, ecc...
     }
 }

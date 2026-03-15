@@ -4,9 +4,6 @@ using UnityEngine.UI;
 
 public class MangerBattery : MonoBehaviour
 {
-    //singleton
-    public static MangerBattery Instance { get; private set; }
-
     [Header("Riferimenti Batteria")]
     [SerializeField] Image batteryFillImage; // Immagine che rappresenta la barra della batteria
     [SerializeField] TMP_Text batteryText; // Testo che mostra la percentuale della batteria
@@ -16,18 +13,6 @@ public class MangerBattery : MonoBehaviour
     [SerializeField] Color colorDanger = Color.red;    // Il colore che indica la batteria scarica
     [SerializeField] float sogliaPericolo = 20f;       // Percentuale sotto la quale cambia colore
     
-    //controllo che effettivamente sia l'unico oggetto attivo nelle scene (singleton)
-    void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
 
     /// <summary>
     /// Aggiorna la visualizzazione della batteria
