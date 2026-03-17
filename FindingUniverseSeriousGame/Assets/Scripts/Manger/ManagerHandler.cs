@@ -10,6 +10,7 @@ public class ManagerHandler : MonoBehaviour
     public MangerBattery BatteryManager { get; private set; }
     public ManagerRotation RotationManager { get; private set; }
     public DialogueManager DialogueManager { get; private set; }
+    public Notification_Manager NotificationManager { get; private set; }
 
     //controllo che effettivamente sia l'unico oggetto attivo nelle scene (singleton)
     void Awake()
@@ -33,5 +34,6 @@ public class ManagerHandler : MonoBehaviour
         BatteryManager = GetComponentInChildren<MangerBattery>();
         RotationManager = GetComponentInChildren<ManagerRotation>();
         DialogueManager = GetComponentInChildren<DialogueManager>();
+        NotificationManager = GetComponentInChildren<Notification_Manager>();
     }
 }

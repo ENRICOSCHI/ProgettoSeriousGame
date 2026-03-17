@@ -6,6 +6,7 @@ public class Vfx_Typewriter : MonoBehaviour  // Effetto graifco per scrivere il 
 {
     [SerializeField] private TMP_Text textComponent;
     public float typingSpeed = 0.07f;  //Velocità di scrittura (in secondi per lettera)
+    public int MAX_CHAR_TEXT { private set; get; } = 47;
 
     void Awake()
     {
@@ -13,12 +14,16 @@ public class Vfx_Typewriter : MonoBehaviour  // Effetto graifco per scrivere il 
             textComponent = GetComponent<TMP_Text>();
     }
 
-    public IEnumerator TypeText(string message)  // Coroutine per scrivere il testo lettera per lettera
+    /// <summary>
+    /// Coroutine per scrivere il testo lettera per lettera
+    /// </summary>
+    /// <param name="message"></param>
+    /// <returns></returns>
+    public IEnumerator TypeText(string message)
     {
-        textComponent.text = "";
-        foreach (char c in message.ToCharArray())
+        for (int i = 1; i <= message.Length; i++)
         {
-            textComponent.text += c;
+            textComponent.text = message.Substring(0, i);
             yield return new WaitForSeconds(typingSpeed);
         }
     }
@@ -34,7 +39,10 @@ public class Vfx_Typewriter : MonoBehaviour  // Effetto graifco per scrivere il 
             textComponent.text = "";
     }
 
-    public void ClearText()  // Funzione pubblica per svuotare il testo
+    /// <summary>
+    /// Funzione pubblica per svuotare il testo
+    /// </summary>
+    public void ClearText() 
     {
         if (textComponent != null)
             textComponent.text = "";

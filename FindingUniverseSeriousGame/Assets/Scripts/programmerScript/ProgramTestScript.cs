@@ -45,7 +45,10 @@ public class ProgramTestScript : MonoBehaviour
                     Debug.Log("ShowNotification");
                     DelegateClass.NotificationEventsHandler.Invoke(argomento);
                     break;
-
+                case "CodexUpdate":
+                    Debug.Log("Codex Update");
+                    ManagerHandler.ManagerInstance.NotificationManager.ShowNotificationCodexUpdate(argomento);
+                    break;
                 default:
                     Debug.LogWarning("Comando sconosciuto");
                     break;

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -26,20 +27,30 @@ public class DialogueManager : MonoBehaviour
     [ContextMenu("Test Dialogue")] // Comando di test (eseguibile premendo tasto destro sul componente in Inspector)
     public void TestDialogue()
     {
-        ShowMessage("Sistemi di bordo online. Benvenuto, Comandante.");
+        ShowMessage("Sistemi di bordo online. Benvenuto, Comandante. adadakdjadkajdnakd.ad dad adadadjawdjaodiq.dq,dqdqdjaodk,awa.da,dadw wdawda.");
     }
 
-    
-    public void ShowMessage(string message)  // Funzione pubblica per mostrare un messaggio di dialogo
+
+    /// <summary>
+    /// Mostra un messaggio di dialogo
+    /// </summary>
+    /// <param name="message"></param>
+    public void ShowMessage(string message)
     {
+        dialogueGameObjectUI.SetActive(false);//resetto l'animazione, se tolgo questa riga l'animazione non sarà pulita al secondo richiamo del dialogue box
         dialogueGameObjectUI.SetActive(true);
-        typewriter.ClearText(); // Puliamo il testo prima di iniziare
+        typewriter.ClearText(); // Puliamo il testo prima di iniziare);
 
         StopAllCoroutines();
         StartCoroutine(DialogueSequence(message));
     }
 
-    private IEnumerator DialogueSequence(string message)  // Sequenza completa per mostrare un messaggio di dialogo
+    /// <summary>
+    /// Sequenza completa per mostrare un messaggio di dialogo
+    /// </summary>
+    /// <param name="message"></param>
+    /// <returns></returns>
+    private IEnumerator DialogueSequence(string message) 
     {
         
         // 1. Chiedi alla UI di aprire la box
@@ -48,13 +59,24 @@ public class DialogueManager : MonoBehaviour
 
         // 2. LOGICA "HANDSHAKE": Aspetto finchè l'animazione non è finita
         yield return new WaitUntil(() => animDialogueBox.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
+        //yield return new WaitForSeconds(.5f);
 
-        // 3. Ora che la box è aperta e il testo è attivo, scrivi!
-        yield return StartCoroutine(typewriter.TypeText(message));
-        ShowPrompt(true); // Mostriamo il prompt per continuare
+        // 3. Loop dialogo finchè non finisce la stringa message
+        string[] pages = SplitText(message, typewriter.MAX_CHAR_TEXT);
 
-        // 4. Tempo di lettura
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.E));  // Aspetta che il giocatore prema E per continuare
+        foreach (string page in pages)
+        {
+            //scrivo la pagina attuale
+            yield return StartCoroutine(typewriter.TypeText(page));
+
+            //mostro prompt
+            ShowPrompt(true);
+
+            //aspetto input
+            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.E));
+
+            ShowPrompt(false);
+        }
 
         // 5. Chiudi
         ShowPrompt(false); // Nascondiamo il prompt
@@ -68,7 +90,7 @@ public class DialogueManager : MonoBehaviour
         if (animDialogueBox != null)
             animDialogueBox.SetBool("Show_Dialogue_Box", true);
 
-        // Non attiviamo il testo qui! Aspettiamo l'evento.
+        // Non attiviamo il testo qui, aspettiamo l'evento.
     }
 
     private void HideBox()  // Chiude la box e resetta tutto.
@@ -81,5 +103,28 @@ public class DialogueManager : MonoBehaviour
     {
         if (prompText != null)
             prompText.SetActive(state);
+    }
+
+    /// <summary>
+    /// Suddivito il testo in più "pagine"
+    /// </summary>
+    /// <param name="text"></param>
+    /// <param name="maxChars"></param>
+    /// <returns></returns>
+    string[] SplitText(string text, int maxChars)
+    {
+        List<string> result = new(); //creo lista
+        //Faccio un for che va avanti ogni tot. caratteri
+        //Salvo quei caratteri nella lista
+        for (int i = 0; i < text.Length; i += maxChars)
+        {
+            //controllo in caso la stringa sia più corta di maxChars
+            //e prendo solo i caratteri rimasti 
+            int length = Mathf.Min(maxChars, text.Length - i);
+            //prendo i caratteri da i fino a lenght e li salvo nella lista
+            result.Add(text.Substring(i, length));
+        }
+
+        return result.ToArray();
     }
 }

@@ -3,11 +3,8 @@ using System.Collections;
 
 
 public class Notification_Manager : MonoBehaviour
-
 {
-
     [SerializeField] private Vfx_Typewriter typewriter;  // Oggetto con il testo
-
 
     private void OnEnable()
     {
@@ -18,12 +15,28 @@ public class Notification_Manager : MonoBehaviour
         DelegateClass.NotificationEventsHandler -= ShowMessage;
     }
 
-    public void ShowMessage(string message)  // Funzione pubblica per mostrare un messaggio di dialogo
+    /// <summary>
+    /// Mostra un messaggio di notifica generale
+    /// </summary>
+    /// <param name="message"></param>
+    public void ShowMessage(string message)
     {
         typewriter.ClearText(); // Puliamo il testo prima di iniziare
 
         StopAllCoroutines();
         StartCoroutine(DialogueSequence(message));
+    }
+
+    /// <summary>
+    /// Mostro notifica aggiornamento codex
+    /// </summary>
+    /// <param name="argomento"></param>
+    public void ShowNotificationCodexUpdate(string argomento)
+    {
+        typewriter.ClearText(); // Puliamo il testo prima di iniziare
+
+        StopAllCoroutines();
+        StartCoroutine(DialogueSequence("Codex aggiornato: " + argomento));
     }
 
     private IEnumerator DialogueSequence(string message)  // Sequenza completa per mostrare un messaggio di dialogo
