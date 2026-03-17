@@ -307,11 +307,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc6ccc1d58e201d4f88cd493f0f3b51f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &99076140 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7446860639158388651, guid: bc0eefb0cf599f2419f3914fb6306978, type: 3}
-  m_PrefabInstance: {fileID: 99076130}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &316191088
 GameObject:
   m_ObjectHideFlags: 0
@@ -1504,6 +1499,11 @@ Transform:
   - {fileID: 2128066300}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &948549685 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3808850423143967464, guid: bc0eefb0cf599f2419f3914fb6306978, type: 3}
+  m_PrefabInstance: {fileID: 99076130}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &967369053
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2022,7 +2022,7 @@ PrefabInstance:
     - target: {fileID: 4489862904735597538, guid: 54f593bad02ef6641ad8bbc1f13a8378, type: 3}
       propertyPath: dialogueGameObjectUI
       value: 
-      objectReference: {fileID: 99076140}
+      objectReference: {fileID: 948549685}
     - target: {fileID: 5698369315328781363, guid: 54f593bad02ef6641ad8bbc1f13a8378, type: 3}
       propertyPath: m_LocalPosition.x
       value: 80.19997
