@@ -1,7 +1,15 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Proximity_Trigger_Quest : MonoBehaviour
 {
+    /*Il presente Script va collegato al GameObject che bisogna avvicinare per attivare la quest, 
+    e va settato con il player, la distanza di trigger e la quest da attivare*/
+    
+    public Transform player;
+    public float triggerDistance; //da settare, non mi rendo conto di quato possa essere ragionevole impostarla
+    public UnityEvent onPlayerTrigger; //collegare lo script della quest da attivare
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -11,6 +19,11 @@ public class Proximity_Trigger_Quest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Vector3.Distance(transform.position, player.position) <= triggerDistance)
+        {
+            onPlayerTrigger.Invoke();
+            //disabilita questo script per evitare che venga attivato più volte
+            this.enabled = false;
+        }
     }
 }
