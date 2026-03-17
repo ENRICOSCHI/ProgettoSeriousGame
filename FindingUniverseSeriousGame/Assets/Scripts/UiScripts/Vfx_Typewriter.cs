@@ -5,7 +5,7 @@ using System.Collections;
 public class Vfx_Typewriter : MonoBehaviour  // Effetto graifco per scrivere il testo lettera per lettera
 {
     [SerializeField] private TMP_Text textComponent;
-    public float typingSpeed = 0.04f;  //Velocità di scrittura (in secondi per lettera)
+    public float typingSpeed = 0.07f;  //Velocità di scrittura (in secondi per lettera)
 
     void Awake()
     {

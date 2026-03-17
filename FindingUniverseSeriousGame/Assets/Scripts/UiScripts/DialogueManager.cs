@@ -29,7 +29,7 @@ public class DialogueManager : MonoBehaviour
         ShowMessage("Sistemi di bordo online. Benvenuto, Comandante.");
     }
 
-
+    
     public void ShowMessage(string message)  // Funzione pubblica per mostrare un messaggio di dialogo
     {
         dialogueGameObjectUI.SetActive(true);

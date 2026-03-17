@@ -29,7 +29,7 @@ public class ProgramTestScript : MonoBehaviour
             string[] substring = comandoOttenuto.Split();
             string comand = substring[0];//comando utilizzato
             string argomento = "";
-            if (substring.Length > 1)//evito così che vada in eccezione in caso non venga inserito l'argomento
+            if (substring.Length > 1)//evito cosï¿½ che vada in eccezione in caso non venga inserito l'argomento
                 argomento = substring[1];//argomento del comando (una parola)
 
             switch (comand)
@@ -39,6 +39,13 @@ public class ProgramTestScript : MonoBehaviour
                     Debug.Log("ShowDialogue");
                     DelegateClass.DialogueBoxEventsHandler.Invoke(argomento);
                     break;
+
+                case "ShowNotification":
+                    //avvio evento
+                    Debug.Log("ShowNotification");
+                    DelegateClass.NotificationEventsHandler.Invoke(argomento);
+                    break;
+
                 default:
                     Debug.LogWarning("Comando sconosciuto");
                     break;
