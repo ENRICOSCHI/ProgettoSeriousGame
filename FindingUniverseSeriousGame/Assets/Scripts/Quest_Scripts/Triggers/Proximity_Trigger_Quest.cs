@@ -19,6 +19,13 @@ public class Proximity_Trigger_Quest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //controllo di sicurezza
+        if (player == null)
+        {
+            Debug.LogWarning("Nessun riferimento al player assegnato in: " + gameObject.name);
+            return;
+        }
+        
         if (Vector3.Distance(transform.position, player.position) <= triggerDistance)
         {
             onPlayerTrigger.Invoke();
