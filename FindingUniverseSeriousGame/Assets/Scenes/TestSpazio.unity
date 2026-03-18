@@ -307,11 +307,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc6ccc1d58e201d4f88cd493f0f3b51f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &99076140 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7446860639158388651, guid: bc0eefb0cf599f2419f3914fb6306978, type: 3}
-  m_PrefabInstance: {fileID: 99076130}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &316191088
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,13 +319,14 @@ GameObject:
   - component: {fileID: 316191091}
   - component: {fileID: 316191090}
   - component: {fileID: 316191089}
+  - component: {fileID: 316191093}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!135 &316191089
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -414,12 +410,33 @@ Transform:
   m_GameObject: {fileID: 316191088}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 18.55}
-  m_LocalScale: {x: 12.667, y: 12.667, z: 12.667}
+  m_LocalPosition: {x: -268, y: 0, z: -871}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &316191093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316191088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b5ec638215e4994b9b106be971d29cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  descrizione: "Evento Umbra\t"
+  notificaMessaggio: Umbra
+  stella: {fileID: 515873390}
+  navicella: {fileID: 625973632}
+  pianeta: {fileID: 316191092}
+  raggioPianeta: 50
+  raggioStella: 348
+  spessorePenombra: 0.15
+  mostraGizmos: 1
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,7 +637,7 @@ Light:
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 2
-  m_Range: 10
+  m_Range: 404.39
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -658,7 +675,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -842,8 +859,52 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 200, y: 200, z: 200}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 696, y: 696, z: 696}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &544959255
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 544959257}
+  - component: {fileID: 544959256}
+  m_Layer: 0
+  m_Name: SolarSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &544959256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544959255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2163d90e314dd914a96a3281bb62d1b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &544959257
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544959255}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 122.288216, y: 21.421383, z: 92.899025}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -861,6 +922,9 @@ GameObject:
   - component: {fileID: 570999916}
   - component: {fileID: 570999915}
   - component: {fileID: 570999914}
+  - component: {fileID: 570999920}
+  - component: {fileID: 570999921}
+  - component: {fileID: 570999922}
   m_Layer: 0
   m_Name: luna
   m_TagString: Pianeta
@@ -1021,7 +1085,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.52
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &570999917
 MeshRenderer:
@@ -1085,12 +1149,68 @@ Transform:
   m_GameObject: {fileID: 570999913}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1522, y: 0, z: 0}
+  m_LocalPosition: {x: 777, y: 0, z: -669.9}
   m_LocalScale: {x: 1.7, y: 1.7, z: 1.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &570999920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570999913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b5ec638215e4994b9b106be971d29cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  descrizione: 
+  notificaMessaggio: 
+  stella: {fileID: 515873390}
+  navicella: {fileID: 625973632}
+  pianeta: {fileID: 570999919}
+  raggioPianeta: 10
+  raggioStella: 100
+  spessorePenombra: 0.15
+  mostraGizmos: 1
+--- !u!65 &570999921
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570999913}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &570999922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570999913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60b971fc17f8813408c425aeaaed0f30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  descrizione: 
+  notificaMessaggio: Boost
 --- !u!1 &625973628
 GameObject:
   m_ObjectHideFlags: 0
@@ -1105,9 +1225,9 @@ GameObject:
   - component: {fileID: 625973633}
   - component: {fileID: 625973629}
   - component: {fileID: 625973634}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Navicella
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1214,6 +1334,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSpeed: 0
+  boost: 50
+  boostDurationSecond: 2
   cinemachineCamera: {fileID: 805018274}
   minFOV: 40
   maxFOV: 70
@@ -1378,6 +1500,56 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 0
+--- !u!1 &816744083
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 816744085}
+  - component: {fileID: 816744084}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &816744084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816744083}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e991f57797d174347ae10eba9cf77738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  descrizione: "Il vento solare \xE8 composto da plasma (protoni ed elettroni). Quando
+    l'attivit\xE0 solare aumenta, queste particelle creano interferenze radio e possono
+    danneggiare i sistemi elettronici non schermati."
+  notificaMessaggio: Vento solare rilevato
+  tempoMINIMO: 60
+  tempoMASSIMO: 180
+--- !u!4 &816744085
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816744083}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 40.21909, y: 346.63187, z: 58.20569}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1460,6 +1632,11 @@ Transform:
   - {fileID: 2128066300}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &948549685 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3808850423143967464, guid: bc0eefb0cf599f2419f3914fb6306978, type: 3}
+  m_PrefabInstance: {fileID: 99076130}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &967369053
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1612,19 +1789,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5363545493761973973, guid: 6d7dce76d6e461044af6d5027f85175d, type: 3}
       propertyPath: m_LocalScale.x
-      value: 70
+      value: 55.000004
       objectReference: {fileID: 0}
     - target: {fileID: 5363545493761973973, guid: 6d7dce76d6e461044af6d5027f85175d, type: 3}
       propertyPath: m_LocalScale.y
-      value: 70
+      value: 55.000004
       objectReference: {fileID: 0}
     - target: {fileID: 5363545493761973973, guid: 6d7dce76d6e461044af6d5027f85175d, type: 3}
       propertyPath: m_LocalScale.z
-      value: 70
+      value: 55.000004
       objectReference: {fileID: 0}
     - target: {fileID: 5363545493761973973, guid: 6d7dce76d6e461044af6d5027f85175d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1200
+      value: 1510
       objectReference: {fileID: 0}
     - target: {fileID: 5363545493761973973, guid: 6d7dce76d6e461044af6d5027f85175d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1978,7 +2155,7 @@ PrefabInstance:
     - target: {fileID: 4489862904735597538, guid: 54f593bad02ef6641ad8bbc1f13a8378, type: 3}
       propertyPath: dialogueGameObjectUI
       value: 
-      objectReference: {fileID: 99076140}
+      objectReference: {fileID: 948549685}
     - target: {fileID: 5698369315328781363, guid: 54f593bad02ef6641ad8bbc1f13a8378, type: 3}
       propertyPath: m_LocalPosition.x
       value: 80.19997
@@ -2060,3 +2237,5 @@ SceneRoots:
   - {fileID: 515873390}
   - {fileID: 1137173766}
   - {fileID: 570999919}
+  - {fileID: 544959257}
+  - {fileID: 816744085}

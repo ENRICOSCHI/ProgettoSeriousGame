@@ -18,4 +18,13 @@ public abstract class Eventi : MonoBehaviour
     {
         DelegateClass.NotificationEventsHandler.Invoke(notificaMessaggio);
     }
+
+    /// <summary>
+    /// Invio una notifica personalizzata, utile per eventi che hanno più stati o messaggi dinamici.
+    /// </summary>
+    /// <param name="messaggio"></param>
+    protected void NotificaPersonalizzata(string messaggio)
+    {
+        DelegateClass.NotificationEventsHandler.Invoke(messaggio);
+    }
 }
