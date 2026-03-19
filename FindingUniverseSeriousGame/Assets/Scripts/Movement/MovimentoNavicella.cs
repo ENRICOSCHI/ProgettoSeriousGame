@@ -1,11 +1,14 @@
 using UnityEngine;
 using Unity.Cinemachine;
 using Unity.Profiling;
+using System.Collections;
 
 public class MovimentoNavicella : MonoBehaviour
 {
     [Header("Monitoring")]
     [SerializeField] float currentSpeed = 0f;
+    [SerializeField] float boost = 10f;
+    [SerializeField] float boostDurationSecond = 2f;
     public float CurrentSpeed => currentSpeed; // Permette ad altri script di leggere la velocita attuale senza modificarla
 
 
@@ -22,6 +25,7 @@ public class MovimentoNavicella : MonoBehaviour
     private float targetV = 0f; // Input verticale target
     private bool isAccelerating = false;
     private bool isDecelerating = false;
+    private bool isBoostActive = false;
 
 
     [Header("Flight Settings")]
@@ -128,6 +132,7 @@ public class MovimentoNavicella : MonoBehaviour
     /// </summary>
     void Speed()
     {
+        if(isBoostActive) return; // Se il boost è attivo, non modifichiamo la velocità con l'input normale
         //Accelerazione con shift
         if (isAccelerating)
         {
@@ -139,7 +144,6 @@ public class MovimentoNavicella : MonoBehaviour
         {
             currentSpeed -= acceleration * Time.deltaTime;
         }
-
 
         //Limita la velocit� massima e minima
         currentSpeed = Mathf.Clamp(currentSpeed, 0f, maxSpeed);
@@ -161,5 +165,17 @@ public class MovimentoNavicella : MonoBehaviour
             // Applichiamo il FOV alla lente della camera con un Lerp per non farlo scattare
             cinemachineCamera.Lens.FieldOfView = Mathf.Lerp(cinemachineCamera.Lens.FieldOfView, targetFOV, Time.deltaTime * fovSensitivity);
         }
+    }
+
+    /// <summary>
+    /// Aggiungo per un tempo limitato una velocità alla nave
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator AddBoost()
+    {
+        isBoostActive = true;
+        currentSpeed += boost;
+        yield return new WaitForSeconds(boostDurationSecond);
+        isBoostActive = false;
     }
 }

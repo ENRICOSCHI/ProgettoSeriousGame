@@ -7,20 +7,29 @@ public class Vfx_VectorHardware : MonoBehaviour
     private CanvasGroup canvasGroup;
     private RectTransform rectTransform;
     private Vector2 originalPosition;
-    
+
     private bool isFlickering = false;
     private bool isGlitching = false;
+    private bool isEventoSolareAttivo = false;
 
     [Header("Sfarfallio Intermittente")]
-    [Range(0f, 100f)] public float flickerChance = 1f; 
+    [Range(0f, 100f)] public float flickerChance = 1f;
     [SerializeField] float flickerBurstDuration = 0.2f;
     [SerializeField] float flickerSpeed = 30f;
     [Range(0f, 1f)] public float minAlpha = 0.7f;
 
     [Header("Glitch Casuale")]
-    [Range(0f, 100f)] public float glitchChance = 0.3f;
+    [Range(0f, 100f)][SerializeField] float glitchChance = 0.3f;
     [SerializeField] float glitchIntensity = 8f;
     [SerializeField] float glitchDuration = 0.06f;
+
+    [Header("Glitch Vento Solare")]
+    [SerializeField] float glitchChanceEventoSolare = 1f;
+    [SerializeField] float glitchIntensityEventoSolare = 50f;
+    [SerializeField] float glitchDurationEventoSolare = 0.68f;
+
+    void OnEnable() => DelegateClass.VentoSolareEventsHandler += SetGlitchEventoSolare;
+    void OnDisable() => DelegateClass.VentoSolareEventsHandler -= SetGlitchEventoSolare;
 
     void Start()
     {
@@ -37,12 +46,23 @@ public class Vfx_VectorHardware : MonoBehaviour
         {
             StartCoroutine(FlickerRoutine());
         }
-
-        // Logica del Glitch
-        if (!isGlitching && Random.Range(0f, 100f) < glitchChance)
+        if (!isEventoSolareAttivo)
         {
-            StartCoroutine(GlitchRoutine());
+            // Logica del Glitch
+            if (!isGlitching && Random.Range(0f, 100f) < glitchChance)
+            {
+                StartCoroutine(GlitchRoutine());
+            }
         }
+        else
+        {
+            // Logica del Glitch
+            if (!isGlitching && Random.Range(0f, 100f) < glitchChanceEventoSolare)
+            {
+                StartCoroutine(GlitchEventoSolare());
+            }
+        }
+
     }
 
     IEnumerator FlickerRoutine()
@@ -55,7 +75,7 @@ public class Vfx_VectorHardware : MonoBehaviour
             // Crea l'oscillazione rapida tipica del monitor vettoriale
             float noise = Mathf.PerlinNoise(Time.time * flickerSpeed, 0f);
             canvasGroup.alpha = Mathf.Lerp(minAlpha, 1f, noise);
-            
+
             elapsed += Time.deltaTime;
             yield return null;
         }
@@ -74,10 +94,32 @@ public class Vfx_VectorHardware : MonoBehaviour
         );
 
         rectTransform.anchoredPosition = originalPosition + glitchOffset;
-        
+
         yield return new WaitForSeconds(glitchDuration);
 
         rectTransform.anchoredPosition = originalPosition;
         isGlitching = false;
+    }
+
+    IEnumerator GlitchEventoSolare()
+    {
+        isGlitching = true;
+
+        Vector2 glitchOffset = new Vector2(
+            Random.Range(-glitchIntensityEventoSolare, glitchIntensityEventoSolare),
+            Random.Range(-glitchIntensityEventoSolare, glitchIntensityEventoSolare)
+        );
+
+        rectTransform.anchoredPosition = originalPosition + glitchOffset;
+
+        yield return new WaitForSeconds(glitchDurationEventoSolare);
+
+        rectTransform.anchoredPosition = originalPosition;
+        isGlitching = false;
+    }
+
+    public void SetGlitchEventoSolare(bool isActive)
+    {
+        isEventoSolareAttivo = isActive;
     }
 }

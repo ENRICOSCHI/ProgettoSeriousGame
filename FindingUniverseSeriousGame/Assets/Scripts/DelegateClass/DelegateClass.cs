@@ -14,4 +14,8 @@ public class DelegateClass
     /*Gestione eventi Notification*/
     public delegate void NotificationEvents(string message);
     public static NotificationEvents NotificationEventsHandler;
+
+    /*Gestione evento vento solare*/
+    public delegate void VentoSolareEvents(bool isActive);
+    public static VentoSolareEvents VentoSolareEventsHandler;
 }
