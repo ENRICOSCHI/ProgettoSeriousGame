@@ -11,12 +11,12 @@ public abstract class Eventi : MonoBehaviour
     [ContextMenu("TestaDescrizione")]
     protected void Descrizione()
     {
-        DelegateClass.DialogueBoxEventsHandler.Invoke(descrizione);
+        DelegateClass.DialogueBoxEventsHandler?.Invoke(descrizione);
     }
     [ContextMenu("TestaNotifica")]
     protected void Notifica()
     {
-        DelegateClass.NotificationEventsHandler.Invoke(notificaMessaggio);
+        DelegateClass.NotificationEventsHandler?.Invoke(notificaMessaggio);
     }
 
     /// <summary>
@@ -25,6 +25,6 @@ public abstract class Eventi : MonoBehaviour
     /// <param name="messaggio"></param>
     protected void NotificaPersonalizzata(string messaggio)
     {
-        DelegateClass.NotificationEventsHandler.Invoke(messaggio);
+        DelegateClass.NotificationEventsHandler?.Invoke(messaggio);
     }
 }

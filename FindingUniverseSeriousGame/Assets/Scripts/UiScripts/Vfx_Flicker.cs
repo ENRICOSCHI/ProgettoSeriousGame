@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using Unity.VisualScripting;
 
 [RequireComponent(typeof(CanvasGroup))]  //Questo codice non funziona se non è presente un CanvasGroup, quindi lo aggiunge automaticamente se manca
 public class Vfx_VectorHardware : MonoBehaviour
@@ -29,8 +28,8 @@ public class Vfx_VectorHardware : MonoBehaviour
     [SerializeField] float glitchIntensityEventoSolare = 50f;
     [SerializeField] float glitchDurationEventoSolare = 0.68f;
 
-    void OnEnable() => DelegateClass.VentoSolareEventsHandler += GlitchEventoSolare;
-    void OnDisable() => DelegateClass.VentoSolareEventsHandler -= GlitchEventoSolare;
+    void OnEnable() => DelegateClass.VentoSolareEventsHandler += SetGlitchEventoSolare;
+    void OnDisable() => DelegateClass.VentoSolareEventsHandler -= SetGlitchEventoSolare;
 
     void Start()
     {
@@ -119,7 +118,7 @@ public class Vfx_VectorHardware : MonoBehaviour
         isGlitching = false;
     }
 
-    public void GlitchEventoSolare(bool isActive)
+    public void SetGlitchEventoSolare(bool isActive)
     {
         isEventoSolareAttivo = isActive;
     }

@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class VentroSolareEvento : Eventi
+public class VentoSolareEvento : Eventi
 {
     [SerializeField] int tempoMINIMO = 5;
     [SerializeField] int tempoMASSIMO = 15;

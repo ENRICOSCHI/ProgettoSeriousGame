@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SolarSystemManagement : MonoBehaviour
 {
-    readonly float G = 0.1f; //costante usata per i calcoli
+    readonly float G = 100f; //costante usata per i calcoli
     GameObject[] planets;
 
     private void Start()
