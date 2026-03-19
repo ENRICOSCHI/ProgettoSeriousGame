@@ -6,9 +6,9 @@ public class Interaction_Trigger_Script : MonoBehaviour
     public Transform player;
 
     [Header("Trigger Parameters")]
-    public KeyCode triggerKey; //key della tastiera da premere per attivare la quest: da settare.
-    public float triggerDistance; //distanza massima tra player e l'oggetto trigger per attivare la quest: da settare.
-    
+    [SerializeField] KeyCode triggerKey; //key della tastiera da premere per attivare la quest: da settare.
+    [SerializeField] float triggerDistance; //distanza massima tra player e l'oggetto trigger per attivare la quest: da settare.
+
     public UnityEvent onPlayerTrigger; 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

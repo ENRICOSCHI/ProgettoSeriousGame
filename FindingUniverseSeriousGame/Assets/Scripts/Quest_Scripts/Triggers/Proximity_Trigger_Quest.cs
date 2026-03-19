@@ -7,7 +7,7 @@ public class Proximity_Trigger_Quest : MonoBehaviour
     e va settato con il player, la distanza di trigger e la quest da attivare*/
     
     public Transform player;
-    public float triggerDistance; //da settare, non mi rendo conto di quato possa essere ragionevole impostarla
+    [SerializeField] float triggerDistance; //da settare, non mi rendo conto di quato possa essere ragionevole impostarla
     public UnityEvent onPlayerTrigger; //collegare lo script della quest da attivare
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
