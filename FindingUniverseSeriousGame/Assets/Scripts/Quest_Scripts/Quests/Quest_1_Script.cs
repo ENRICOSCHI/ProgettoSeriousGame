@@ -1,11 +1,8 @@
 using UnityEngine;
 
-public class Quest_1_Script : MonoBehaviour
+public class Quest_1_Script : Quest_Generic_Script
 {
-    /*Template per una fetch quest di qualcosa*/
-    public string questName; 
-    public bool questStarted = false;
-    public bool questCompleted = false;
+    // Template per una fetch quest di qualcosa
 
     [Header("Quest Assets")]
     public GameObject questItem; //ogetto da tocccare / raccogliere
@@ -44,7 +41,7 @@ public class Quest_1_Script : MonoBehaviour
 /// Il metodo StartQuest va collegato ad un Trigger per far partire la quest. 
 /// Inoltre, per la Quest 1 abilita l'oggetto della quest se questo è disabilitato nella Hierarchy.
 /// </summary>
-    public void StartQuest()
+    public override void StartQuest()
     {
         if (player != null && questItem != null)
         {
@@ -56,12 +53,7 @@ public class Quest_1_Script : MonoBehaviour
             
             if (playerCollider != null && questItemCollider != null)
             {
-                if (!questStarted)
-                {
-                    questStarted = true;
-                    //WIP: possibile aggiunta di messaggio alla UI
-                    Debug.Log("Quest 1 Cominciata!");
-                }
+                base.StartQuest();
             }
             else Debug.LogWarning("Possibili riferimenti a Collider mancanti per la Quest 1 in: " + gameObject.name);
         }
@@ -72,13 +64,13 @@ public class Quest_1_Script : MonoBehaviour
 /// <summary>
 /// Termina la Quest 1
 /// </summary>
-    public void FinishQuest()
+    public override void FinishQuest()
     {
-        if (questStarted && !questCompleted)
+        base.FinishQuest();
+        if (questItem != null)
         {
+            //disabilito l'oggetto della quest una volta completata la quest
             questItem.SetActive(false);
-            questCompleted = true;
-            Debug.Log("Quest 1 Completata!");
         }
     }
 }

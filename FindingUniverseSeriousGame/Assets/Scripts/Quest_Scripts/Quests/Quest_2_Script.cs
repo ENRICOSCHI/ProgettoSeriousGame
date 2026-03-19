@@ -1,15 +1,13 @@
 using UnityEngine;
 
-public class Quest_2_Script : MonoBehaviour
+public class Quest_2_Script : Quest_Generic_Script
 {
-    public string questName;
-    public bool questStarted = false;
-    public bool questCompleted = false;
+    // Template per una Quest di scansione di un pianeta
 
     [Header("Quest Assets")]
     public Transform player;
-    public KeyCode scansionKey; //tasto da premere per scansionare il pianeta;
-    public float scanDistance; //distanza massima per poter scansionare il pianeta: da settare
+    [SerializeField] KeyCode scansionKey; //tasto da premere per scansionare il pianeta;
+    [SerializeField] float scanDistance; //distanza massima per poter scansionare il pianeta: da settare
     public Transform planetToScan; //pianeta da scansionare
 
 
@@ -38,29 +36,12 @@ public class Quest_2_Script : MonoBehaviour
     /// <summary>
     /// Il metodo StartQuest() va collegato ad un Trigger per far partire la quest
     /// </summary>
-    public void StartQuest()
+    public override void StartQuest()
     {
         if (player != null && planetToScan != null)
         {
-            if (!questStarted)
-            {
-                questStarted = true;
-                //WIP: anche qua possibile aggiunta di messaggio alla UI
-                Debug.Log("Quest 2 Cominciata!");
-            }
+            base.StartQuest();
         }
         else Debug.LogWarning("Possibili riferimenti a Oggetti mancanti per la Quest 2 in: " + gameObject.name);
-    }
-    
-    /// <summary>
-    /// Termina la Quest 2.
-    /// </summary>
-    public void FinishQuest()
-    {
-        if (questStarted && !questCompleted)
-        {
-            questCompleted = true;
-            Debug.Log("Quest 2 Completata!");
-        }
     }
 }
