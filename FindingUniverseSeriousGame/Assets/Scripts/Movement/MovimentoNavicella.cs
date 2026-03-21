@@ -174,8 +174,10 @@ public class MovimentoNavicella : MonoBehaviour
     public IEnumerator AddBoost()
     {
         isBoostActive = true;
-        currentSpeed += boost;
+        float oldSpeed = currentSpeed;// salvo la velocità priama del boost
+        currentSpeed += boost; // applico boost
         yield return new WaitForSeconds(boostDurationSecond);
+        currentSpeed = oldSpeed; // resetto velcità precedente
         isBoostActive = false;
     }
 }
