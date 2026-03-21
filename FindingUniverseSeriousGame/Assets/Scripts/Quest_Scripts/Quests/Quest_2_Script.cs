@@ -11,12 +11,6 @@ public class Quest_2_Script : Quest_Generic_Script
     public Transform planetToScan; //pianeta da scansionare
 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {

@@ -21,6 +21,12 @@ public class Quest_3_Script : Quest_Generic_Script
         }
     }
 
+    public override void Start()
+    {
+        base.Start();
+        currentAmount = QuestManager_Script.instance.GetQuestData(questName).amountProgress;
+    }
+
     public override void StartQuest()
     {
         if (questItem != null && questItem.Length > 0)
@@ -42,5 +48,11 @@ public class Quest_3_Script : Quest_Generic_Script
             base.StartQuest();
         }
         else Debug.LogWarning("Riferimenti a oggetti mancanti o lista vuota per la Quest 3 in: " + gameObject.name);
+    }
+
+    public override void FinishQuest()
+    {
+        base.FinishQuest();
+        QuestManager_Script.instance.UpdateQuestData(questName, questStarted, questCompleted, currentAmount);
     }
 }
