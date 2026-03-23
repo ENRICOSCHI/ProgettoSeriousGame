@@ -11,7 +11,7 @@ public class SunLightController : MonoBehaviour
     // ─── Riferimenti ─────────────────────────────────────────────────────────
 
     [Header("Configurazione Obiettivo")]
-    [Tooltip("La navicella del giocatore o la camera principale.")]
+    [Tooltip("La navicella del giocatore o la camera principale.")] // Attributo che aggiunge un popup descrittivo dell'argomento
     [SerializeField] private Transform _target;
 
     [Tooltip("Il centro del Sole da cui esce la luce")]
@@ -51,7 +51,7 @@ public class SunLightController : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(_sunCenter, _target != null ? _target.position : Vector3.up * 10f);
+        Gizmos.color = Color.yellow; //colore del raggio giallo
+        Gizmos.DrawLine(_sunCenter, _target != null ? _target.position : Vector3.up * 10f); // disegno il raggio: da sole, a navicella
     }
 }

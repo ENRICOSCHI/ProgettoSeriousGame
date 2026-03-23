@@ -33,17 +33,16 @@ public class SunFlareFader : MonoBehaviour
     }
 
     /// <summary>
-    /// Calcola se il sole è all'interno del frustum della camera (Viewport Space).
+    /// Calcola se il sole è all'interno del frustum (cono senza punta [in caso non masticassi l'inglese]) della camera (quindi calcola se il sole è dentro la viewport).
     /// </summary>
     private void CheckSunVisibility()
     {
-        // Convertiamo la posizione 3D del sole in coordinate Viewport (0-1)
+        // Convertiamo la posizione 3D del sole in coordinate Viewport (0-1) e indichiamo quanto è visibile nello schermo da 0 a 1
         Vector3 viewportPos = _mainCamera.WorldToViewportPoint(_sunTransform.position);
 
-        // Verifichiamo se il punto è davanti alla camera (z > 0) e dentro i bordi (0-1)
+        // Verifichiamo se il sole è davanti alla camera (z > 0) e dentro i bordi (0-1)
         bool isVisible = viewportPos.z > 0 && 
-                         viewportPos.x >= 0 && viewportPos.x <= 1 && 
-                         viewportPos.y >= 0 && viewportPos.y <= 1;
+                         viewportPos.x >= 0 && viewportPos.x <= 1 && viewportPos.y >= 0 && viewportPos.y <= 1;
 
         _currentTargetIntensity = isVisible ? _maxIntensity : 0f;
     }
@@ -53,7 +52,9 @@ public class SunFlareFader : MonoBehaviour
     /// </summary>
     private void ApplySmoothFade()
     {
-        // Formula del Lerp: I_next = Lerp(I_current, I_target, Time.deltaTime * Speed)
+        // Formula del Lerp: Intensity_next = Lerp(Intensity_current, Intensity_target, Time.deltaTime * Speed)
+        // ricordo che il lerp prende il valore tra a e b a una distana t (in questo caso il tempo)
+        // per esempio se il valora a è 4 e il valore b è 8 e t è 0.5, il valore in uscita sarà 6
         _flareComponent.intensity = Mathf.Lerp(
             _flareComponent.intensity, 
             _currentTargetIntensity, 
