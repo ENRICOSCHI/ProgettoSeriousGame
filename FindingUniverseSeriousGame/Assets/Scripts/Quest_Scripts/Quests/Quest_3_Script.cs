@@ -37,9 +37,9 @@ public class Quest_3_Script : Quest_Generic_Script
                 {
                     //abilito l'oggetto se è disabilitato
                     if (!item.activeInHierarchy) item.SetActive(true);
-                    if (item.GetComponent<Collectable_Item>() != null)
+                    if (item.GetComponent<Collectable_Item_Quest3>() != null)
                     {
-                        item.GetComponent<Collectable_Item>().SetQuestScript(this);
+                        item.GetComponent<Collectable_Item_Quest3>().SetQuestScript(this);
                     }
                     else Debug.LogWarning("Riferimento a Collectable_Item mancante per l'oggetto " + item.name + " nella lista questItem per la Quest 3 in: " + gameObject.name);
                 }
