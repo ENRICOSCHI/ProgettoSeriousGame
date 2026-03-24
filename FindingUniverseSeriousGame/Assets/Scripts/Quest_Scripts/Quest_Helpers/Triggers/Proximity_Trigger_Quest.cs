@@ -33,4 +33,11 @@ public class Proximity_Trigger_Quest : MonoBehaviour
             this.enabled = false;
         }
     }
+
+    [ContextMenu("Test trigger")]
+    void TestTriggerFromInspector()
+    {
+        onPlayerTrigger.Invoke();
+        this.enabled = false;
+    }
 }
