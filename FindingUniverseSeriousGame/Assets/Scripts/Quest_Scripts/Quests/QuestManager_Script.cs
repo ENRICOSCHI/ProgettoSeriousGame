@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QuestManager_Script : MonoBehaviour
+public class QuestManager_Script : MonoBehaviour 
 {
     /*Questo script serve a gestire il salvataggio degli stati delle missioni
     anche a fronte di un cambio di scena, va collegato al GameObject QuestManager_Global
@@ -13,34 +13,7 @@ public class QuestManager_Script : MonoBehaviour
     // Dizionario che associa il nome della missione al suo stato (questData)
     private Dictionary<string, QuestData> questDatabase = new();
 
-    /// <summary>
-    /// Struct che rappresenta lo stato di una missione, con i campi:
-    /// - booleano isStarted: indica se la missione è stata iniziata
-    /// - booleano isCompleted: indica se la missione è stata completata
-    /// - intero amountProgress: rappresenta il progresso (in intero, se applicabile) attuale della missione 
-    /// </summary>
-    [System.Serializable]
-    public class QuestData
-    {
-        public bool isStarted = false;
-        public bool isCompleted = false;
-        public int amountProgress = 0;
-
-        public QuestData() { }
-
-        public QuestData(bool isStarted, bool isCompleted)
-        {
-            this.isStarted = isStarted;
-            this.isCompleted = isCompleted;
-        }
-
-        public QuestData(bool isStarted, bool isCompleted, int amountProgress)
-        {
-            this.isStarted = isStarted;
-            this.isCompleted = isCompleted;
-            this.amountProgress = amountProgress;
-        }
-    }
+    
     #endregion
 
     #region Initialization

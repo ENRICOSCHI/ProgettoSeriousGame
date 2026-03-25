@@ -17,7 +17,7 @@ public abstract class Quest_Generic_Script : MonoBehaviour
         }
         if (QuestManager_Script.instance != null)
         {
-            QuestManager_Script.QuestData data = QuestManager_Script.instance.GetQuestData(questName);
+            QuestData data = QuestManager_Script.instance.GetQuestData(questName);
             questStarted = data.isStarted;
             questCompleted = data.isCompleted;
         }
@@ -34,7 +34,7 @@ public abstract class Quest_Generic_Script : MonoBehaviour
             questStarted = true;
             //WIP: possibile aggiunta di messaggio alla UI
             Debug.Log("Quest Cominciata!");
-            QuestManager_Script.instance.UpdateQuestData(questName, questStarted, questCompleted);
+            //QuestManager_Script.instance.UpdateQuestData(questName, questStarted, questCompleted);
         }
     }
 
@@ -47,7 +47,7 @@ public abstract class Quest_Generic_Script : MonoBehaviour
         {
             questCompleted = true;
             Debug.Log("Quest Completata!");
-            QuestManager_Script.instance.UpdateQuestData(questName, questStarted, questCompleted);
+            //QuestManager_Script.instance.UpdateQuestData(questName, questStarted, questCompleted);
         }
     }
 }

@@ -3,29 +3,36 @@ using UnityEngine;
 public class Quest_3_Script : Quest_Generic_Script
 {
     // Template per Fetch quest di raccolta di n oggetti.
+    public bool doesReturnInPlace = false; //indica se gli oggetti da raccogliere devono essere riportati in un punto specifico (true) o semplicemente raccolti (false)
 
     [Header("Quest Assets")]
-    [SerializeField] int requiredAmount; //quantità richiesta di oggetti raccolti per completare la quest | da settare
     [SerializeField] GameObject[] questItem; //Lista di riferimenti agli oggetti da tocccare / raccogliere
 
     private int currentAmount = 0; //quantità attuale di oggetti raccolti
+    private int requiredAmount; //quantità richiesta di oggetti raccolti per completare la quest | da settare
+
+
+    private void Awake()  // Ottiene quanti elementi sono presenti nell'array questItem
+    {
+        requiredAmount = questItem.Length; //imposto la quantità richiesta in base alla lunghezza dell'array di oggetti da raccogliere
+    }
 
     public void ItemCollected()
     {
         if (!questStarted || questCompleted) return;
 
         currentAmount++;
-        if (currentAmount >= requiredAmount)
+        if (!doesReturnInPlace)
         {
-            FinishQuest();
+            FinishQuest();  //logica per verificare se gli oggetti sono stati riportati in un punto specifico
         }
     }
 
-    public override void Start()
+    /*public override void Start()
     {
         base.Start();
         currentAmount = QuestManager_Script.instance.GetQuestData(questName).amountProgress;
-    }
+    }*/
 
     public override void StartQuest()
     {
@@ -52,7 +59,15 @@ public class Quest_3_Script : Quest_Generic_Script
 
     public override void FinishQuest()
     {
+        if (currentAmount < requiredAmount)
+            return;
+
         base.FinishQuest();
-        QuestManager_Script.instance.UpdateQuestData(questName, questStarted, questCompleted, currentAmount);
+
+        ManagerHandler.ManagerInstance.NotificationManager.ShowMessage("Quest 3 terminata.");
+        Debug.Log("Quest 3 terminata");
+        //QuestManager_Script.instance.UpdateQuestData(questName, questStarted, questCompleted, currentAmount);
+
+        this.enabled = false;
     }
 }
