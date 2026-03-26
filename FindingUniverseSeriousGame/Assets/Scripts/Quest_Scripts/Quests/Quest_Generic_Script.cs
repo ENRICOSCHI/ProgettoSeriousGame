@@ -1,10 +1,19 @@
 using UnityEngine;
 
+/// <summary>
+/// Enum rappresentativa dell'interagibilità
+/// </summary>
+public enum interactableType { scan, keyWord }
+
 public abstract class Quest_Generic_Script : MonoBehaviour
 {
     public string questName;
+    [HideInInspector]
     public bool questStarted = false;
+    [HideInInspector]
     public bool questCompleted = false;
+    [Tooltip("indica la tipologia di interagibilità della quest")]
+    public interactableType questInteractionType;
 
     public virtual void Start()
     {

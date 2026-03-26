@@ -163,13 +163,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cb7566153f41924e9373489ec92f702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questName: Pablo
-  questStarted: 0
-  questCompleted: 0
-  questItem: {fileID: 1562276859}
-  player: {fileID: 1233241040}
-  playerCollider: {fileID: 0}
-  questItemCollider: {fileID: 0}
 --- !u!1 &654102091
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,9 +287,10 @@ MonoBehaviour:
   questName: 
   questStarted: 0
   questCompleted: 0
+  questInteractionType: 1
+  doesReturnInPlace: 1
   questItem:
   - {fileID: 1686771421}
-  doesReturnInPlace: 1
 --- !u!1 &981191115
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,13 +335,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cb7566153f41924e9373489ec92f702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questName: pippo
-  questStarted: 0
-  questCompleted: 0
-  questItem: {fileID: 654102091}
-  player: {fileID: 1233241040}
-  playerCollider: {fileID: 0}
-  questItemCollider: {fileID: 0}
 --- !u!1 &1084069754
 GameObject:
   m_ObjectHideFlags: 0
@@ -726,6 +713,7 @@ MonoBehaviour:
   questName: 
   questStarted: 0
   questCompleted: 0
+  questInteractionType: 0
 --- !u!1 &1562276859
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,6 +838,7 @@ MonoBehaviour:
   questName: 
   questStarted: 0
   questCompleted: 0
+  questInteractionType: 0
 --- !u!1 &1686771421
 GameObject:
   m_ObjectHideFlags: 0
@@ -1139,8 +1128,9 @@ MonoBehaviour:
   questName: 
   questStarted: 0
   questCompleted: 0
-  questItem: []
+  questInteractionType: 0
   doesReturnInPlace: 0
+  questItem: []
 --- !u!1 &1978003810
 GameObject:
   m_ObjectHideFlags: 0
