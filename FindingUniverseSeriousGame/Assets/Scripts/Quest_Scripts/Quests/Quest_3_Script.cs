@@ -1,36 +1,44 @@
 using UnityEngine;
 
+/// <summary>
+/// Script per quest di raccolta di n oggetti
+/// </summary>
 public class Quest_3_Script : Quest_Generic_Script
 {
-    /// <summary>
-    /// Script per quest di raccolta di n oggetti
-    /// </summary>
-
-    public bool doesReturnInPlace = false; 
-    //true = raccolta oggetti e ritorno al punto della quest
-    //false = solo raccolta oggetti
-
 
     #region Configurazione variabili
 
-    [Header("Quest Assets")]
-    [SerializeField] GameObject[] questItem; //Lista di riferimenti agli oggetti da tocccare / raccogliere
+    public bool doesReturnInPlace = false;
+    //true = raccolta oggetti e ritorno al punto della quest
+    //false = solo raccolta oggetti
 
-    private int currentAmount = 0; //quantità attuale di oggetti raccolti
-    private int requiredAmount; //quantità richiesta di oggetti raccolti per completare la quest | da settare
+    [Header("Quest Assets")]
+    [Tooltip("Lista di riferimenti ai GameObject da far raccogliere")]
+    [SerializeField] GameObject[] questItem;
+    private int currentAmount = 0;
+    private int requiredAmount; //settato in Awake()
 
     #endregion
 
+    #region Inizializzazione via Awake()
 
-    private void Awake()  // Ottiene quanti elementi sono presenti nell'array questItem
+    /// <summary>
+    /// Fa combaciare <see cref="requiredAmount"/> con la dimensione di <see cref="questItem"/>
+    /// </summary>
+    private void Awake()
     {
-        requiredAmount = questItem.Length; //imposto la quantità richiesta in base alla lunghezza dell'array di oggetti da raccogliere
+        requiredAmount = questItem.Length;
     }
 
+    #endregion
 
+    #region Gestione Logica Raccolta Oggetti
 
-    #region Definizioni dei metodi
-
+    /// <summary>
+    /// Metodo che aggiorna il contatore relativo agli oggetti raccolti.
+    /// Pensato per essere chiamato dagli oggetti presenti nell'Array questItem 
+    /// al momento della loro raccolta.
+    /// </summary>
     public void ItemCollected()
     {
         if (!questStarted || questCompleted) return;  //Controllo di sicurezza, quest non ancora terminata
@@ -38,9 +46,13 @@ public class Quest_3_Script : Quest_Generic_Script
         currentAmount++;
         if (!doesReturnInPlace)
         {
-            FinishQuest();  //logica per verificare se gli oggetti sono stati riportati in un punto specifico
+            FinishQuest();
         }
     }
+
+    #endregion
+
+    #region Override StartQuest() & FinishQuest()
 
     /*public override void Start()
     {
@@ -48,6 +60,12 @@ public class Quest_3_Script : Quest_Generic_Script
         currentAmount = QuestManager_Script.instance.GetQuestData(questName).amountProgress;
     }*/
 
+    /// <summary>
+    /// Override del metodo base StartQuest(), adattato alla logica delle Quest di tipo 3. 
+    /// Passa un riferimento alla propria istanza a tutti gli elementi presenti nella lista
+    /// <see cref="questItem"/> e li abilita nella Hierarchy di Unity.
+    /// Chiama infine lo StartQuest() base.
+    /// </summary>
     public override void StartQuest()
     {
         if (questItem != null && questItem.Length > 0)
@@ -71,6 +89,15 @@ public class Quest_3_Script : Quest_Generic_Script
         else Debug.LogWarning("Riferimenti a oggetti mancanti o lista vuota per la Quest 3 in: " + gameObject.name);
     }
 
+    /// <summary>
+    /// Override del metodo base FinishQuest() adattato alla logica delle Quest di tipo 3.
+    /// Viene effettuato un controllo sulla quantità attuale di Item raccolti: 
+    /// se questa soddisfa la quantità richiesta indicata da <see cref="requiredAmount"/> è chiamato
+    /// il FinishQuest() base. (i.e. la quest è terminata)
+    /// </summary>
+    /// <remarks>
+    /// Al termine dell'esecuzione <see cref="Quest_3_Script"/> è disabilitato 
+    /// </remarks>
     public override void FinishQuest()
     {
         if (currentAmount < requiredAmount)
