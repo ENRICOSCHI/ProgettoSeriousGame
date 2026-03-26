@@ -4,13 +4,24 @@ public class Quest_Trigger : MonoBehaviour
 {
     [SerializeField] private KeyCode interactionKey; //tasto da premere per attivare la quest
 
-    private bool isPlayerInside = false;
-    private Quest_Generic_Script questType;
+    private bool isPlayerInside = false;  //Indica se il player è dentro la zona di quest
+    private Quest_Generic_Script questType;  //Tipo di quest
 
     void Update()
     {
         CheckInput();
     }
+
+    void CheckInput()  //Controllo pressione tasto di interazione quest
+    {
+        if (isPlayerInside && Input.GetKeyDown(interactionKey) && questType.questInteractionType == interactableType.keyWord)
+        {
+            Tipo3();
+        }
+    }
+
+
+    #region Metodi di controllo ingresso / uscita nella zona quest
 
     void OnTriggerEnter(Collider other)
     {
@@ -27,13 +38,8 @@ public class Quest_Trigger : MonoBehaviour
         isPlayerInside = false;
     }
 
-    void CheckInput()
-    {
-        if (isPlayerInside && Input.GetKeyDown(interactionKey) && questType.questInteractionType == interactableType.keyWord)
-        {
-            Tipo3();
-        }
-    }
+    #endregion
+
 
     #region "TIPO QUEST 2"
     /// <summary>
@@ -52,6 +58,8 @@ public class Quest_Trigger : MonoBehaviour
         }
     }
     #endregion
+
+
     #region "TIPO QUEST 3"
     /// <summary>
     /// Missione che richiede la raccolta di N oggetti
@@ -60,7 +68,7 @@ public class Quest_Trigger : MonoBehaviour
     {
         if(questType is Quest_3_Script)
         {
-            if (!questType.questStarted)
+            if (!questType.questStarted) 
             {
                 questType.StartQuest();
             }

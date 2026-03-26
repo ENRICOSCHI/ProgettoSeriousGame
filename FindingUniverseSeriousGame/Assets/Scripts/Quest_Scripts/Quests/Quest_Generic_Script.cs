@@ -9,11 +9,16 @@ public abstract class Quest_Generic_Script : MonoBehaviour
 {
     public string questName;
     [HideInInspector]
-    public bool questStarted = false;
+    public bool questStarted = false;  // Quest iniziata
     [HideInInspector]
-    public bool questCompleted = false;
+    public bool questCompleted = false;  // Quest terminata
+
     [Tooltip("indica la tipologia di interagibilità della quest")]
     public interactableType questInteractionType;
+
+
+
+    #region Inizializzazione QuestManager
 
     public virtual void Start()
     {
@@ -24,7 +29,7 @@ public abstract class Quest_Generic_Script : MonoBehaviour
             Debug.LogWarning("Non è stato assegnato per la quest in: " + gameObject.name);
             return;
         }
-        if (QuestManager_Script.instance != null)
+        if (QuestManager_Script.instance != null)  // Se l'istanza della quest esiste, assegna i parametri
         {
             QuestData data = QuestManager_Script.instance.GetQuestData(questName);
             questStarted = data.isStarted;
@@ -32,6 +37,13 @@ public abstract class Quest_Generic_Script : MonoBehaviour
         }
         else Debug.LogWarning("QuestManager_Script non trovato in scena.");
     }
+
+    #endregion
+
+
+
+    
+    #region Metodi generali di inizio e fine quest
 
     /// <summary>
     /// Inizia la quest se e solo se non risulta iniziata.
@@ -59,4 +71,6 @@ public abstract class Quest_Generic_Script : MonoBehaviour
             //QuestManager_Script.instance.UpdateQuestData(questName, questStarted, questCompleted);
         }
     }
+
+    #endregion
 }

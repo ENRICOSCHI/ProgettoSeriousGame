@@ -10,12 +10,16 @@ public class Quest_3_Script : Quest_Generic_Script
     //true = raccolta oggetti e ritorno al punto della quest
     //false = solo raccolta oggetti
 
-    
+
+    #region Configurazione variabili
+
     [Header("Quest Assets")]
     [SerializeField] GameObject[] questItem; //Lista di riferimenti agli oggetti da tocccare / raccogliere
 
     private int currentAmount = 0; //quantità attuale di oggetti raccolti
     private int requiredAmount; //quantità richiesta di oggetti raccolti per completare la quest | da settare
+
+    #endregion
 
 
     private void Awake()  // Ottiene quanti elementi sono presenti nell'array questItem
@@ -23,9 +27,13 @@ public class Quest_3_Script : Quest_Generic_Script
         requiredAmount = questItem.Length; //imposto la quantità richiesta in base alla lunghezza dell'array di oggetti da raccogliere
     }
 
+
+
+    #region Definizioni dei metodi
+
     public void ItemCollected()
     {
-        if (!questStarted || questCompleted) return;
+        if (!questStarted || questCompleted) return;  //Controllo di sicurezza, quest non ancora terminata
 
         currentAmount++;
         if (!doesReturnInPlace)
@@ -76,4 +84,6 @@ public class Quest_3_Script : Quest_Generic_Script
 
         this.enabled = false;
     }
+
+    #endregion
 }

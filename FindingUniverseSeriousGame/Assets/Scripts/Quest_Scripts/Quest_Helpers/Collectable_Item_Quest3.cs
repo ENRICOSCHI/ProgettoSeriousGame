@@ -10,7 +10,7 @@ public class Collectable_Item_Quest3 : MonoBehaviour, ICollectable
     private Quest_3_Script questScript; //riferimento allo Script della Quest 3 a cui questo oggetto è associato.
 
     #region ICollectable Implementation
-    public void OnCollect()
+    public void OnCollect()  //Raccolta dell'oggetto
     {
         if (questScript != null)
         {
