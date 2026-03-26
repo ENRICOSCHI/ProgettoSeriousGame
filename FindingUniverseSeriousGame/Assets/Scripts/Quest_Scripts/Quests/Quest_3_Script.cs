@@ -2,9 +2,15 @@ using UnityEngine;
 
 public class Quest_3_Script : Quest_Generic_Script
 {
-    // Template per Fetch quest di raccolta di n oggetti.
-    public bool doesReturnInPlace = false; //indica se gli oggetti da raccogliere devono essere riportati in un punto specifico (true) o semplicemente raccolti (false)
+    /// <summary>
+    /// Script per quest di raccolta di n oggetti
+    /// </summary>
 
+    public bool doesReturnInPlace = false; 
+    //true = raccolta oggetti e ritorno al punto della quest
+    //false = solo raccolta oggetti
+
+    
     [Header("Quest Assets")]
     [SerializeField] GameObject[] questItem; //Lista di riferimenti agli oggetti da tocccare / raccogliere
 
