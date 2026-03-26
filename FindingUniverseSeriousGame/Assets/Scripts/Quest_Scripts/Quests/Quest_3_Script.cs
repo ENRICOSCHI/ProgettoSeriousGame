@@ -68,25 +68,30 @@ public class Quest_3_Script : Quest_Generic_Script
     /// </summary>
     public override void StartQuest()
     {
-        if (questItem != null && questItem.Length > 0)
+        if (!QuestSafetyChecks.CheckICollectable(questItem))
         {
-            foreach (GameObject item in questItem)
-            {
-                if (item != null)
-                {
-                    //abilito l'oggetto se è disabilitato
-                    if (!item.activeInHierarchy) item.SetActive(true);
-                    if (item.GetComponent<Collectable_Item_Quest3>() != null)
-                    {
-                        item.GetComponent<Collectable_Item_Quest3>().SetQuestScript(this);
-                    }
-                    else Debug.LogWarning("Riferimento a Collectable_Item mancante per l'oggetto " + item.name + " nella lista questItem per la Quest 3 in: " + gameObject.name);
-                }
-                else Debug.LogWarning("Riferimento a oggetto mancante nella lista questItem per la Quest 3 in: " + gameObject.name);
-            }
-            base.StartQuest();
+            Debug.Log("Riferimenti interni a uno script ICollectable" +
+            " nella lista di raccoglibili per la Quest 3 assenti o impropri in " +
+            gameObject.name);
+            return;
         }
-        else Debug.LogWarning("Riferimenti a oggetti mancanti o lista vuota per la Quest 3 in: " + gameObject.name);
+
+        if (!QuestSafetyChecks.CheckGameObjectArray(questItem))
+        {
+            Debug.Log("Lista di GameObject da raccogliere" +
+            " non impostata corretamente per la Quest 3 in " + gameObject.name);
+            return;
+        }
+
+        foreach (GameObject item in questItem)
+        {
+
+            //abilito l'oggetto se è disabilitato
+            if (!item.activeInHierarchy) item.SetActive(true);
+            item.GetComponent<Collectable_Item_Quest3>().SetQuestScript(this);
+
+        }
+        base.StartQuest();
     }
 
     /// <summary>
