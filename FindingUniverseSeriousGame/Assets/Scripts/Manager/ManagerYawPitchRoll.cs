@@ -22,13 +22,13 @@ public class ManagerRotation : MonoBehaviour
             // Applichiamo la formattazione richiesta: "Valore ° Etichetta (Asse)"
             
             if (pitchUIText != null)
-                pitchUIText.text = "Pitch (x): " + rotation.x.ToString("F1") + " °";
+                pitchUIText.text = "Pitch (x): " + rotation.x.ToString("F1");
 
             if (yawUIText != null)
-                yawUIText.text = "Yaw (y) " + rotation.y.ToString("F1") + " °" ;
+                yawUIText.text = "Yaw (y) " + rotation.y.ToString("F1");
 
             if (rollUIText != null)
-                rollUIText.text = "Roll (z) " + rotation.z.ToString("F1") + " °";
+                rollUIText.text = "Roll (z) " + rotation.z.ToString("F1");
         }
     }
 }
