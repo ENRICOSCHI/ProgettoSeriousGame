@@ -11,6 +11,8 @@ public class ManagerHandler : MonoBehaviour
     public ManagerRotation RotationManager { get; private set; }
     public DialogueManager DialogueManager { get; private set; }
     public Notification_Manager NotificationManager { get; private set; }
+    public ManagerLife LifeManager {get; private set; }
+
 
     //controllo che effettivamente sia l'unico oggetto attivo nelle scene (singleton)
     void Awake()
@@ -35,5 +37,13 @@ public class ManagerHandler : MonoBehaviour
         RotationManager = GetComponentInChildren<ManagerRotation>();
         DialogueManager = GetComponentInChildren<DialogueManager>();
         NotificationManager = GetComponentInChildren<Notification_Manager>();
+        LifeManager = GetComponentInChildren<ManagerLife>();
+
+
+        // La barra della vita si allinea ai valori attuali al primo frame
+        if(LifeManager != null)
+        {
+            LifeManager.UpdateLifeDisplay();
+        }
     }
 }

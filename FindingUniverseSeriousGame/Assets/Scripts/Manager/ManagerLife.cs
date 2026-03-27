@@ -38,4 +38,23 @@ public class ManagerLife : MonoBehaviour
         else
             lifeText.color = colorOk;
     }
+
+    
+    /// <summary>
+    /// Metodo per la gestione dei danni
+    /// </summary>
+    public void TakeDamage(float amount)
+    {
+        currentLife -= amount;
+        currentLife = Mathf.Clamp(currentLife, 0, maxLife);  // Così la vita non scende sotto lo zero
+
+        // Aggiorna la grafica
+        UpdateLifeDisplay();
+
+        if(currentLife <= 0)  // Controllo se la vita finisce
+        {
+            Debug.Log("Nave distrutta!");  // Da implementare logica di Game Over o di respawn
+        }
+
+    }
 }
