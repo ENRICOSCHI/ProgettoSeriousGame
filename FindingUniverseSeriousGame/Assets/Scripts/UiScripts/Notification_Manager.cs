@@ -4,7 +4,6 @@ using System.Collections;
 
 public class Notification_Manager : MonoBehaviour
 {
-    //[SerializeField] private Vfx_Typewriter typewriter;  // Oggetto con il testo
     [SerializeField] GameObject prefabTxtNotification;
     [SerializeField] GameObject notifPanel;
 
@@ -17,13 +16,6 @@ public class Notification_Manager : MonoBehaviour
         DelegateClass.NotificationEventsHandler -= ShowMessage;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            ShowMessage("pippo"); 
-        }
-    }
 
     /// <summary>
     /// Mostra un messaggio di notifica generale
@@ -31,9 +23,6 @@ public class Notification_Manager : MonoBehaviour
     /// <param name="message"></param>
     public void ShowMessage(string message)
     {
-        //typewriter.ClearText(); // Puliamo il testo prima di iniziare
-
-        //StopAllCoroutines();
         Vfx_Typewriter scriptTypeWrite = ShowOnPanel();
         StartCoroutine(DialogueSequence(message, scriptTypeWrite));
     }
@@ -44,10 +33,7 @@ public class Notification_Manager : MonoBehaviour
     /// <param name="argomento"></param>
     public void ShowNotificationCodexUpdate(string argomento)
     {
-        //typewriter.ClearText(); // Puliamo il testo prima di iniziare
-
-        StopAllCoroutines();
-        Vfx_Typewriter scriptTypeWrite =  ShowOnPanel();
+        Vfx_Typewriter scriptTypeWrite =  ShowOnPanel(); // instanzio il testo
         StartCoroutine(DialogueSequence("Codex aggiornato: " + argomento, scriptTypeWrite));
     }
 
@@ -61,10 +47,15 @@ public class Notification_Manager : MonoBehaviour
         typewriter.ClearText(); // Puliamo il testo dopo la visualizzazione
     }
 
+    /// <summary>
+    /// Instazio il prefab del testo per la notifica in content e poi ritorno lo script del typeWriter
+    /// </summary>
+    /// <returns></returns>
     private Vfx_Typewriter ShowOnPanel()
     {
+        // instanzio il testo all'interno del content object in NotifcationCascade
         GameObject newText = Instantiate(prefabTxtNotification, notifPanel.transform);
-        Destroy(newText, 3f);
-        return newText.GetComponent<Vfx_Typewriter>();
+        Destroy(newText, 3f); //distruggo l'oggetto dopo n secondi
+        return newText.GetComponent<Vfx_Typewriter>(); // ritorno lo script per avviare l'animazione della scritura
     }
 }
