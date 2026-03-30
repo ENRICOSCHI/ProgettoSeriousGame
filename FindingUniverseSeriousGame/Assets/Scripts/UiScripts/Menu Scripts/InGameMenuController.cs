@@ -104,7 +104,7 @@ public class InGameMenuController : MonoBehaviour
 
 
 
-    #region Metodi per il apertura / chiusura del menu 
+    #region Metodi per apertura / chiusura del menu 
     public void PauseGame()
     {
         menuContainer.SetActive(true);  // Mostra il menu
