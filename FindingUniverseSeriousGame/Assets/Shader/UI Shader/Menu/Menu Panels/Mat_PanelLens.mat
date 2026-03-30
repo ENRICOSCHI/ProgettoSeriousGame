@@ -42,12 +42,17 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _ClampValue: 1.01
+    - _LerpStrength: 0
     - _MultiplyStrength: -0.07
     - _NoiseScale: 625
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _ScreenDarknessValue: 0.93
     m_Colors:
-    - _ColorPanel: {r: 0.09198114, g: 0.088510156, b: 0.088510156, a: 0.5882353}
+    - _ClampValue: {r: 0.36, g: 0.3, b: 0.3, a: 0.3}
+    - _ColorPanel: {r: 0, g: 0, b: 0, a: 0.6901961}
+    - _TLerpValue: {r: 0.990566, g: 0.990566, b: 0.990566, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &3318273257822278798
