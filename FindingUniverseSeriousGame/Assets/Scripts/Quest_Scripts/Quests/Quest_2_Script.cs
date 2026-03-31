@@ -1,10 +1,17 @@
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider))]
 /// <summary>
 /// Quest relativa alla scoperta di un Oggetto
 /// </summary>
 public class Quest_2_Script : Quest_Generic_Script
 {
+    void OnValidate()
+    {
+        BoxCollider bc = GetComponent<BoxCollider>();
+        if(bc != null)
+            bc.isTrigger = true;
+    }
     /// <summary>
     /// Override del metodo FinishQuest() base adattato per Quest di tipo 2.
     /// Questo FinishQuest() non ha bisogno che la quest 

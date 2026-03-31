@@ -1,5 +1,7 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(BoxCollider))]
 /// <summary>
 /// Script per quest di raccolta di n oggetti
 /// </summary>
@@ -30,6 +32,16 @@ public class Quest_3_Script : Quest_Generic_Script
         requiredAmount = questItem.Length;
     }
 
+    /// <summary>
+    /// Controlli di sicurezza per assicurare che i riferimenti a questItem siano corretti e che i GameObject siano presenti.
+    /// </summary>
+    void OnValidate()
+    {
+        BoxCollider bc = GetComponent<BoxCollider>();
+        if(bc != null)
+            bc.isTrigger = true;
+    }
+
     #endregion
 
     #region Gestione Logica Raccolta Oggetti
@@ -44,6 +56,7 @@ public class Quest_3_Script : Quest_Generic_Script
         if (!questStarted || questCompleted) return;  //Controllo di sicurezza, quest non ancora terminata
 
         currentAmount++;
+        InfoQuestUpdate();
         if (!doesReturnInPlace)
         {
             FinishQuest();
@@ -68,6 +81,7 @@ public class Quest_3_Script : Quest_Generic_Script
     /// </summary>
     public override void StartQuest()
     {
+        #region Controlli di sicurezza
         if (!QuestSafetyChecks.CheckICollectable(questItem))
         {
             Debug.Log("Riferimenti interni a uno script ICollectable" +
@@ -82,16 +96,27 @@ public class Quest_3_Script : Quest_Generic_Script
             " non impostata corretamente per la Quest 3 in " + gameObject.name);
             return;
         }
+        #endregion
 
         foreach (GameObject item in questItem)
         {
-
             //abilito l'oggetto se è disabilitato
             if (!item.activeInHierarchy) item.SetActive(true);
             item.GetComponent<Collectable_Item_Quest3>().SetQuestScript(this);
 
         }
+
+        ManagerHandler.ManagerInstance.NotificationManager.ShowMessage("Raccogli " + questItem.Length + " oggetti per completare la quest: " + questName);
+        
         base.StartQuest();
+    }
+
+    void InfoQuestUpdate()
+    {
+        if(currentAmount < requiredAmount)
+            ManagerHandler.ManagerInstance.NotificationManager.ShowMessage("Ti mancano " + (requiredAmount - currentAmount) + " oggetti per completare la quest: " + questName);
+        else
+            ManagerHandler.ManagerInstance.NotificationManager.ShowMessage("Hai raccolto tutti gli oggetti! " + (doesReturnInPlace ? "Ritorna al punto della quest per completarla." : "")); // se non devo tornare indietro ci pensera finish questa a dire che è completata.
     }
 
     /// <summary>
@@ -110,8 +135,8 @@ public class Quest_3_Script : Quest_Generic_Script
 
         base.FinishQuest();
 
-        ManagerHandler.ManagerInstance.NotificationManager.ShowMessage("Quest 3 terminata.");
-        Debug.Log("Quest 3 terminata");
+        ManagerHandler.ManagerInstance.NotificationManager.ShowMessage(questName + " terminata.");
+        Debug.Log(questName + " terminata");
         //QuestManager_Script.instance.UpdateQuestData(questName, questStarted, questCompleted, currentAmount);
 
         this.enabled = false;

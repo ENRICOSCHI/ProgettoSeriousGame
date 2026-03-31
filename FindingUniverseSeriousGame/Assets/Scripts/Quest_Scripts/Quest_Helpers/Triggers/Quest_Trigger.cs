@@ -25,11 +25,19 @@ public class Quest_Trigger : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        isPlayerInside = true;
         questType = other.GetComponent<Quest_Generic_Script>();
-        if(questType.questInteractionType == interactableType.scan)
+        if (questType != null)
         {
-            Tipo2();
+            isPlayerInside = true;
+            
+            if (questType.questInteractionType == interactableType.scan)
+            {
+                Tipo2();
+            }
+            else
+            {
+                Debug.Log("Premi E per interagire con la quest");
+            }
         }
     }
 
@@ -53,7 +61,7 @@ public class Quest_Trigger : MonoBehaviour
             Quest_2_Script q2 = questType as Quest_2_Script;
             q2.FinishQuest();
             Debug.Log("Trigger attivato (Quest 2)");
-  
+
         }
     }
     #endregion
@@ -65,9 +73,9 @@ public class Quest_Trigger : MonoBehaviour
     /// </summary>
     void Tipo3()
     {
-        if(questType is Quest_3_Script && questType.isActiveAndEnabled)
+        if (questType is Quest_3_Script && questType.isActiveAndEnabled)
         {
-            if (!questType.questStarted) 
+            if (!questType.questStarted)
             {
                 questType.StartQuest();
             }
