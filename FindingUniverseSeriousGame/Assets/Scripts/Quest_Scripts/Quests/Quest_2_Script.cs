@@ -23,5 +23,7 @@ public class Quest_2_Script : Quest_Generic_Script
         //Aggiunta di un messaggio alla UI
 
         ManagerHandler.ManagerInstance.NotificationManager.ShowMessage("Hai completato la quest: " + questName);  // Notifica di completamento quest
+
+        this.enabled = false;
     }
 }

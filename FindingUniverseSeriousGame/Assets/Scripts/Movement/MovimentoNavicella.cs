@@ -6,7 +6,7 @@ using System.Collections;
 public class MovimentoNavicella : MonoBehaviour
 {
     [Header("Monitoring")]
-    [SerializeField] public float currentSpeed = 0f;
+    public float currentSpeed = 0f;
     [SerializeField] float boost = 10f;
     [SerializeField] float boostDurationSecond = 2f;
     public float CurrentSpeed => currentSpeed; // Permette ad altri script di leggere la velocita attuale senza modificarla
@@ -32,7 +32,7 @@ public class MovimentoNavicella : MonoBehaviour
 
     [SerializeField] float rotationSpeed = 90f;
     [SerializeField] float acceleration = 10f;
-    [SerializeField] public float maxSpeed = 50f;
+    public float maxSpeed = 50f;
     [SerializeField] float maxPitchAngle = 60f; // Angolo massimo di pitch (su/gi�)
     [SerializeField] float maxRollAngle = 40f;  // Angolo massimo di roll (inclinazione ali)
 

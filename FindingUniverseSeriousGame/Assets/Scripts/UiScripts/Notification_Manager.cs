@@ -6,6 +6,7 @@ public class Notification_Manager : MonoBehaviour
 {
     [SerializeField] GameObject prefabTxtNotification;
     [SerializeField] GameObject notifPanel;
+    [SerializeField] float tempoNotifica = 2f;
 
     private void OnEnable()
     {
@@ -43,7 +44,7 @@ public class Notification_Manager : MonoBehaviour
         yield return StartCoroutine(typewriter.TypeText(message));
         
         // 5. Chiudi
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(tempoNotifica);
         typewriter.ClearText(); // Puliamo il testo dopo la visualizzazione
     }
 
@@ -55,7 +56,7 @@ public class Notification_Manager : MonoBehaviour
     {
         // instanzio il testo all'interno del content object in NotifcationCascade
         GameObject newText = Instantiate(prefabTxtNotification, notifPanel.transform);
-        Destroy(newText, 3f); //distruggo l'oggetto dopo n secondi
+        Destroy(newText, tempoNotifica+1); //distruggo l'oggetto dopo n + 1 secondi
         return newText.GetComponent<Vfx_Typewriter>(); // ritorno lo script per avviare l'animazione della scritura
     }
 }

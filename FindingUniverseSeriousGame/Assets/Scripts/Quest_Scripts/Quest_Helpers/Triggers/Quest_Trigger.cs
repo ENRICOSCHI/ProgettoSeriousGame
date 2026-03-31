@@ -47,14 +47,13 @@ public class Quest_Trigger : MonoBehaviour
     /// </summary>
     void Tipo2()
     {
-        if (questType is Quest_2_Script)
+        if (questType is Quest_2_Script && questType.isActiveAndEnabled)
         {
             // prendo lo script quest 2 e poi avvio il metodo
             Quest_2_Script q2 = questType as Quest_2_Script;
             q2.FinishQuest();
             Debug.Log("Trigger attivato (Quest 2)");
-
-            //other.GetComponent<Quest_2_Script>().ActivateQuest();  
+  
         }
     }
     #endregion
@@ -66,7 +65,7 @@ public class Quest_Trigger : MonoBehaviour
     /// </summary>
     void Tipo3()
     {
-        if(questType is Quest_3_Script)
+        if(questType is Quest_3_Script && questType.isActiveAndEnabled)
         {
             if (!questType.questStarted) 
             {
@@ -80,7 +79,6 @@ public class Quest_Trigger : MonoBehaviour
             {
                 q3.FinishQuest();
             }
-            //other.GetComponent<Quest_3_Script>().ActivateQuest();
         }
     }
     #endregion

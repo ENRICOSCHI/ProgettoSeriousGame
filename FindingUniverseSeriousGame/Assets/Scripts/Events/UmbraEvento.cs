@@ -30,7 +30,7 @@ public class UmbraEvento : Eventi
     private void Awake() => CalcolaParametriCono();
     private void OnValidate() => CalcolaParametriCono();
 
-    // ─── Geometria ────────────────────────────────────────────────────────────
+    #region"geometria"
 
     /// <summary>
     /// Calcola la lunghezza dei coni d'ombra (umbra e penombra) basandosi sulla distanza tra stella e pianeta e sui loro raggi.
@@ -42,8 +42,8 @@ public class UmbraEvento : Eventi
         _lunghezzaConoUmbra = d * raggioPianeta / Mathf.Max(raggioStella - raggioPianeta, 0.001f);
         _lunghezzaConoPenombra = d * raggioPianeta / Mathf.Max(raggioStella + raggioPianeta, 0.001f);
     }
+    #endregion
 
-    // ─── Update ───────────────────────────────────────────────────────────────
 
     private void Update()
     {
@@ -56,7 +56,7 @@ public class UmbraEvento : Eventi
         _statoPrecedente = _statoCorrente;
     }
 
-    // ─── Classificazione ombra ────────────────────────────────────────────────
+    #region"Classificazione ombra"
 
     /// <summary>
     /// Determina se la navicella si trova in luce, penombra o umbra rispetto alla stella e al pianeta, basandosi sulla posizione della navicella e sulla geometria dei coni d'ombra.
@@ -94,8 +94,9 @@ public class UmbraEvento : Eventi
 
         return StatoOmbra.Luce;
     }
+    #endregion
 
-    // ─── Transizioni e notifiche ──────────────────────────────────────────────
+    #region"Transizioni e notifiche"
 
     private void GestisciTransizioni()
     {
@@ -123,12 +124,11 @@ public class UmbraEvento : Eventi
                 break;
         }
     }
-
-    // ─── API pubblica ─────────────────────────────────────────────────────────
+    #endregion
 
     public StatoOmbra GetStatoCorrente() => _statoCorrente;
 
-    // ─── Gizmos ───────────────────────────────────────────────────────────────
+    #region"Gizmo"
 
     private void OnDrawGizmosSelected()
     {
@@ -170,4 +170,5 @@ public class UmbraEvento : Eventi
             prevPoint = punto;
         }
     }
+    #endregion
 }
