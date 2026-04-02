@@ -36,12 +36,17 @@ public class CodexNavigation : MonoBehaviour
     #endregion
 
 
+    // NUOVA FUNZIONE DI SICUREZZA: Controlla di avere i riferimenti a prescindere da chi si sveglia prima
+    private void EnsureReferences()
+    {
+        if (menuAsthetics == null) menuAsthetics = GetComponent<MenuAsthetics>();
+        if (codexManager == null) codexManager = GetComponent<CodexManager>();
+    }
 
     void Awake()
     {
-        // Recupero automatico dei componenti attaccati allo stesso GameObject
-        menuAsthetics = GetComponent<MenuAsthetics>();
-        codexManager = GetComponent<CodexManager>();
+        // Recupero automatico dei componenti attaccati allo stesso GameObject in totale sicurezza
+        EnsureReferences();
         
         // Controlli di sicurezza per evitare NullReferenceException in gioco
         if (menuAsthetics == null) Debug.LogWarning("MenuAsthetics non trovato in CodexNavigation!");
@@ -54,6 +59,9 @@ public class CodexNavigation : MonoBehaviour
     /// </summary>
     public void RefreshFullUI()
     {
+        // Sicurezza: ci assicuriamo di avere i riferimenti prima di agire
+        EnsureReferences();
+
         // Se non c'è un database valido, ci fermiamo
         if (codexManager == null || codexManager.categoryLists == null || codexManager.categoryLists.Length == 0) return;
 
