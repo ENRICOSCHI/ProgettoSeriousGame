@@ -46,7 +46,7 @@ public class CodexNavigation : MonoBehaviour
     #endregion
 
 
-    // NUOVA FUNZIONE DI SICUREZZA: Controlla di avere i riferimenti a prescindere da chi si sveglia prima
+    // FUNZIONE DI SICUREZZA: Controlla di avere i riferimenti a prescindere da chi si sveglia prima
     private void EnsureReferences()
     {
         if (menuAsthetics == null) menuAsthetics = GetComponent<MenuAsthetics>();
