@@ -12,6 +12,7 @@ public class Quest_2_Script : Quest_Generic_Script
         if(bc != null)
             bc.isTrigger = true;
     }
+    
     /// <summary>
     /// Override del metodo FinishQuest() base adattato per Quest di tipo 2.
     /// Questo FinishQuest() non ha bisogno che la quest 
@@ -32,5 +33,10 @@ public class Quest_2_Script : Quest_Generic_Script
         ManagerHandler.ManagerInstance.NotificationManager.ShowMessage("Hai completato la quest: " + questName);  // Notifica di completamento quest
 
         this.enabled = false;
+
+        ManagerHandler.ManagerInstance.CodexManager.UnlockCodexEntry(indiceCategory, indiceEntry);  // Sblocca la voce del codex associata alla quest
+        ManagerHandler.ManagerInstance.NotificationManager.ShowNotificationCodexUpdate(questName);
     }
+
+    
 }

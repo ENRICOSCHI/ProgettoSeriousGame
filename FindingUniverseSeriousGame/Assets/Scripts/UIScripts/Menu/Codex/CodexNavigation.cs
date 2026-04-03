@@ -7,6 +7,16 @@ public class CodexNavigation : MonoBehaviour
 {
     #region Inizializzazione variabili
 
+    [Header("Tasti di Navigazione")]
+    [Tooltip("Tasti per muovere il cursore su e giù nella lista")]
+    [SerializeField] KeyCode moveUpKey = KeyCode.W;
+    [SerializeField] KeyCode moveDownKey = KeyCode.S;
+    [SerializeField] KeyCode altMoveUpKey = KeyCode.UpArrow;
+    [SerializeField] KeyCode altMoveDownKey = KeyCode.DownArrow;
+    [Tooltip("Tasti per confermare la selezione (Aprire/Chiudere le tendine)")]
+    [SerializeField] KeyCode confirmKey = KeyCode.Return;
+    [SerializeField] KeyCode altConfirmKey = KeyCode.Space;
+
     [Header("Riferimenti - UI Pannello Destro")]
     [Tooltip("Il testo che mostrerà il titolo del dato selezionato nella parte destra dello schermo")]
     [SerializeField] private TMP_Text rightPanelTitleText; // Testo del titolo (es. MERCURIO)
@@ -40,7 +50,12 @@ public class CodexNavigation : MonoBehaviour
     private void EnsureReferences()
     {
         if (menuAsthetics == null) menuAsthetics = GetComponent<MenuAsthetics>();
-        if (codexManager == null) codexManager = GetComponent<CodexManager>();
+        if (codexManager == null) codexManager = FindAnyObjectByType<CodexManager>(FindObjectsInactive.Include);
+    }
+    void OnEnable()
+    {
+        //ogni volta che attivo il pannello aggiorno la UI del codex
+        RefreshFullUI();
     }
 
     void Awake()
@@ -51,6 +66,16 @@ public class CodexNavigation : MonoBehaviour
         // Controlli di sicurezza per evitare NullReferenceException in gioco
         if (menuAsthetics == null) Debug.LogWarning("MenuAsthetics non trovato in CodexNavigation!");
         if (codexManager == null) Debug.LogError("CodexManager non trovato! CodexNavigation ha bisogno di CodexManager per leggere i dati.");
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(moveDownKey) || Input.GetKeyDown(altMoveDownKey))
+            MoveCursor(1);
+        else if (Input.GetKeyDown(moveUpKey) || Input.GetKeyDown(altMoveUpKey))
+            MoveCursor(-1);
+        if (Input.GetKeyDown(confirmKey) || Input.GetKeyDown(altConfirmKey))
+            ConfirmSelection();
     }
 
     /// <summary>

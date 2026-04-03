@@ -12,6 +12,7 @@ public class ManagerHandler : MonoBehaviour
     public DialogueManager DialogueManager { get; private set; }
     public Notification_Manager NotificationManager { get; private set; }
     public ManagerLife LifeManager {get; private set; }
+    public CodexManager CodexManager { get; private set; }
 
 
     //controllo che effettivamente sia l'unico oggetto attivo nelle scene (singleton)
@@ -38,6 +39,7 @@ public class ManagerHandler : MonoBehaviour
         DialogueManager = GetComponentInChildren<DialogueManager>();
         NotificationManager = GetComponentInChildren<Notification_Manager>();
         LifeManager = GetComponentInChildren<ManagerLife>();
+        CodexManager = GetComponentInChildren<CodexManager>();
 
 
         // La barra della vita si allinea ai valori attuali al primo frame

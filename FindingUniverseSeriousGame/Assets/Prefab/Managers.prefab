@@ -273,6 +273,7 @@ Transform:
   - {fileID: 8382680986376283194}
   - {fileID: 4928401760282781139}
   - {fileID: 2433444395524334593}
+  - {fileID: 1209524538758725802}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2227621358879324505
@@ -338,6 +339,234 @@ MonoBehaviour:
   colorOk: {r: 0, g: 1, b: 0, a: 1}
   colorDanger: {r: 1, g: 0, b: 0, a: 1}
   sogliaPericolo: 20
+--- !u!1 &4064979973111117233
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1209524538758725802}
+  - component: {fileID: 3090756470198475442}
+  m_Layer: 0
+  m_Name: CodexManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1209524538758725802
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4064979973111117233}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5698369315328781363}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3090756470198475442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4064979973111117233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01e87c478ad5f314cbf4dbe3f890f92f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  categoryLists:
+  - categoryTitle: {fileID: 0}
+    categoryList: {fileID: 0}
+    entries:
+    - uiTextElement: {fileID: 0}
+      realName: Mercurio
+      description: "CLASSIFICAZIONE:\nPianeta Terrestre\n\nPANORAMICA:\nIl pianeta
+        pi\xF9 interno e piccolo del Sistema Solare. Privo di una vera e propria
+        atmosfera, la sua superficie \xE8 costellata di crateri da impatto, rendendolo
+        visivamente simile alla nostra Luna.\n\nANOMALIA REGISTRATA:\nA causa dell'assenza
+        di atmosfera per trattenere il calore, Mercurio subisce l'escursione termica
+        pi\xF9 estrema del sistema: passa da +430 C durante l'esposizione solare
+        a -180 C nella notte. Inoltre, a causa della sua lenta rotazione, un \"giorno\"
+        su Mercurio dura il doppio di un suo \"anno\"."
+      isDiscovered: 0
+    - uiTextElement: {fileID: 0}
+      realName: Venere
+      description: "CLASSIFICAZIONE:\nPianeta Terrestre\n\nPANORAMICA:\nSpesso definito
+        il \"gemello infernale\" della Terra per dimensioni simili, Venere \xE8 avvolto
+        da una densa atmosfera di anidride carbonica che genera un catastrofico effetto
+        serra.\n\nANOMALIA REGISTRATA:\n\xC8 il pianeta pi\xF9 caldo del Sistema
+        Solare (circa 465 C), pi\xF9 rovente perfino di Mercurio. La pressione atmosferica
+        al suolo \xE8 90 volte quella terrestre. Curiosit\xE0 orbitale: ruota sul
+        proprio asse in senso retrogrado (da est a ovest), il che significa che il
+        Sole sorge a ovest e tramonta a est."
+      isDiscovered: 1
+    - uiTextElement: {fileID: 0}
+      realName: Terra
+      description: "CLASSIFICAZIONE:\nPianeta Terrestre\n\nPANORAMICA:\nIl terzo
+        pianeta dal Sole e l'unico corpo celeste attualmente noto per ospitare la
+        vita. Distinto dalla massiccia presenza di acqua allo stato liquido in superficie
+        (circa il 71%).\n\nANOMALIA REGISTRATA:\xC8 l'unico pianeta del Sistema Solare
+        ad avere una tettonica a placche attiva, un processo geologico fondamentale
+        per la regolazione del carbonio e il mantenimento di un clima abitabile nel
+        corso di miliardi di anni."
+      isDiscovered: 1
+    - uiTextElement: {fileID: 0}
+      realName: Marte
+      description: "CLASSIFICAZIONE:\nPianeta Terrestre\n\nPANORAMICA:\nNoto come
+        il \"Pianeta Rosso\" a causa dell'ossido di ferro (ruggine) diffuso sulla
+        sua superficie. Presenta calotte polari di ghiaccio e i resti di antichi
+        letti fluviali, suggerendo un passato pi\xF9 caldo e umido.\n\nANOMALIA REGISTRATA:\nOspita
+        il Monte Olimpo, il vulcano pi\xF9 grande di tutto il Sistema Solare (alto
+        22 km, quasi tre volte il Monte Everest), e la Valles Marineris, un sistema
+        di canyon cos\xEC vasto che, se fosse sulla Terra, si estenderebbe da New
+        York a Los Angeles."
+      isDiscovered: 1
+    - uiTextElement: {fileID: 0}
+      realName: Giove
+      description: "CLASSIFICAZIONE:\nGigante Gassoso\n\nPANORAMICA:\nIl colosso
+        del Sistema Solare, con una massa due volte e mezza quella di tutti gli altri
+        pianeti messi insieme. \xC8 composto principalmente da idrogeno ed elio e
+        possiede un sistema di decine di lune (le pi\xF9 famose sono i satelliti
+        galileiani).\n\nANOMALIA REGISTRATA:\nLa \"Grande Macchia Rossa\" \xE8 una
+        tempesta anticiclonica colossale, grande abbastanza da inghiottire l'intera
+        Terra, che imperversa ininterrottamente da oltre 300 anni. La gravit\xE0
+        di Giove funge da \"scudo\" per i pianeti interni, deviando o catturando
+        asteroidi e comete pericolosi."
+      isDiscovered: 1
+    - uiTextElement: {fileID: 0}
+      realName: Saturno
+      description: "CLASSIFICAZIONE:\nGigante Gassoso\n\nPANORAMICA:\nIl sesto pianeta,
+        celebre in tutto il cosmo per il suo spettacolare e complesso sistema di
+        anelli, composto da miliardi di frammenti di ghiaccio, roccia e polvere cosmica.\n\nANOMALIA
+        REGISTRATA:\nNonostante le sue dimensioni titaniche, Saturno ha una densit\xE0
+        media inferiore a quella dell'acqua. In teoria, se esistesse un oceano abbastanza
+        grande, il pianeta vi galleggerebbe. Al suo polo nord infuria una tempesta
+        perpetua dalla perfetta, e inspiegabile, forma esagonale."
+      isDiscovered: 1
+    - uiTextElement: {fileID: 0}
+      realName: Urano
+      description: "CLASSIFICAZIONE:\nGigante Ghiacciato\n\nPANORAMICA:\nUn mondo
+        freddo e remoto, con un'atmosfera ricca di metano che gli conferisce una
+        caratteristica colorazione azzurro-ciano. \xC8 stato il primo pianeta scoperto
+        grazie all'uso di un telescopio.\n\nANOMALIA REGISTRATA:\nA differenza di
+        tutti gli altri pianeti, Urano ha un asse di rotazione inclinato di ben 98
+        gradi. Praticamente \"rotola\" sul suo piano orbitale. Si ipotizza che questa
+        anomalia estrema sia il risultato di una collisione apocalittica con un corpo
+        grande quanto la Terra nelle prime fasi di vita del sistema solare."
+      isDiscovered: 1
+    - uiTextElement: {fileID: 0}
+      realName: Nettuno
+      description: "CLASSIFICAZIONE:\nGigante Ghiacciato\n\nPANORAMICA:\nL'ottavo
+        e pi\xF9 lontano pianeta del Sistema Solare. Un mondo oscuro, gelido e sferzato
+        da tempeste supersoniche, scoperto tramite calcoli matematici prima ancora
+        di essere osservato direttamente.\n\nANOMALIA REGISTRATA:\nI venti nell'atmosfera
+        di Nettuno sono i pi\xF9 violenti del sistema solare, superando i 2.000 km/h.
+        A causa delle pressioni estreme nelle profondit\xE0 della sua atmosfera,
+        il carbonio si cristallizza, generando vere e proprie \"piogge di diamanti\"
+        che precipitano verso il nucleo del pianeta."
+      isDiscovered: 1
+    isOpen: 0
+  - categoryTitle: {fileID: 0}
+    categoryList: {fileID: 0}
+    entries:
+    - uiTextElement: {fileID: 0}
+      realName: Fionda Gravitazionale
+      description: "CLASSIFICAZIONE:\nManovra Astrodinamica\n\nPANORAMICA:\nUna tecnica
+        di navigazione spaziale avanzata che sfrutta il campo gravitazionale e l'energia
+        cinetica di un pianeta per alterare la rotta e la velocit\xE0 di una navicella.
+        Avvicinandosi a un corpo celeste con la giusta angolazione, il computer di
+        bordo pu\xF2 utilizzare la gravit\xE0 del pianeta per \"catapultare\" la
+        nave verso lo spazio profondo, risparmiando enormi quantit\xE0 di carburante.\n\nANOMALIA
+        REGISTRATA:\nSebbene la navicella subisca un'accelerazione massiccia, la
+        legge della conservazione dell'energia rimane intatta. L'energia extra acquisita
+        dalla nave viene letteralmente \"rubata\" al pianeta. Ad esempio, quando
+        una sonda sfrutta Giove per accelerare, l'orbita dell'immenso gigante gassoso
+        rallenta impercettibilmente (circa un millimetro ogni miliardo di anni)."
+      isDiscovered: 1
+    - uiTextElement: {fileID: 0}
+      realName: Disturbi Elettromagnetici
+      description: "CLASSIFICAZIONE: \nAttivit\xE0 Stellare / Tempesta Geomagnetica\n\nPANORAMICA:\nFluttuazioni
+        caotiche e letali generate dalle espulsioni di massa coronale (CME) o dai
+        brillamenti della nostra stella. Quando questi violenti venti solari, carichi
+        di particelle ionizzate ad altissima energia, colpiscono la nave o il campo
+        magnetico di un pianeta, possono friggere i sensori, interrompere le comunicazioni
+        e mandare in tilt i sistemi di navigazione.\n\nANOMALIA REGISTRATA:\nNel
+        1859, la Terra fu colpita dall'\"Evento di Carrington\", la tempesta solare
+        pi\xF9 potente mai documentata. L'impatto elettromagnetico fu cos\xEC devastante
+        che i fili dei telegrafi presero letteralmente fuoco spontaneamente, e le
+        aurore boreali furono visibili fino all'equatore. Una tempesta di simile
+        portata oggi riporterebbe la rete globale all'et\xE0 della pietra digitale."
+      isDiscovered: 1
+    - uiTextElement: {fileID: 0}
+      realName: Umbra e Penumbra
+      description: "CLASSIFICAZIONE: \nFenomeno Ottico / Allineamento Orbitale\n\nPANORAMICA:\nLe
+        due zone d'ombra generate da un corpo celeste (come una luna o un pianeta)
+        quando blocca la luce di una stella. L'Umbra \xE8 il nucleo centrale e pi\xF9
+        oscuro, dove la sorgente luminosa \xE8 oscurata al 100%, generando un'eclissi
+        totale. La Penumbra \xE8 la regione esterna e sfumata, dove la luce stellare
+        \xE8 bloccata solo parzialmente.\n\nANOMALIA REGISTRATA:\nSulla Terra i sensori
+        registrano una coincidenza cosmica sbalorditiva, unica nel sistema solare:
+        il Sole \xE8 circa 400 volte pi\xF9 grande della Luna, ma si trova anche
+        esattamente 400 volte pi\xF9 lontano. Questo allineamento geometrico perfetto
+        fa s\xEC che, dall'Umbra, la Luna copra in modo esatto il disco solare, rivelando
+        solo l'eterea corona di plasma della stella."
+      isDiscovered: 1
+    isOpen: 0
+  - categoryTitle: {fileID: 0}
+    categoryList: {fileID: 0}
+    entries:
+    - uiTextElement: {fileID: 0}
+      realName: Tokyo Reggie
+      description: "CLASSIFICAZIONE:\nJazz-Fusion & City Pop\n\nDATI TRACCIA:\nAutore:
+        Masayoshi Takanaka\nAlbum: Seychelles\nAnno: 1976\n\nPANORAMICA: \nEstratto
+        dall'album di debutto da solista del leggendario chitarrista Masayoshi Takanaka,
+        questo brano \xE8 un pioniere assoluto del sound che oggi definiamo \"Japanese
+        City Pop\". Unisce magistralmente ritmi reggae tropicali all'atmosfera sofisticata
+        e metropolitana di Tokyo.\n\nANOMALIA REGISTRATA:\nUna coincidenza storica
+        di altissimo livello. La voce principale e le parole di questo brano portano
+        la firma di Yukihiro Takahashi. Soltanto due anni dopo questa registrazione,
+        Takahashi avrebbe fondato la leggendaria Yellow Magic Orchestra insieme a
+        Ryuichi Sakamoto, cambiando per sempre la storia della musica elettronica
+        mondiale."
+      isDiscovered: 1
+    - uiTextElement: {fileID: 0}
+      realName: Kissin' in the Rainbow
+      description: "CLASSIFICAZIONE:\nJazz-Funk & Synth-Boogie\n\nDATI TRACCIA:\nAutore:
+        Cosmos\nAlbum: Bourbon Suite\nAnno: 1982\n\nPANORAMICA:\nUna gemma rara risalente
+        all'era d'oro del synth-pop giapponese. Il brano sprigiona un'energia vibrante,
+        ricca di sintetizzatori analogici, che cattura perfettamente il lusso e l'effervescenza
+        della \"Bubble Era\" economica giapponese degli anni '80.\n\nANOMALIA REGISTRATA:\nLe
+        Cosmos non erano una band tradizionale, ma un formidabile trio d'avanguardia
+        composto esclusivamente da donne, armate di sole tastiere e sintetizzatori
+        Yamaha. La frontwoman e tastierista del gruppo, Keiko Doi, avrebbe in seguito
+        intrapreso una carriera solista colossale negli Stati Uniti sotto il nome
+        di Keiko Matsui, diventando una delle compositrici smooth jazz pi\xF9 celebri
+        e premiate al mondo."
+      isDiscovered: 1
+    - uiTextElement: {fileID: 0}
+      realName: Michiteiku Taion
+      description: "CLASSIFICAZIONE:\nNu-Jazz & Neo City Pop\n\nDATI TRACCIA: \nAutore:
+        Blu-Swing\nAlbum: FLASH\nAnno: 2015\n\nPANORAMICA: \nUn capolavoro di eleganza
+        notturna. Il brano mescola la strumentazione del jazz acustico dal vivo con
+        l'elettronica da club, accompagnato dalla voce suadente e vellutata della
+        cantante Yu-ri Tanaka.\n\nANOMALIA REGISTRATA:\nIl titolo originale giapponese
+        si traduce letteralmente come \"Temperatura corporea che sale\" (o \"che
+        si diffonde\"). I Blu-Swing sono famosi per un paradosso musicale: suonano
+        interamente dal vivo ritmiche e arrangiamenti cos\xEC precisi e complessi
+        da sembrare programmati al computer. Questo brano in particolare \xE8 diventato
+        un inno \"underground\", considerato la colonna sonora definitiva per guidare
+        di notte attraverso uno skyline illuminato dai neon."
+      isDiscovered: 1
+    isOpen: 0
 --- !u!1 &7776202616573886855
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,7 +611,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adf4c14c2a8d9f34e9c53b8bebe73125, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typewriter: {fileID: 0}
+  prefabTxtNotification: {fileID: 0}
+  notifPanel: {fileID: 0}
+  tempoNotifica: 2
 --- !u!1 &8457184269478697063
 GameObject:
   m_ObjectHideFlags: 0
