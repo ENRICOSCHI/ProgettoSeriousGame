@@ -274,6 +274,7 @@ Transform:
   - {fileID: 4928401760282781139}
   - {fileID: 2433444395524334593}
   - {fileID: 1209524538758725802}
+  - {fileID: 5955885646820405787}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2227621358879324505
@@ -288,6 +289,79 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ee6161193f57124d902bf59a09cdace, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &3223168245656819731
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5955885646820405787}
+  - component: {fileID: 6206480007219487609}
+  - component: {fileID: 710273495957392881}
+  m_Layer: 0
+  m_Name: MusicManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5955885646820405787
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3223168245656819731}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5698369315328781363}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6206480007219487609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3223168245656819731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474fb7ef6351be54bb499b0fbb3110db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playlist:
+  - audioFile: {fileID: 8300000, guid: 7f245e790b0408a44b80337722c780d8, type: 3}
+    title: Tokyo Reggie
+    artist: Masayoshi Takanaka
+    album: Seychelles
+    year: 1976
+  - audioFile: {fileID: 8300000, guid: c11ed2881588a0640966a6e7e6fdb866, type: 3}
+    title: Michiteiku Taion
+    artist: Blu-Swing
+    album: FLASH
+    year: 2015
+--- !u!114 &710273495957392881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3223168245656819731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7892508cbc27b4e49953171e3ee21cd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicUI: {fileID: 0}
+  audioSource: {fileID: 0}
+  keyPlayPause: 32
+  keyNext: 101
+  keyPrevious: 113
 --- !u!1 &3657733182585051069
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,9 +685,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adf4c14c2a8d9f34e9c53b8bebe73125, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabTxtNotification: {fileID: 0}
+  prefabTxtNotification: {fileID: 2322901381925729717, guid: dcd0f68c3bc35b44cba562a13f28738a, type: 3}
   notifPanel: {fileID: 0}
-  tempoNotifica: 2
+  tempoNotifica: 5
 --- !u!1 &8457184269478697063
 GameObject:
   m_ObjectHideFlags: 0

@@ -77,10 +77,12 @@ public class InGameMenuController : MonoBehaviour
         {
             if (isMenuOpen)
             {
+                SFXManager.instance.PlayCloseMenu();  // Suono di chiusura menu
                 ResumeGame();  // Se il menu è aperto, chiudilo
             }
             else
             {
+                SFXManager.instance.PlayOpenMenu();  // Suono di apertura menu
                 PauseGame();  // Se il menu è chiuso, aprilo
             }
         }
