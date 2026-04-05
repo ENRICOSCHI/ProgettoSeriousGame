@@ -1,51 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &930343773914849718
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4387500767728258311}
-  - component: {fileID: 967058258271589142}
-  m_Layer: 0
-  m_Name: MusicaManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4387500767728258311
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 930343773914849718}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5698369315328781363}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &967058258271589142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 930343773914849718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 931ad10d4b3075d4eaa7e9fbc99fa559, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  musicSource: {fileID: 0}
-  musicUIElement: {fileID: 0}
 --- !u!1 &1410963311553878292
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,7 +221,6 @@ Transform:
   m_Children:
   - {fileID: 6818294869276053620}
   - {fileID: 3415271052914718760}
-  - {fileID: 4387500767728258311}
   - {fileID: 1417791352795073209}
   - {fileID: 5508404528621784669}
   - {fileID: 8382680986376283194}
@@ -275,6 +228,7 @@ Transform:
   - {fileID: 2433444395524334593}
   - {fileID: 1209524538758725802}
   - {fileID: 5955885646820405787}
+  - {fileID: 2592700826234095648}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2227621358879324505
@@ -340,11 +294,68 @@ MonoBehaviour:
     artist: Masayoshi Takanaka
     album: Seychelles
     year: 1976
+    songIDCodex: 0
+    songDescription: RoverX, mantenere traiettoria di volo. Non abbiamo di certo
+      una tavola da surf, ma cerca di controllarti.
   - audioFile: {fileID: 8300000, guid: c11ed2881588a0640966a6e7e6fdb866, type: 3}
     title: Michiteiku Taion
     artist: Blu-Swing
     album: FLASH
     year: 2015
+    songIDCodex: 2
+    songDescription: "Ricordiamo all'equipaggio che trasformare il Bridge in un Jazz
+      Club \xE8 quasi vietato. Quasi."
+  - audioFile: {fileID: 8300000, guid: cc92c7a171588ec449fe002a676219c0, type: 3}
+    title: Kissin in the Rainbow
+    artist: Cosmos
+    album: Bourbon Suite
+    year: 1982
+    songIDCodex: 1
+    songDescription: RoverX, abbiamo un problema. Pare che il sistema AI della nave
+      sia... allegro. Sembra che queste frequenze elettroniche si allineino bene
+      con il suo clock di sistema.
+  - audioFile: {fileID: 8300000, guid: 1ec411822b90c334e896ad09e44fdd10, type: 3}
+    title: 4:00 AM
+    artist: Taeko Onuki
+    album: Mignonne
+    year: 1978
+    songIDCodex: 3
+    songDescription: RoverX, a qualsiasi costo, noi non ti abbandoneremo. Non rimarrai
+      mai da solo.
+  - audioFile: {fileID: 8300000, guid: 393e4faed01414743afc9731081b743d, type: 3}
+    title: Shinkai
+    artist: Eve
+    album: Kaizin
+    year: 2020
+    songIDCodex: 4
+    songDescription: Oceano profondo, eh? Speriamo che non porti sfortuna. Occhi
+      aperti, RoverX.
+  - audioFile: {fileID: 8300000, guid: 5f8f9657dff0feb458c5c01cee37a8c0, type: 3}
+    title: Midnight Cruisin
+    artist: Kingo Hamada
+    album: midnight cruisin
+    year: 1982
+    songIDCodex: 5
+    songDescription: "I limiti di velocit\xE0 di curvatura vanno severamente rispettati,
+      RoverX. Prima di attraversare, guarda sempre a destra e a sinistra. Passo e
+      chiudo."
+  - audioFile: {fileID: 8300000, guid: 5af01eeae074adf44a53751857412aad, type: 3}
+    title: Time Machine Love
+    artist: Ryusenkei
+    album: Tokyo Sniper
+    year: 2006
+    songIDCodex: 6
+    songDescription: "RoverX, i sistemi di bordo sono momentaneamente in stallo.
+      La data segnata \xE8 1982, ma tutti sappiamo che ormai \xE8 passato da un po'...
+      Vero?"
+  - audioFile: {fileID: 8300000, guid: 75d7f8641ff9e004c86f516c8b08e1e9, type: 3}
+    title: Noa Noa
+    artist: Shigeru Suzuki
+    album: Pacific
+    year: 1978
+    songIDCodex: 7
+    songDescription: A causa dell'alto livello di stress, abbiamo deciso di inserire
+      questa canzone nei sistemi di bordo. Dicono aiuti a rilassarsi. La Orana!
 --- !u!114 &710273495957392881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,8 +371,8 @@ MonoBehaviour:
   musicUI: {fileID: 0}
   audioSource: {fileID: 0}
   keyPlayPause: 32
-  keyNext: 101
-  keyPrevious: 113
+  keyNext: 275
+  keyPrevious: 276
 --- !u!1 &3657733182585051069
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,7 +493,7 @@ MonoBehaviour:
         al suolo \xE8 90 volte quella terrestre. Curiosit\xE0 orbitale: ruota sul
         proprio asse in senso retrogrado (da est a ovest), il che significa che il
         Sole sorge a ovest e tramonta a est."
-      isDiscovered: 1
+      isDiscovered: 0
     - uiTextElement: {fileID: 0}
       realName: Terra
       description: "CLASSIFICAZIONE:\nPianeta Terrestre\n\nPANORAMICA:\nIl terzo
@@ -492,7 +503,7 @@ MonoBehaviour:
         ad avere una tettonica a placche attiva, un processo geologico fondamentale
         per la regolazione del carbonio e il mantenimento di un clima abitabile nel
         corso di miliardi di anni."
-      isDiscovered: 1
+      isDiscovered: 0
     - uiTextElement: {fileID: 0}
       realName: Marte
       description: "CLASSIFICAZIONE:\nPianeta Terrestre\n\nPANORAMICA:\nNoto come
@@ -503,7 +514,7 @@ MonoBehaviour:
         22 km, quasi tre volte il Monte Everest), e la Valles Marineris, un sistema
         di canyon cos\xEC vasto che, se fosse sulla Terra, si estenderebbe da New
         York a Los Angeles."
-      isDiscovered: 1
+      isDiscovered: 0
     - uiTextElement: {fileID: 0}
       realName: Giove
       description: "CLASSIFICAZIONE:\nGigante Gassoso\n\nPANORAMICA:\nIl colosso
@@ -611,7 +622,7 @@ MonoBehaviour:
         Takahashi avrebbe fondato la leggendaria Yellow Magic Orchestra insieme a
         Ryuichi Sakamoto, cambiando per sempre la storia della musica elettronica
         mondiale."
-      isDiscovered: 1
+      isDiscovered: 0
     - uiTextElement: {fileID: 0}
       realName: Kissin' in the Rainbow
       description: "CLASSIFICAZIONE:\nJazz-Funk & Synth-Boogie\n\nDATI TRACCIA:\nAutore:
@@ -625,7 +636,7 @@ MonoBehaviour:
         intrapreso una carriera solista colossale negli Stati Uniti sotto il nome
         di Keiko Matsui, diventando una delle compositrici smooth jazz pi\xF9 celebri
         e premiate al mondo."
-      isDiscovered: 1
+      isDiscovered: 0
     - uiTextElement: {fileID: 0}
       realName: Michiteiku Taion
       description: "CLASSIFICAZIONE:\nNu-Jazz & Neo City Pop\n\nDATI TRACCIA: \nAutore:
@@ -639,7 +650,74 @@ MonoBehaviour:
         da sembrare programmati al computer. Questo brano in particolare \xE8 diventato
         un inno \"underground\", considerato la colonna sonora definitiva per guidare
         di notte attraverso uno skyline illuminato dai neon."
-      isDiscovered: 1
+      isDiscovered: 0
+    - uiTextElement: {fileID: 0}
+      realName: 4:00 AM
+      description: "CLASSIFICAZIONE:\nCity Pop & Soul\n\nDATI TRACCIA:\nAutore: Taeko
+        Onuki\nAlbum: Mignonne\nAnno: 1978\n\nPANORAMICA:\nUno dei pilastri assoluti
+        del City Pop giapponese. Con un groove notturno, malinconico ma irresistibile,
+        la traccia cattura perfettamente l'essenza della solitudine metropolitana
+        alle quattro del mattino, fondendo fiati sofisticati e una linea vocale incredibilmente
+        intima.\n\nANOMALIA REGISTRATA:\nL'album Mignonne vanta arrangiamenti del
+        leggendario Ryuichi Sakamoto e la collaborazione di Haruomi Hosono. Tuttavia,
+        all'epoca dell'uscita fu un fallimento commerciale cos\xEC duro da spingere
+        Taeko Onuki a ritirarsi temporaneamente dalle scene. Decenni dopo, l'algoritmo
+        globale di internet l'ha resuscitato, trasformandolo in un successo di culto
+        internazionale a scoppio ritardato."
+      isDiscovered: 0
+    - uiTextElement: {fileID: 0}
+      realName: Shinkai
+      description: "CLASSIFICAZIONE:\nModern J-Pop & J-Rock\n\nDATI TRACCIA:\nAutore:
+        Eve\nAlbum: Kaizin (Originariamente nell'EP Kaikai Kitan / Ao no Waltz) Anno:
+        2020\n\nPANORAMICA:\n\xC8 una traccia vibrante e carica di energia emotiva,
+        con un ritmo incalzante che unisce chitarre rock distorte a sintetizzatori
+        modernissimi e cristallini.\n\nANOMALIA REGISTRATA:\nIl titolo originale
+        giapponese gioca sull'omofonia e pu\xF2 essere tradotto letteralmente come
+        \"Mare del Cuore\" (o Oceano Profondo). Eve, partito come cantante amatoriale
+        su internet (Utaite) per poi diventare una superstar, ha scritto questo brano
+        come colonna sonora per il pluripremiato film d'animazione Josee, the Tiger
+        and the Fish."
+      isDiscovered: 0
+    - uiTextElement: {fileID: 0}
+      realName: Midnight Cruisin
+      description: "CLASSIFICAZIONE:\nCity Pop & AOR (Adult Oriented Rock)\n\nDATI
+        TRACCIA:\nAutore: Kingo Hamada\nAlbum: midnight cruisin\nAnno: 1982\n\nPANORAMICA:\nIl
+        brano definitivo per la guida notturna ad alta velocit\xE0. Fortemente influenzato
+        dal pop-rock sofisticato americano, fonde giri di basso ipnotici, tastiere
+        calde e ottoni brillanti tipici dell'esplosione economica giapponese degli
+        anni '80.\n\nANOMALIA REGISTRATA:\nLa copertina dell'album originale, che
+        mostra il cruscotto illuminato di un'auto d'epoca proiettato verso il buio,
+        \xE8 diventata un'icona visiva per l'intera sottocultura del City Pop. Kingo
+        Hamada compose questo album con un intento preciso: creare la \"cassetta
+        perfetta\" da ascoltare nello stereo dell'auto correndo a tarda notte sulla
+        Shuto Expressway di Tokyo."
+      isDiscovered: 0
+    - uiTextElement: {fileID: 0}
+      realName: Time Machine Love
+      description: "CLASSIFICAZIONE:\nNeo City Pop\n\nDATI TRACCIA:\nAutore: Ryusenkei\nAlbum:
+        Tokyo Sniper\nAnno: 2006\n\nPANORAMICA:\nUn'illusione temporale acusticamente
+        perfetta. Il brano offre un suono lussuoso, carico di groove funky e atmosfere
+        urbane romantiche, con arrangiamenti d'archi e fiati magistrali.\n\nANOMALIA
+        REGISTRATA:\nRyusenkei (il progetto musicale di Cunimondo Takiguchi) ha prodotto
+        questo brano decenni dopo la fine della \"Bubble Era\", usando per\xF2 hardware,
+        tecniche di registrazione analogiche e stili vocali chirurgicamente identici
+        a quelli degli anni '70 e '80. Tokyo Sniper \xE8 considerato l'album capostipite
+        del \"Neo City Pop\": una capsula del tempo cos\xEC accurata che molti ascoltatori
+        moderni sono tuttora convinti che il brano sia stato registrato nel 1982."
+      isDiscovered: 0
+    - uiTextElement: {fileID: 0}
+      realName: Noa Noa
+      description: "CLASSIFICAZIONE:\nResort Pop & Fusion\n\nDATI TRACCIA:\nAutore:
+        Shigeru Suzuki\nAlbum: Pacific\nAnno: 1978\n\nPANORAMICA:\nUn'esplosione
+        strumentale di chitarre slide liquide e atmosfere costiere. Un brano che
+        trasporta istantaneamente la mente su spiagge assolate e mari placidi, fondendo
+        il jazz con riverberi cristallini e influenze tropicali.\n\nANOMALIA REGISTRATA:\nL'album
+        Pacific non \xE8 un normale disco, ma un progetto speciale commissionato
+        dalla CBS/Sony a tre autentici giganti della musica giapponese: Shigeru Suzuki,
+        Haruomi Hosono e Tatsuro Yamashita. L'obiettivo era creare una colonna sonora
+        strumentale che evocasse \"l'idea\" delle isole dell'oceano Pacifico. Questo
+        esperimento sonoro pose le basi per il genere \"Resort Pop\"."
+      isDiscovered: 0
     isOpen: 0
 --- !u!1 &7776202616573886855
 GameObject:
@@ -733,3 +811,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedUIText: {fileID: 0}
+--- !u!1 &8573596838074759575
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2592700826234095648}
+  - component: {fileID: 440660002033344442}
+  m_Layer: 0
+  m_Name: SFXManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2592700826234095648
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8573596838074759575}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5698369315328781363}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &440660002033344442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8573596838074759575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3f808f3bc0fe1d4cba702af94e6f395, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openMenuSound: {fileID: 8300000, guid: 6532af25276fc1549bbf631ba6625af7, type: 3}
+  closeMenuSound: {fileID: 8300000, guid: 769d4e7df66346d47944add8e7040676, type: 3}
+  dialogueWindowSounds:
+  - {fileID: 8300000, guid: d34a2ddfc042b614e9765b4a801622e1, type: 3}
+  - {fileID: 8300000, guid: b5440887669136640b4116d13738b12a, type: 3}
+  sfxSource: {fileID: 0}

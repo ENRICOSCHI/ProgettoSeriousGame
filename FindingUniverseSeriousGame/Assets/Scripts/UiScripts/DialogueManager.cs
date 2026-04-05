@@ -50,9 +50,9 @@ public class DialogueManager : MonoBehaviour
     /// </summary>
     /// <param name="message"></param>
     /// <returns></returns>
-    private IEnumerator DialogueSequence(string message) 
+    private IEnumerator DialogueSequence(string message)
     {
-        
+
         // 1. Chiedi alla UI di aprire la box
         ShowPrompt(false); // Assicuriamoci che il prompt sia nascosto all'inizio
         ShowBox();
@@ -105,24 +105,46 @@ public class DialogueManager : MonoBehaviour
             prompText.SetActive(state);
     }
 
+
     /// <summary>
-    /// Suddivito il testo in più "pagine"
+    /// Suddivide il testo in più sezioni parola per parola
     /// </summary>
-    /// <param name="text"></param>
-    /// <param name="maxChars"></param>
-    /// <returns></returns>
+    /// <param name="text">Il testo completo del dialogo</param>
+    /// <param name="maxChars">Numero massimo di caratteri per pagina</param>
+    /// <returns>Array di stringhe, ognuna rappresenta una pagina</returns>
     string[] SplitText(string text, int maxChars)
     {
-        List<string> result = new(); //creo lista
-        //Faccio un for che va avanti ogni tot. caratteri
-        //Salvo quei caratteri nella lista
-        for (int i = 0; i < text.Length; i += maxChars)
+        List<string> result = new List<string>();
+
+        // Dividiamo l'intero testo in un array di singole parole (usando lo spazio come separatore)
+        string[] words = text.Split(' ');
+
+        string currentPage = "";
+
+        foreach (string word in words)
         {
-            //controllo in caso la stringa sia più corta di maxChars
-            //e prendo solo i caratteri rimasti 
-            int length = Mathf.Min(maxChars, text.Length - i);
-            //prendo i caratteri da i fino a lenght e li salvo nella lista
-            result.Add(text.Substring(i, length));
+            // Controlliamo se aggiungendo la parola attuale (più uno spazio) supereremmo il limite.
+            // Se sì, salviamo la pagina corrente nella lista e ne iniziamo una nuova.
+            if (currentPage.Length + word.Length + 1 > maxChars && currentPage.Length > 0)
+            {
+                result.Add(currentPage); // Salviamo la pagina completata
+                currentPage = "";        // Svuotiamo la pagina per ricominciare
+            }
+
+            // Se la pagina non è vuota, aggiungiamo uno spazio prima della parola successiva
+            if (currentPage.Length > 0)
+            {
+                currentPage += " ";
+            }
+
+            // Aggiungiamo la parola alla pagina corrente
+            currentPage += word;
+        }
+
+        // Finito il ciclo, se c'è ancora del testo rimasto nell'ultima pagina, lo salviamo
+        if (currentPage.Length > 0)
+        {
+            result.Add(currentPage);
         }
 
         return result.ToArray();

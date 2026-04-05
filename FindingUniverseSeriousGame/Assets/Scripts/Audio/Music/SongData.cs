@@ -14,4 +14,7 @@ public class SongData
     public string artist;
     public string album;
     public string year;
+
+    public int songIDCodex;
+    [TextArea (3, 10)] public string songDescription;
 }

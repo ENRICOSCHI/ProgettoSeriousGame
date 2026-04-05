@@ -1,5 +1,9 @@
 using UnityEngine;
 
+
+// Nello script Communications ci sono funzioni statiche per inviare messaggi alla UI
+// Ho lasciato questa perchè magari ci possiamo fare qualcosa per gli eventi
+// Ma per mandare dialoghi o notifiche è meglio usare direttamente Communications.Dialogue() o Communications.Notify() così non siamo vincolati a un evento specifico
 public abstract class Eventi : MonoBehaviour
 {
     [TextArea(3, 10)] [SerializeField] string descrizione;

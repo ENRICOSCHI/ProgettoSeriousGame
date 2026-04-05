@@ -13,6 +13,9 @@ public class SFXManager : MonoBehaviour
     [Tooltip("Inserisci qui il suono di chiusura menu")]
     public AudioClip closeMenuSound;
 
+    [Tooltip("Inserisci qui il suono della finestra di dialogo")]
+    public AudioClip[] dialogueWindowSounds; // Array di suoni per la finestra di dialogo, per variare un po' l'effetto
+
     // L'altoparlante dedicato solo agli effetti
     [SerializeField] private AudioSource sfxSource;
     #endregion
@@ -33,9 +36,6 @@ public class SFXManager : MonoBehaviour
             Destroy(gameObject); 
             return;
         }
-
-        // Recuperiamo l'AudioSource in automatico
-        sfxSource = GetComponent<AudioSource>();
         
         // Impostiamo l'AudioSource in modo sicuro per gli effetti 2D
         sfxSource.playOnAwake = false;
@@ -54,6 +54,19 @@ public class SFXManager : MonoBehaviour
     public void PlayCloseMenu()
     {
         if (closeMenuSound != null) sfxSource.PlayOneShot(closeMenuSound);
+    }
+
+    public void PlayDialogueWindow()
+    {
+        // Controlliamo che l'array non sia vuoto (per evitare errori se dimentichi di mettere i suoni su Unity)
+        if (dialogueWindowSounds != null && dialogueWindowSounds.Length > 0)
+        {
+            // Scegliamo un numero a caso da 0 fino alla grandezza dell'array
+            int indiceCasuale = Random.Range(0, dialogueWindowSounds.Length);
+            
+            // Suoniamo l'audio corrispondente a quel numero
+            sfxSource.PlayOneShot(dialogueWindowSounds[indiceCasuale]);
+        }
     }
     #endregion
     
