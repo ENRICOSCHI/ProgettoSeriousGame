@@ -24,7 +24,7 @@ public class MusicUI : MonoBehaviour
     #endregion
 
     // Questa funzione viene chiamata dal RadioController solo quando cambia la canzone
-    public void UpdateTrackInfo(SongData currentSong)
+    public void UpdateTrackInfo(Song currentSong)
     {
         // Controllo di sicurezza
         if (currentSong == null) return;

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8e503318967538488b13084b8cc5780, type: 3}
+  m_Name: Kissin in the Rainbow
+  m_EditorClassIdentifier: 
+  songID: M001
+  audioFile: {fileID: 8300000, guid: cc92c7a171588ec449fe002a676219c0, type: 3}
+  title: Kissin in the Rainbow
+  artist: Cosmos
+  album: Bourbon Suite
+  year: 1982
+  songIDCodex: 1
+  songDescription: RoverX, abbiamo un problema. Pare che il sistema AI della nave
+    sia... allegro. Sembra che queste frequenze elettroniche si allineino bene con
+    il suo clock di sistema.

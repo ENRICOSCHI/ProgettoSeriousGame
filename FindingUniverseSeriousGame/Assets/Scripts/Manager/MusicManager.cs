@@ -7,7 +7,7 @@ public class MusicManager : MonoBehaviour
 
     [Header("Archivio Musicale")]
     [Tooltip("Aggiungi qui tutte le canzoni. Unity userà il modello SongData per ogni slot.")]
-    public SongData[] playlist;
+    public Song[] playlist;
     [Header("Array SFX per dialogo")]
     public AudioClip[] sfxClips;
 
@@ -46,7 +46,7 @@ public class MusicManager : MonoBehaviour
     /// <summary>
     /// Estrae una canzone casuale senza ripetizioni. (algoritmo Shuffle Bag o Pool)
     /// </summary>
-    public SongData GetRandomSong()
+    public Song GetRandomSong()
     {
         // Controllo di sicurezza
         if (playlist == null || playlist.Length == 0)

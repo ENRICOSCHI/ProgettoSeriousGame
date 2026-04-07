@@ -28,7 +28,7 @@ public class RadioController : MonoBehaviour
     private bool isManuallyPaused = false;
 
     // La cronologia per permetterci di andare "Indietro" anche se la playlist è casuale
-    private List<SongData> playHistory = new List<SongData>();
+    private List<Song> playHistory = new List<Song>();
     private int historyIndex = -1; // -1 significa che non abbiamo ancora iniziato
 
     #endregion
@@ -169,7 +169,7 @@ public class RadioController : MonoBehaviour
             // Altrimenti, siamo al limite della cronologia. Chiediamo una canzone nuova al Database!
             if (musicManager != null)
             {
-                SongData newSong = musicManager.GetRandomSong();
+                Song newSong = musicManager.GetRandomSong();
 
                 if (newSong != null)
                 {
@@ -203,7 +203,7 @@ public class RadioController : MonoBehaviour
     /// <summary>
     /// Funzione interna che carica fisicamente il file audio e lo fa partire.
     /// </summary>
-    private void LoadAndPlay(SongData songData)
+    private void LoadAndPlay(Song songData)
     {
         if (songData.audioFile != null)
         {

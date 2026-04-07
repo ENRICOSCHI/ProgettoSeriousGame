@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8e503318967538488b13084b8cc5780, type: 3}
+  m_Name: Tokyo Reggie
+  m_EditorClassIdentifier: 
+  songID: M000
+  audioFile: {fileID: 8300000, guid: 7f245e790b0408a44b80337722c780d8, type: 3}
+  title: Tokyo Reggie
+  artist: Masayoshi Takanaka
+  album: Seychelles
+  year: 1976
+  songIDCodex: 0
+  songDescription: RoverX, mantenere traiettoria di volo. Non abbiamo di certo una
+    tavola da surf, ma cerca di controllarti.

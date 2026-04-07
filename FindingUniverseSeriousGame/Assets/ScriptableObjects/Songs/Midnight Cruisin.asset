@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8e503318967538488b13084b8cc5780, type: 3}
+  m_Name: Midnight Cruisin
+  m_EditorClassIdentifier: 
+  songID: M005
+  audioFile: {fileID: 8300000, guid: 5f8f9657dff0feb458c5c01cee37a8c0, type: 3}
+  title: Midnight Cruisin
+  artist: Kingo Hamada
+  album: midnight cruisin
+  year: 1982
+  songIDCodex: 5
+  songDescription: "I limiti di velocit\xE0 di curvatura vanno severamente rispettati,
+    RoverX. Prima di attraversare, guarda sempre a destra e a sinistra. Passo e chiudo."

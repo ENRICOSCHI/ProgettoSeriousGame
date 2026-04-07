@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8e503318967538488b13084b8cc5780, type: 3}
+  m_Name: Time Machine Love
+  m_EditorClassIdentifier: 
+  songID: M006
+  audioFile: {fileID: 8300000, guid: 5af01eeae074adf44a53751857412aad, type: 3}
+  title: Time Machine Love
+  artist: Ryusenkei
+  album: Tokyo Sniper
+  year: 2006
+  songIDCodex: 6
+  songDescription: "RoverX, i sistemi di bordo sono momentaneamente in stallo. La
+    data segnata \xE8 1982, ma tutti sappiamo che ormai \xE8 passato da un po'...
+    Vero?"
