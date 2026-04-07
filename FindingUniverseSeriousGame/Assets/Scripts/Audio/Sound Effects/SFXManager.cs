@@ -3,71 +3,62 @@ using UnityEngine;
 public class SFXManager : MonoBehaviour
 {
     #region Inizializzazione variabili
-    [Header("Archivio Effetti Sonori")]
-    
-    public static SFXManager instance; // Riferimento statico all'istanza del SFXManager per accesso globale
-    
-    [Tooltip("Inserisci qui il suono di apertura menu")]
-    public AudioClip openMenuSound;
-
-    [Tooltip("Inserisci qui il suono di chiusura menu")]
-    public AudioClip closeMenuSound;
-
-    [Tooltip("Inserisci qui il suono della finestra di dialogo")]
-    public AudioClip[] dialogueWindowSounds; // Array di suoni per la finestra di dialogo, per variare un po' l'effetto
-
     // L'altoparlante dedicato solo agli effetti
     [SerializeField] private AudioSource sfxSource;
     #endregion
 
 
-
-    void Awake()
-    {
-        if (instance == null)
-        {
-            // Se non esiste ancora nessun SFXManager, questo diventa l'istanza
-            instance = this; 
-            DontDestroyOnLoad(gameObject); // Mantieni questo oggetto tra le scene
-        }
-        else
-        {
-            // Se c'è già un altro SFXManager, questo "clone" si suicida
-            Destroy(gameObject); 
-            return;
-        }
-        
-        // Impostiamo l'AudioSource in modo sicuro per gli effetti 2D
-        sfxSource.playOnAwake = false;
-        sfxSource.loop = false;
-        sfxSource.spatialBlend = 0f; // Completamente 2D (nelle tue orecchie)
-    }
-
-
     #region Metodi per i suoni
 
-    public void PlayOpenMenu()
+    /// <summary>
+    /// Suono un unico effetto statico
+    /// </summary>
+    /// <param name="audioClip"></param>
+    /// <param name="spawnTransform"></param>
+    /// <param name="volume"></param>
+    public void PlaySoundEffect(AudioClip audioClip, Transform spawnTransform, float volume)
     {
-        if (openMenuSound != null) sfxSource.PlayOneShot(openMenuSound);
+        // creo oggetto con audio source "sfxSource" nella posizione passata dal parametro
+        AudioSource audioSource = Instantiate(sfxSource, spawnTransform.position, Quaternion.identity);
+
+        // assegno la clip all'audio source
+        audioSource.clip = audioClip;
+
+        // assegno il volume
+        audioSource.volume = volume;
+
+        // avvio l'audio
+        audioSource.Play();
+
+        // distruggo l'oggetto alla fine della durata della clip
+        Destroy(audioSource.gameObject, audioSource.clip.length);
     }
 
-    public void PlayCloseMenu()
+    /// <summary>
+    /// Suono un audioclip causale tra quelle passate come parametro
+    /// </summary>
+    /// <param name="audioClips"></param>
+    /// <param name="spawnTransform"></param>
+    /// <param name="volume"></param>
+    public void PlayRandomSoundEffect(AudioClip[] audioClips, Transform spawnTransform, float volume)
     {
-        if (closeMenuSound != null) sfxSource.PlayOneShot(closeMenuSound);
+        // creo oggetto con audio source "sfxSource" nella posizione passata dal parametro
+        AudioSource audioSource = Instantiate(sfxSource, spawnTransform.position, Quaternion.identity);
+
+        // prendo una clip causale da audioClips
+        // assegno la clip all'audio source
+        audioSource.clip = audioClips[Random.Range(0, audioClips.Length)];
+
+        // assegno il volume
+        audioSource.volume = volume;
+
+        // avvio l'audio
+        audioSource.Play();
+
+        // distruggo l'oggetto alla fine della durata della clip
+        Destroy(audioSource.gameObject, audioSource.clip.length);
     }
 
-    public void PlayDialogueWindow()
-    {
-        // Controlliamo che l'array non sia vuoto (per evitare errori se dimentichi di mettere i suoni su Unity)
-        if (dialogueWindowSounds != null && dialogueWindowSounds.Length > 0)
-        {
-            // Scegliamo un numero a caso da 0 fino alla grandezza dell'array
-            int indiceCasuale = Random.Range(0, dialogueWindowSounds.Length);
-            
-            // Suoniamo l'audio corrispondente a quel numero
-            sfxSource.PlayOneShot(dialogueWindowSounds[indiceCasuale]);
-        }
-    }
     #endregion
-    
+
 }

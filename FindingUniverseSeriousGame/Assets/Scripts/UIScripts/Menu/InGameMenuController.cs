@@ -10,9 +10,10 @@ public class InGameMenuController : MonoBehaviour
     private GameObject menuContainer;  // Riferimento al container del menu, cercato in Awake se non assegnato manualmente
     private bool isMenuOpen = false;  // Stato del menu
 
-
+    [Tooltip("Tasto per aprire/chiudere il menu")]
     [SerializeField] private KeyCode menuKeyCode = KeyCode.Escape;  // Tasto da settare per aprire / chiudere il menu
-
+    [SerializeField] AudioClip closeMenuSFX; // sfx chiusura menu
+    [SerializeField] AudioClip openMenuSFX; // sfx apertura menu
 
     // Riferimento a MenuAethetics per aggiornare l'estetica dei bottoni in base al pannello attivo
     private MenuAsthetics menuAsthetics; 
@@ -33,10 +34,6 @@ public class InGameMenuController : MonoBehaviour
     [SerializeField] private GameObject inGameUI;  // Riferimento alla UI di gioco
 
     #endregion
-
-
-
-
 
     void Awake()  // Configurazione iniziale di sicurezza per il riferimento al container del menu
     {
@@ -77,12 +74,12 @@ public class InGameMenuController : MonoBehaviour
         {
             if (isMenuOpen)
             {
-                SFXManager.instance.PlayCloseMenu();  // Suono di chiusura menu
+                ManagerHandler.ManagerInstance.SFXManager.PlaySoundEffect(closeMenuSFX, transform,1f); // Suono di chiusura menu
                 ResumeGame();  // Se il menu è aperto, chiudilo
             }
             else
             {
-                SFXManager.instance.PlayOpenMenu();  // Suono di apertura menu
+                ManagerHandler.ManagerInstance.SFXManager.PlaySoundEffect(openMenuSFX, transform, 1f);   // Suono di apertura menu
                 PauseGame();  // Se il menu è chiuso, aprilo
             }
         }

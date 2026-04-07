@@ -223,8 +223,8 @@ public class RadioController : MonoBehaviour
             // Aggiorna il codex con le informazioni della canzone se non è già stata scoperta
             if (!ManagerHandler.ManagerInstance.CodexManager.categoryLists[2].entries[songData.songIDCodex].isDiscovered)
             {
-                Communications.Dialogue(songData.songDescription); // Mostra la descrizione della canzone come dialogo
-                SFXManager.instance.PlayDialogueWindow(); // Suono di apertura dialogo
+                ManagerHandler.ManagerInstance.DialogueManager.ShowMessage(songData.songDescription);
+                ManagerHandler.ManagerInstance.SFXManager.PlayRandomSoundEffect(musicManager.sfxClips,transform,1f); // Suono di apertura dialogo
                 ManagerHandler.ManagerInstance.CodexManager.UnlockCodexEntry(2, songData.songIDCodex);
             }
         }

@@ -7,7 +7,9 @@ public class MusicManager : MonoBehaviour
 
     [Header("Archivio Musicale")]
     [Tooltip("Aggiungi qui tutte le canzoni. Unity userà il modello SongData per ogni slot.")]
-    public SongData[] playlist; 
+    public SongData[] playlist;
+    [Header("Array SFX per dialogo")]
+    public AudioClip[] sfxClips;
 
     #endregion
 
