@@ -114,8 +114,8 @@ public class Vfx_VectorHardware : MonoBehaviour
 
         yield return new WaitForSeconds(glitchDurationEventoSolare);
 
-        rectTransform.anchoredPosition = originalPosition;
         isGlitching = false;
+        rectTransform.anchoredPosition = originalPosition;
     }
 
     public void SetGlitchEventoSolare(bool isActive)
