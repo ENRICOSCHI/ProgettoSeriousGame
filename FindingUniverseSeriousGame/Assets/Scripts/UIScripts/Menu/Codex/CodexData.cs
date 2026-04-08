@@ -6,6 +6,9 @@ using TMPro;
 [System.Serializable]
 public class CodexEntry  // Classe che rappresenta una voce nel Codex, da compilare in Inspector per ogni voce
 {
+    [Tooltip("ID di riconoscimento per i salvataggi")]
+    public string ID;
+
     [Tooltip("Il testo UI nella lista di sinistra (es. l'oggetto '???')")]
     public TMP_Text uiTextElement; 
     

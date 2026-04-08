@@ -36,6 +36,10 @@ public class CodexManager : MonoBehaviour
                 categoryLists[categoryIndex].entries[entryIndex].isDiscovered = true;
 
                 Debug.Log($"Codex Aggiornato: Sbloccato {categoryLists[categoryIndex].entries[entryIndex].realName}!");
+                /*
+                 Per il salvataggio si potrebbe fare una roba tipo: creo lista con ID di quello che ho sbloccato
+                 poi al caricamento dei dati controllo gli ID che ho salvato e rimetto quelle parti attive nel codex con isDiscovered = true
+                 */
             }
         }
     }
