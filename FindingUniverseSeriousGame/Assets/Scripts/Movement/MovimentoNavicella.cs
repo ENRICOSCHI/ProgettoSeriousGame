@@ -38,10 +38,12 @@ public class MovimentoNavicella : MonoBehaviour
 
 
     [Header("Auto-Leveling Settings")]
+    [SerializeField] float speedScaler = 0.5f;  // Dopo la riduzione delle dimensioni del gioco, serve un moltiplicatore per ridurre lo spostamento della nave nel mondo di gioco
     [SerializeField] float returnSpeed = 2f;
     private float realTimePitch = 0f;
     private float realTimeYaw = 0f;
     private float realTimeRoll = 0f;
+
 
     [Header("Input Smoothing")]
     [SerializeField] float fluidityInput = 5f;
@@ -57,11 +59,11 @@ public class MovimentoNavicella : MonoBehaviour
         CamEffect();
 
         //Muove l'oggetto in avanti in base alla velocit� attuale
-        transform.Translate(Vector3.forward * currentSpeed * Time.deltaTime);
+        transform.Translate(Vector3.forward * currentSpeed * Time.deltaTime * speedScaler);
     }
 
     /// <summary>
-    /// Mappatura degli input, il giocatore pu� cambiare tra 2 input differenti
+    /// Mappatura degli input, il giocatore può cambiare tra 2 input differenti
     /// </summary>
     void MapInputs()  //Espandibile se si vuole
     {
@@ -102,11 +104,11 @@ public class MovimentoNavicella : MonoBehaviour
     /// </summary>
     void Rotation()
     {
-        // Interpolazione degli input per una risposta pi� fluida
+        // Interpolazione degli input per una risposta più fluida
         hInputSmooth = Mathf.Lerp(hInputSmooth, targetH, Time.deltaTime * fluidityInput);
         vInputSmooth = Mathf.Lerp(vInputSmooth, targetV, Time.deltaTime * fluidityInput);
 
-        // Logica PITCH (Su/Gi�)
+        // Logica PITCH (Su/Giù)
         // Definiamo un "angolo bersaglio" (es. max 60 gradi)
         float targetPitchAngle = vInputSmooth * maxPitchAngle;
 

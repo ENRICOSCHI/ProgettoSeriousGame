@@ -8,17 +8,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4715726801931749330, guid: b6101db8b7902c740a564d6d13799f66, type: 3}
+      propertyPath: raggioStella
+      value: 10.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4715726801931749330, guid: b6101db8b7902c740a564d6d13799f66, type: 3}
+      propertyPath: raggioPianeta
+      value: 3.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 4715726801931749330, guid: b6101db8b7902c740a564d6d13799f66, type: 3}
+      propertyPath: spessorePenombra
+      value: 0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 6659401830567925793, guid: b6101db8b7902c740a564d6d13799f66, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.7809662
+      objectReference: {fileID: 0}
+    - target: {fileID: 6659401830567925793, guid: b6101db8b7902c740a564d6d13799f66, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.7809662
+      objectReference: {fileID: 0}
+    - target: {fileID: 6659401830567925793, guid: b6101db8b7902c740a564d6d13799f66, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.7809662
+      objectReference: {fileID: 0}
     - target: {fileID: 6659401830567925793, guid: b6101db8b7902c740a564d6d13799f66, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 62.524
       objectReference: {fileID: 0}
     - target: {fileID: 6659401830567925793, guid: b6101db8b7902c740a564d6d13799f66, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 256.57
       objectReference: {fileID: 0}
     - target: {fileID: 6659401830567925793, guid: b6101db8b7902c740a564d6d13799f66, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 510.86
       objectReference: {fileID: 0}
     - target: {fileID: 6659401830567925793, guid: b6101db8b7902c740a564d6d13799f66, type: 3}
       propertyPath: m_LocalRotation.w
@@ -48,12 +72,152 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7973263287830491666, guid: b6101db8b7902c740a564d6d13799f66, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8305044862966077100, guid: b6101db8b7902c740a564d6d13799f66, type: 3}
+      propertyPath: m_Size.x
+      value: 5.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8305044862966077100, guid: b6101db8b7902c740a564d6d13799f66, type: 3}
+      propertyPath: m_Size.y
+      value: 5.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8305044862966077100, guid: b6101db8b7902c740a564d6d13799f66, type: 3}
+      propertyPath: m_Size.z
+      value: 5.7
+      objectReference: {fileID: 0}
     - target: {fileID: 8838726656543401629, guid: b6101db8b7902c740a564d6d13799f66, type: 3}
       propertyPath: m_Name
-      value: Planet
+      value: Mercurio
+      objectReference: {fileID: 0}
+    - target: {fileID: 8838726656543401629, guid: b6101db8b7902c740a564d6d13799f66, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6659401830567925793, guid: b6101db8b7902c740a564d6d13799f66, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5597702686844048712}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8838726656543401629, guid: b6101db8b7902c740a564d6d13799f66, type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 8243029986682109156}
+  m_SourcePrefab: {fileID: 100100000, guid: b6101db8b7902c740a564d6d13799f66, type: 3}
+--- !u!4 &6124175963972174867 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6659401830567925793, guid: b6101db8b7902c740a564d6d13799f66, type: 3}
+  m_PrefabInstance: {fileID: 619107754708720690}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8232285628009675439 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8838726656543401629, guid: b6101db8b7902c740a564d6d13799f66, type: 3}
+  m_PrefabInstance: {fileID: 619107754708720690}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8243029986682109156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8232285628009675439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfc25d8c063ec08429adc98bc9dab422, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questName: Scopri Mercurio
+  indiceCategory: 0
+  indiceEntry: 0
+  questStarted: 0
+  questCompleted: 0
+  questInteractionType: 0
+--- !u!1001 &5342871777614475939
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6124175963972174867}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 83af59bc838f0a34e86269377b8ec4bb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 269.64758
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 83af59bc838f0a34e86269377b8ec4bb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 269.6476
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 83af59bc838f0a34e86269377b8ec4bb, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 269.6476
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 83af59bc838f0a34e86269377b8ec4bb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0012271279
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 83af59bc838f0a34e86269377b8ec4bb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.00061814
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 83af59bc838f0a34e86269377b8ec4bb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.004758
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 83af59bc838f0a34e86269377b8ec4bb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 83af59bc838f0a34e86269377b8ec4bb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 83af59bc838f0a34e86269377b8ec4bb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 83af59bc838f0a34e86269377b8ec4bb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 83af59bc838f0a34e86269377b8ec4bb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 83af59bc838f0a34e86269377b8ec4bb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 83af59bc838f0a34e86269377b8ec4bb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 83af59bc838f0a34e86269377b8ec4bb, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 83af59bc838f0a34e86269377b8ec4bb, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 133e4668692f5a847be046de66e91799, type: 2}
+    - target: {fileID: 919132149155446097, guid: 83af59bc838f0a34e86269377b8ec4bb, type: 3}
+      propertyPath: m_Name
+      value: Mercury_Visual
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 83af59bc838f0a34e86269377b8ec4bb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b6101db8b7902c740a564d6d13799f66, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 83af59bc838f0a34e86269377b8ec4bb, type: 3}
+--- !u!4 &5597702686844048712 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 83af59bc838f0a34e86269377b8ec4bb, type: 3}
+  m_PrefabInstance: {fileID: 5342871777614475939}
+  m_PrefabAsset: {fileID: 0}
