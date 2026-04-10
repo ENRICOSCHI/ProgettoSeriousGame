@@ -53,4 +53,5 @@ public static class QuestSafetyChecks
     }
 
     #endregion
+
 }

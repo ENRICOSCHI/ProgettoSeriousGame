@@ -15,9 +15,19 @@ public class SunLightController : MonoBehaviour
     [SerializeField] private Transform _target;
 
     [Tooltip("Il centro del Sole da cui esce la luce")]
-    [SerializeField] private Vector3 _sunCenter = Vector3.zero;
+    [SerializeField] private Transform _sunCenter;
+    
 
     // ─── Lifecycle ───────────────────────────────────────────────────────────
+
+    private void Awake()
+    {
+        if (_sunCenter == null)
+        {
+            Debug.LogWarning("SunLightController: Sun Center non assegnato.");
+            _sunCenter = this.transform; // Usa la posizione del GameObject se non è assegnato
+        }
+    }
 
     private void Update()
     {
@@ -36,7 +46,7 @@ public class SunLightController : MonoBehaviour
     private void AggiornaDirezioneLuce()
     {
         // Calcolo del vettore direzione: Destinazione - Origine
-        Vector3 direzioneLuce = (_target.position - _sunCenter).normalized;
+        Vector3 direzioneLuce = (_target.position - _sunCenter.position).normalized;
 
         // Se la direzione è valida, orientiamo il transform della luce
         if (direzioneLuce != Vector3.zero)
@@ -52,6 +62,6 @@ public class SunLightController : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow; //colore del raggio giallo
-        Gizmos.DrawLine(_sunCenter, _target != null ? _target.position : Vector3.up * 10f); // disegno il raggio: da sole, a navicella
+        Gizmos.DrawLine(_sunCenter.position, _target != null ? _target.position : Vector3.up * 10f); // disegno il raggio: da sole, a navicella
     }
 }

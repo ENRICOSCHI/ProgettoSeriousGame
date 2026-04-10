@@ -11,7 +11,7 @@ public class UmbraEvento : Eventi
 
     [Header("Geometria Cono d'Ombra")]
     [SerializeField] private float raggioPianeta = 10f;
-    [SerializeField] private float raggioStella = 100f;
+    [SerializeField] private float raggioStella = 1371f;
     [SerializeField] private float spessorePenombra = 0.15f;
 
     [Header("Debug")]
