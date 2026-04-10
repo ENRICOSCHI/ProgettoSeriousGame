@@ -4,7 +4,7 @@ Aggiorna con quello che è stato fatto (aggiungere cose in future)
 - [x] sistema di movimento
 - [ ] prototipo dell'universo
 - [ ] programmazione eventi cosmici
-- [ ] sfondo dell'universo
+- [x] sfondo dell'universo
 - [ ] interfaccia utente (menu della navicella con mappa ec..)
 - [ ] missioni iniziali
 ### Eventi cosmici
