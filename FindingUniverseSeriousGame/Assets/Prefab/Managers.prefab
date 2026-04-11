@@ -227,6 +227,7 @@ Transform:
   - {fileID: 4928401760282781139}
   - {fileID: 2433444395524334593}
   - {fileID: 1209524538758725802}
+  - {fileID: 6993869216568775523}
   - {fileID: 5955885646820405787}
   - {fileID: 2592700826234095648}
   m_Father: {fileID: 0}
@@ -289,73 +290,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playlist:
-  - audioFile: {fileID: 8300000, guid: 7f245e790b0408a44b80337722c780d8, type: 3}
-    title: Tokyo Reggie
-    artist: Masayoshi Takanaka
-    album: Seychelles
-    year: 1976
-    songIDCodex: 0
-    songDescription: RoverX, mantenere traiettoria di volo. Non abbiamo di certo
-      una tavola da surf, ma cerca di controllarti.
-  - audioFile: {fileID: 8300000, guid: c11ed2881588a0640966a6e7e6fdb866, type: 3}
-    title: Michiteiku Taion
-    artist: Blu-Swing
-    album: FLASH
-    year: 2015
-    songIDCodex: 2
-    songDescription: "Ricordiamo all'equipaggio che trasformare il Bridge in un Jazz
-      Club \xE8 quasi vietato. Quasi."
-  - audioFile: {fileID: 8300000, guid: cc92c7a171588ec449fe002a676219c0, type: 3}
-    title: Kissin in the Rainbow
-    artist: Cosmos
-    album: Bourbon Suite
-    year: 1982
-    songIDCodex: 1
-    songDescription: RoverX, abbiamo un problema. Pare che il sistema AI della nave
-      sia... allegro. Sembra che queste frequenze elettroniche si allineino bene
-      con il suo clock di sistema.
-  - audioFile: {fileID: 8300000, guid: 1ec411822b90c334e896ad09e44fdd10, type: 3}
-    title: 4:00 AM
-    artist: Taeko Onuki
-    album: Mignonne
-    year: 1978
-    songIDCodex: 3
-    songDescription: RoverX, a qualsiasi costo, noi non ti abbandoneremo. Non rimarrai
-      mai da solo.
-  - audioFile: {fileID: 8300000, guid: 393e4faed01414743afc9731081b743d, type: 3}
-    title: Shinkai
-    artist: Eve
-    album: Kaizin
-    year: 2020
-    songIDCodex: 4
-    songDescription: Oceano profondo, eh? Speriamo che non porti sfortuna. Occhi
-      aperti, RoverX.
-  - audioFile: {fileID: 8300000, guid: 5f8f9657dff0feb458c5c01cee37a8c0, type: 3}
-    title: Midnight Cruisin
-    artist: Kingo Hamada
-    album: midnight cruisin
-    year: 1982
-    songIDCodex: 5
-    songDescription: "I limiti di velocit\xE0 di curvatura vanno severamente rispettati,
-      RoverX. Prima di attraversare, guarda sempre a destra e a sinistra. Passo e
-      chiudo."
-  - audioFile: {fileID: 8300000, guid: 5af01eeae074adf44a53751857412aad, type: 3}
-    title: Time Machine Love
-    artist: Ryusenkei
-    album: Tokyo Sniper
-    year: 2006
-    songIDCodex: 6
-    songDescription: "RoverX, i sistemi di bordo sono momentaneamente in stallo.
-      La data segnata \xE8 1982, ma tutti sappiamo che ormai \xE8 passato da un po'...
-      Vero?"
-  - audioFile: {fileID: 8300000, guid: 75d7f8641ff9e004c86f516c8b08e1e9, type: 3}
-    title: Noa Noa
-    artist: Shigeru Suzuki
-    album: Pacific
-    year: 1978
-    songIDCodex: 7
-    songDescription: A causa dell'alto livello di stress, abbiamo deciso di inserire
-      questa canzone nei sistemi di bordo. Dicono aiuti a rilassarsi. La Orana!
+  - {fileID: 11400000, guid: f0cd9e4f224a72043bc5388c872d94dd, type: 2}
+  - {fileID: 11400000, guid: 5800ff76c969a134e822a88a513fc786, type: 2}
+  - {fileID: 11400000, guid: 7b6190bdf1f8d444baa878b7ed097a60, type: 2}
+  - {fileID: 11400000, guid: 2118d4d278f527441b9f9ea3db411ebc, type: 2}
+  - {fileID: 11400000, guid: b72d79acc531af64cb9e55829c139807, type: 2}
+  - {fileID: 11400000, guid: bb9e049d39f6b9d4687c95cad94afc94, type: 2}
+  - {fileID: 11400000, guid: c9b9e86177033c14e8cf6e2bc037be0b, type: 2}
+  - {fileID: 11400000, guid: 6db7f6037c768e64d9fb414af8930563, type: 2}
+  sfxClips:
+  - {fileID: 8300000, guid: d34a2ddfc042b614e9765b4a801622e1, type: 3}
+  - {fileID: 8300000, guid: b5440887669136640b4116d13738b12a, type: 3}
 --- !u!114 &710273495957392881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -472,7 +417,8 @@ MonoBehaviour:
   - categoryTitle: {fileID: 0}
     categoryList: {fileID: 0}
     entries:
-    - uiTextElement: {fileID: 0}
+    - ID: P000
+      uiTextElement: {fileID: 0}
       realName: Mercurio
       description: "CLASSIFICAZIONE:\nPianeta Terrestre\n\nPANORAMICA:\nIl pianeta
         pi\xF9 interno e piccolo del Sistema Solare. Privo di una vera e propria
@@ -483,7 +429,8 @@ MonoBehaviour:
         a -180 C nella notte. Inoltre, a causa della sua lenta rotazione, un \"giorno\"
         su Mercurio dura il doppio di un suo \"anno\"."
       isDiscovered: 0
-    - uiTextElement: {fileID: 0}
+    - ID: P001
+      uiTextElement: {fileID: 0}
       realName: Venere
       description: "CLASSIFICAZIONE:\nPianeta Terrestre\n\nPANORAMICA:\nSpesso definito
         il \"gemello infernale\" della Terra per dimensioni simili, Venere \xE8 avvolto
@@ -494,7 +441,8 @@ MonoBehaviour:
         proprio asse in senso retrogrado (da est a ovest), il che significa che il
         Sole sorge a ovest e tramonta a est."
       isDiscovered: 0
-    - uiTextElement: {fileID: 0}
+    - ID: P002
+      uiTextElement: {fileID: 0}
       realName: Terra
       description: "CLASSIFICAZIONE:\nPianeta Terrestre\n\nPANORAMICA:\nIl terzo
         pianeta dal Sole e l'unico corpo celeste attualmente noto per ospitare la
@@ -504,7 +452,8 @@ MonoBehaviour:
         per la regolazione del carbonio e il mantenimento di un clima abitabile nel
         corso di miliardi di anni."
       isDiscovered: 0
-    - uiTextElement: {fileID: 0}
+    - ID: P003
+      uiTextElement: {fileID: 0}
       realName: Marte
       description: "CLASSIFICAZIONE:\nPianeta Terrestre\n\nPANORAMICA:\nNoto come
         il \"Pianeta Rosso\" a causa dell'ossido di ferro (ruggine) diffuso sulla
@@ -515,7 +464,8 @@ MonoBehaviour:
         di canyon cos\xEC vasto che, se fosse sulla Terra, si estenderebbe da New
         York a Los Angeles."
       isDiscovered: 0
-    - uiTextElement: {fileID: 0}
+    - ID: P004
+      uiTextElement: {fileID: 0}
       realName: Giove
       description: "CLASSIFICAZIONE:\nGigante Gassoso\n\nPANORAMICA:\nIl colosso
         del Sistema Solare, con una massa due volte e mezza quella di tutti gli altri
@@ -527,7 +477,8 @@ MonoBehaviour:
         di Giove funge da \"scudo\" per i pianeti interni, deviando o catturando
         asteroidi e comete pericolosi."
       isDiscovered: 1
-    - uiTextElement: {fileID: 0}
+    - ID: P005
+      uiTextElement: {fileID: 0}
       realName: Saturno
       description: "CLASSIFICAZIONE:\nGigante Gassoso\n\nPANORAMICA:\nIl sesto pianeta,
         celebre in tutto il cosmo per il suo spettacolare e complesso sistema di
@@ -537,7 +488,8 @@ MonoBehaviour:
         grande, il pianeta vi galleggerebbe. Al suo polo nord infuria una tempesta
         perpetua dalla perfetta, e inspiegabile, forma esagonale."
       isDiscovered: 1
-    - uiTextElement: {fileID: 0}
+    - ID: P006
+      uiTextElement: {fileID: 0}
       realName: Urano
       description: "CLASSIFICAZIONE:\nGigante Ghiacciato\n\nPANORAMICA:\nUn mondo
         freddo e remoto, con un'atmosfera ricca di metano che gli conferisce una
@@ -548,7 +500,8 @@ MonoBehaviour:
         anomalia estrema sia il risultato di una collisione apocalittica con un corpo
         grande quanto la Terra nelle prime fasi di vita del sistema solare."
       isDiscovered: 1
-    - uiTextElement: {fileID: 0}
+    - ID: P007
+      uiTextElement: {fileID: 0}
       realName: Nettuno
       description: "CLASSIFICAZIONE:\nGigante Ghiacciato\n\nPANORAMICA:\nL'ottavo
         e pi\xF9 lontano pianeta del Sistema Solare. Un mondo oscuro, gelido e sferzato
@@ -563,7 +516,8 @@ MonoBehaviour:
   - categoryTitle: {fileID: 0}
     categoryList: {fileID: 0}
     entries:
-    - uiTextElement: {fileID: 0}
+    - ID: E000
+      uiTextElement: {fileID: 0}
       realName: Fionda Gravitazionale
       description: "CLASSIFICAZIONE:\nManovra Astrodinamica\n\nPANORAMICA:\nUna tecnica
         di navigazione spaziale avanzata che sfrutta il campo gravitazionale e l'energia
@@ -577,7 +531,8 @@ MonoBehaviour:
         una sonda sfrutta Giove per accelerare, l'orbita dell'immenso gigante gassoso
         rallenta impercettibilmente (circa un millimetro ogni miliardo di anni)."
       isDiscovered: 1
-    - uiTextElement: {fileID: 0}
+    - ID: E001
+      uiTextElement: {fileID: 0}
       realName: Disturbi Elettromagnetici
       description: "CLASSIFICAZIONE: \nAttivit\xE0 Stellare / Tempesta Geomagnetica\n\nPANORAMICA:\nFluttuazioni
         caotiche e letali generate dalle espulsioni di massa coronale (CME) o dai
@@ -591,7 +546,8 @@ MonoBehaviour:
         aurore boreali furono visibili fino all'equatore. Una tempesta di simile
         portata oggi riporterebbe la rete globale all'et\xE0 della pietra digitale."
       isDiscovered: 1
-    - uiTextElement: {fileID: 0}
+    - ID: E002
+      uiTextElement: {fileID: 0}
       realName: Umbra e Penumbra
       description: "CLASSIFICAZIONE: \nFenomeno Ottico / Allineamento Orbitale\n\nPANORAMICA:\nLe
         due zone d'ombra generate da un corpo celeste (come una luna o un pianeta)
@@ -609,7 +565,8 @@ MonoBehaviour:
   - categoryTitle: {fileID: 0}
     categoryList: {fileID: 0}
     entries:
-    - uiTextElement: {fileID: 0}
+    - ID: M000
+      uiTextElement: {fileID: 0}
       realName: Tokyo Reggie
       description: "CLASSIFICAZIONE:\nJazz-Fusion & City Pop\n\nDATI TRACCIA:\nAutore:
         Masayoshi Takanaka\nAlbum: Seychelles\nAnno: 1976\n\nPANORAMICA: \nEstratto
@@ -623,7 +580,8 @@ MonoBehaviour:
         Ryuichi Sakamoto, cambiando per sempre la storia della musica elettronica
         mondiale."
       isDiscovered: 0
-    - uiTextElement: {fileID: 0}
+    - ID: M001
+      uiTextElement: {fileID: 0}
       realName: Kissin' in the Rainbow
       description: "CLASSIFICAZIONE:\nJazz-Funk & Synth-Boogie\n\nDATI TRACCIA:\nAutore:
         Cosmos\nAlbum: Bourbon Suite\nAnno: 1982\n\nPANORAMICA:\nUna gemma rara risalente
@@ -637,7 +595,8 @@ MonoBehaviour:
         di Keiko Matsui, diventando una delle compositrici smooth jazz pi\xF9 celebri
         e premiate al mondo."
       isDiscovered: 0
-    - uiTextElement: {fileID: 0}
+    - ID: M002
+      uiTextElement: {fileID: 0}
       realName: Michiteiku Taion
       description: "CLASSIFICAZIONE:\nNu-Jazz & Neo City Pop\n\nDATI TRACCIA: \nAutore:
         Blu-Swing\nAlbum: FLASH\nAnno: 2015\n\nPANORAMICA: \nUn capolavoro di eleganza
@@ -651,7 +610,8 @@ MonoBehaviour:
         un inno \"underground\", considerato la colonna sonora definitiva per guidare
         di notte attraverso uno skyline illuminato dai neon."
       isDiscovered: 0
-    - uiTextElement: {fileID: 0}
+    - ID: M003
+      uiTextElement: {fileID: 0}
       realName: 4:00 AM
       description: "CLASSIFICAZIONE:\nCity Pop & Soul\n\nDATI TRACCIA:\nAutore: Taeko
         Onuki\nAlbum: Mignonne\nAnno: 1978\n\nPANORAMICA:\nUno dei pilastri assoluti
@@ -665,7 +625,8 @@ MonoBehaviour:
         globale di internet l'ha resuscitato, trasformandolo in un successo di culto
         internazionale a scoppio ritardato."
       isDiscovered: 0
-    - uiTextElement: {fileID: 0}
+    - ID: M004
+      uiTextElement: {fileID: 0}
       realName: Shinkai
       description: "CLASSIFICAZIONE:\nModern J-Pop & J-Rock\n\nDATI TRACCIA:\nAutore:
         Eve\nAlbum: Kaizin (Originariamente nell'EP Kaikai Kitan / Ao no Waltz) Anno:
@@ -678,7 +639,8 @@ MonoBehaviour:
         come colonna sonora per il pluripremiato film d'animazione Josee, the Tiger
         and the Fish."
       isDiscovered: 0
-    - uiTextElement: {fileID: 0}
+    - ID: M005
+      uiTextElement: {fileID: 0}
       realName: Midnight Cruisin
       description: "CLASSIFICAZIONE:\nCity Pop & AOR (Adult Oriented Rock)\n\nDATI
         TRACCIA:\nAutore: Kingo Hamada\nAlbum: midnight cruisin\nAnno: 1982\n\nPANORAMICA:\nIl
@@ -692,7 +654,8 @@ MonoBehaviour:
         perfetta\" da ascoltare nello stereo dell'auto correndo a tarda notte sulla
         Shuto Expressway di Tokyo."
       isDiscovered: 0
-    - uiTextElement: {fileID: 0}
+    - ID: M006
+      uiTextElement: {fileID: 0}
       realName: Time Machine Love
       description: "CLASSIFICAZIONE:\nNeo City Pop\n\nDATI TRACCIA:\nAutore: Ryusenkei\nAlbum:
         Tokyo Sniper\nAnno: 2006\n\nPANORAMICA:\nUn'illusione temporale acusticamente
@@ -705,7 +668,8 @@ MonoBehaviour:
         del \"Neo City Pop\": una capsula del tempo cos\xEC accurata che molti ascoltatori
         moderni sono tuttora convinti che il brano sia stato registrato nel 1982."
       isDiscovered: 0
-    - uiTextElement: {fileID: 0}
+    - ID: M007
+      uiTextElement: {fileID: 0}
       realName: Noa Noa
       description: "CLASSIFICAZIONE:\nResort Pop & Fusion\n\nDATI TRACCIA:\nAutore:
         Shigeru Suzuki\nAlbum: Pacific\nAnno: 1978\n\nPANORAMICA:\nUn'esplosione
@@ -766,6 +730,7 @@ MonoBehaviour:
   prefabTxtNotification: {fileID: 2322901381925729717, guid: dcd0f68c3bc35b44cba562a13f28738a, type: 3}
   notifPanel: {fileID: 0}
   tempoNotifica: 5
+  colorNotificationCodexUpdate: {r: 0, g: 0.79671335, b: 1, a: 1}
 --- !u!1 &8457184269478697063
 GameObject:
   m_ObjectHideFlags: 0
@@ -811,6 +776,103 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speedUIText: {fileID: 0}
+--- !u!1 &8493668776667705129
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6993869216568775523}
+  - component: {fileID: 6548166041940925831}
+  m_Layer: 0
+  m_Name: MissionsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6993869216568775523
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8493668776667705129}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5698369315328781363}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6548166041940925831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8493668776667705129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77101d609099858498570e6744cd0f17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  categoryLists:
+  - categoryTitle: {fileID: 0}
+    categoryList: {fileID: 0}
+    entries:
+    - ID: D000
+      uiTextElement: {fileID: 0}
+      missionName: Scoperta Mercurio
+      objectiveDescription: 
+      rewardAmount: 0
+      isCompleted: 0
+    - ID: D001
+      uiTextElement: {fileID: 0}
+      missionName: Scoperta Venere
+      objectiveDescription: 
+      rewardAmount: 0
+      isCompleted: 0
+    - ID: D002
+      uiTextElement: {fileID: 0}
+      missionName: Scoperta Terra
+      objectiveDescription: 
+      rewardAmount: 0
+      isCompleted: 0
+    - ID: D003
+      uiTextElement: {fileID: 0}
+      missionName: Scoperta Marte
+      objectiveDescription: 
+      rewardAmount: 0
+      isCompleted: 0
+    - ID: D004
+      uiTextElement: {fileID: 0}
+      missionName: Scoperta Giove
+      objectiveDescription: 
+      rewardAmount: 0
+      isCompleted: 0
+    - ID: D005
+      uiTextElement: {fileID: 0}
+      missionName: Scoperta Saturno
+      objectiveDescription: 
+      rewardAmount: 0
+      isCompleted: 0
+    - ID: D006
+      uiTextElement: {fileID: 0}
+      missionName: Scoperta Urano
+      objectiveDescription: 
+      rewardAmount: 0
+      isCompleted: 0
+    - ID: D007
+      uiTextElement: {fileID: 0}
+      missionName: Scoperta Nettuno
+      objectiveDescription: 
+      rewardAmount: 0
+      isCompleted: 0
+    isOpen: 0
 --- !u!1 &8573596838074759575
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,9 +917,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3f808f3bc0fe1d4cba702af94e6f395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  openMenuSound: {fileID: 8300000, guid: 6532af25276fc1549bbf631ba6625af7, type: 3}
-  closeMenuSound: {fileID: 8300000, guid: 769d4e7df66346d47944add8e7040676, type: 3}
-  dialogueWindowSounds:
-  - {fileID: 8300000, guid: d34a2ddfc042b614e9765b4a801622e1, type: 3}
-  - {fileID: 8300000, guid: b5440887669136640b4116d13738b12a, type: 3}
   sfxSource: {fileID: 0}
