@@ -12,7 +12,7 @@ public class DelegateClass
 
 
     /*Gestione eventi Notification*/
-    public delegate void NotificationEvents(string message);
+    public delegate void NotificationEvents(string message,Color notificationColor);
     public static NotificationEvents NotificationEventsHandler;
 
     /*Gestione evento vento solare*/

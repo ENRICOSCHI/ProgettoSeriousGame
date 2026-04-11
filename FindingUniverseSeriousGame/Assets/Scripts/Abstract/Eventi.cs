@@ -8,6 +8,7 @@ public abstract class Eventi : MonoBehaviour
 {
     [TextArea(3, 10)] [SerializeField] string descrizione;
     [SerializeField] string notificaMessaggio;
+    [SerializeField] Color notificationColor;
 
     /// <summary>
     /// Descrizione dell'evento
@@ -20,7 +21,7 @@ public abstract class Eventi : MonoBehaviour
     [ContextMenu("TestaNotifica")]
     protected void Notifica()
     {
-        DelegateClass.NotificationEventsHandler?.Invoke(notificaMessaggio);
+        DelegateClass.NotificationEventsHandler?.Invoke(notificaMessaggio,notificationColor);
     }
 
     /// <summary>
@@ -29,6 +30,6 @@ public abstract class Eventi : MonoBehaviour
     /// <param name="messaggio"></param>
     protected void NotificaPersonalizzata(string messaggio)
     {
-        DelegateClass.NotificationEventsHandler?.Invoke(messaggio);
+        DelegateClass.NotificationEventsHandler?.Invoke(messaggio, notificationColor);
     }
 }

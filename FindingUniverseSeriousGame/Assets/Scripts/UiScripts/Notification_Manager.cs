@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using TMPro;
 
 
 public class Notification_Manager : MonoBehaviour
@@ -7,14 +8,15 @@ public class Notification_Manager : MonoBehaviour
     [SerializeField] GameObject prefabTxtNotification;
     [SerializeField] GameObject notifPanel;
     [SerializeField] float tempoNotifica = 2f;
+    [SerializeField] Color colorNotificationCodexUpdate;
 
     private void OnEnable()
     {
-        DelegateClass.NotificationEventsHandler += ShowMessage;
+        DelegateClass.NotificationEventsHandler += ShowNotifcation;
     }
     private void OnDisable()
     {
-        DelegateClass.NotificationEventsHandler -= ShowMessage;
+        DelegateClass.NotificationEventsHandler -= ShowNotifcation;
     }
 
 
@@ -22,9 +24,9 @@ public class Notification_Manager : MonoBehaviour
     /// Mostra un messaggio di notifica generale
     /// </summary>
     /// <param name="message"></param>
-    public void ShowMessage(string message)
+    public void ShowNotifcation(string message, Color colorNotification)
     {
-        Vfx_Typewriter scriptTypeWrite = ShowOnPanel();
+        Vfx_Typewriter scriptTypeWrite = ShowOnPanel(colorNotification);
         StartCoroutine(DialogueSequence(message, scriptTypeWrite));
     }
 
@@ -34,7 +36,7 @@ public class Notification_Manager : MonoBehaviour
     /// <param name="argomento"></param>
     public void ShowNotificationCodexUpdate(string argomento)
     {
-        Vfx_Typewriter scriptTypeWrite =  ShowOnPanel(); // instanzio il testo
+        Vfx_Typewriter scriptTypeWrite =  ShowOnPanel(colorNotificationCodexUpdate); // instanzio il testo
         StartCoroutine(DialogueSequence("Codex aggiornato: " + argomento, scriptTypeWrite));
     }
 
@@ -52,10 +54,11 @@ public class Notification_Manager : MonoBehaviour
     /// Instazio il prefab del testo per la notifica in content e poi ritorno lo script del typeWriter
     /// </summary>
     /// <returns></returns>
-    private Vfx_Typewriter ShowOnPanel()
+    private Vfx_Typewriter ShowOnPanel(Color textColor)
     {
         // instanzio il testo all'interno del content object in NotifcationCascade
         GameObject newText = Instantiate(prefabTxtNotification, notifPanel.transform);
+        newText.GetComponent<TextMeshProUGUI>().color = textColor; 
         Destroy(newText, tempoNotifica+1); //distruggo l'oggetto dopo n + 1 secondi
         return newText.GetComponent<Vfx_Typewriter>(); // ritorno lo script per avviare l'animazione della scritura
     }

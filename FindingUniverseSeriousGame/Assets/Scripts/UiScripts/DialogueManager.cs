@@ -23,7 +23,7 @@ public class DialogueManager : MonoBehaviour
         animDialogueBox = dialogueGameObjectUI.GetComponent<Animator>();
     }
 
-    // Esempio di come chiamarlo: DialogueManager.Instance.ShowMessage("Ciao!");
+    // Esempio di come chiamarlo: DialogueManager.Instance.ShowNotifcation("Ciao!");
     [ContextMenu("Test Dialogue")] // Comando di test (eseguibile premendo tasto destro sul componente in Inspector)
     public void TestDialogue()
     {

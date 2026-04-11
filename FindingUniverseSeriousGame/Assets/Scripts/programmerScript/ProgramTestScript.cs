@@ -43,7 +43,7 @@ public class ProgramTestScript : MonoBehaviour
                 case "ShowNotification":
                     //avvio evento
                     Debug.Log("ShowNotification");
-                    DelegateClass.NotificationEventsHandler.Invoke(argomento);
+                    DelegateClass.NotificationEventsHandler.Invoke(argomento,Color.cyan);
                     break;
                 case "CodexUpdate":
                     Debug.Log("Codex Update");

@@ -12,6 +12,9 @@ public abstract class Quest_Generic_Script : MonoBehaviour
     public int indiceCategory = -1;
     [Tooltip("Indica la voce specifica (Es. Mercurio, Venere...)")]
     public int indiceEntry = -1;
+    [Tooltip("Colore della notifica per la quest")]
+    public Color notificationColor;
+    
     [HideInInspector]
     public bool questStarted = false;  // Quest iniziata
     [HideInInspector]

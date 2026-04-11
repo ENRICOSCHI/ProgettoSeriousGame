@@ -106,7 +106,7 @@ public class Quest_3_Script : Quest_Generic_Script
 
         }
 
-        ManagerHandler.ManagerInstance.NotificationManager.ShowMessage("Raccogli " + questItem.Length + " oggetti per completare la quest: " + questName);
+        ManagerHandler.ManagerInstance.NotificationManager.ShowNotifcation("Raccogli " + questItem.Length + " oggetti per completare la quest: " + questName,notificationColor);
         
         base.StartQuest();
     }
@@ -114,9 +114,9 @@ public class Quest_3_Script : Quest_Generic_Script
     void InfoQuestUpdate()
     {
         if(currentAmount < requiredAmount)
-            ManagerHandler.ManagerInstance.NotificationManager.ShowMessage("Ti mancano " + (requiredAmount - currentAmount) + " oggetti per completare la quest: " + questName);
+            ManagerHandler.ManagerInstance.NotificationManager.ShowNotifcation("Ti mancano " + (requiredAmount - currentAmount) + " oggetti per completare la quest: " + questName,notificationColor);
         else
-            ManagerHandler.ManagerInstance.NotificationManager.ShowMessage("Hai raccolto tutti gli oggetti! " + (doesReturnInPlace ? "Ritorna al punto della quest per completarla." : "")); // se non devo tornare indietro ci pensera finish questa a dire che è completata.
+            ManagerHandler.ManagerInstance.NotificationManager.ShowNotifcation("Hai raccolto tutti gli oggetti! " + (doesReturnInPlace ? "Ritorna al punto della quest per completarla." : ""),notificationColor); // se non devo tornare indietro ci pensera finish questa a dire che è completata.
     }
 
     /// <summary>
@@ -135,7 +135,7 @@ public class Quest_3_Script : Quest_Generic_Script
 
         base.FinishQuest();
 
-        ManagerHandler.ManagerInstance.NotificationManager.ShowMessage(questName + " terminata.");
+        ManagerHandler.ManagerInstance.NotificationManager.ShowNotifcation(questName + " terminata.", notificationColor);
         Debug.Log(questName + " terminata");
         //QuestManager_Script.instance.UpdateQuestData(questName, questStarted, questCompleted, currentAmount);
 
