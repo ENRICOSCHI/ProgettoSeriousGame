@@ -8,7 +8,7 @@ using UnityEngine;
 [ExecuteInEditMode]  // Permette di vedere l'effetto in tempo reale anche in modalità Editor
 public class SunLightController : MonoBehaviour
 {
-    // ─── Riferimenti ─────────────────────────────────────────────────────────
+    /* Riferimenti */
 
     [Header("Configurazione Obiettivo")]
     [Tooltip("La navicella del giocatore o la camera principale.")] // Attributo che aggiunge un popup descrittivo dell'argomento
@@ -16,15 +16,15 @@ public class SunLightController : MonoBehaviour
 
     [Tooltip("Il centro del Sole da cui esce la luce")]
     [SerializeField] private Transform _sunCenter;
-    
 
-    // ─── Lifecycle ───────────────────────────────────────────────────────────
+
+    /* Lifecycle */
 
     private void Awake()
     {
         if (_sunCenter == null)
         {
-            Debug.LogWarning("SunLightController: Sun Center non assegnato.");
+            Debug.LogWarning("SunLightController: Sun Center non assegnato. Quindi prendo la posizione di questo DirectinLight in Sun");
             _sunCenter = this.transform; // Usa la posizione del GameObject se non è assegnato
         }
     }
@@ -36,7 +36,7 @@ public class SunLightController : MonoBehaviour
         AggiornaDirezioneLuce();
     }
 
-    // ─── Logica di Illuminazione ─────────────────────────────────────────────
+    /* Logica di Illuminazione */
 
     /// <summary>
     /// Calcola il vettore direzione dal Sole al Player e orienta la luce.
@@ -57,7 +57,7 @@ public class SunLightController : MonoBehaviour
         }
     }
 
-    // ─── Debug ───────────────────────────────────────────────────────────────
+    /* Debug */
 
     private void OnDrawGizmosSelected()
     {

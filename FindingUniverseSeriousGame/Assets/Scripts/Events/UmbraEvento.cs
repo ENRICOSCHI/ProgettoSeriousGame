@@ -120,6 +120,7 @@ public class UmbraEvento : Eventi
                 break;
 
             case StatoOmbra.Luce:
+                NotificaPersonalizzata("Ritorno alla luce");
                 Debug.Log("[UmbraEvento] Ritorno alla luce solare.");
                 break;
         }
