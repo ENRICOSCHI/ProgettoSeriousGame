@@ -31,7 +31,7 @@ public class CodexNavigation : MonoBehaviour
     
     // Riferimenti agli altri script essenziali
     private MenuAsthetics menuAsthetics; 
-    private CodexManager codexManager; // Il "Cervello Centrale" da cui leggere il database dei pianeti/fenomeni
+    [SerializeField] CodexManager codexManager; // Il "Cervello Centrale" da cui leggere il database dei pianeti/fenomeni
 
 
 
@@ -50,7 +50,7 @@ public class CodexNavigation : MonoBehaviour
     private void EnsureReferences()
     {
         if (menuAsthetics == null) menuAsthetics = GetComponent<MenuAsthetics>();
-        if (codexManager == null) codexManager = FindAnyObjectByType<CodexManager>(FindObjectsInactive.Include);
+        //if (codexManager == null) codexManager = FindAnyObjectByType<CodexManager>(FindObjectsInactive.Include);
     }
     void OnEnable()
     {

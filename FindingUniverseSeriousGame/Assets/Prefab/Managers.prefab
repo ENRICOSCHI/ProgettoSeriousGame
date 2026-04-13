@@ -785,7 +785,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6993869216568775523}
-  - component: {fileID: 6548166041940925831}
   m_Layer: 0
   m_Name: MissionsManager
   m_TagString: Untagged
@@ -808,71 +807,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5698369315328781363}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6548166041940925831
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8493668776667705129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77101d609099858498570e6744cd0f17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  categoryLists:
-  - categoryTitle: {fileID: 0}
-    categoryList: {fileID: 0}
-    entries:
-    - ID: D000
-      uiTextElement: {fileID: 0}
-      missionName: Scoperta Mercurio
-      objectiveDescription: 
-      rewardAmount: 0
-      isCompleted: 0
-    - ID: D001
-      uiTextElement: {fileID: 0}
-      missionName: Scoperta Venere
-      objectiveDescription: 
-      rewardAmount: 0
-      isCompleted: 0
-    - ID: D002
-      uiTextElement: {fileID: 0}
-      missionName: Scoperta Terra
-      objectiveDescription: 
-      rewardAmount: 0
-      isCompleted: 0
-    - ID: D003
-      uiTextElement: {fileID: 0}
-      missionName: Scoperta Marte
-      objectiveDescription: 
-      rewardAmount: 0
-      isCompleted: 0
-    - ID: D004
-      uiTextElement: {fileID: 0}
-      missionName: Scoperta Giove
-      objectiveDescription: 
-      rewardAmount: 0
-      isCompleted: 0
-    - ID: D005
-      uiTextElement: {fileID: 0}
-      missionName: Scoperta Saturno
-      objectiveDescription: 
-      rewardAmount: 0
-      isCompleted: 0
-    - ID: D006
-      uiTextElement: {fileID: 0}
-      missionName: Scoperta Urano
-      objectiveDescription: 
-      rewardAmount: 0
-      isCompleted: 0
-    - ID: D007
-      uiTextElement: {fileID: 0}
-      missionName: Scoperta Nettuno
-      objectiveDescription: 
-      rewardAmount: 0
-      isCompleted: 0
-    isOpen: 0
 --- !u!1 &8573596838074759575
 GameObject:
   m_ObjectHideFlags: 0
