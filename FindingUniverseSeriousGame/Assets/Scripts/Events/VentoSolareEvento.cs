@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class VentoSolareEvento : Eventi
 {
+    [Header("Gestione tempo vento solare")]
     [SerializeField] int tempoMINIMO = 5;
     [SerializeField] int tempoMASSIMO = 15;
+    [SerializeField] int durataEvento = 5;
 
     private bool firstTime = true;
 
@@ -39,12 +41,12 @@ public class VentoSolareEvento : Eventi
         yield return new WaitForSeconds(secondiDelayEvento);
         if (firstTime)
         {
-            Descrizione();
+            ActiveSubtitlesWithAudio();
             firstTime = false;
         }
-        Notifica();
+        NotificaPersonalizzata(notificaMessaggio[0]);
         DelegateClass.VentoSolareEventsHandler?.Invoke(true);
-        yield return new WaitForSeconds(secondiDelayEvento);
+        yield return new WaitForSeconds(durataEvento);
         DelegateClass.VentoSolareEventsHandler?.Invoke(false);
     }
 

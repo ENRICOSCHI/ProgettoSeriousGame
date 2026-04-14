@@ -6,7 +6,7 @@ public class FiondaEvento : Eventi
     {
         if (other.CompareTag("Player"))
         {
-            Notifica();
+            NotificaPersonalizzata(notificaMessaggio[0]);
             StartCoroutine(other.GetComponent<MovimentoNavicella>().AddBoost());
             ManagerHandler.ManagerInstance.SpeedManager.UpdateSpeedDisplay(other.GetComponent<MovimentoNavicella>());
         }

@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -6,22 +8,19 @@ using UnityEngine;
 // Ma per mandare dialoghi o notifiche è meglio usare direttamente Communications.Dialogue() o Communications.Notify() così non siamo vincolati a un evento specifico
 public abstract class Eventi : MonoBehaviour
 {
-    [TextArea(3, 10)] [SerializeField] string descrizione;
-    [SerializeField] string notificaMessaggio;
+    [Header("Gestione sottotitoli")]
+    [SerializeField] AudioClip audioSubtitle;
+    [SerializeField] Subtitles[] subtitleDescriptionEvent;
+    [Header("Gestione notifiche")]
+    public string[] notificaMessaggio;
     [SerializeField] Color notificationColor;
 
     /// <summary>
-    /// Descrizione dell'evento
+    /// Attivo i sottotitoli per questo evento
     /// </summary>
-    [ContextMenu("TestaDescrizione")]
-    protected void Descrizione()
+    protected void ActiveSubtitlesWithAudio()
     {
-        DelegateClass.DialogueBoxEventsHandler?.Invoke(descrizione);
-    }
-    [ContextMenu("TestaNotifica")]
-    protected void Notifica()
-    {
-        DelegateClass.NotificationEventsHandler?.Invoke(notificaMessaggio,notificationColor);
+        StartCoroutine(ManagerHandler.ManagerInstance.SubtitleManager.PlaySubtitle(subtitleDescriptionEvent,audioSubtitle));
     }
 
     /// <summary>

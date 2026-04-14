@@ -105,22 +105,22 @@ public class UmbraEvento : Eventi
         switch (_statoCorrente)
         {
             case StatoOmbra.Penombra:
-                NotificaPersonalizzata("Penumbra");
+                NotificaPersonalizzata(notificaMessaggio[0]);
                 Debug.Log("[UmbraEvento] Entrata in PENOMBRA — eclissi parziale.");
                 break;
 
             case StatoOmbra.Umbra:
-                NotificaPersonalizzata("Umbra");
+                NotificaPersonalizzata(notificaMessaggio[1]);
                 if (!_descrizioneData)
                 {
-                    Descrizione();
+                    ActiveSubtitlesWithAudio();
                     _descrizioneData = true;
                 }
                 Debug.Log("[UmbraEvento] Entrata in UMBRA — buio totale.");
                 break;
 
             case StatoOmbra.Luce:
-                NotificaPersonalizzata("Ritorno alla luce");
+                NotificaPersonalizzata(notificaMessaggio[2]);
                 Debug.Log("[UmbraEvento] Ritorno alla luce solare.");
                 break;
         }
