@@ -19,5 +19,5 @@ MonoBehaviour:
   album: midnight cruisin
   year: 1982
   songIDCodex: 5
-  songDescription: "I limiti di velocit\xE0 di curvatura vanno severamente rispettati,
-    RoverX. Prima di attraversare, guarda sempre a destra e a sinistra. Passo e chiudo."
+  subtitleAudioClip: {fileID: 0}
+  subtitles: []

@@ -29,7 +29,7 @@ public class DialogueManager : MonoBehaviour
     {
         ShowMessage("Sistemi di bordo online. Benvenuto, Comandante. adadakdjadkajdnakd.ad dad adadadjawdjaodiq.dq,dqdqdjaodk,awa.da,dadw wdawda.");
     }
-
+    #region "Dialogue Box Function"
 
     /// <summary>
     /// Mostra un messaggio di dialogo
@@ -84,6 +84,45 @@ public class DialogueManager : MonoBehaviour
         HideBox();
     }
 
+    #endregion
+
+    #region "Subtitle Box Function"
+    public void ShowMessageForSubtitle(string message, float durationEvent)
+    {
+        dialogueGameObjectUI.SetActive(false);//resetto l'animazione, se tolgo questa riga l'animazione non sarà pulita al secondo richiamo del dialogue box
+        dialogueGameObjectUI.SetActive(true);
+
+        StopAllCoroutines();
+        StartCoroutine(DialogueBoxForSubtitle(message,durationEvent));
+    }
+
+    /// <summary>
+    /// Attiva la box per mostrare i sottotitoli
+    /// </summary>
+    /// <param name="message"></param>
+    /// <param name="durationEvent"></param>
+    /// <returns></returns>
+    private IEnumerator DialogueBoxForSubtitle(string message, float durationEvent)
+    {
+
+        // 1. Chiedi alla UI di aprire la box
+        ShowPrompt(false); // Assicuriamoci che il prompt sia nascosto all'inizio
+        ShowBox();
+
+        // 2. LOGICA "HANDSHAKE": Aspetto finchè l'animazione non è finita
+        yield return new WaitUntil(() => animDialogueBox.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
+        //yield return new WaitForSeconds(.5f);
+
+        yield return StartCoroutine(typewriter.TypeText(message));
+
+        //aspetto input
+        yield return new WaitForSeconds(durationEvent);
+
+        // 3. Chiudi
+        HideBox();
+    }
+
+    #endregion
 
     private void ShowBox()  // Attiva l'animazione di apertura della box, non il testo
     {
