@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuManager : MonoBehaviour, IHandleJSON
+public class MenuManager : MonoBehaviour//, IHandleJSON
 {
     #region Inizializzazione variabili
     [Header("Struttura Codex (Il Database)")]
@@ -14,7 +14,7 @@ public class MenuManager : MonoBehaviour, IHandleJSON
 
     #region Metodi Unity (Ciclo di Vita)
 
-    void OnEnable()
+    /*void OnEnable()
     {
         // Sottoscrivo il metodo SaveGame all'evento di salvataggio
         DelegateClass.SaveEventHandler += Save;
@@ -24,7 +24,7 @@ public class MenuManager : MonoBehaviour, IHandleJSON
     {
         // Rimuovo la sottoscrizione quando l'oggetto viene disabilitato
         DelegateClass.SaveEventHandler -= Save;
-    }
+    }*/
 
 
     void Awake()
@@ -65,7 +65,7 @@ public class MenuManager : MonoBehaviour, IHandleJSON
     }
     #endregion
 
-    #region Implementazione Interfaccia IHandleJSON
+    /*#region Implementazione Interfaccia IHandleJSON
     public void SaveGame(Dictionary)
     {
         // Implementazione del salvataggio per un singolo elemento
@@ -86,5 +86,5 @@ public class MenuManager : MonoBehaviour, IHandleJSON
         Debug.Log("Salvataggio del Codex in corso...");
         Debug.Log($"Percorso di salvataggio: {Application.persistentDataPath}");
     }
-    #endregion
+    #endregion*/
 }
