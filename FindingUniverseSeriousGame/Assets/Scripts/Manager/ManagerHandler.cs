@@ -23,7 +23,7 @@ public class ManagerHandler : MonoBehaviour
         if (ManagerInstance == null)
         {
             ManagerInstance = this;
-            DontDestroyOnLoad(gameObject); 
+            //DontDestroyOnLoad(gameObject); 
         }
         else
         {

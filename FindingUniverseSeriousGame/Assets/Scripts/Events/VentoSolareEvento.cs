@@ -7,8 +7,8 @@ public class VentoSolareEvento : Eventi
     [SerializeField] int tempoMINIMO = 5;
     [SerializeField] int tempoMASSIMO = 15;
     [SerializeField] int durataEvento = 5;
+    [SerializeField] int entryIndex = 1;
 
-    private bool firstTime = true;
 
     [ContextMenu("Test Evento Vento Solare")]
     void Test()
@@ -39,10 +39,10 @@ public class VentoSolareEvento : Eventi
     IEnumerator AttivaEvento(int secondiDelayEvento)
     {
         yield return new WaitForSeconds(secondiDelayEvento);
-        if (firstTime)
+        if (!ManagerHandler.ManagerInstance.MenuManager.categoryLists[1].entries[1].isDiscovered)
         {
             ActiveSubtitlesWithAudio();
-            firstTime = false;
+            ManagerHandler.ManagerInstance.MenuManager.UnlockMenuEntry(1, entryIndex);
         }
         NotificaPersonalizzata(notificaMessaggio[0]);
         DelegateClass.VentoSolareEventsHandler?.Invoke(true);

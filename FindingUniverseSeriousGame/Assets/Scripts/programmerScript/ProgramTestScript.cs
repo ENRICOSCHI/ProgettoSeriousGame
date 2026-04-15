@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class ProgramTestScript : MonoBehaviour
 {
@@ -48,6 +49,10 @@ public class ProgramTestScript : MonoBehaviour
                 case "CodexUpdate":
                     Debug.Log("Codex Update");
                     ManagerHandler.ManagerInstance.NotificationManager.ShowNotificationCodexUpdate(argomento);
+                    break;
+                case "ChangeScene":
+                    Debug.Log("ChangeScene");
+                    SceneManager.LoadScene(argomento);
                     break;
                 default:
                     Debug.LogWarning("Comando sconosciuto");
