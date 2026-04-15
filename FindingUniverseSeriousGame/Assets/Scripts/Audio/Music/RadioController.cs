@@ -221,12 +221,12 @@ public class RadioController : MonoBehaviour
             Debug.Log($"Radio: In riproduzione '{songData.title}' di {songData.artist}");
 
             // Aggiorna il codex con le informazioni della canzone se non è già stata scoperta
-            if (!ManagerHandler.ManagerInstance.CodexManager.categoryLists[2].entries[songData.songIDCodex].isDiscovered)
+            if (!ManagerHandler.ManagerInstance.MenuManager.categoryLists[2].entries[songData.songIDCodex].isDiscovered)
             {
                 //ManagerHandler.ManagerInstance.DialogueManager.ShowMessage(songData.songDescription);
                 ManagerHandler.ManagerInstance.SubtitleManager.PlaySubtitle(songData.subtitles,songData.subtitleAudioClip);
                 ManagerHandler.ManagerInstance.SFXManager.PlayRandomSoundEffect(musicManager.sfxClips,transform,1f); // Suono di apertura dialogo
-                ManagerHandler.ManagerInstance.CodexManager.UnlockCodexEntry(2, songData.songIDCodex);
+                ManagerHandler.ManagerInstance.MenuManager.UnlockMenuEntry(2, songData.songIDCodex);
             }
         }
     }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CodexManager : MonoBehaviour
+public class MenuManager : MonoBehaviour
 {
     #region Inizializzazione variabili
     [Header("Struttura Codex (Il Database)")]
@@ -27,7 +27,7 @@ public class CodexManager : MonoBehaviour
     /// </summary>
     /// <param name="categoryIndex"> indice della categoria 0: pianeti, 1: eventi, 2: musica</param>
     /// <param name="entryIndex"> indice della entrata 0: Mercurio, 1: Venere,ecc..</param>
-    public void UnlockCodexEntry(int categoryIndex, int entryIndex)
+    public void UnlockMenuEntry(int categoryIndex, int entryIndex)
     {
         if (categoryIndex >= 0 && categoryIndex < categoryLists.Length)
         {

@@ -31,7 +31,7 @@ public class CodexNavigation : MonoBehaviour
     
     // Riferimenti agli altri script essenziali
     private MenuAsthetics menuAsthetics; 
-    [SerializeField] CodexManager codexManager; // Il "Cervello Centrale" da cui leggere il database dei pianeti/fenomeni
+    [SerializeField] MenuManager menuManager; // Il "Cervello Centrale" da cui leggere il database dei pianeti/fenomeni
 
 
 
@@ -65,7 +65,7 @@ public class CodexNavigation : MonoBehaviour
         
         // Controlli di sicurezza per evitare NullReferenceException in gioco
         if (menuAsthetics == null) Debug.LogWarning("MenuAsthetics non trovato in CodexNavigation!");
-        if (codexManager == null) Debug.LogError("CodexManager non trovato! CodexNavigation ha bisogno di CodexManager per leggere i dati.");
+        if (menuManager == null) Debug.LogError("CodexManager non trovato! CodexNavigation ha bisogno di CodexManager per leggere i dati.");
     }
 
     void Update()
@@ -88,7 +88,7 @@ public class CodexNavigation : MonoBehaviour
         EnsureReferences();
 
         // Se non c'è un database valido, ci fermiamo
-        if (codexManager == null || codexManager.categoryLists == null || codexManager.categoryLists.Length == 0) return;
+        if (menuManager == null || menuManager.categoryLists == null || menuManager.categoryLists.Length == 0) return;
 
         ClearRightPanel();
         RefreshAllLeftListTexts();
@@ -105,7 +105,7 @@ public class CodexNavigation : MonoBehaviour
     /// </summary>
     private void RefreshAllLeftListTexts()
     {
-        foreach (var category in codexManager.categoryLists)
+        foreach (var category in menuManager.categoryLists)
         {
             foreach (var entry in category.entries)
             {
@@ -146,7 +146,7 @@ public class CodexNavigation : MonoBehaviour
         else
         {
             // Se siamo sopra un pianeta specifico, peschiamo i suoi dati dal Manager
-            CodexEntry selectedData = codexManager.categoryLists[linkedCatIndex].entries[linkedEntryIndex];
+            CodexEntry selectedData = menuManager.categoryLists[linkedCatIndex].entries[linkedEntryIndex];
 
             if (selectedData.isDiscovered)
             {
@@ -182,20 +182,20 @@ public class CodexNavigation : MonoBehaviour
         indexLinkedCategory.Clear();
         indexLinkedEntry.Clear(); 
 
-        for (int i = 0; i < codexManager.categoryLists.Length; i++)
+        for (int i = 0; i < menuManager.categoryLists.Length; i++)
         {
             // 1. Aggiunge il titolo della categoria principale
-            selectableTexts.Add(codexManager.categoryLists[i].categoryTitle);
+            selectableTexts.Add(menuManager.categoryLists[i].categoryTitle);
             isNodeCategory.Add(true);
             indexLinkedCategory.Add(i);
             indexLinkedEntry.Add(-1); // -1 indica che non è una voce specifica
 
             // 2. Se la categoria è aperta, aggiunge i suoi figli
-            if (codexManager.categoryLists[i].isOpen)
+            if (menuManager.categoryLists[i].isOpen)
             {
-                for (int j = 0; j < codexManager.categoryLists[i].entries.Length; j++)
+                for (int j = 0; j < menuManager.categoryLists[i].entries.Length; j++)
                 {
-                    selectableTexts.Add(codexManager.categoryLists[i].entries[j].uiTextElement);
+                    selectableTexts.Add(menuManager.categoryLists[i].entries[j].uiTextElement);
                     isNodeCategory.Add(false); 
                     indexLinkedCategory.Add(i);
                     indexLinkedEntry.Add(j); 
@@ -251,7 +251,7 @@ public class CodexNavigation : MonoBehaviour
             else
             {
                 // Se è una voce, guardiamo se è scoperta e togliamo l'eventuale cursore
-                CodexEntry entryData = codexManager.categoryLists[linkedCat].entries[linkedEnt];
+                CodexEntry entryData = menuManager.categoryLists[linkedCat].entries[linkedEnt];
                 selectableTexts[i].text = entryData.isDiscovered ? entryData.realName : "???";
             }
         }
@@ -284,15 +284,15 @@ public class CodexNavigation : MonoBehaviour
         if (isCategory)
         {
             // Modifichiamo il database nel Manager
-            codexManager.categoryLists[linkedIndex].isOpen = !codexManager.categoryLists[linkedIndex].isOpen;
-            bool isOpenNow = codexManager.categoryLists[linkedIndex].isOpen;
+            menuManager.categoryLists[linkedIndex].isOpen = !menuManager.categoryLists[linkedIndex].isOpen;
+            bool isOpenNow = menuManager.categoryLists[linkedIndex].isOpen;
             
             // Accendiamo/Spegniamo il GameObject della lista
-            codexManager.categoryLists[linkedIndex].categoryList.SetActive(isOpenNow);
+            menuManager.categoryLists[linkedIndex].categoryList.SetActive(isOpenNow);
 
             // Cambiamo i simboli visivi [+] e [-]
-            if (isOpenNow) codexManager.categoryLists[linkedIndex].categoryTitle.text = codexManager.categoryLists[linkedIndex].categoryTitle.text.Replace("[+]", "[-]");
-            else codexManager.categoryLists[linkedIndex].categoryTitle.text = codexManager.categoryLists[linkedIndex].categoryTitle.text.Replace("[-]", "[+]");
+            if (isOpenNow) menuManager.categoryLists[linkedIndex].categoryTitle.text = menuManager.categoryLists[linkedIndex].categoryTitle.text.Replace("[+]", "[-]");
+            else menuManager.categoryLists[linkedIndex].categoryTitle.text = menuManager.categoryLists[linkedIndex].categoryTitle.text.Replace("[-]", "[+]");
 
             // Forziamo il ricalcolo istantaneo del Layout Group per evitare glitch grafici in Game
             if (contentRectTransform != null) LayoutRebuilder.ForceRebuildLayoutImmediate(contentRectTransform);
