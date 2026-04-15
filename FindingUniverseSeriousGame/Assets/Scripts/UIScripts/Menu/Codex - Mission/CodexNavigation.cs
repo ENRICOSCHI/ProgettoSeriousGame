@@ -43,6 +43,9 @@ public class CodexNavigation : MonoBehaviour
 
     private int currentCategoryIndex = 0;  // Posizione attuale del cursore nella lista
 
+
+    public Dictionary<string, bool> menuDictionary = new Dictionary<string, bool>();
+
     #endregion
 
 

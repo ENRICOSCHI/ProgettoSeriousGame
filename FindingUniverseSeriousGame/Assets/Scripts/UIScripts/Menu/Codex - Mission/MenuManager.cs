@@ -1,14 +1,32 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuManager : MonoBehaviour
+public class MenuManager : MonoBehaviour, IHandleJSON
 {
     #region Inizializzazione variabili
     [Header("Struttura Codex (Il Database)")]
     [Tooltip("Configura qui le macro-categorie (Pianeti, Fenomeni, Musica).")]
     public CategoryCodex[] categoryLists;  
+
+    public bool isMission; // Variabile per distinguere se è il menu del Codex o delle Missioni
     #endregion
 
+
     #region Metodi Unity (Ciclo di Vita)
+
+    void OnEnable()
+    {
+        // Sottoscrivo il metodo SaveGame all'evento di salvataggio
+        DelegateClass.SaveEventHandler += Save;
+    }
+
+    void OnDesable()
+    {
+        // Rimuovo la sottoscrizione quando l'oggetto viene disabilitato
+        DelegateClass.SaveEventHandler -= Save;
+    }
+
+
     void Awake()
     {
 
@@ -35,13 +53,38 @@ public class MenuManager : MonoBehaviour
             {
                 categoryLists[categoryIndex].entries[entryIndex].isDiscovered = true;
 
-                Debug.Log($"Codex Aggiornato: Sbloccato {categoryLists[categoryIndex].entries[entryIndex].realName}!");
+                Debug.Log($"Menu Aggiornato: Sbloccato {categoryLists[categoryIndex].entries[entryIndex].realName}!");
+
+
                 /*
                  Per il salvataggio si potrebbe fare una roba tipo: creo lista con ID di quello che ho sbloccato
                  poi al caricamento dei dati controllo gli ID che ho salvato e rimetto quelle parti attive nel codex con isDiscovered = true
                  */
             }
         }
+    }
+    #endregion
+
+    #region Implementazione Interfaccia IHandleJSON
+    public void SaveGame(Dictionary)
+    {
+        // Implementazione del salvataggio per un singolo elemento
+        Debug.Log($"Salvataggio: {id} è {(state ? "sbloccato" : "bloccato")}.");
+    }
+
+
+    //Non necessario
+    public void SaveGame(string id, bool isActive, bool isCompleted)
+    {
+        // Implementazione del salvataggio per un elemento con stato più complesso
+        Debug.Log($"Salvataggio: {id} è {(isActive ? "attivo" : "inattivo")} e {(isCompleted ? "completato" : "non completato")}.");
+    }
+
+    public void Save()
+    {
+        //Metodo per far riferimento al path automatico di Unity per il salvataggio dei dati
+        Debug.Log("Salvataggio del Codex in corso...");
+        Debug.Log($"Percorso di salvataggio: {Application.persistentDataPath}");
     }
     #endregion
 }

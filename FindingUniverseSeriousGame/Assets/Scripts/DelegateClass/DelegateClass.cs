@@ -18,4 +18,8 @@ public class DelegateClass
     /*Gestione evento vento solare*/
     public delegate void VentoSolareEvents(bool isActive);
     public static VentoSolareEvents VentoSolareEventsHandler;
+
+    /*Gestione evento salvataggio*/
+    public delegate void SaveEvent();
+    public static SaveEvent SaveEventHandler;
 }
