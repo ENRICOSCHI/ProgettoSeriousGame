@@ -39,10 +39,10 @@ public class VentoSolareEvento : Eventi
     IEnumerator AttivaEvento(int secondiDelayEvento)
     {
         yield return new WaitForSeconds(secondiDelayEvento);
-        if (!ManagerHandler.ManagerInstance.MenuManager.categoryLists[1].entries[1].isDiscovered)
+        if (!ManagerHandler.ManagerInstance.CodexManager.categoryLists[1].entries[1].isDiscovered)
         {
             ActiveSubtitlesWithAudio();
-            ManagerHandler.ManagerInstance.MenuManager.UnlockMenuEntry(1, entryIndex);
+            ManagerHandler.ManagerInstance.CodexManager.UnlockMenuEntry(1, entryIndex);
         }
         NotificaPersonalizzata(notificaMessaggio[0]);
         DelegateClass.VentoSolareEventsHandler?.Invoke(true);

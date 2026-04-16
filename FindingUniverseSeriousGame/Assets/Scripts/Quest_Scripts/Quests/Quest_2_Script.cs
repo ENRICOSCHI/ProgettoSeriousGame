@@ -34,7 +34,7 @@ public class Quest_2_Script : Quest_Generic_Script
 
         this.enabled = false;
 
-        ManagerHandler.ManagerInstance.MenuManager.UnlockMenuEntry(indiceCategory, indiceEntry);  // Sblocca la voce del codex associata alla quest
+        ManagerHandler.ManagerInstance.CodexManager.UnlockMenuEntry(indiceCategory, indiceEntry);  // Sblocca la voce del codex associata alla quest
         ManagerHandler.ManagerInstance.NotificationManager.ShowNotificationCodexUpdate(questName);
     }
 }

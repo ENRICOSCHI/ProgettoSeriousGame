@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MenuManager : MonoBehaviour//, IHandleJSON
+public class CodexManager : MonoBehaviour//, IHandleJSON
 {
     #region Inizializzazione variabili
     [Header("Struttura Codex (Il Database)")]
