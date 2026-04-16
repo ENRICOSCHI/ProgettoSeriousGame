@@ -18,18 +18,4 @@ public class SaveManager : MonoBehaviour
 
     public string GetPathForCodex() => Path.Combine(Application.persistentDataPath, "codexSave.json");
     public string GetPathForMission() => Path.Combine(Application.persistentDataPath, "missionSave.json");
-
-    /*public bool JsonCheck(string path)
-    {
-        if (File.Exists(path))
-        {
-            return true;
-        }
-        else
-        {
-            Debug.LogWarning($"File JSON non trovato: {path}");
-
-            return false;
-        }
-    }*/
 }

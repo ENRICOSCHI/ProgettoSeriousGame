@@ -32,6 +32,11 @@ public class ManagerHandler : MonoBehaviour
             Destroy(gameObject);
         }
 
+        CreateManagers();
+    }
+
+    private void CreateManagers()
+    {
         SpeedManager = GetComponentInChildren<ManagerSpeed>();
         MusicManager = GetComponentInChildren<MusicManager>();
         BatteryManager = GetComponentInChildren<ManagerBattery>();

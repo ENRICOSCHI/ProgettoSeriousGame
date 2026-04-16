@@ -174,6 +174,7 @@ public class MissionManager : MonoBehaviour,IHandleJSON
             }
         }
         #endregion
+        Debug.Log("Mission Manager Caricato");
     }
     #endregion
 }

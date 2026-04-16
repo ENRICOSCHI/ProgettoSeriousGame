@@ -148,6 +148,7 @@ public class CodexManager : MonoBehaviour, IHandleJSON
             }
         }
         #endregion
+        Debug.Log("Codex Manager Caricato");
     }
     #endregion
 }
