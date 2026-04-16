@@ -107,7 +107,7 @@ public class Quest_3_Script : Quest_Generic_Script
         }
 
         ManagerHandler.ManagerInstance.NotificationManager.ShowNotifcation("Raccogli " + questItem.Length + " oggetti per completare la quest: " + questName,notificationColor);
-        
+        ManagerHandler.ManagerInstance.MissionManager.UnlockMenuEntry(indiceCategory, indiceEntry, questStarted, questCompleted);// aggiorno l'UI nel menu
         base.StartQuest();
     }
 
@@ -136,7 +136,7 @@ public class Quest_3_Script : Quest_Generic_Script
         base.FinishQuest();
 
         ManagerHandler.ManagerInstance.NotificationManager.ShowNotifcation(questName + " terminata.", notificationColor);
-        ManagerHandler.ManagerInstance.CodexManager.UnlockMenuEntry(indiceCategory, indiceEntry);
+        ManagerHandler.ManagerInstance.MissionManager.UnlockMenuEntry(indiceCategory, indiceEntry,questStarted,questCompleted);// aggiorno UI nel menu
         Debug.Log(questName + " terminata");
         //QuestManager_Script.instance.UpdateQuestData(questName, questStarted, questCompleted, currentAmount);
 

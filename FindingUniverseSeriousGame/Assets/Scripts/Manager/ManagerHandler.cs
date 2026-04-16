@@ -13,6 +13,7 @@ public class ManagerHandler : MonoBehaviour
     public Notification_Manager NotificationManager { get; private set; }
     public ManagerLife LifeManager {get; private set; }
     public CodexManager CodexManager { get; private set; }
+    public MissionManager MissionManager { get; private set; }
     public SFXManager SFXManager { get; private set; }
     public ManagerSubtiitle SubtitleManager { get; private set; }
 
@@ -42,6 +43,7 @@ public class ManagerHandler : MonoBehaviour
         NotificationManager = GetComponentInChildren<Notification_Manager>();
         LifeManager = GetComponentInChildren<ManagerLife>();
         CodexManager = GetComponentInChildren<CodexManager>();
+        MissionManager = GetComponentInChildren<MissionManager>();
         SFXManager = GetComponentInChildren<SFXManager>();
         SubtitleManager = GetComponentInChildren<ManagerSubtiitle>();
 

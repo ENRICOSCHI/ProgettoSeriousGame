@@ -36,5 +36,6 @@ public class Quest_2_Script : Quest_Generic_Script
 
         ManagerHandler.ManagerInstance.CodexManager.UnlockMenuEntry(indiceCategory, indiceEntry);  // Sblocca la voce del codex associata alla quest
         ManagerHandler.ManagerInstance.NotificationManager.ShowNotificationCodexUpdate(questName);
+        ManagerHandler.ManagerInstance.MissionManager.UnlockMenuEntry(indiceCategory, indiceEntry, questStarted, questCompleted); // aggiorno UI nel menu
     }
 }
