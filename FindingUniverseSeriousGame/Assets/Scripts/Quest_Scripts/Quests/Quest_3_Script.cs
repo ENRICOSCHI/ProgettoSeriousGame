@@ -136,6 +136,7 @@ public class Quest_3_Script : Quest_Generic_Script
         base.FinishQuest();
 
         ManagerHandler.ManagerInstance.NotificationManager.ShowNotifcation(questName + " terminata.", notificationColor);
+        ManagerHandler.ManagerInstance.CodexManager.UnlockMenuEntry(indiceCategory, indiceEntry);
         Debug.Log(questName + " terminata");
         //QuestManager_Script.instance.UpdateQuestData(questName, questStarted, questCompleted, currentAmount);
 
