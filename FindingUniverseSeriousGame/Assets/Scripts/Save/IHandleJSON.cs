@@ -9,6 +9,7 @@ public interface IHandleJSON
 
     /* LOAD */
     bool CheckJsonFile();
+    void Load();
 
     Dictionary<TKey, TValue> LoadJson<TKey, TValue>();
 

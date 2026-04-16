@@ -24,6 +24,11 @@ public class Quest_2_Script : Quest_Generic_Script
     /// </remarks>
     public override void FinishQuest()
     {
+        if (QuestManager_Script.instance.GetQuestDataDictionary().ContainsKey(idCodex))
+        {
+            return;
+        }
+
         questStarted = true;  
 
         base.FinishQuest();

@@ -13,6 +13,7 @@
         public bool isDiscovered = false; //utile per il codex, per sapere se una missione è stata scoperta o meno
         public int amountProgress = 0;
 
+        public QuestData() { }
 
         public QuestData(bool isDiscovered)
         {

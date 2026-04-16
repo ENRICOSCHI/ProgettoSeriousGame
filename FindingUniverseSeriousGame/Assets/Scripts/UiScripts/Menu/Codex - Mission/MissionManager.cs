@@ -18,12 +18,14 @@ public class MissionManager : MonoBehaviour,IHandleJSON
     {
         // Sottoscrivo il metodo SaveGame all'evento di salvataggio
         DelegateClass.SaveEventHandler += Save;
+        DelegateClass.LoadEventHandler += Load;
     }
 
     void OnDisable()
     {
         // Rimuovo la sottoscrizione quando l'oggetto viene disabilitato
         DelegateClass.SaveEventHandler -= Save;
+        DelegateClass.LoadEventHandler -= Load;
     }
 
 
@@ -41,6 +43,7 @@ public class MissionManager : MonoBehaviour,IHandleJSON
     /// <param name="entryIndex"> indice della entrata 0: Mercurio, 1: Venere,ecc..</param>
     public void UnlockMenuEntry(int categoryIndex, int entryIndex, bool isStarted, bool isCompleted)
     {
+
         if (categoryIndex >= 0 && categoryIndex < categoryLists.Length)
         {
             if (entryIndex >= 0 && entryIndex < categoryLists[categoryIndex].entries.Length)

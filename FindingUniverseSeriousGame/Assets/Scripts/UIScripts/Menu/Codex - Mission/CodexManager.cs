@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class CodexManager : MonoBehaviour//, IHandleJSON
+public class CodexManager : MonoBehaviour, IHandleJSON
 {
     #region Inizializzazione variabili
     [Header("Struttura Codex (Il Database)")]
     [Tooltip("Configura qui le macro-categorie (Pianeti, Fenomeni, Musica).")]
-    public CategoryCodex[] categoryLists;  
+    public CategoryCodex[] categoryLists;
 
     private Dictionary<string, bool> OggettiSbloccatiDizionario = new Dictionary<string, bool>();
     #endregion
@@ -20,24 +20,20 @@ public class CodexManager : MonoBehaviour//, IHandleJSON
     {
         // Sottoscrivo il metodo SaveGame all'evento di salvataggio
         DelegateClass.SaveEventHandler += Save;
+        DelegateClass.LoadEventHandler += Load;
     }
 
     void OnDisable()
     {
         // Rimuovo la sottoscrizione quando l'oggetto viene disabilitato
         DelegateClass.SaveEventHandler -= Save;
+        DelegateClass.LoadEventHandler -= Load;
     }
 
 
     void Awake()
     {
-
-        // Chiudiamo le cartelle fisicamente all'avvio
-        foreach (var category in categoryLists)
-        {
-            if (category.categoryList != null) category.categoryList.SetActive(false);
-            category.isOpen = false;
-        }
+        Load();
     }
     #endregion
 
@@ -55,10 +51,13 @@ public class CodexManager : MonoBehaviour//, IHandleJSON
             {
                 categoryLists[categoryIndex].entries[entryIndex].isDiscovered = true;
 
-                OggettiSbloccatiDizionario.Add(
-                    categoryLists[categoryIndex].entries[entryIndex].ID, 
-                    categoryLists[categoryIndex].entries[entryIndex].isDiscovered
-                );
+                if (!OggettiSbloccatiDizionario.ContainsKey(categoryLists[categoryIndex].entries[entryIndex].ID))
+                {
+                    OggettiSbloccatiDizionario.Add(
+                        categoryLists[categoryIndex].entries[entryIndex].ID,
+                        categoryLists[categoryIndex].entries[entryIndex].isDiscovered
+                    );
+                }
 
                 /*foreach (var item in OggettiSbloccatiDizionario)
                 {
@@ -100,5 +99,55 @@ public class CodexManager : MonoBehaviour//, IHandleJSON
         return File.Exists(ManagerHandler.ManagerInstance.SaveManager.GetPathForCodex());
     }
 
+    public Dictionary<TKey, TValue> LoadJson<TKey, TValue>()
+    {
+        string path = ManagerHandler.ManagerInstance.SaveManager.GetPathForCodex();
+
+        if (path != null)
+        {
+            string json = File.ReadAllText(path);
+
+            return JsonConvert.DeserializeObject<Dictionary<TKey, TValue>>(json);
+        }
+        else return new Dictionary<TKey, TValue>();
+    }
+
+    public void Load()
+    {
+        #region Fetch Dati dal JSON
+
+        if (CheckJsonFile())
+        {
+            OggettiSbloccatiDizionario = LoadJson<string, bool>();
+        }
+        #endregion
+
+        #region Caricamento Dati
+
+
+        foreach (var category in categoryLists)
+        {
+            if (category.categoryList != null)
+            {
+                foreach (var entry in category.entries)
+                {
+                    foreach (var key in OggettiSbloccatiDizionario.Keys)
+                    {
+                        if (OggettiSbloccatiDizionario.TryGetValue(entry.ID, out bool isDiscovered))
+                        {
+                            entry.isDiscovered = isDiscovered;
+                        }
+                        else
+                        {
+                            category.categoryList.SetActive(false);
+                            category.isOpen = false;
+                        }
+
+                    }
+                }
+            }
+        }
+        #endregion
+    }
     #endregion
 }

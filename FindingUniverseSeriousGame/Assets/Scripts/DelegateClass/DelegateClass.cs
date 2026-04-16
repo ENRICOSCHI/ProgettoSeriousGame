@@ -22,4 +22,8 @@ public class DelegateClass
     /*Gestione evento salvataggio*/
     public delegate void SaveEvent();
     public static SaveEvent SaveEventHandler;
+
+    /* Gestione Caricamento */
+    public delegate void LoadEvent();
+    public static LoadEvent LoadEventHandler;
 }

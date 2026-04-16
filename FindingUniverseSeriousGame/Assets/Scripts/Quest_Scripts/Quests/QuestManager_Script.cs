@@ -62,7 +62,20 @@ public class QuestManager_Script : MonoBehaviour
 
     public void SetQuestDataDictionary(Dictionary<string,QuestData> data)
     {
-        questDatabase = data;
+
+        foreach (var item in data)
+        {
+            if (questDatabase.ContainsKey(item.Key))
+            {
+                questDatabase[item.Key].isStarted = item.Value.isStarted;
+                questDatabase[item.Key].isCompleted = item.Value.isCompleted;
+                questDatabase[item.Key].amountProgress = item.Value.amountProgress;
+            }
+            else
+            {
+                questDatabase.Add(item.Key, item.Value);
+            }
+        }
     }
     #endregion
 }

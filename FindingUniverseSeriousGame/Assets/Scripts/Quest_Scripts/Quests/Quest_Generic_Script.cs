@@ -8,6 +8,8 @@ public enum interactableType { scan, keyWord }
 public abstract class Quest_Generic_Script : MonoBehaviour
 {
     public string questName;
+    public string idCodex;
+    
     [Tooltip("Indica la categoria del codex (Es. Pianeti, Eventi...)")]
     public int indiceCategory = -1;
     [Tooltip("Indica la voce specifica (Es. Mercurio, Venere...)")]
