@@ -116,19 +116,35 @@ public class MissionManager : MonoBehaviour,IHandleJSON
             return JsonConvert.DeserializeObject<Dictionary<TKey, TValue>>(json);
         }
         else return new Dictionary<TKey, TValue>();
-            
+
     }
 
+    /// <summary>
+    /// Il Metodo prova a recuperare i dati dal JSON:
+    /// itera, su ogni MissionEntry, di ciascuna CategoryMission (in categoryLists):
+    /// un controllo per verificare se l'ID di quella MissionEntry è presente 
+    /// tra i dati salvati, se sì, aggiorna lo stato di quella voce.
+    /// </summary>
+    /// <remarks>
+    /// Qualora il JSON non esistesse, il Dictionary è inizializzato
+    /// vuoto, la conseguente mancanza di corrispondenza con gli ID farà sì che 
+    /// tutte le voci del Codex rimangano nascoste. 
+    /// </remarks>
     public void Load()
     {
+        #region Fetch Dati dal JSON
+
         Dictionary<string, QuestData> data = new Dictionary<string, QuestData>();
         if (CheckJsonFile())
         {
             QuestManager_Script.instance.SetQuestDataDictionary(LoadJson<string, QuestData>());
             data = QuestManager_Script.instance.GetQuestDataDictionary();
         }
+        #endregion
 
-        // Chiudiamo le cartelle fisicamente all'avvio
+        #region Caricamento Dati
+
+
         foreach (var category in categoryLists)
         {
             if (category.categoryList != null)
@@ -154,6 +170,7 @@ public class MissionManager : MonoBehaviour,IHandleJSON
                 }
             }
         }
+        #endregion
     }
     #endregion
 }
