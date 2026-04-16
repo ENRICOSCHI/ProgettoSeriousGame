@@ -3,12 +3,13 @@ using UnityEngine;
 
 public interface IHandleJSON
 {
-    public void SaveGame<TKey, TValue>(Dictionary<TKey, TValue> data);
+    /* SAVE */
+    void SaveGame<TKey, TValue>(Dictionary<TKey, TValue> data);
+    void Save();
 
-    //void SaveGame(string id, bool isActive, bool isCompleted);
+    /* LOAD */
+    bool CheckJsonFile();
 
-    public void Save();
+    Dictionary<TKey, TValue> LoadJson<TKey, TValue>();
 
-
-    //Da fare il Load
 }

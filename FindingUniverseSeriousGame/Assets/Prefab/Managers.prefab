@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7311296465601690894}
   - component: {fileID: 4371716267568812354}
+  - component: {fileID: 2419386835524567859}
   m_Layer: 0
   m_Name: JsonManager
   m_TagString: Untagged
@@ -42,6 +43,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 444bd921cd4b12c44b7d54548393f4ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2419386835524567859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871139653310206693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 839a23529defe794e9df21a0b7db7f0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1410963311553878292
@@ -774,7 +787,6 @@ MonoBehaviour:
         strumentale che evocasse \"l'idea\" delle isole dell'oceano Pacifico. Questo
         esperimento sonoro pose le basi per il genere \"Resort Pop\"."
       isDiscovered: 0
-  isMission: 0
 --- !u!1 &7776202616573886855
 GameObject:
   m_ObjectHideFlags: 0
@@ -989,7 +1001,6 @@ MonoBehaviour:
     categoryList: {fileID: 0}
     isOpen: 0
     entries: []
-  isMission: 0
 --- !u!1 &8573596838074759575
 GameObject:
   m_ObjectHideFlags: 0

@@ -59,5 +59,10 @@ public class QuestManager_Script : MonoBehaviour
     {
         return questDatabase;
     }
+
+    public void SetQuestDataDictionary(Dictionary<string,QuestData> data)
+    {
+        questDatabase = data;
+    }
     #endregion
 }

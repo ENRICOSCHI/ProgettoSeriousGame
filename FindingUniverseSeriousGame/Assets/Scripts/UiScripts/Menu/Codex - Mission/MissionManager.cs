@@ -29,13 +29,7 @@ public class MissionManager : MonoBehaviour,IHandleJSON
 
     void Awake()
     {
-
-        // Chiudiamo le cartelle fisicamente all'avvio
-        foreach (var category in categoryLists)
-        {
-            if (category.categoryList != null) category.categoryList.SetActive(false);
-            category.isOpen = false;
-        }
+        Load();
     }
     #endregion
 
@@ -91,9 +85,9 @@ public class MissionManager : MonoBehaviour,IHandleJSON
     #region Implementazione Interfaccia IHandleJSON
     public void SaveGame<TKey, TValue>(Dictionary<TKey, TValue> data)
     {
-        string json = JsonConvert.SerializeObject(data, Formatting.Indented);
-
         string path = ManagerHandler.ManagerInstance.SaveManager.GetPathForMission();
+
+        string json = JsonConvert.SerializeObject(data, Formatting.Indented);
 
         File.WriteAllText(path, json);
 
@@ -103,6 +97,63 @@ public class MissionManager : MonoBehaviour,IHandleJSON
     public void Save()
     {
         SaveGame<string, QuestData>(QuestManager_Script.instance.GetQuestDataDictionary());
+    }
+
+
+    public bool CheckJsonFile()
+    {
+        return File.Exists(ManagerHandler.ManagerInstance.SaveManager.GetPathForMission());
+    }
+
+    public Dictionary<TKey, TValue> LoadJson<TKey, TValue>()
+    {
+        string path = ManagerHandler.ManagerInstance.SaveManager.GetPathForMission();
+
+        if (path != null)
+        {
+            string json = File.ReadAllText(path);
+
+            return JsonConvert.DeserializeObject<Dictionary<TKey, TValue>>(json);
+        }
+        else return new Dictionary<TKey, TValue>();
+            
+    }
+
+    public void Load()
+    {
+        Dictionary<string, QuestData> data = new Dictionary<string, QuestData>();
+        if (CheckJsonFile())
+        {
+            QuestManager_Script.instance.SetQuestDataDictionary(LoadJson<string, QuestData>());
+            data = QuestManager_Script.instance.GetQuestDataDictionary();
+        }
+
+        // Chiudiamo le cartelle fisicamente all'avvio
+        foreach (var category in categoryLists)
+        {
+            if (category.categoryList != null)
+            {
+                foreach (var entry in category.entries)
+                {
+                    foreach (var key in data.Keys)
+                    {
+                        if (data.TryGetValue(entry.ID, out QuestData q))
+                        {
+                            entry.isStarted = q.isStarted;
+                            entry.isCompleted = q.isCompleted;
+                            entry.isDiscovered = q.isDiscovered;
+                            entry.amount = q.amountProgress;
+                        }
+                        else
+                        {
+                            category.categoryList.SetActive(false);
+                            category.isOpen = false;
+                        }
+
+                    }
+                }
+            }
+        }
     }
     #endregion
 }

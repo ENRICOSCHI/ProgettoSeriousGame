@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class CodexManager : MonoBehaviour, IHandleJSON
+public class CodexManager : MonoBehaviour//, IHandleJSON
 {
     #region Inizializzazione variabili
     [Header("Struttura Codex (Il Database)")]
@@ -93,10 +93,12 @@ public class CodexManager : MonoBehaviour, IHandleJSON
     public void Save()
     {
         SaveGame<string, bool>(OggettiSbloccatiDizionario);
-
-        //Metodo per far riferimento al path automatico di Unity per il salvataggio dei dati
-        Debug.Log("Salvataggio del Codex in corso...");
-        Debug.Log($"Percorso di salvataggio: {Application.persistentDataPath}");
     }
+
+    public bool CheckJsonFile()
+    {
+        return File.Exists(ManagerHandler.ManagerInstance.SaveManager.GetPathForCodex());
+    }
+
     #endregion
 }

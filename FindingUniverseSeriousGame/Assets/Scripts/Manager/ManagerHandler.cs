@@ -31,11 +31,7 @@ public class ManagerHandler : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
         SpeedManager = GetComponentInChildren<ManagerSpeed>();
         MusicManager = GetComponentInChildren<MusicManager>();
         BatteryManager = GetComponentInChildren<ManagerBattery>();
