@@ -3,11 +3,11 @@ using UnityEngine;
 
 public interface IHandleJSON
 {
-    void SaveGame<TKey, TValue>(Dictionary<TKey, TValue> data);
+    public void SaveGame<TKey, TValue>(Dictionary<TKey, TValue> data);
 
-    void SaveGame(string id, bool isActive, bool isCompleted);
+    //void SaveGame(string id, bool isActive, bool isCompleted);
 
-    void Save();
+    public void Save();
 
 
     //Da fare il Load

@@ -1,29 +1,30 @@
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
-public class MissionManager : MonoBehaviour
+public class MissionManager : MonoBehaviour,IHandleJSON
 {
     #region Inizializzazione variabili
     [Header("Struttura Codex (Il Database)")]
     [Tooltip("Configura qui le macro-categorie (Pianeti, Fenomeni, Musica).")]
     public CategoryMission[] categoryLists;
-
-    public bool isMission; // Variabile per distinguere se è il menu del Codex o delle Missioni
     #endregion
 
 
     #region Metodi Unity (Ciclo di Vita)
 
-    /*void OnEnable()
+    void OnEnable()
     {
         // Sottoscrivo il metodo SaveGame all'evento di salvataggio
         DelegateClass.SaveEventHandler += Save;
     }
 
-    void OnDesable()
+    void OnDisable()
     {
         // Rimuovo la sottoscrizione quando l'oggetto viene disabilitato
         DelegateClass.SaveEventHandler -= Save;
-    }*/
+    }
 
 
     void Awake()
@@ -54,6 +55,11 @@ public class MissionManager : MonoBehaviour
                 categoryLists[categoryIndex].entries[entryIndex].isStarted = isStarted;
                 categoryLists[categoryIndex].entries[entryIndex].isCompleted = isCompleted;
                 
+                QuestManager_Script.instance.UpdateQuestData(
+                    categoryLists[categoryIndex].entries[entryIndex].ID,
+                    categoryLists[categoryIndex].entries[entryIndex].isStarted = isStarted,
+                    categoryLists[categoryIndex].entries[entryIndex].isCompleted = isCompleted
+                );
 
                 Debug.Log($"Menu Aggiornato: Sbloccato {categoryLists[categoryIndex].entries[entryIndex].realName}!");
 
@@ -73,31 +79,30 @@ public class MissionManager : MonoBehaviour
             if (entryIndex >= 0 && entryIndex < categoryLists[categoryIndex].entries.Length)
             {
                 categoryLists[categoryIndex].entries[entryIndex].amount += amount;
+                QuestManager_Script.instance.UpdateQuestData(
+                    categoryLists[categoryIndex].entries[entryIndex].ID,
+                    categoryLists[categoryIndex].entries[entryIndex].amount
+                );
             }
         }
     }
     #endregion
 
-    /*#region Implementazione Interfaccia IHandleJSON
-    public void SaveGame(Dictionary)
+    #region Implementazione Interfaccia IHandleJSON
+    public void SaveGame<TKey, TValue>(Dictionary<TKey, TValue> data)
     {
-        // Implementazione del salvataggio per un singolo elemento
-        Debug.Log($"Salvataggio: {id} è {(state ? "sbloccato" : "bloccato")}.");
-    }
+        string json = JsonConvert.SerializeObject(data, Formatting.Indented);
 
+        string path = ManagerHandler.ManagerInstance.SaveManager.GetPathForMission();
 
-    //Non necessario
-    public void SaveGame(string id, bool isActive, bool isCompleted)
-    {
-        // Implementazione del salvataggio per un elemento con stato più complesso
-        Debug.Log($"Salvataggio: {id} è {(isActive ? "attivo" : "inattivo")} e {(isCompleted ? "completato" : "non completato")}.");
+        File.WriteAllText(path, json);
+
+        Debug.Log("salvato in: " + path);
     }
 
     public void Save()
     {
-        //Metodo per far riferimento al path automatico di Unity per il salvataggio dei dati
-        Debug.Log("Salvataggio del Codex in corso...");
-        Debug.Log($"Percorso di salvataggio: {Application.persistentDataPath}");
+        SaveGame<string, QuestData>(QuestManager_Script.instance.GetQuestDataDictionary());
     }
-    #endregion*/
+    #endregion
 }

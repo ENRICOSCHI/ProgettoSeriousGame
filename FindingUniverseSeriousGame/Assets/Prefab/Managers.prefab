@@ -1,5 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &871139653310206693
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7311296465601690894}
+  - component: {fileID: 4371716267568812354}
+  m_Layer: 0
+  m_Name: JsonManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7311296465601690894
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871139653310206693}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5698369315328781363}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4371716267568812354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871139653310206693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 444bd921cd4b12c44b7d54548393f4ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1410963311553878292
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,7 +233,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47be8dc2468f3db41a98a504964efcbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textUISubtitle: {fileID: 0}
   audioSourceSubtitles: {fileID: 0}
 --- !u!1 &2596436358536219738
 GameObject:
@@ -277,6 +320,7 @@ Transform:
   - {fileID: 5955885646820405787}
   - {fileID: 2592700826234095648}
   - {fileID: 7810444209020654733}
+  - {fileID: 7311296465601690894}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2227621358879324505
@@ -463,6 +507,7 @@ MonoBehaviour:
   categoryLists:
   - categoryTitle: {fileID: 0}
     categoryList: {fileID: 0}
+    isOpen: 0
     entries:
     - ID: P000
       uiTextElement: {fileID: 0}
@@ -559,9 +604,9 @@ MonoBehaviour:
         il carbonio si cristallizza, generando vere e proprie \"piogge di diamanti\"
         che precipitano verso il nucleo del pianeta."
       isDiscovered: 1
-    isOpen: 0
   - categoryTitle: {fileID: 0}
     categoryList: {fileID: 0}
+    isOpen: 0
     entries:
     - ID: E000
       uiTextElement: {fileID: 0}
@@ -608,9 +653,9 @@ MonoBehaviour:
         fa s\xEC che, dall'Umbra, la Luna copra in modo esatto il disco solare, rivelando
         solo l'eterea corona di plasma della stella."
       isDiscovered: 1
-    isOpen: 0
   - categoryTitle: {fileID: 0}
     categoryList: {fileID: 0}
+    isOpen: 0
     entries:
     - ID: M000
       uiTextElement: {fileID: 0}
@@ -729,7 +774,7 @@ MonoBehaviour:
         strumentale che evocasse \"l'idea\" delle isole dell'oceano Pacifico. Questo
         esperimento sonoro pose le basi per il genere \"Resort Pop\"."
       isDiscovered: 0
-    isOpen: 0
+  isMission: 0
 --- !u!1 &7776202616573886855
 GameObject:
   m_ObjectHideFlags: 0
@@ -832,7 +877,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6993869216568775523}
-  - component: {fileID: 4638856730708909362}
+  - component: {fileID: 2463143962319871363}
   m_Layer: 0
   m_Name: MissionsManager
   m_TagString: Untagged
@@ -855,7 +900,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5698369315328781363}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4638856730708909362
+--- !u!114 &2463143962319871363
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -864,22 +909,87 @@ MonoBehaviour:
   m_GameObject: {fileID: 8493668776667705129}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01e87c478ad5f314cbf4dbe3f890f92f, type: 3}
+  m_Script: {fileID: 11500000, guid: ac68ccb8580437448b266265e25dbae8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   categoryLists:
   - categoryTitle: {fileID: 0}
     categoryList: {fileID: 0}
-    entries: []
     isOpen: 0
+    entries:
+    - ID: C_D000
+      uiTextElement: {fileID: 0}
+      realName: 'Scoperta Mercurio '
+      description: 
+      isDiscovered: 0
+      isStarted: 0
+      isCompleted: 0
+      amount: 0
+    - ID: C_D001
+      uiTextElement: {fileID: 0}
+      realName: Scoperta Venere
+      description: 
+      isDiscovered: 0
+      isStarted: 0
+      isCompleted: 0
+      amount: 0
+    - ID: C_D002
+      uiTextElement: {fileID: 0}
+      realName: Scoperta Terra
+      description: 
+      isDiscovered: 0
+      isStarted: 0
+      isCompleted: 0
+      amount: 0
+    - ID: C_D003
+      uiTextElement: {fileID: 0}
+      realName: Scoperta Marte
+      description: 
+      isDiscovered: 0
+      isStarted: 0
+      isCompleted: 0
+      amount: 0
+    - ID: C_D004
+      uiTextElement: {fileID: 0}
+      realName: Scoperta Giove
+      description: 
+      isDiscovered: 0
+      isStarted: 0
+      isCompleted: 0
+      amount: 0
+    - ID: C_D005
+      uiTextElement: {fileID: 0}
+      realName: Scoperta Saturno
+      description: 
+      isDiscovered: 0
+      isStarted: 0
+      isCompleted: 0
+      amount: 0
+    - ID: C_D006
+      uiTextElement: {fileID: 0}
+      realName: Scoperta Urano
+      description: 
+      isDiscovered: 0
+      isStarted: 0
+      isCompleted: 0
+      amount: 0
+    - ID: C_D007
+      uiTextElement: {fileID: 0}
+      realName: Scoperta Nettuno
+      description: 
+      isDiscovered: 0
+      isStarted: 0
+      isCompleted: 0
+      amount: 0
   - categoryTitle: {fileID: 0}
     categoryList: {fileID: 0}
-    entries: []
     isOpen: 0
+    entries: []
   - categoryTitle: {fileID: 0}
     categoryList: {fileID: 0}
-    entries: []
     isOpen: 0
+    entries: []
+  isMission: 0
 --- !u!1 &8573596838074759575
 GameObject:
   m_ObjectHideFlags: 0

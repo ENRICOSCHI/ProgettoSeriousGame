@@ -36,13 +36,13 @@ public abstract class Quest_Generic_Script : MonoBehaviour
             Debug.LogWarning("Non è stato assegnato per la quest in: " + gameObject.name);
             return;
         }
-        if (QuestManager_Script.instance != null)  // Se l'istanza della quest esiste, assegna i parametri
+        /*if (QuestManager_Script.instance != null)  // Se l'istanza della quest esiste, assegna i parametri
         {
             QuestData data = QuestManager_Script.instance.GetQuestData(questName);
             questStarted = data.isStarted;
             questCompleted = data.isCompleted;
-        }
-        else Debug.LogWarning("QuestManager_Script non trovato in scena.");
+        }*/
+        //else Debug.LogWarning("QuestManager_Script non trovato in scena.");
     }
 
     #endregion

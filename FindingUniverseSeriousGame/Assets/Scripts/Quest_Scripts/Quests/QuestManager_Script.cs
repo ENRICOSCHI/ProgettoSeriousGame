@@ -22,7 +22,6 @@ public class QuestManager_Script : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject); //permette di far persistere il gameObject tra scene -> i progressi persistono.
         }
         else
         {
@@ -32,17 +31,11 @@ public class QuestManager_Script : MonoBehaviour
     #endregion
     
     #region Quest Data Management
-    public void UpdateQuestData(string questName, bool isStarted, bool isCompleted, int amountProgress)
+    public void UpdateQuestData(string questName, int amountProgress)
     {
         if (questDatabase.ContainsKey(questName))
         {
-            questDatabase[questName].isStarted = isStarted;
-            questDatabase[questName].isCompleted = isCompleted;
             questDatabase[questName].amountProgress = amountProgress;
-        }
-        else
-        {
-            questDatabase.Add(questName, new QuestData(isStarted, isCompleted, amountProgress));
         }
     }
 
@@ -55,26 +48,16 @@ public class QuestManager_Script : MonoBehaviour
         }
         else
         {
-            questDatabase.Add(questName, new QuestData(isStarted, isCompleted));
+            questDatabase.Add(questName, new QuestData(isStarted,isCompleted));
         }
     }
     #endregion
 
     #region Quest Data Retrieval
 
-    public QuestData GetQuestData(string questName)
+    public Dictionary<string,QuestData> GetQuestDataDictionary()
     {
-        if (questDatabase.ContainsKey(questName))
-        {
-            return questDatabase[questName];
-        }
-        else
-        {
-            Debug.LogWarning("non trovata la Quest " + questName + " nel database.");
-            return new QuestData(); /*ritorna una questData con parametri 
-            di default (non iniziata, non completata, progresso 0).
-            questo può essere utile per evitare null reference exceptions.*/
-        }
+        return questDatabase;
     }
     #endregion
 }

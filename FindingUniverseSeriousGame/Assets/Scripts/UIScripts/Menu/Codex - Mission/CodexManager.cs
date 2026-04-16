@@ -1,30 +1,32 @@
+using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
-public class CodexManager : MonoBehaviour//, IHandleJSON
+public class CodexManager : MonoBehaviour, IHandleJSON
 {
     #region Inizializzazione variabili
     [Header("Struttura Codex (Il Database)")]
     [Tooltip("Configura qui le macro-categorie (Pianeti, Fenomeni, Musica).")]
     public CategoryCodex[] categoryLists;  
 
-    public bool isMission; // Variabile per distinguere se è il menu del Codex o delle Missioni
+    private Dictionary<string, bool> OggettiSbloccatiDizionario = new Dictionary<string, bool>();
     #endregion
 
 
     #region Metodi Unity (Ciclo di Vita)
 
-    /*void OnEnable()
+    void OnEnable()
     {
         // Sottoscrivo il metodo SaveGame all'evento di salvataggio
         DelegateClass.SaveEventHandler += Save;
     }
 
-    void OnDesable()
+    void OnDisable()
     {
         // Rimuovo la sottoscrizione quando l'oggetto viene disabilitato
         DelegateClass.SaveEventHandler -= Save;
-    }*/
+    }
 
 
     void Awake()
@@ -53,6 +55,16 @@ public class CodexManager : MonoBehaviour//, IHandleJSON
             {
                 categoryLists[categoryIndex].entries[entryIndex].isDiscovered = true;
 
+                OggettiSbloccatiDizionario.Add(
+                    categoryLists[categoryIndex].entries[entryIndex].ID, 
+                    categoryLists[categoryIndex].entries[entryIndex].isDiscovered
+                );
+
+                /*foreach (var item in OggettiSbloccatiDizionario)
+                {
+                    Debug.Log($"Chiave: {item.Key} - Valore: {item.Value}");
+                }*/
+
                 Debug.Log($"Menu Aggiornato: Sbloccato {categoryLists[categoryIndex].entries[entryIndex].realName}!");
 
 
@@ -65,26 +77,26 @@ public class CodexManager : MonoBehaviour//, IHandleJSON
     }
     #endregion
 
-    /*#region Implementazione Interfaccia IHandleJSON
-    public void SaveGame(Dictionary)
+    #region Implementazione Interfaccia IHandleJSON
+    public void SaveGame<TKey, TValue>(Dictionary<TKey, TValue> data)
     {
-        // Implementazione del salvataggio per un singolo elemento
-        Debug.Log($"Salvataggio: {id} è {(state ? "sbloccato" : "bloccato")}.");
+        string json = JsonConvert.SerializeObject(data, Formatting.Indented);
+
+        string path = ManagerHandler.ManagerInstance.SaveManager.GetPathForCodex();
+
+        File.WriteAllText(path, json);
+
+        Debug.Log("salvato in: " + path);
     }
 
-
-    //Non necessario
-    public void SaveGame(string id, bool isActive, bool isCompleted)
-    {
-        // Implementazione del salvataggio per un elemento con stato più complesso
-        Debug.Log($"Salvataggio: {id} è {(isActive ? "attivo" : "inattivo")} e {(isCompleted ? "completato" : "non completato")}.");
-    }
 
     public void Save()
     {
+        SaveGame<string, bool>(OggettiSbloccatiDizionario);
+
         //Metodo per far riferimento al path automatico di Unity per il salvataggio dei dati
         Debug.Log("Salvataggio del Codex in corso...");
         Debug.Log($"Percorso di salvataggio: {Application.persistentDataPath}");
     }
-    #endregion*/
+    #endregion
 }

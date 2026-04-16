@@ -56,6 +56,7 @@ public class Quest_3_Script : Quest_Generic_Script
         if (!questStarted || questCompleted) return;  //Controllo di sicurezza, quest non ancora terminata
 
         currentAmount++;
+        ManagerHandler.ManagerInstance.MissionManager.UpdateAmountOnMenu(indiceCategory, indiceEntry, currentAmount);
         InfoQuestUpdate();
         if (!doesReturnInPlace)
         {

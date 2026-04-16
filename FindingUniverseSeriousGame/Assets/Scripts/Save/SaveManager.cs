@@ -4,6 +4,7 @@ using System.IO;
 
 public class SaveManager : MonoBehaviour
 {
+    [ContextMenu("salvaTest")]
     public void SaveEvent()
     {
         DelegateClass.SaveEventHandler?.Invoke();

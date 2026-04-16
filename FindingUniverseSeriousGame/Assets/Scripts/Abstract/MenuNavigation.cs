@@ -47,12 +47,43 @@ public abstract class MenuNavigation : MonoBehaviour
     public Dictionary<string, bool> menuDictionary = new Dictionary<string, bool>();
 
     #endregion
+    
     #region "metodi astratti"
+    
+    /// <summary>
+    /// Controllo se il manger è diverso da null.
+    /// </summary>
+    /// <returns></returns>
     protected abstract bool IsManagerValid();
+    
+    /// <summary>
+    /// Ottengo numero totale di categorie utilizzate.
+    /// </summary>
+    /// <returns></returns>
     protected abstract int GetCategoryCount();
+
+    /// <summary>
+    /// Ottengo il numero totale di entry utilizzate per quella specifica categoria nell'indice.
+    /// </summary>
+    /// <returns></returns>
     protected abstract int GetEntryCount(int categoryIndex);
+
+    /// <summary>
+    /// Ottengo la la tipologia di menu che usa il navigation.
+    /// </summary>
+    /// <returns></returns>
     protected abstract CategoryMenu GetMenuCategory(int index);
+
+    /// <summary>
+    /// Ottengo il TextMeshProUGUI della categoria e entry nell'indice.
+    /// </summary>
+    /// <returns></returns>
     protected abstract TMP_Text GetEntryUIText(int categoryIndex, int entryIndex);
+
+    /// <summary>
+    /// Ottengo il nome mostrato dell'entry nella category nell'indice.
+    /// </summary>
+    /// <returns></returns>
     protected abstract string GetEntryDisplayName(int categoryIndex, int entryIndex);
     #endregion
 
@@ -145,7 +176,7 @@ public abstract class MenuNavigation : MonoBehaviour
     /// </summary>
     protected virtual void UpdateRightPanelDisplay()
     {
-        Debug.Log("Update Right Panel");
+        //Debug.Log("Update Right Panel");
     }
 
     #endregion
