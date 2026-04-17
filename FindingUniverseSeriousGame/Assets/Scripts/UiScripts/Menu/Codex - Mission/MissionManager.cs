@@ -6,7 +6,7 @@ using UnityEngine;
 public class MissionManager : MonoBehaviour,IHandleJSON
 {
     #region Inizializzazione variabili
-    [Header("Struttura Codex (Il Database)")]
+    [Header("Struttura Missions (Il Database)")]
     [Tooltip("Configura qui le macro-categorie (Pianeti, Fenomeni, Musica).")]
     public CategoryMission[] categoryLists;
     #endregion
@@ -37,7 +37,7 @@ public class MissionManager : MonoBehaviour,IHandleJSON
 
     #region Metodi Pubblici
     /// <summary>
-    /// Sblocco l'oggetto indicato nel codex
+    /// Sblocco l'oggetto indicato nella sezione Missions
     /// </summary>
     /// <param name="categoryIndex"> indice della categoria 0: pianeti, 1: eventi, 2: musica</param>
     /// <param name="entryIndex"> indice della entrata 0: Mercurio, 1: Venere,ecc..</param>
@@ -75,7 +75,7 @@ public class MissionManager : MonoBehaviour,IHandleJSON
         {
             if (entryIndex >= 0 && entryIndex < categoryLists[categoryIndex].entries.Length)
             {
-                categoryLists[categoryIndex].entries[entryIndex].amount += amount;
+                categoryLists[categoryIndex].entries[entryIndex].amount++;
                 QuestManager_Script.instance.UpdateQuestData(
                     categoryLists[categoryIndex].entries[entryIndex].ID,
                     categoryLists[categoryIndex].entries[entryIndex].amount

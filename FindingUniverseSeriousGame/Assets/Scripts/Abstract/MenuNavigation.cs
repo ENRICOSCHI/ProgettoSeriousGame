@@ -9,7 +9,7 @@ public abstract class MenuNavigation : MonoBehaviour
     #region Inizializzazione variabili
 
     [Header("Tasti di Navigazione")]
-    [Tooltip("Tasti per muovere il cursore su e giù nella lista")]
+    [Tooltip("Tasti per muovere il cursore su e giï¿½ nella lista")]
     [SerializeField] KeyCode moveUpKey = KeyCode.W;
     [SerializeField] KeyCode moveDownKey = KeyCode.S;
     [SerializeField] KeyCode altMoveUpKey = KeyCode.UpArrow;
@@ -19,9 +19,9 @@ public abstract class MenuNavigation : MonoBehaviour
     [SerializeField] KeyCode altConfirmKey = KeyCode.Space;
 
     [Header("Riferimenti - UI Pannello Destro")]
-    [Tooltip("Il testo che mostrerà il titolo del dato selezionato nella parte destra dello schermo")]
+    [Tooltip("Il testo che mostrerï¿½ il titolo del dato selezionato nella parte destra dello schermo")]
     [SerializeField] protected TMP_Text rightPanelTitleText; // Testo del titolo (es. MERCURIO)
-    [Tooltip("Il testo che mostrerà la descrizione dettagliata nella parte destra dello schermo")]
+    [Tooltip("Il testo che mostrerï¿½ la descrizione dettagliata nella parte destra dello schermo")]
     [SerializeField] protected TMP_Text rightPanelDescriptionText; // Testo del corpo della descrizione
 
     [Header("Riferimenti - Logica e Navigazione")]
@@ -35,7 +35,7 @@ public abstract class MenuNavigation : MonoBehaviour
 
     // Liste nascoste per tracciare e muovere il cursore dinamicamente
     protected List<TMP_Text> selectableTexts = new List<TMP_Text>();  // Tutti i testi visibili al momento (Titoli + Voci)
-    protected List<bool> isNodeCategory = new List<bool>();  // True = è una macro-categoria. False = è una singola voce.
+    protected List<bool> isNodeCategory = new List<bool>();  // True = ï¿½ una macro-categoria. False = ï¿½ una singola voce.
     protected List<int> indexLinkedCategory = new List<int>();  // ID della macro-categoria a cui appartiene l'elemento
     protected List<int> indexLinkedEntry = new List<int>(); // ID della singola voce (es. Mercurio) all'interno della categoria
 
@@ -51,7 +51,7 @@ public abstract class MenuNavigation : MonoBehaviour
     #region "metodi astratti"
     
     /// <summary>
-    /// Controllo se il manger è diverso da null.
+    /// Controllo se il manger ï¿½ diverso da null.
     /// </summary>
     /// <returns></returns>
     protected abstract bool IsManagerValid();
@@ -96,6 +96,11 @@ public abstract class MenuNavigation : MonoBehaviour
     }
     void OnEnable()
     {
+        // Se il manager Ã¨ valido, forziamo la chiusura di tutto prima di aggiornare l'UI
+        if (!IsManagerValid())
+        {
+            ForceCloseAllCategories(); 
+        }
         //ogni volta che attivo il pannello aggiorno la UI del codex
         RefreshFullUI();
     }
@@ -122,14 +127,14 @@ public abstract class MenuNavigation : MonoBehaviour
 
     /// <summary>
     /// Metodo pubblico principale. 
-    /// Viene chiamato dal Manager per aggiornare l'interfaccia visiva con i dati più recenti.
+    /// Viene chiamato dal Manager per aggiornare l'interfaccia visiva con i dati piï¿½ recenti.
     /// </summary>
     public void RefreshFullUI()
     {
         // Sicurezza: ci assicuriamo di avere i riferimenti prima di agire
         EnsureReferences();
 
-        // Se non c'è un database valido, ci fermiamo
+        // Se non c'ï¿½ un database valido, ci fermiamo
         if (IsManagerValid()) return;
 
         ClearRightPanel();
@@ -143,7 +148,7 @@ public abstract class MenuNavigation : MonoBehaviour
 
     /// <summary>
     /// Aggiorna i testi fisici della lista a sinistra. 
-    /// Se la voce è sbloccata mostra il nome reale, altrimenti maschera con "???".
+    /// Se la voce ï¿½ sbloccata mostra il nome reale, altrimenti maschera con "???".
     /// </summary>
     private void RefreshAllLeftListTexts()
     {
@@ -205,9 +210,9 @@ public abstract class MenuNavigation : MonoBehaviour
             selectableTexts.Add(catMenu.categoryTitle);
             isNodeCategory.Add(true);
             indexLinkedCategory.Add(i);
-            indexLinkedEntry.Add(-1); // -1 indica che non è una voce specifica
+            indexLinkedEntry.Add(-1); // -1 indica che non ï¿½ una voce specifica
 
-            // 2. Se la categoria è aperta, aggiunge i suoi figli
+            // 2. Se la categoria ï¿½ aperta, aggiunge i suoi figli
             if (catMenu.isOpen)
             {
                 
@@ -221,7 +226,7 @@ public abstract class MenuNavigation : MonoBehaviour
             }
         }
 
-        // Sicurezza: se la lista si è accorciata, riportiamo il cursore nel limite consentito
+        // Sicurezza: se la lista si ï¿½ accorciata, riportiamo il cursore nel limite consentito
         if (currentCategoryIndex >= selectableTexts.Count) currentCategoryIndex = selectableTexts.Count - 1;
 
         // Passiamo la nuova lista a MenuAsthetics per i colori
@@ -263,12 +268,12 @@ public abstract class MenuNavigation : MonoBehaviour
 
             if (isCat)
             {
-                // Se è una categoria, rimuoviamo solo il cursore
+                // Se ï¿½ una categoria, rimuoviamo solo il cursore
                 selectableTexts[i].text = selectableTexts[i].text.Replace("> ", "");
             }
             else
             {
-                // Se è una voce, guardiamo se è scoperta e togliamo l'eventuale cursore
+                // Se ï¿½ una voce, guardiamo se ï¿½ scoperta e togliamo l'eventuale cursore
                 selectableTexts[i].text = GetEntryDisplayName(linkedCat,linkedEnt);
             }
         }
@@ -317,6 +322,27 @@ public abstract class MenuNavigation : MonoBehaviour
 
             // Ricalcoliamo la lista invisibile di navigazione
             RecalculateNavigationList();
+        }
+    }
+
+
+    /// <summary>
+    /// Forza la chiusura logica, visiva e testuale di tutte le categorie.
+    /// </summary>
+    protected void ForceCloseAllCategories()
+    {
+        for (int i = 0; i < GetCategoryCount(); i++)
+        {
+            var catMenu = GetMenuCategory(i);
+            
+            catMenu.isOpen = false; // Reset logico
+            
+            if (catMenu.categoryList != null)
+                catMenu.categoryList.SetActive(false); // Spegne fisicamente i bottoni
+
+            // Reset testuale: se per caso c'era il meno, lo fa tornare un piÃ¹
+            if (catMenu.categoryTitle != null && catMenu.categoryTitle.text.Contains("[-]"))
+                catMenu.categoryTitle.text = catMenu.categoryTitle.text.Replace("[-]", "[+]");
         }
     }
     #endregion

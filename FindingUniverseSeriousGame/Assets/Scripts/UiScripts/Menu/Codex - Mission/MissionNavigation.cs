@@ -29,7 +29,7 @@ public class MissionNavigation : MenuNavigation
     {
         base.UpdateRightPanelDisplay();
 
-        // Evita errori se la lista è vuota
+        // Evita errori se la lista Ã¨ vuota
         if (selectableTexts.Count == 0 || currentCategoryIndex >= selectableTexts.Count) return;
 
         bool isCategory = isNodeCategory[currentCategoryIndex];
@@ -38,12 +38,12 @@ public class MissionNavigation : MenuNavigation
 
         if (isCategory)
         {
-            // Se siamo sopra "[+] PIANETI", svuotiamo lo schermo di destra
+            // Se siamo sopra una categoria, svuotiamo lo schermo di destra
             ClearRightPanel();
         }
         else
         {
-            // Se siamo sopra un pianeta specifico, peschiamo i suoi dati dal Manager
+            // Se siamo sopra un elemento specifico, peschiamo i suoi dati dal Manager
             MissionEntry selectedData = missionManager.categoryLists[linkedCatIndex].entries[linkedEntryIndex];
 
             if (selectedData.isDiscovered)
