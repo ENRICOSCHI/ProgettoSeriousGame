@@ -55,7 +55,7 @@ public abstract class Quest_Generic_Script : MonoBehaviour
 
 
 
-    
+
     #region Metodi generali di inizio e fine quest
 
     /// <summary>
@@ -74,13 +74,16 @@ public abstract class Quest_Generic_Script : MonoBehaviour
     /// <summary>
     /// Termina la quest se e solo se risulta iniziata e non completata.
     /// </summary>
+    /// <remarks>
+    /// L'aggiunta al Dictionary di QuestManager_Script è stata delegata a QuestManager_Script 
+    /// stesso, in modo da centralizzare la gestione dei dati delle quest.
+    /// </remarks>
     public virtual void FinishQuest()
     {
         if (questStarted && !questCompleted)
         {
             questCompleted = true;
             Debug.Log("Quest Completata!");
-            //QuestManager_Script.instance.UpdateQuestData(questName, questStarted, questCompleted);
         }
     }
 

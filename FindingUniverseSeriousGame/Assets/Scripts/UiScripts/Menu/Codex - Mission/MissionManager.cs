@@ -36,11 +36,17 @@ public class MissionManager : MonoBehaviour,IHandleJSON
     #endregion
 
     #region Metodi Pubblici
+
     /// <summary>
     /// Sblocco l'oggetto indicato nella sezione Missions
     /// </summary>
     /// <param name="categoryIndex"> indice della categoria 0: pianeti, 1: eventi, 2: musica</param>
     /// <param name="entryIndex"> indice della entrata 0: Mercurio, 1: Venere,ecc..</param>
+    /// <remarks>
+    /// De facto è questo metodo a segnalare a QuestManager_Script di salvare lo stato
+    /// di una data quest nel rispettivo Dictionary di salvataggio.
+    /// Aggiunta che dunque avviene solo se la missione è stata scoperta.
+    /// </remarks>
     public void UnlockMenuEntry(int categoryIndex, int entryIndex, bool isStarted, bool isCompleted)
     {
 
@@ -51,7 +57,7 @@ public class MissionManager : MonoBehaviour,IHandleJSON
                 categoryLists[categoryIndex].entries[entryIndex].isDiscovered = true;
                 categoryLists[categoryIndex].entries[entryIndex].isStarted = isStarted;
                 categoryLists[categoryIndex].entries[entryIndex].isCompleted = isCompleted;
-                
+
                 QuestManager_Script.instance.UpdateQuestData(
                     categoryLists[categoryIndex].entries[entryIndex].ID,
                     categoryLists[categoryIndex].entries[entryIndex].isStarted = isStarted,
@@ -63,6 +69,16 @@ public class MissionManager : MonoBehaviour,IHandleJSON
         }
     }
 
+    /// <summary>
+    /// Aggiorna quanti e quali oggetti sono stati raccolti in Quest basate
+    /// su Quest_3_Script.
+    /// </summary>
+    /// <remarks>
+    /// Il Metodo è pensato per essere chiamato da ItemCollected() di Quest_3_Script, 
+    /// al fine di aggiornare la quantità di oggetti raccolti.
+    /// Inoltre segnala a QuestManager_Script di salvare lo stato
+    /// della Quest di riferimento.
+    /// </remarks>
     public void UpdateAmountOnMenu(int categoryIndex, int entryIndex, int amount, string nomeOggettoSbloccato)
     {
         if (categoryIndex >= 0 && categoryIndex < categoryLists.Length)
@@ -81,6 +97,11 @@ public class MissionManager : MonoBehaviour,IHandleJSON
     #endregion
 
     #region Implementazione Interfaccia IHandleJSON
+
+    /// <summary>
+    /// Salva un Dictionary in formato JSON, prendendo chiave e valore di tipo generico.
+    /// Il file è salvato nella cartella persistentePath del dispositivo, con nome "missionSave.json".
+    /// </summary>
     public void SaveGame<TKey, TValue>(Dictionary<TKey, TValue> data)
     {
         string path = ManagerHandler.ManagerInstance.SaveManager.GetPathForMission();
@@ -92,17 +113,33 @@ public class MissionManager : MonoBehaviour,IHandleJSON
         Debug.Log("salvato in: " + path);
     }
 
+    /// <summary>
+    /// Chiama il metodo SaveGame() associato, passando il Dictionary contenuto nell'istanza
+    /// di QuestManager_Script, contenente tutte le informazioni utili di ogni quest
+    /// che sia stata avviata.
+    /// </summary>
+    /// <remarks>
+    /// Passa a SaveGame() un dictionary dello stesso tipo di quello gestito da QuestManager_Script, 
+    /// poi SaveGame() avendo firma generica, può accettarlo e serializzarlo in JSON.
+    /// </remarks>
     public void Save()
     {
         SaveGame<string, QuestData>(QuestManager_Script.instance.GetQuestDataDictionary());
     }
-
 
     public bool CheckJsonFile()
     {
         return File.Exists(ManagerHandler.ManagerInstance.SaveManager.GetPathForMission());
     }
 
+    /// <summary>
+    /// Legge il JSNON salvato e deserializza successivamente i dati in un Dictionary
+    /// generico.
+    /// </summary>
+    /// <returns>
+    /// Un Dictionary che è poi declinato in quello del tipo richiesto.
+    /// Dovesse non essere recuperato alcun JSON, è ritornato un Dictionary vuoto.
+    /// </returns>
     public Dictionary<TKey, TValue> LoadJson<TKey, TValue>()
     {
         string path = ManagerHandler.ManagerInstance.SaveManager.GetPathForMission();
