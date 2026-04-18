@@ -31,11 +31,12 @@ public class QuestManager_Script : MonoBehaviour
     #endregion
     
     #region Quest Data Management
-    public void UpdateQuestData(string questName, int amountProgress)
+    public void UpdateQuestData(string questName, int amountProgress, string nomeOggettoSbloccato)
     {
         if (questDatabase.ContainsKey(questName))
         {
             questDatabase[questName].amountProgress = amountProgress;
+            questDatabase[questName].oggettiSbloccati.Add(nomeOggettoSbloccato);
         }
     }
 
@@ -55,6 +56,36 @@ public class QuestManager_Script : MonoBehaviour
 
     #region Quest Data Retrieval
 
+    /// <summary>
+    /// Ottengo la quantità dai salvataggi
+    /// </summary>
+    /// <param name="IDquest"></param>
+    /// <returns></returns>
+    public int GetQuestAmount(string IDquest)
+    {
+        if (questDatabase.ContainsKey(IDquest))
+            return questDatabase[IDquest].amountProgress;
+
+        return 0;
+    }
+
+    /// <summary>
+    /// Controllo se ho già sbloccato l'oggetto in un salvataggio precedente
+    /// </summary>
+    /// <param name="objectName"></param>
+    /// <returns></returns>
+    public bool CheckObjectAlreadyUnlocked(string idQuest, string objectName)
+    {
+        if (questDatabase.ContainsKey(idQuest))
+        {
+            foreach(string s in questDatabase[idQuest].oggettiSbloccati)
+            {
+                if (s == objectName) return true;
+            }
+        }
+        return false;
+    }
+
     public Dictionary<string,QuestData> GetQuestDataDictionary()
     {
         return questDatabase;
@@ -70,6 +101,7 @@ public class QuestManager_Script : MonoBehaviour
                 questDatabase[item.Key].isStarted = item.Value.isStarted;
                 questDatabase[item.Key].isCompleted = item.Value.isCompleted;
                 questDatabase[item.Key].amountProgress = item.Value.amountProgress;
+                questDatabase[item.Key].oggettiSbloccati = item.Value.oggettiSbloccati;
             }
             else
             {

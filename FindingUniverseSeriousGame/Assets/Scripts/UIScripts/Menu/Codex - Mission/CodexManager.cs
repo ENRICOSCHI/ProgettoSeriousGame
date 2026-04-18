@@ -59,18 +59,7 @@ public class CodexManager : MonoBehaviour, IHandleJSON
                     );
                 }
 
-                /*foreach (var item in OggettiSbloccatiDizionario)
-                {
-                    Debug.Log($"Chiave: {item.Key} - Valore: {item.Value}");
-                }*/
-
                 Debug.Log($"Menu Aggiornato: Sbloccato {categoryLists[categoryIndex].entries[entryIndex].realName}!");
-
-
-                /*
-                 Per il salvataggio si potrebbe fare una roba tipo: creo lista con ID di quello che ho sbloccato
-                 poi al caricamento dei dati controllo gli ID che ho salvato e rimetto quelle parti attive nel codex con isDiscovered = true
-                 */
             }
         }
     }

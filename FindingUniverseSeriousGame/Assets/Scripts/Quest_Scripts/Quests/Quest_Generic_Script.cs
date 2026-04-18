@@ -38,13 +38,17 @@ public abstract class Quest_Generic_Script : MonoBehaviour
             Debug.LogWarning("Non è stato assegnato per la quest in: " + gameObject.name);
             return;
         }
-        /*if (QuestManager_Script.instance != null)  // Se l'istanza della quest esiste, assegna i parametri
+        if (QuestManager_Script.instance != null)  // Se l'istanza della quest esiste, assegna i parametri
         {
-            QuestData data = QuestManager_Script.instance.GetQuestData(questName);
-            questStarted = data.isStarted;
-            questCompleted = data.isCompleted;
-        }*/
-        //else Debug.LogWarning("QuestManager_Script non trovato in scena.");
+            //controllo se esite la chiave nel codice...
+            if (QuestManager_Script.instance.GetQuestDataDictionary().ContainsKey(idCodex))
+            {
+                //aggiorno con i valori caricati dal salvataggio precedente
+                questStarted = QuestManager_Script.instance.GetQuestDataDictionary()[idCodex].isStarted;
+                questCompleted = QuestManager_Script.instance.GetQuestDataDictionary()[idCodex].isCompleted;
+            }
+        }
+        else Debug.LogWarning("QuestManager_Script non trovato in scena.");
     }
 
     #endregion
@@ -64,7 +68,6 @@ public abstract class Quest_Generic_Script : MonoBehaviour
             questStarted = true;
             //WIP: possibile aggiunta di messaggio alla UI
             Debug.Log("Quest Cominciata!");
-            //QuestManager_Script.instance.UpdateQuestData(questName, questStarted, questCompleted);
         }
     }
 

@@ -51,12 +51,12 @@ public class Quest_3_Script : Quest_Generic_Script
     /// Pensato per essere chiamato dagli oggetti presenti nell'Array questItem 
     /// al momento della loro raccolta.
     /// </summary>
-    public void ItemCollected()
+    public void ItemCollected(string nomeOggettoSbloccato)
     {
+        Debug.Log(questStarted);
         if (!questStarted || questCompleted) return;  //Controllo di sicurezza, quest non ancora terminata
 
-        currentAmount++;
-        ManagerHandler.ManagerInstance.MissionManager.UpdateAmountOnMenu(indiceCategory, indiceEntry, currentAmount);
+        ManagerHandler.ManagerInstance.MissionManager.UpdateAmountOnMenu(indiceCategory, indiceEntry, ++currentAmount, nomeOggettoSbloccato);
         InfoQuestUpdate();
         if (!doesReturnInPlace)
         {
@@ -68,11 +68,26 @@ public class Quest_3_Script : Quest_Generic_Script
 
     #region Override StartQuest() & FinishQuest()
 
-    /*public override void Start()
+    public override void Start()
     {
         base.Start();
-        currentAmount = QuestManager_Script.instance.GetQuestData(questName).amountProgress;
-    }*/
+        currentAmount = QuestManager_Script.instance.GetQuestAmount(idCodex);
+        /* controllo se gli oggetti sono stati già sbloccati in un vecchio salvataggio */
+        foreach(var oggetto in questItem)
+        {
+            //c'è un negato perchè se ritorna true l'oggetto deve scomparire
+            oggetto.SetActive(!QuestManager_Script.instance.CheckObjectAlreadyUnlocked(idCodex, oggetto.name));
+            
+            //se è false, quindi se l'oggetto non è stato raccolto...
+            if (!QuestManager_Script.instance.CheckObjectAlreadyUnlocked(idCodex, oggetto.name))
+            {
+                oggetto.GetComponent<Collectable_Item_Quest3>().SetQuestScript(this);//gli assegno lo script
+            }
+        }
+        //se da un file di salvataggio precendente
+        //ho già completato la missione, disattivo il codice
+        if (questCompleted) this.enabled = false;
+    }
 
     /// <summary>
     /// Override del metodo base StartQuest(), adattato alla logica delle Quest di tipo 3. 
@@ -103,13 +118,15 @@ public class Quest_3_Script : Quest_Generic_Script
         {
             //abilito l'oggetto se è disabilitato
             if (!item.activeInHierarchy) item.SetActive(true);
-            item.GetComponent<Collectable_Item_Quest3>().SetQuestScript(this);
+
+            item.GetComponent<Collectable_Item_Quest3>().SetQuestScript(this);//assegno script all'oggetto
 
         }
 
-        ManagerHandler.ManagerInstance.NotificationManager.ShowNotifcation("Raccogli " + questItem.Length + " oggetti per completare la quest: " + questName,notificationColor);
-        ManagerHandler.ManagerInstance.MissionManager.UnlockMenuEntry(indiceCategory, indiceEntry, questStarted, questCompleted);// aggiorno l'UI nel menu
+        ManagerHandler.ManagerInstance.NotificationManager.ShowNotifcation("Raccogli " + questItem.Length + " oggetti per completare la quest: " + questName, notificationColor);
         base.StartQuest();
+        ManagerHandler.ManagerInstance.MissionManager.UnlockMenuEntry(indiceCategory, indiceEntry, questStarted, questCompleted);// aggiorno l'UI nel menu
+        
     }
 
     void InfoQuestUpdate()
@@ -139,7 +156,6 @@ public class Quest_3_Script : Quest_Generic_Script
         ManagerHandler.ManagerInstance.NotificationManager.ShowNotifcation(questName + " terminata.", notificationColor);
         ManagerHandler.ManagerInstance.MissionManager.UnlockMenuEntry(indiceCategory, indiceEntry,questStarted,questCompleted);// aggiorno UI nel menu
         Debug.Log(questName + " terminata");
-        //QuestManager_Script.instance.UpdateQuestData(questName, questStarted, questCompleted, currentAmount);
 
         this.enabled = false;
     }

@@ -14,7 +14,7 @@ public class Collectable_Item_Quest3 : MonoBehaviour, ICollectable
     {
         if (questScript != null)
         {
-            questScript.ItemCollected();
+            questScript.ItemCollected(gameObject.name);
             gameObject.SetActive(false);
         }
     }

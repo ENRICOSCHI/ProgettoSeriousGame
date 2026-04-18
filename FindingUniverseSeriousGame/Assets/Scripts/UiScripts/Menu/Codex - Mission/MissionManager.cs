@@ -59,26 +59,21 @@ public class MissionManager : MonoBehaviour,IHandleJSON
                 );
 
                 Debug.Log($"Menu Aggiornato: Sbloccato {categoryLists[categoryIndex].entries[entryIndex].realName}!");
-
-
-                /*
-                 Per il salvataggio si potrebbe fare una roba tipo: creo lista con ID di quello che ho sbloccato
-                 poi al caricamento dei dati controllo gli ID che ho salvato e rimetto quelle parti attive nel codex con isDiscovered = true
-                 */
             }
         }
     }
 
-    public void UpdateAmountOnMenu(int categoryIndex, int entryIndex, int amount)
+    public void UpdateAmountOnMenu(int categoryIndex, int entryIndex, int amount, string nomeOggettoSbloccato)
     {
         if (categoryIndex >= 0 && categoryIndex < categoryLists.Length)
         {
             if (entryIndex >= 0 && entryIndex < categoryLists[categoryIndex].entries.Length)
             {
-                categoryLists[categoryIndex].entries[entryIndex].amount++;
+                categoryLists[categoryIndex].entries[entryIndex].amount = amount;
                 QuestManager_Script.instance.UpdateQuestData(
                     categoryLists[categoryIndex].entries[entryIndex].ID,
-                    categoryLists[categoryIndex].entries[entryIndex].amount
+                    categoryLists[categoryIndex].entries[entryIndex].amount,
+                    nomeOggettoSbloccato
                 );
             }
         }
@@ -142,6 +137,7 @@ public class MissionManager : MonoBehaviour,IHandleJSON
         {
             QuestManager_Script.instance.SetQuestDataDictionary(LoadJson<string, QuestData>());
             data = QuestManager_Script.instance.GetQuestDataDictionary();
+            Debug.Log("Mission Manager Caricato");
         }
         #endregion
 
@@ -174,7 +170,6 @@ public class MissionManager : MonoBehaviour,IHandleJSON
             }
         }
         #endregion
-        Debug.Log("Mission Manager Caricato");
     }
     #endregion
 }

@@ -34,7 +34,7 @@ public class Quest_Trigger : MonoBehaviour
             {
                 Tipo2();
             }
-            else
+            else if(!questType.questStarted && questType.questInteractionType != interactableType.scan)//se la quest non è iniziato mostro il comando per attivare la missione
             {
                 Debug.Log("Premi E per interagire con la quest");
             }
@@ -44,6 +44,7 @@ public class Quest_Trigger : MonoBehaviour
     void OnTriggerExit(Collider other)
     {
         isPlayerInside = false;
+        Debug.Log("uscito dall'area missione");
     }
 
     #endregion
@@ -75,15 +76,16 @@ public class Quest_Trigger : MonoBehaviour
     {
         if (questType is Quest_3_Script && questType.isActiveAndEnabled)
         {
-            if (!questType.questStarted)
+            Quest_3_Script q3 = questType as Quest_3_Script;
+
+            if (!q3.questStarted)
             {
-                questType.StartQuest();
+                q3.StartQuest();
             }
 
             Debug.Log("Trigger attivato (Quest 3)");
-            Quest_3_Script q3 = questType as Quest_3_Script;
 
-            if (questType.questStarted && q3.doesReturnInPlace)
+            if (q3.questStarted && q3.doesReturnInPlace)
             {
                 q3.FinishQuest();
             }
