@@ -23,6 +23,12 @@ public abstract class MenuNavigation : MonoBehaviour
     [SerializeField] protected TMP_Text rightPanelTitleText; // Testo del titolo (es. MERCURIO)
     [Tooltip("Il testo che mostrer� la descrizione dettagliata nella parte destra dello schermo")]
     [SerializeField] protected TMP_Text rightPanelDescriptionText; // Testo del corpo della descrizione
+    [Tooltip("Stato della missione da mostrare nel pannello destro")]
+    [SerializeField] protected TMP_Text rightPanelStatusText1; // Testo precedente allo stato 1
+    [SerializeField] protected TMP_Text rightPanelStatus1; // Testo che contiene lo stato 1
+    [Tooltip("Testo degli oggetti raccolti da mostrare nel pannello destro")]
+    [SerializeField] protected TMP_Text rightPanelStatusText2; // Testo precedente allo stato 2
+    [SerializeField] protected TMP_Text rightPanelStatus2; // GameObject che contiene lo stato 2
 
     [Header("Riferimenti - Logica e Navigazione")]
     [Tooltip("Trascinare qui l'oggetto 'Content' della ScrollView di sinistra. (Serve per il ricalcolo del Layout)")]
@@ -174,6 +180,10 @@ public abstract class MenuNavigation : MonoBehaviour
     {
         if (rightPanelTitleText != null) rightPanelTitleText.text = "SELEZIONA UN DATO";
         if (rightPanelDescriptionText != null) rightPanelDescriptionText.text = "";
+        rightPanelStatus1.gameObject.SetActive(false);
+        rightPanelStatusText1.gameObject.SetActive(false);
+        rightPanelStatus2.gameObject.SetActive(false);
+        rightPanelStatusText2.gameObject.SetActive(false);
     }
 
     /// <summary>

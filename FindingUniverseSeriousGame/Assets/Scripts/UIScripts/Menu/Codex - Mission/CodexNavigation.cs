@@ -52,6 +52,20 @@ public class CodexNavigation : MenuNavigation
                 // Dato scoperto: mostriamo Titolo e Descrizione
                 if (rightPanelTitleText != null) rightPanelTitleText.text = selectedData.realName;
                 if (rightPanelDescriptionText != null) rightPanelDescriptionText.text = selectedData.description;
+
+                /*//Aggiornamento delle informazioni status della missione
+                if (rightPanelStatusText1 != null) rightPanelStatusText1.gameObject.SetActive(true);
+                if (rightPanelStatusText2 != null) rightPanelStatusText2.gameObject.SetActive(true);
+                if (rightPanelStatus1 != null) 
+                {
+                    rightPanelStatus1.gameObject.SetActive(true);
+                    rightPanelStatus1.text = selectedData.;
+                }
+                if (rightPanelStatus2 != null) 
+                {
+                    rightPanelStatus2.gameObject.SetActive(true);
+                    rightPanelStatus2.text = $"{selectedData.amount}";
+                }*/
             }
             else
             {
