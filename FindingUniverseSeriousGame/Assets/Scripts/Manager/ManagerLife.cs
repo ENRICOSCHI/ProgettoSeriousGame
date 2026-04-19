@@ -1,6 +1,8 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
+using Unity.Mathematics;
 
 public class ManagerLife : MonoBehaviour
 {
@@ -13,6 +15,13 @@ public class ManagerLife : MonoBehaviour
     [SerializeField] Color colorDanger = Color.red;    // Il colore che indica la vita in pericolo
     [SerializeField] float sogliaPericolo = 20f;       // Percentuale sotto la quale cambia colore
     
+
+    //Dichiarazione evento
+    // L'evento è di tipo Action e trasporta un Vector3 (la posizione dell'impatto)
+    // Usa Action al posto di delegate per semplicità, è una funzionalità di C# che permette di definire eventi senza dover creare un'intera classe delegate
+    public event Action Collision;
+
+
 
     /// <summary>
     /// Aggiorna la visualizzazione della vita
@@ -56,5 +65,6 @@ public class ManagerLife : MonoBehaviour
             Debug.Log("Nave distrutta!");  // Da implementare logica di Game Over o di respawn
         }
 
+        Collision?.Invoke();  // Lancia l'evento
     }
 }
