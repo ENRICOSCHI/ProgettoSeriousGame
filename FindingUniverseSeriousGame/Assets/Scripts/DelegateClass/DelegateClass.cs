@@ -20,10 +20,10 @@ public class DelegateClass
     public static VentoSolareEvents VentoSolareEventsHandler;
 
     /*Gestione evento salvataggio*/
-    public delegate void SaveEvent();
+    public delegate void SaveEvent(bool isChangingLevel);
     public static SaveEvent SaveEventHandler;
 
     /* Gestione Caricamento */
-    public delegate void LoadEvent();
+    public delegate void LoadEvent(bool isChangingLevel);
     public static LoadEvent LoadEventHandler;
 }

@@ -38,4 +38,14 @@ public class ManagerBattery : MonoBehaviour
         else
             batteryText.color = colorOk; // O il tuo colore neon specifico
     }
+
+    public float GetCurrentBattery()
+    {
+        return currentBattery;
+    }
+
+    public void SetCurrentBattery(float battery)
+    {
+        currentBattery = battery;
+    }
 }

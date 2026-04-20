@@ -67,4 +67,14 @@ public class ManagerLife : MonoBehaviour
 
         Collision?.Invoke();  // Lancia l'evento
     }
+
+    public float GetCurrentLife()
+    {
+        return currentLife;
+    }
+
+    public void SetCurrentLife(float life)
+    {
+        currentLife = life;
+    }
 }

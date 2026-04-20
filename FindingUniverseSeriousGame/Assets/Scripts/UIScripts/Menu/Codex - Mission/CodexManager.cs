@@ -31,9 +31,9 @@ public class CodexManager : MonoBehaviour, IHandleJSON
     }
 
 
-    void Awake()
+    void Start()
     {
-        Load();
+        Load(PersistentSceneData.Instance.isChangingScene);
     }
     #endregion
 
@@ -78,7 +78,7 @@ public class CodexManager : MonoBehaviour, IHandleJSON
     }
 
 
-    public void Save()
+    public void Save(bool isChangingLevel)
     {
         SaveGame<string, bool>(OggettiSbloccatiDizionario);
     }
@@ -101,7 +101,7 @@ public class CodexManager : MonoBehaviour, IHandleJSON
         else return new Dictionary<TKey, TValue>();
     }
 
-    public void Load()
+    public void Load(bool isChangingLevel)
     {
         #region Fetch Dati dal JSON
 
@@ -138,6 +138,8 @@ public class CodexManager : MonoBehaviour, IHandleJSON
         }
         #endregion
         Debug.Log("Codex Manager Caricato");
+
+        PersistentSceneData.Instance.isChangingScene = false;
     }
     #endregion
 }

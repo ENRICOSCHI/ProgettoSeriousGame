@@ -29,9 +29,9 @@ public class MissionManager : MonoBehaviour,IHandleJSON
     }
 
 
-    void Awake()
+    void Start()
     {
-        Load();
+        Load(PersistentSceneData.Instance.isChangingScene);
     }
     #endregion
 
@@ -122,7 +122,7 @@ public class MissionManager : MonoBehaviour,IHandleJSON
     /// Passa a SaveGame() un dictionary dello stesso tipo di quello gestito da QuestManager_Script, 
     /// poi SaveGame() avendo firma generica, può accettarlo e serializzarlo in JSON.
     /// </remarks>
-    public void Save()
+    public void Save(bool isChangingLevel)
     {
         SaveGame<string, QuestData>(QuestManager_Script.instance.GetQuestDataDictionary());
     }
@@ -165,7 +165,7 @@ public class MissionManager : MonoBehaviour,IHandleJSON
     /// vuoto, la conseguente mancanza di corrispondenza con gli ID farà sì che 
     /// tutte le voci del Codex rimangano nascoste. 
     /// </remarks>
-    public void Load()
+    public void Load(bool isChangingLevel)
     {
         #region Fetch Dati dal JSON
 
@@ -207,6 +207,8 @@ public class MissionManager : MonoBehaviour,IHandleJSON
             }
         }
         #endregion
+
+        PersistentSceneData.Instance.isChangingScene = false;
     }
     #endregion
 }
