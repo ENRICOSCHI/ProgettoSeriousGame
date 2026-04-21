@@ -108,6 +108,7 @@ public class QuestManager_Script : MonoBehaviour
                 questDatabase.Add(item.Key, item.Value);
             }
         }
+        Debug.Log("dizionario aggiornato");
     }
     #endregion
 }

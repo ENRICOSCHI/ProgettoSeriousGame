@@ -75,6 +75,7 @@ public class Quest_3_Script : Quest_Generic_Script
         /* controllo se gli oggetti sono stati già sbloccati in un vecchio salvataggio */
         foreach(var oggetto in questItem)
         {
+            Debug.Log("Caricato quest 3 script");
             //c'è un negato perchè se ritorna true l'oggetto deve scomparire
             oggetto.SetActive(!QuestManager_Script.instance.CheckObjectAlreadyUnlocked(idCodex, oggetto.name));
             
