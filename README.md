@@ -9,6 +9,8 @@ Aggiorna con quello che è stato fatto (aggiungere cose in future)
 - [x] quest script
 - [ ] salvataggi
 - [ ] più di una scena
+- [ ] sfx
+- [x] musica
 ### Eventi cosmici
 - [ ] Sindrome di Kessler (Detriti artificiali)
 - [x] Vento Solare e tempeste geomagnetiche:
