@@ -6,16 +6,18 @@ Aggiorna con quello che è stato fatto (aggiungere cose in future)
 - [ ] programmazione eventi cosmici
 - [x] sfondo dell'universo
 - [ ] interfaccia utente (menu della navicella con mappa ec..)
-- [ ] missioni iniziali
+- [x] quest script
+- [ ] salvataggi
+- [ ] più di una scena
 ### Eventi cosmici
 - [ ] Sindrome di Kessler (Detriti artificiali)
-- [ ] Vento Solare e tempeste geomagnetiche:
-- [ ] Fionda Gravitazionale
-- [ ] Umbra e Penumbra 
+- [x] Vento Solare e tempeste geomagnetiche:
+- [x] Fionda Gravitazionale
+- [x] Umbra e Penumbra 
 ## Blender
-- [ ] modellazione navicella
+- [x] modellazione navicella
 - [ ] modellazione pianeti
-- [ ] modellazione meteoriti
+- [x] modellazione meteoriti
 
 # LINK MIRO
 [Miro](https://miro.com/app/board/uXjVG0NHrxI=/)
