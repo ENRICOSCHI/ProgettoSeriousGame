@@ -29,10 +29,10 @@ public class MissionManager : MonoBehaviour,IHandleJSON
     }
 
 
-    void Start()
+    /*void Start()
     {
         Load(PersistentSceneData.Instance.isChangingScene);
-    }
+    }*/
     #endregion
 
     #region Metodi Pubblici
@@ -209,6 +209,7 @@ public class MissionManager : MonoBehaviour,IHandleJSON
         #endregion
 
         PersistentSceneData.Instance.isChangingScene = false;
+        Debug.Log("load finito");
     }
     #endregion
 }

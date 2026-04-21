@@ -53,7 +53,6 @@ public class Quest_3_Script : Quest_Generic_Script
     /// </summary>
     public void ItemCollected(string nomeOggettoSbloccato)
     {
-        Debug.Log(questStarted);
         if (!questStarted || questCompleted) return;  //Controllo di sicurezza, quest non ancora terminata
 
         ManagerHandler.ManagerInstance.MissionManager.UpdateAmountOnMenu(indiceCategory, indiceEntry, ++currentAmount, nomeOggettoSbloccato);
@@ -68,9 +67,9 @@ public class Quest_3_Script : Quest_Generic_Script
 
     #region Override StartQuest() & FinishQuest()
 
-    public override void Start()
+    public override void Init()
     {
-        base.Start();
+        base.Init();
         currentAmount = QuestManager_Script.instance.GetQuestAmount(idCodex);
         /* controllo se gli oggetti sono stati già sbloccati in un vecchio salvataggio */
         foreach(var oggetto in questItem)

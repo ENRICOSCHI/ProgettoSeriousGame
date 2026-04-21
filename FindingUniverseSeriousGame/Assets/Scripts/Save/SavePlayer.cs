@@ -8,6 +8,7 @@ public class SavePlayer : MonoBehaviour, IHandleJSON
 {
     [Header("Variabili del giocatore da salvare")]
     [SerializeField] private Transform playerPosition;
+    private string keyPlayer = "PlayerData";
 
     void OnEnable()
     {
@@ -21,10 +22,10 @@ public class SavePlayer : MonoBehaviour, IHandleJSON
         DelegateClass.LoadEventHandler -= Load;
     }
 
-    private void Start()
+    /*private void Start()
     {
         Load(PersistentSceneData.Instance.isChangingScene);
-    }
+    }*/
 
     #region Implementazione IHandleJSON
     public Dictionary<string, PlayerData> playerDataDictionary = new();
@@ -35,21 +36,40 @@ public class SavePlayer : MonoBehaviour, IHandleJSON
         {
             playerDataDictionary.Add("PlayerData", new PlayerData
             {
+                //position
                 positionPlayerX = playerPosition.position.x,
                 positionPlayerY = playerPosition.position.y,
                 positionPlayerZ = playerPosition.position.z,
 
+                //rotation
+                rotationPlayerX = playerPosition.rotation.x,
+                rotationPlayerY = playerPosition.rotation.y,
+                rotationPlayerZ = playerPosition.rotation.z,
+                rotationPlayerW = playerPosition.rotation.w,
+
+
+                //battery
                 battery = ManagerHandler.ManagerInstance.BatteryManager.GetCurrentBattery(),
+                //life
                 life = ManagerHandler.ManagerInstance.LifeManager.GetCurrentLife()
             });
         }
         else
         {
-            playerDataDictionary["PlayerData"].positionPlayerX = playerPosition.position.x;
-            playerDataDictionary["PlayerData"].positionPlayerY = playerPosition.position.y;
-            playerDataDictionary["PlayerData"].positionPlayerZ = playerPosition.position.z;
-            playerDataDictionary["PlayerData"].battery = ManagerHandler.ManagerInstance.BatteryManager.GetCurrentBattery();
-            playerDataDictionary["PlayerData"].life = ManagerHandler.ManagerInstance.LifeManager.GetCurrentLife();
+            //position
+            playerDataDictionary[keyPlayer].positionPlayerX = playerPosition.position.x;
+            playerDataDictionary[keyPlayer].positionPlayerY = playerPosition.position.y;
+            playerDataDictionary[keyPlayer].positionPlayerZ = playerPosition.position.z;
+            //rotation
+            playerDataDictionary[keyPlayer].rotationPlayerX = playerPosition.rotation.x;
+            playerDataDictionary[keyPlayer].rotationPlayerY = playerPosition.rotation.y;
+            playerDataDictionary[keyPlayer].rotationPlayerZ = playerPosition.rotation.z;
+            playerDataDictionary[keyPlayer].rotationPlayerW = playerPosition.rotation.w;
+
+            //battery
+            playerDataDictionary[keyPlayer].battery = ManagerHandler.ManagerInstance.BatteryManager.GetCurrentBattery();
+            //life
+            playerDataDictionary[keyPlayer].life = ManagerHandler.ManagerInstance.LifeManager.GetCurrentLife();
         }
 
 

@@ -31,10 +31,10 @@ public class CodexManager : MonoBehaviour, IHandleJSON
     }
 
 
-    void Start()
+    /*void Start()
     {
         Load(PersistentSceneData.Instance.isChangingScene);
-    }
+    }*/
     #endregion
 
     #region Metodi Pubblici

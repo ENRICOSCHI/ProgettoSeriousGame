@@ -29,7 +29,10 @@ public abstract class Quest_Generic_Script : MonoBehaviour
 
     #region Inizializzazione QuestManager
 
-    public virtual void Start()
+    /// <summary>
+    /// Init caricamento quest
+    /// </summary>
+    public virtual void Init()
     {
         // Inizializza lo stato della quest dal QuestManager se esiste.
         // altrimenti lo crea con i valori di default (non iniziata, non completata)
