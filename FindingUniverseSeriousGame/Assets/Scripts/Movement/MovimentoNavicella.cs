@@ -50,6 +50,16 @@ public class MovimentoNavicella : MonoBehaviour
     private float hInputSmooth = 0f;
     private float vInputSmooth = 0f;
 
+    public void SetRotationFromSave(float pitch, float yaw, float roll)
+    {
+        realTimePitch = pitch;
+        realTimeYaw = yaw;
+        realTimeRoll = roll;
+
+        // Applica subito la rotazione, senza aspettare Update
+        transform.localRotation = Quaternion.Euler(-realTimePitch, realTimeYaw, realTimeRoll);
+    }
+
     // Update is called once per frame
     void Update()
     {

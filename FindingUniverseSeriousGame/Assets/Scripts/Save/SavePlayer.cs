@@ -42,11 +42,9 @@ public class SavePlayer : MonoBehaviour, IHandleJSON
                 positionPlayerZ = playerPosition.position.z,
 
                 //rotation
-                rotationPlayerX = playerPosition.rotation.x,
-                rotationPlayerY = playerPosition.rotation.y,
-                rotationPlayerZ = playerPosition.rotation.z,
-                rotationPlayerW = playerPosition.rotation.w,
-
+                rotationPlayerX = playerPosition.eulerAngles.x,
+                rotationPlayerY = playerPosition.eulerAngles.y,
+                rotationPlayerZ = playerPosition.eulerAngles.z,
 
                 //battery
                 battery = ManagerHandler.ManagerInstance.BatteryManager.GetCurrentBattery(),
@@ -61,10 +59,9 @@ public class SavePlayer : MonoBehaviour, IHandleJSON
             playerDataDictionary[keyPlayer].positionPlayerY = playerPosition.position.y;
             playerDataDictionary[keyPlayer].positionPlayerZ = playerPosition.position.z;
             //rotation
-            playerDataDictionary[keyPlayer].rotationPlayerX = playerPosition.rotation.x;
-            playerDataDictionary[keyPlayer].rotationPlayerY = playerPosition.rotation.y;
-            playerDataDictionary[keyPlayer].rotationPlayerZ = playerPosition.rotation.z;
-            playerDataDictionary[keyPlayer].rotationPlayerW = playerPosition.rotation.w;
+            playerDataDictionary[keyPlayer].rotationPlayerX = playerPosition.eulerAngles.x;
+            playerDataDictionary[keyPlayer].rotationPlayerY = playerPosition.eulerAngles.y;
+            playerDataDictionary[keyPlayer].rotationPlayerZ = playerPosition.eulerAngles.z;
 
             //battery
             playerDataDictionary[keyPlayer].battery = ManagerHandler.ManagerInstance.BatteryManager.GetCurrentBattery();
@@ -125,6 +122,10 @@ public class SavePlayer : MonoBehaviour, IHandleJSON
         if (playerDataDictionary.TryGetValue("PlayerData", out PlayerData playerData))
         {
             playerPosition.position = new Vector3(playerData.positionPlayerX, playerData.positionPlayerY, playerData.positionPlayerZ);
+
+            MovimentoNavicella MV = playerPosition.GetComponent<MovimentoNavicella>();
+            MV.SetRotationFromSave(playerData.rotationPlayerX, playerData.rotationPlayerY, playerData.rotationPlayerZ);
+
             ManagerHandler.ManagerInstance.BatteryManager.SetCurrentBattery(playerData.battery);
             ManagerHandler.ManagerInstance.LifeManager.SetCurrentLife(playerData.life);
             Debug.Log("Player data caricato");

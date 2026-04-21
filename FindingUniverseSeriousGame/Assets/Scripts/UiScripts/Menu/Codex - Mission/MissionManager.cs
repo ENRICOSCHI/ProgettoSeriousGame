@@ -209,7 +209,6 @@ public class MissionManager : MonoBehaviour,IHandleJSON
         #endregion
 
         PersistentSceneData.Instance.isChangingScene = false;
-        Debug.Log("load finito");
     }
     #endregion
 }

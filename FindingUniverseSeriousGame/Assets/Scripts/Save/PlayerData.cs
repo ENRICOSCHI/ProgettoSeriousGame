@@ -9,7 +9,6 @@ public class PlayerData
     public float rotationPlayerX;
     public float rotationPlayerY;
     public float rotationPlayerZ;
-    public float rotationPlayerW;
     public float battery;
     public float life;
 }
