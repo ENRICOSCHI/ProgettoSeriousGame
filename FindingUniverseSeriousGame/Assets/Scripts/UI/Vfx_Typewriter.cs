@@ -28,6 +28,11 @@ public class Vfx_Typewriter : MonoBehaviour  // Effetto graifco per scrivere il 
         }
     }
 
+    public void TypeSubtitle(string message)
+    {
+        textComponent.text = message;
+    }
+
     private void OnEnable()  // Svuota il testo ogni volta che l'oggetto viene attivato
     {
         // Recuperiamo il componente se è nullo

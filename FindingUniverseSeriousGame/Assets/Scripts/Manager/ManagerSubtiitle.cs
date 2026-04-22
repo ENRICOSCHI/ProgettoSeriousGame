@@ -15,17 +15,17 @@ public class ManagerSubtiitle : MonoBehaviour
             audioSourceSubtitles.Play();
         }
             
-
+        int subtitleLenght = subtitles.Length;
         foreach(Subtitles s in subtitles)
         {
-            yield return StartCoroutine(ShowSubtitle(s));
+            yield return StartCoroutine(ShowSubtitle(s,subtitleLenght));
         }
     }
 
-    IEnumerator ShowSubtitle(Subtitles subtitle)
+    IEnumerator ShowSubtitle(Subtitles subtitle, int numberSubtitles)
     {
         float durationClip = subtitle.timeEnd - subtitle.timeStart;
-        ManagerHandler.ManagerInstance.DialogueManager.ShowMessageForSubtitle(subtitle.phrase, durationClip);
+        ManagerHandler.ManagerInstance.DialogueManager.ShowMessageForSubtitle(subtitle.phrase, durationClip,numberSubtitles);
         yield return new WaitForSeconds(durationClip);
     }
 }

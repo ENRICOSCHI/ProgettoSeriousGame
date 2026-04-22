@@ -9,6 +9,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject prompText; // Per il prompt "Premi X per continuare"
 
     private Animator animDialogueBox;
+    private int iSubtitle = 0;
 
     private void OnEnable()
     {
@@ -87,13 +88,13 @@ public class DialogueManager : MonoBehaviour
     #endregion
 
     #region "Subtitle Box Function"
-    public void ShowMessageForSubtitle(string message, float durationEvent)
+    public void ShowMessageForSubtitle(string message, float durationEvent, int subtitleLenght)
     {
         dialogueGameObjectUI.SetActive(false);//resetto l'animazione, se tolgo questa riga l'animazione non sarà pulita al secondo richiamo del dialogue box
         dialogueGameObjectUI.SetActive(true);
 
         StopAllCoroutines();
-        StartCoroutine(DialogueBoxForSubtitle(message,durationEvent));
+        StartCoroutine(DialogueBoxForSubtitle(message,durationEvent,subtitleLenght));
     }
 
     /// <summary>
@@ -102,24 +103,32 @@ public class DialogueManager : MonoBehaviour
     /// <param name="message"></param>
     /// <param name="durationEvent"></param>
     /// <returns></returns>
-    private IEnumerator DialogueBoxForSubtitle(string message, float durationEvent)
+    private IEnumerator DialogueBoxForSubtitle(string message, float durationEvent, int subtitleLenght)
     {
+        if (iSubtitle == 0)
+        {
+            Debug.Log("show");
+            // 1. Chiedi alla UI di aprire la box
+            ShowPrompt(false); // Assicuriamoci che il prompt sia nascosto all'inizio
+            ShowBox();
+        }
 
-        // 1. Chiedi alla UI di aprire la box
-        ShowPrompt(false); // Assicuriamoci che il prompt sia nascosto all'inizio
-        ShowBox();
+        iSubtitle++; //aggiorno indice
+        Debug.Log("iSubtitle: " + iSubtitle + " lenght: " + subtitleLenght);
 
-        // 2. LOGICA "HANDSHAKE": Aspetto finchè l'animazione non è finita
-        yield return new WaitUntil(() => animDialogueBox.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f);
-        //yield return new WaitForSeconds(.5f);
-
-        yield return StartCoroutine(typewriter.TypeText(message));
+        typewriter.TypeSubtitle(message);
 
         //aspetto input
         yield return new WaitForSeconds(durationEvent);
 
-        // 3. Chiudi
-        HideBox();
+        if (iSubtitle  >= subtitleLenght)
+        {
+            Debug.Log("entrato");
+            // 2. Chiudi
+            HideBox();
+            iSubtitle = 0;
+        }
+        
     }
 
     #endregion
