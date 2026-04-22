@@ -26,4 +26,10 @@ public class DelegateClass
     /* Gestione Caricamento */
     public delegate void LoadEvent(bool isChangingLevel);
     public static LoadEvent LoadEventHandler;
+
+    /* Gestione Update Quest Data */
+    /*Il seguente evento è pensato in maniera specifica
+    per essere catturato dai vari script CheckPotenziamenti*/
+    public delegate void UpdateQuestDataEvent(CategoryMission[] categoryMissions);
+    public static UpdateQuestDataEvent UpdateQuestDataEventHandler;
 }
