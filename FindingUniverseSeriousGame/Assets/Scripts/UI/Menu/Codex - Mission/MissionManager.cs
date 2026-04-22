@@ -207,7 +207,11 @@ public class MissionManager : MonoBehaviour,IHandleJSON
             }
         }
         #endregion
-
+        #region "init missioni"
+        var missionsListContainer = FindObjectsByType<Quest_3_Script>(FindObjectsSortMode.None); // raccolgo tutte le missioni di tipo 3 presenti nella scene
+        //inizializzo tutte le missioni
+        foreach (var mission in missionsListContainer) mission.Init();
+        #endregion
         PersistentSceneData.Instance.isChangingScene = false;
     }
     #endregion
