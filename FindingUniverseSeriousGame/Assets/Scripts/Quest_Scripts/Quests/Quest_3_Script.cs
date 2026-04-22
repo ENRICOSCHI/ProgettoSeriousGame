@@ -9,9 +9,8 @@ public class Quest_3_Script : Quest_Generic_Script
 
     #region Configurazione variabili
 
+    [Tooltip("true: raccolta oggetti e ritorno al punto della quest; false: solo raccolta oggetti")]
     public bool doesReturnInPlace = false;
-    //true = raccolta oggetti e ritorno al punto della quest
-    //false = solo raccolta oggetti
 
     [Header("Quest Assets")]
     [Tooltip("Lista di riferimenti ai GameObject da far raccogliere")]

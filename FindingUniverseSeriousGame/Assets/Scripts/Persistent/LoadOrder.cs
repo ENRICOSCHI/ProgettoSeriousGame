@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class LoadOrder : MonoBehaviour
 {
@@ -7,7 +8,8 @@ public class LoadOrder : MonoBehaviour
     {
         // chiamo load Menu e Navicella
         DelegateClass.LoadEventHandler?.Invoke(PersistentSceneData.Instance.isChangingScene);
-        FindAnyObjectByType<Quest_3_Script>().Init();
+        var missionsListContainer = FindObjectsByType<Quest_3_Script>(FindObjectsSortMode.None); // raccolgo tutte le missioni di tipo 3 presenti nella scene
+        //inizializzo tutte le missioni
+        foreach(var mission in missionsListContainer) mission.Init();
     }
-
 }
