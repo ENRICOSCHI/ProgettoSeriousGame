@@ -135,6 +135,9 @@ public class DialogueManager : MonoBehaviour
             // 2. Chiudi
             HideBox();
             indexSubtitle = 0;
+            yield return new WaitForSeconds(1f);
+            dialogueGameObjectUI.SetActive(false);
+
         }
     }
 
