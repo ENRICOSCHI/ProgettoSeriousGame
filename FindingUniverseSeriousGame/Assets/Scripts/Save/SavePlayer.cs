@@ -8,7 +8,7 @@ public class SavePlayer : MonoBehaviour, IHandleJSON
 {
     [Header("Variabili del giocatore da salvare")]
     [SerializeField] private Transform playerPosition;
-    private string keyPlayer = "PlayerData";
+    private string KEYPLAYER = "PlayerData";
 
     void OnEnable()
     {
@@ -32,9 +32,9 @@ public class SavePlayer : MonoBehaviour, IHandleJSON
 
     public void SaveGame<TKey, TValue>(Dictionary<TKey, TValue> data)
     {
-        if (!playerDataDictionary.ContainsKey("PlayerData"))
+        if (!playerDataDictionary.ContainsKey(KEYPLAYER))
         {
-            playerDataDictionary.Add("PlayerData", new PlayerData
+            playerDataDictionary.Add(KEYPLAYER, new PlayerData
             {
                 //position
                 positionPlayerX = playerPosition.position.x,
@@ -55,18 +55,18 @@ public class SavePlayer : MonoBehaviour, IHandleJSON
         else
         {
             //position
-            playerDataDictionary[keyPlayer].positionPlayerX = playerPosition.position.x;
-            playerDataDictionary[keyPlayer].positionPlayerY = playerPosition.position.y;
-            playerDataDictionary[keyPlayer].positionPlayerZ = playerPosition.position.z;
+            playerDataDictionary[KEYPLAYER].positionPlayerX = playerPosition.position.x;
+            playerDataDictionary[KEYPLAYER].positionPlayerY = playerPosition.position.y;
+            playerDataDictionary[KEYPLAYER].positionPlayerZ = playerPosition.position.z;
             //rotation
-            playerDataDictionary[keyPlayer].rotationPlayerX = playerPosition.eulerAngles.x;
-            playerDataDictionary[keyPlayer].rotationPlayerY = playerPosition.eulerAngles.y;
-            playerDataDictionary[keyPlayer].rotationPlayerZ = playerPosition.eulerAngles.z;
+            playerDataDictionary[KEYPLAYER].rotationPlayerX = playerPosition.eulerAngles.x;
+            playerDataDictionary[KEYPLAYER].rotationPlayerY = playerPosition.eulerAngles.y;
+            playerDataDictionary[KEYPLAYER].rotationPlayerZ = playerPosition.eulerAngles.z;
 
             //battery
-            playerDataDictionary[keyPlayer].battery = ManagerHandler.ManagerInstance.BatteryManager.GetCurrentBattery();
+            playerDataDictionary[KEYPLAYER].battery = ManagerHandler.ManagerInstance.BatteryManager.GetCurrentBattery();
             //life
-            playerDataDictionary[keyPlayer].life = ManagerHandler.ManagerInstance.LifeManager.GetCurrentLife();
+            playerDataDictionary[KEYPLAYER].life = ManagerHandler.ManagerInstance.LifeManager.GetCurrentLife();
         }
 
 
@@ -119,7 +119,7 @@ public class SavePlayer : MonoBehaviour, IHandleJSON
         #endregion
 
         #region Assegnazione Dati al Giocatore 
-        if (playerDataDictionary.TryGetValue("PlayerData", out PlayerData playerData))
+        if (playerDataDictionary.TryGetValue(KEYPLAYER, out PlayerData playerData))
         {
             playerPosition.position = new Vector3(playerData.positionPlayerX, playerData.positionPlayerY, playerData.positionPlayerZ);
 

@@ -9,7 +9,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject prompText; // Per il prompt "Premi X per continuare"
 
     private Animator animDialogueBox;
-    private int iSubtitle = 0;
+    private int indexSubtitle = 0;
 
     private void OnEnable()
     {
@@ -90,7 +90,6 @@ public class DialogueManager : MonoBehaviour
     #region "Subtitle Box Function"
     public void ShowMessageForSubtitle(string message, float durationEvent, int subtitleLenght)
     {
-        dialogueGameObjectUI.SetActive(false);//resetto l'animazione, se tolgo questa riga l'animazione non sarà pulita al secondo richiamo del dialogue box
         dialogueGameObjectUI.SetActive(true);
 
         StopAllCoroutines();
@@ -105,30 +104,28 @@ public class DialogueManager : MonoBehaviour
     /// <returns></returns>
     private IEnumerator DialogueBoxForSubtitle(string message, float durationEvent, int subtitleLenght)
     {
-        if (iSubtitle == 0)
+        //se è il primo sottotitolo...
+        if (indexSubtitle == 0)
         {
-            Debug.Log("show");
             // 1. Chiedi alla UI di aprire la box
             ShowPrompt(false); // Assicuriamoci che il prompt sia nascosto all'inizio
             ShowBox();
         }
 
-        iSubtitle++; //aggiorno indice
-        Debug.Log("iSubtitle: " + iSubtitle + " lenght: " + subtitleLenght);
+        indexSubtitle++; //aggiorno indice
 
-        typewriter.TypeSubtitle(message);
+        typewriter.TypeSubtitle(message); //scrivo nella textBox
 
         //aspetto input
         yield return new WaitForSeconds(durationEvent);
 
-        if (iSubtitle  >= subtitleLenght)
+        //se siamo arrivati all'ultimo sottotitolo...
+        if (indexSubtitle  >= subtitleLenght)
         {
-            Debug.Log("entrato");
             // 2. Chiudi
             HideBox();
-            iSubtitle = 0;
+            indexSubtitle = 0;
         }
-        
     }
 
     #endregion
