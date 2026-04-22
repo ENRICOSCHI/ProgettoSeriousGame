@@ -9,8 +9,10 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject prompText; // Per il prompt "Premi X per continuare"
 
     private Animator animDialogueBox;
+    #region"gestione variabili sottotitoli"
     private int indexSubtitle = 0;
-
+    private int oldSubtitleLenght = 0; //variabile per tenere conto se l'indice deve essere riazzerato o no
+    #endregion "gestione variabili sottotitoli"
     private void OnEnable()
     {
         DelegateClass.DialogueBoxEventsHandler += ShowMessage;
@@ -90,7 +92,15 @@ public class DialogueManager : MonoBehaviour
     #region "Subtitle Box Function"
     public void ShowMessageForSubtitle(string message, float durationEvent, int subtitleLenght)
     {
-        dialogueGameObjectUI.SetActive(true);
+        //se la lunghezza dei sottotitoli è differente, molto probabilmente è cambiato il dialogo <-- quel probabilmente non mi piace quindi come si può capire questo if non mi piace troppo
+        if (oldSubtitleLenght != subtitleLenght) { indexSubtitle = 0; oldSubtitleLenght = subtitleLenght; }
+
+        //se è il primo sottotitolo riavvia la UI della messageBox
+        if(indexSubtitle == 0)
+        {
+            dialogueGameObjectUI.SetActive(false);
+            dialogueGameObjectUI.SetActive(true);
+        }
 
         StopAllCoroutines();
         StartCoroutine(DialogueBoxForSubtitle(message,durationEvent,subtitleLenght));

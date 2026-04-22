@@ -40,8 +40,8 @@ public class Vfx_Typewriter : MonoBehaviour  // Effetto graifco per scrivere il 
             textComponent = GetComponent<TMP_Text>();
 
         // Svuotiamo il testo nell'istante esatto dell'accensione
-        if (textComponent != null)
-            textComponent.text = "";
+        /*if (textComponent != null)
+            textComponent.text = "";*/
     }
 
     /// <summary>

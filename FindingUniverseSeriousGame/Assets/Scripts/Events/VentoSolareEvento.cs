@@ -6,8 +6,7 @@ public class VentoSolareEvento : Eventi
     [Header("Gestione tempo vento solare")]
     [SerializeField] int tempoMINIMO = 5;
     [SerializeField] int tempoMASSIMO = 15;
-    [SerializeField] int durataEvento = 5;
-    [SerializeField] int entryIndex = 1;
+    [SerializeField] int durataEvento = 5; 
 
 
     [ContextMenu("Test Evento Vento Solare")]
@@ -42,7 +41,7 @@ public class VentoSolareEvento : Eventi
         if (!ManagerHandler.ManagerInstance.CodexManager.categoryLists[1].entries[1].isDiscovered)
         {
             ActiveSubtitlesWithAudio();
-            ManagerHandler.ManagerInstance.CodexManager.UnlockMenuEntry(1, entryIndex);
+            UnlockOnCodexMenu();
         }
         NotificaPersonalizzata(notificaMessaggio[0]);
         DelegateClass.VentoSolareEventsHandler?.Invoke(true);

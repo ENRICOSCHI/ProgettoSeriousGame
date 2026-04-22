@@ -216,6 +216,76 @@ MonoBehaviour:
   yawUIText: {fileID: 0}
   pitchUIText: {fileID: 0}
   rollUIText: {fileID: 0}
+--- !u!1 &2477168957277136257
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6835702043072946988}
+  - component: {fileID: 2657563182686108242}
+  - component: {fileID: 6059284917365842218}
+  m_Layer: 0
+  m_Name: VFXManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6835702043072946988
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2477168957277136257}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5698369315328781363}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2657563182686108242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2477168957277136257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7584ee425e4e94aaa34ce61157a71a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  engineFlareMain: {fileID: 0}
+  engineFlareLeft: {fileID: 0}
+  engineFlareRight: {fileID: 0}
+  minFlareSpeed: 2
+  maxFlareSpeed: 20
+  minEmission: 8
+  maxEmission: 1000
+  minFlareColor: {r: 0, g: 0.3679245, b: 0.3679245, a: 1}
+  maxFlareColor: {r: 0.4745098, g: 0.7471792, b: 0.8160377, a: 1}
+  thrusterRampSpeed: 5
+  shipMovement: {fileID: 0}
+--- !u!114 &6059284917365842218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2477168957277136257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc1de94e47c036d4da559fedd97d2f4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  managerLife: {fileID: 8018665278820965723}
+  impactVfx: {fileID: 0}
 --- !u!1 &2527447485477781050
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,6 +418,7 @@ Transform:
   - {fileID: 2592700826234095648}
   - {fileID: 7810444209020654733}
   - {fileID: 7311296465601690894}
+  - {fileID: 6835702043072946988}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2227621358879324505
