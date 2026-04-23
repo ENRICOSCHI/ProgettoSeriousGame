@@ -19,5 +19,14 @@ MonoBehaviour:
   album: Pacific
   year: 1978
   songIDCodex: 7
-  songDescription: A causa dell'alto livello di stress, abbiamo deciso di inserire
-    questa canzone nei sistemi di bordo. Dicono aiuti a rilassarsi. La Orana!
+  subtitleAudioClip: {fileID: 8300000, guid: 51f9351ade61fc54e8e2876be6cbfc3c, type: 3}
+  subtitles:
+  - phrase: "Con le sonorit\xE0 liquide del brano,"
+    timeStart: 0
+    timeEnd: 2
+  - phrase: la mente viene trasportata sulle coste dell'oceano Pacifico,
+    timeStart: 2
+    timeEnd: 6
+  - phrase: ponendo le basi per il genere "Resort Pop".
+    timeStart: 6
+    timeEnd: 9

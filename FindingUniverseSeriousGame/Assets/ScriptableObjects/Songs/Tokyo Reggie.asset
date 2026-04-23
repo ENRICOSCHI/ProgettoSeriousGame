@@ -19,5 +19,12 @@ MonoBehaviour:
   album: Seychelles
   year: 1976
   songIDCodex: 0
-  songDescription: RoverX, mantenere traiettoria di volo. Non abbiamo di certo una
-    tavola da surf, ma cerca di controllarti.
+  subtitleAudioClip: {fileID: 8300000, guid: 54169f9bbf709a744a8864d307bc2149, type: 3}
+  subtitles:
+  - phrase: torica canzone che ha plasmato il sound conosciuto oggi come City Pop
+      giapponese.
+    timeStart: 0
+    timeEnd: 4.5
+  - phrase: Mischia ritmi reggae tropicali alla sofisticata atmosfera di Tokyo.
+    timeStart: 4.5
+    timeEnd: 9

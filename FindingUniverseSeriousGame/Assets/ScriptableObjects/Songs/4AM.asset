@@ -19,5 +19,14 @@ MonoBehaviour:
   album: Mignonne
   year: 1978
   songIDCodex: 3
-  songDescription: RoverX, a qualsiasi costo, noi non ti abbandoneremo. Non rimarrai
-    mai da solo.
+  subtitleAudioClip: {fileID: 8300000, guid: 18c55f027a6fb044682fe6dcdf0fccf5, type: 3}
+  subtitles:
+  - phrase: Questo brano racchiude le sensazioni della solitudine metropolitana.
+    timeStart: 0
+    timeEnd: 4
+  - phrase: all'epoca della sua uscita, l'album fu un fallimento commerciale,
+    timeStart: 4
+    timeEnd: 9
+  - phrase: riscoperto poi in tempi recenti e rivalutato come fenomeno internazionale.
+    timeStart: 9
+    timeEnd: 14

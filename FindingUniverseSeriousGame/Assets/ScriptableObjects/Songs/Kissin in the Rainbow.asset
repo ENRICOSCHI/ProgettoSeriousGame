@@ -19,6 +19,11 @@ MonoBehaviour:
   album: Bourbon Suite
   year: 1982
   songIDCodex: 1
-  songDescription: RoverX, abbiamo un problema. Pare che il sistema AI della nave
-    sia... allegro. Sembra che queste frequenze elettroniche si allineino bene con
-    il suo clock di sistema.
+  subtitleAudioClip: {fileID: 8300000, guid: f73eb07aa11980045a233062de98e91f, type: 3}
+  subtitles:
+  - phrase: 'Brano degli anni Settanta che racchiude nei suoi suoni sintetici '
+    timeStart: 0
+    timeEnd: 3.5
+  - phrase: l'effervescenza della "Bubble Era" economica giapponese di quel periodo.
+    timeStart: 3.5
+    timeEnd: 7.5
