@@ -64,6 +64,10 @@ public class MissionManager : MonoBehaviour,IHandleJSON
                     categoryLists[categoryIndex].entries[entryIndex].isCompleted = isCompleted
                 );
 
+                /*Il seguente evento è pensato per essere catturato da CheckPotenziamenti, 
+                al fine di sbloccare potenziamenti legati a quest specifiche.*/
+                DelegateClass.UpdateQuestDataEventHandler?.Invoke(categoryLists);
+
                 Debug.Log($"Menu Aggiornato: Sbloccato {categoryLists[categoryIndex].entries[entryIndex].realName}!");
             }
         }
@@ -91,6 +95,10 @@ public class MissionManager : MonoBehaviour,IHandleJSON
                     categoryLists[categoryIndex].entries[entryIndex].amount,
                     nomeOggettoSbloccato
                 );
+
+                /*Il seguente evento è pensato per essere catturato da CheckPotenziamenti, 
+                al fine di sbloccare potenziamenti legati a quest specifiche.*/
+                DelegateClass.UpdateQuestDataEventHandler?.Invoke(categoryLists);
             }
         }
     }
