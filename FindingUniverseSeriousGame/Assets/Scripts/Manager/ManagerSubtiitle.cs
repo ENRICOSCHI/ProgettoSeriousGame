@@ -55,7 +55,7 @@ public class ManagerSubtiitle : MonoBehaviour
     IEnumerator ShowSubtitle(Subtitles subtitle, int numberSubtitles)
     {
         float durationClip = subtitle.timeEnd - subtitle.timeStart;
-        ManagerHandler.ManagerInstance.DialogueManager.ShowMessageForSubtitle(subtitle.phrase, durationClip,numberSubtitles);
+        ManagerHandler.ManagerInstance.DialogueManager.ShowMessageForSubtitle(subtitle.phrase, durationClip,numberSubtitles,subtitle.subtitleID);
         yield return new WaitForSeconds(durationClip);
     }
 }

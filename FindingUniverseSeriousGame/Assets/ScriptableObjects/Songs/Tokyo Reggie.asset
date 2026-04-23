@@ -21,10 +21,12 @@ MonoBehaviour:
   songIDCodex: 0
   subtitleAudioClip: {fileID: 8300000, guid: 54169f9bbf709a744a8864d307bc2149, type: 3}
   subtitles:
-  - phrase: torica canzone che ha plasmato il sound conosciuto oggi come City Pop
+  - subtitleID: M000
+    phrase: torica canzone che ha plasmato il sound conosciuto oggi come City Pop
       giapponese.
     timeStart: 0
     timeEnd: 4.5
-  - phrase: Mischia ritmi reggae tropicali alla sofisticata atmosfera di Tokyo.
+  - subtitleID: M000
+    phrase: Mischia ritmi reggae tropicali alla sofisticata atmosfera di Tokyo.
     timeStart: 4.5
     timeEnd: 9

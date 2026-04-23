@@ -11,7 +11,7 @@ public class DialogueManager : MonoBehaviour
     private Animator animDialogueBox;
     #region"gestione variabili sottotitoli"
     private int indexSubtitle = 0;
-    private int oldSubtitleLenght = 0; //variabile per tenere conto se l'indice deve essere riazzerato o no
+    private string oldSubtitleID = ""; //variabile per tenere conto se l'indice deve essere riazzerato o no
     #endregion "gestione variabili sottotitoli"
     private void OnEnable()
     {
@@ -90,10 +90,10 @@ public class DialogueManager : MonoBehaviour
     #endregion
 
     #region "Subtitle Box Function"
-    public void ShowMessageForSubtitle(string message, float durationEvent, int subtitleLenght)
+    public void ShowMessageForSubtitle(string message, float durationEvent, int subtitleLenght, string subtitleID)
     {
         //se la lunghezza dei sottotitoli è differente, molto probabilmente è cambiato il dialogo <-- quel probabilmente non mi piace quindi come si può capire questo if non mi piace troppo
-        if (oldSubtitleLenght != subtitleLenght) { indexSubtitle = 0; oldSubtitleLenght = subtitleLenght; }
+        if (oldSubtitleID != subtitleID) { indexSubtitle = 0; oldSubtitleID = subtitleID; }
 
         //se è il primo sottotitolo riavvia la UI della messageBox
         if(indexSubtitle == 0)

@@ -21,9 +21,11 @@ MonoBehaviour:
   songIDCodex: 5
   subtitleAudioClip: {fileID: 8300000, guid: 120874fbece5c6f44b60422a4785ae40, type: 3}
   subtitles:
-  - phrase: "\xC8 una canzone che rappresenta le emozioni della guida notturna."
+  - subtitleID: M005
+    phrase: "\xC8 una canzone che rappresenta le emozioni della guida notturna."
     timeStart: 0
     timeEnd: 4
-  - phrase: Anche la stessa copertina dell'album riflette questa immagine.
+  - subtitleID: M005
+    phrase: Anche la stessa copertina dell'album riflette questa immagine.
     timeStart: 4
     timeEnd: 8

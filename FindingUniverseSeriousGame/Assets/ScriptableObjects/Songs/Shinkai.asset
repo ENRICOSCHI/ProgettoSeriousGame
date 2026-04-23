@@ -21,13 +21,16 @@ MonoBehaviour:
   songIDCodex: 4
   subtitleAudioClip: {fileID: 8300000, guid: 4f2a1f29925aa6145b5474fcf8f541a8, type: 3}
   subtitles:
-  - phrase: "Il titolo originale della canzone pu\xF2 essere tradotto come \"Mare
+  - subtitleID: M004
+    phrase: "Il titolo originale della canzone pu\xF2 essere tradotto come \"Mare
       del Cuore\"."
     timeStart: 0
     timeEnd: 4.5
-  - phrase: La canzone fa parte della colonna sonora del film d'animazione Josee,
+  - subtitleID: M004
+    phrase: La canzone fa parte della colonna sonora del film d'animazione Josee,
     timeStart: 4.5
     timeEnd: 8
-  - phrase: la tigre e il pesce.
+  - subtitleID: M004
+    phrase: la tigre e il pesce.
     timeStart: 8
     timeEnd: 10.5

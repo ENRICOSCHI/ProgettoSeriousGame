@@ -21,12 +21,15 @@ MonoBehaviour:
   songIDCodex: 2
   subtitleAudioClip: {fileID: 8300000, guid: 6422aab40eefc5b44814b99f2d29f683, type: 3}
   subtitles:
-  - phrase: "La band \xE8 conosciuta per creare, "
+  - subtitleID: M002
+    phrase: "La band \xE8 conosciuta per creare, "
     timeStart: 0
     timeEnd: 3
-  - phrase: anche dal vivo, suoni estremamente complessi e stratificati.
+  - subtitleID: M002
+    phrase: anche dal vivo, suoni estremamente complessi e stratificati.
     timeStart: 3
     timeEnd: 6
-  - phrase: "Questa canzone \xE8 un inno all'eleganza notturna."
+  - subtitleID: M002
+    phrase: "Questa canzone \xE8 un inno all'eleganza notturna."
     timeStart: 6
     timeEnd: 9.5
