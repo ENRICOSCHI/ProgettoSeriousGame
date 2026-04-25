@@ -32,6 +32,7 @@ public class SavePlayer : MonoBehaviour, IHandleJSON
 
     public void SaveGame<TKey, TValue>(Dictionary<TKey, TValue> data)
     {
+        //se non sono stati creati dati per il player, li creo...
         if (!playerDataDictionary.ContainsKey(KEYPLAYER))
         {
             playerDataDictionary.Add(KEYPLAYER, new PlayerData
@@ -52,7 +53,7 @@ public class SavePlayer : MonoBehaviour, IHandleJSON
                 life = ManagerHandler.ManagerInstance.LifeManager.GetCurrentLife()
             });
         }
-        else
+        else //... altrimenti li sovrascrivo
         {
             //position
             playerDataDictionary[KEYPLAYER].positionPlayerX = playerPosition.position.x;
@@ -111,23 +112,22 @@ public class SavePlayer : MonoBehaviour, IHandleJSON
         #region Fetch Dati dal JSON
 
         if (isChangingLevel) return;
-
-        Dictionary<string, PlayerData> data = new();
+        
         if (!CheckJsonFile()) return;
 
         playerDataDictionary = LoadJson<string, PlayerData>();
         #endregion
 
         #region Assegnazione Dati al Giocatore 
-        if (playerDataDictionary.TryGetValue(KEYPLAYER, out PlayerData playerData))
+        if (playerDataDictionary.ContainsKey(KEYPLAYER))
         {
-            playerPosition.position = new Vector3(playerData.positionPlayerX, playerData.positionPlayerY, playerData.positionPlayerZ);
+            playerPosition.position = new Vector3(playerDataDictionary[KEYPLAYER].positionPlayerX, playerDataDictionary[KEYPLAYER].positionPlayerY, playerDataDictionary[KEYPLAYER].positionPlayerZ);
 
             MovimentoNavicella MV = playerPosition.GetComponent<MovimentoNavicella>();
-            MV.SetRotationFromSave(playerData.rotationPlayerX, playerData.rotationPlayerY, playerData.rotationPlayerZ);
+            MV.SetRotationFromSave(playerDataDictionary[KEYPLAYER].rotationPlayerX, playerDataDictionary[KEYPLAYER].rotationPlayerY, playerDataDictionary[KEYPLAYER].rotationPlayerZ);
 
-            ManagerHandler.ManagerInstance.BatteryManager.SetCurrentBattery(playerData.battery);
-            ManagerHandler.ManagerInstance.LifeManager.SetCurrentLife(playerData.life);
+            ManagerHandler.ManagerInstance.BatteryManager.SetCurrentBattery(playerDataDictionary[KEYPLAYER].battery);
+            ManagerHandler.ManagerInstance.LifeManager.SetCurrentLife(playerDataDictionary[KEYPLAYER].life);
             Debug.Log("Player data caricato");
         }
         else

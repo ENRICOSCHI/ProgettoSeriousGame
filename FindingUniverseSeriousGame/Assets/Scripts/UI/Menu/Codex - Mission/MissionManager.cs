@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class MissionManager : MonoBehaviour,IHandleJSON
+public class MissionManager : MonoBehaviour, IHandleJSON
 {
     #region Inizializzazione variabili
     [Header("Struttura Missions (Il Database)")]
@@ -195,21 +195,17 @@ public class MissionManager : MonoBehaviour,IHandleJSON
             {
                 foreach (var entry in category.entries)
                 {
-                    foreach (var key in data.Keys)
+                    if (data.TryGetValue(entry.ID, out QuestData q))
                     {
-                        if (data.TryGetValue(entry.ID, out QuestData q))
-                        {
-                            entry.isStarted = q.isStarted;
-                            entry.isCompleted = q.isCompleted;
-                            entry.isDiscovered = q.isDiscovered;
-                            entry.amount = q.amountProgress;
-                        }
-                        else
-                        {
-                            category.categoryList.SetActive(false);
-                            category.isOpen = false;
-                        }
-
+                        entry.isStarted = q.isStarted;
+                        entry.isCompleted = q.isCompleted;
+                        entry.isDiscovered = q.isDiscovered;
+                        entry.amount = q.amountProgress;
+                    }
+                    else
+                    {
+                        category.categoryList.SetActive(false);
+                        category.isOpen = false;
                     }
                 }
             }

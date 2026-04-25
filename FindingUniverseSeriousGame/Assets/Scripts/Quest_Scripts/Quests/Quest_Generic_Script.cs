@@ -8,7 +8,7 @@ public enum interactableType { scan, keyWord }
 public abstract class Quest_Generic_Script : MonoBehaviour
 {
     public string questName;
-    public string idCodex;
+    public string idMissionCodex;
     
     [Tooltip("Indica la categoria del codex (Es. Pianeti, Eventi...)")]
     public int indiceCategory = -1;
@@ -44,11 +44,11 @@ public abstract class Quest_Generic_Script : MonoBehaviour
         if (QuestManager_Script.instance != null)  // Se l'istanza della quest esiste, assegna i parametri
         {
             //controllo se esite la chiave nel codice...
-            if (QuestManager_Script.instance.GetQuestDataDictionary().ContainsKey(idCodex))
+            if (QuestManager_Script.instance.GetQuestDataDictionary().ContainsKey(idMissionCodex))
             {
                 //aggiorno con i valori caricati dal salvataggio precedente
-                questStarted = QuestManager_Script.instance.GetQuestDataDictionary()[idCodex].isStarted;
-                questCompleted = QuestManager_Script.instance.GetQuestDataDictionary()[idCodex].isCompleted;
+                questStarted = QuestManager_Script.instance.GetQuestDataDictionary()[idMissionCodex].isStarted;
+                questCompleted = QuestManager_Script.instance.GetQuestDataDictionary()[idMissionCodex].isCompleted;
             }
         }
         else Debug.LogWarning("QuestManager_Script non trovato in scena.");

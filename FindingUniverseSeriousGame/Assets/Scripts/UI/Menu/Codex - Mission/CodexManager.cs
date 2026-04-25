@@ -120,18 +120,14 @@ public class CodexManager : MonoBehaviour, IHandleJSON
             {
                 foreach (var entry in category.entries)
                 {
-                    foreach (var key in OggettiSbloccatiDizionario.Keys)
+                    if (OggettiSbloccatiDizionario.TryGetValue(entry.ID, out bool isDiscovered))
                     {
-                        if (OggettiSbloccatiDizionario.TryGetValue(entry.ID, out bool isDiscovered))
-                        {
-                            entry.isDiscovered = isDiscovered;
-                        }
-                        else
-                        {
-                            category.categoryList.SetActive(false);
-                            category.isOpen = false;
-                        }
-
+                        entry.isDiscovered = isDiscovered;
+                    }
+                    else
+                    {
+                        category.categoryList.SetActive(false);
+                        category.isOpen = false;
                     }
                 }
             }
