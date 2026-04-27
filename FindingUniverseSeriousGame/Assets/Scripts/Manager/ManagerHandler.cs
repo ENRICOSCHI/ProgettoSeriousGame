@@ -17,6 +17,7 @@ public class ManagerHandler : MonoBehaviour
     public SFXManager SFXManager { get; private set; }
     public ManagerSubtiitle SubtitleManager { get; private set; }
     public SaveManager SaveManager { get; private set; }
+    public ManagerScene SceneManager { get; private set; }
 
 
     //controllo che effettivamente sia l'unico oggetto attivo nelle scene (singleton)
@@ -49,6 +50,7 @@ public class ManagerHandler : MonoBehaviour
         SFXManager = GetComponentInChildren<SFXManager>();
         SubtitleManager = GetComponentInChildren<ManagerSubtiitle>();
         SaveManager = GetComponentInChildren<SaveManager>();
+        SceneManager = GetComponentInChildren<ManagerScene>();
 
 
         // La barra della vita si allinea ai valori attuali al primo frame

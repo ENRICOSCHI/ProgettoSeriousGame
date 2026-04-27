@@ -18,6 +18,7 @@ public class PersistentSceneData : MonoBehaviour, IHandleJSON
     [HideInInspector] public bool isDescriptionUmbraHappened = false;
     [HideInInspector] public bool isDescriptionFiondaHappened = false;
     [HideInInspector] public bool isDescriptionVentoSolareHappened = false;
+    [HideInInspector] public bool isChangeSceneUnlocked = false;
 #endregion
 
 #region "Unity Methods"
@@ -101,7 +102,9 @@ public class PersistentSceneData : MonoBehaviour, IHandleJSON
             {
                 DescriptionFiondaHappened = isDescriptionFiondaHappened,
                 DescriptionUmbraHappened = isDescriptionUmbraHappened,
-                DescriptionVentoSolareHappened = isDescriptionVentoSolareHappened
+                DescriptionVentoSolareHappened = isDescriptionVentoSolareHappened,
+                ChangeSceneUnlcoked = isChangeSceneUnlocked
+
             });
         }
         else
@@ -109,6 +112,7 @@ public class PersistentSceneData : MonoBehaviour, IHandleJSON
             persistentSceneDataDictionary[KEYPERSISTENTSCENEDATA].DescriptionFiondaHappened = isDescriptionFiondaHappened;
             persistentSceneDataDictionary[KEYPERSISTENTSCENEDATA].DescriptionUmbraHappened = isDescriptionUmbraHappened;
             persistentSceneDataDictionary[KEYPERSISTENTSCENEDATA].DescriptionVentoSolareHappened = isDescriptionVentoSolareHappened;
+            persistentSceneDataDictionary[KEYPERSISTENTSCENEDATA].ChangeSceneUnlcoked = isChangeSceneUnlocked;
         }
 
         string path = ManagerHandler.ManagerInstance.SaveManager.GetPathForPersistentSceneData();
@@ -128,4 +132,5 @@ public class FlagSavableData
     public bool DescriptionUmbraHappened;
     public bool DescriptionFiondaHappened;
     public bool DescriptionVentoSolareHappened;
+    public bool ChangeSceneUnlcoked;
 }

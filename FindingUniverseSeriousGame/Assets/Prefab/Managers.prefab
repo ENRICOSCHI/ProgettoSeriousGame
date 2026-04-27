@@ -331,6 +331,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSourceSubtitles: {fileID: 0}
+  audioSourceMusic: {fileID: 0}
+  volumeMusicDuringSubtitle: 0.5
 --- !u!1 &2596436358536219738
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,6 +421,7 @@ Transform:
   - {fileID: 7810444209020654733}
   - {fileID: 7311296465601690894}
   - {fileID: 6835702043072946988}
+  - {fileID: 3527946302284557998}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2227621358879324505
@@ -872,6 +875,50 @@ MonoBehaviour:
         strumentale che evocasse \"l'idea\" delle isole dell'oceano Pacifico. Questo
         esperimento sonoro pose le basi per il genere \"Resort Pop\"."
       isDiscovered: 0
+--- !u!1 &4337573965766626787
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3527946302284557998}
+  - component: {fileID: 8865875272088067969}
+  m_Layer: 0
+  m_Name: SceneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3527946302284557998
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4337573965766626787}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5698369315328781363}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8865875272088067969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4337573965766626787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caf3f74b9495a954fa776dc5b6d7287b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7776202616573886855
 GameObject:
   m_ObjectHideFlags: 0
