@@ -42,6 +42,7 @@ public class VentoSolareEvento : Eventi
         {
             ActiveSubtitlesWithAudio();
             UnlockOnCodexMenu();
+            PersistentSceneData.Instance.isDescriptionVentoSolareHappened = true;
         }
         NotificaPersonalizzata(notificaMessaggio[0]);
         DelegateClass.VentoSolareEventsHandler?.Invoke(true);

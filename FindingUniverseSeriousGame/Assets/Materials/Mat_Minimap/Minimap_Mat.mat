@@ -56,7 +56,7 @@ Material:
     - _QueueOffset: 0
     - _Scanline_Density: 1026.3
     - _Scanline_Speed: 0.05
-    - _Unscaled_Time: 31.83519
+    - _Unscaled_Time: 23.624624
     m_Colors:
     - _Color: {r: 0.0628272, g: 1.633507, b: 3.999999, a: 0}
   m_BuildTextureStacks: []
