@@ -19,5 +19,13 @@ MonoBehaviour:
   album: midnight cruisin
   year: 1982
   songIDCodex: 5
-  subtitleAudioClip: {fileID: 0}
-  subtitles: []
+  subtitleAudioClip: {fileID: 8300000, guid: 120874fbece5c6f44b60422a4785ae40, type: 3}
+  subtitles:
+  - subtitleID: M005
+    phrase: "\xC8 una canzone che rappresenta le emozioni della guida notturna."
+    timeStart: 0
+    timeEnd: 4
+  - subtitleID: M005
+    phrase: Anche la stessa copertina dell'album riflette questa immagine.
+    timeStart: 4
+    timeEnd: 8

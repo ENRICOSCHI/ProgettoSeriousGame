@@ -73,7 +73,7 @@ public class QuestManager_Script : MonoBehaviour
     /// Controllo se ho già sbloccato l'oggetto in un salvataggio precedente
     /// </summary>
     /// <param name="objectName"></param>
-    /// <returns></returns>
+    /// <returns>true: oggetto sbloccato<br>false: oggetto non sbloccato</br></returns>
     public bool CheckObjectAlreadyUnlocked(string idQuest, string objectName)
     {
         if (questDatabase.ContainsKey(idQuest))

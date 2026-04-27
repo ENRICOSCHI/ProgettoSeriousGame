@@ -24,8 +24,8 @@ public class Quest_2_Script : Quest_Generic_Script
     /// </remarks>
     public override void FinishQuest()
     {
-        // Controllo al fine di evitare lo sblocco multiplo di una stessa quest ricaricando la scena
-        if (QuestManager_Script.instance.GetQuestDataDictionary().ContainsKey(idCodex)) return;
+        // Controllo al fine di evitare lo sblocco multiplo di una stessa quest
+        if (QuestManager_Script.instance.GetQuestDataDictionary().ContainsKey(idMissionCodex)) return;
 
         questStarted = true;  
 

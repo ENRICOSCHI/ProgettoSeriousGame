@@ -20,9 +20,6 @@ public class UmbraEvento : Eventi
     private StatoOmbra _statoCorrente = StatoOmbra.Luce;
     private StatoOmbra _statoPrecedente = StatoOmbra.Luce;
 
-    // Flag per evitare di ripetere la descrizione ogni volta che si entra in umbra
-    private bool _descrizioneData = false;
-
     // Parametri dinamici del cono d'ombra, calcolati in base alla posizione di stella e pianeta
     private float _lunghezzaConoUmbra;
     private float _lunghezzaConoPenombra;
@@ -111,10 +108,11 @@ public class UmbraEvento : Eventi
 
             case StatoOmbra.Umbra:
                 NotificaPersonalizzata(notificaMessaggio[1]);
-                if (!_descrizioneData)
+                if (!PersistentSceneData.Instance.isDescriptionUmbraHappened)
                 {
                     ActiveSubtitlesWithAudio();
-                    _descrizioneData = true;
+                    UnlockOnCodexMenu();
+                    PersistentSceneData.Instance.isDescriptionUmbraHappened = true;
                 }
                 Debug.Log("[UmbraEvento] Entrata in UMBRA — buio totale.");
                 break;

@@ -14,6 +14,8 @@ public abstract class Eventi : MonoBehaviour
     [Header("Gestione notifiche")]
     public string[] notificaMessaggio;
     [SerializeField] Color notificationColor;
+    [Header("Gestione titolo nel codex")]
+    [SerializeField] int entryIndex = 1;
 
     /// <summary>
     /// Attivo i sottotitoli per questo evento
@@ -21,6 +23,14 @@ public abstract class Eventi : MonoBehaviour
     protected void ActiveSubtitlesWithAudio()
     {
         StartCoroutine(ManagerHandler.ManagerInstance.SubtitleManager.PlaySubtitle(subtitleDescriptionEvent,audioSubtitle));
+    }
+
+    /// <summary>
+    /// Sblocco il titolo nel codex
+    /// </summary>
+    protected void UnlockOnCodexMenu()
+    {
+        ManagerHandler.ManagerInstance.CodexManager.UnlockMenuEntry(1, entryIndex);
     }
 
     /// <summary>

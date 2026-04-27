@@ -19,5 +19,18 @@ MonoBehaviour:
   album: Kaizin
   year: 2020
   songIDCodex: 4
-  songDescription: Oceano profondo, eh? Speriamo che non porti sfortuna. Occhi aperti,
-    RoverX.
+  subtitleAudioClip: {fileID: 8300000, guid: 4f2a1f29925aa6145b5474fcf8f541a8, type: 3}
+  subtitles:
+  - subtitleID: M004
+    phrase: "Il titolo originale della canzone pu\xF2 essere tradotto come \"Mare
+      del Cuore\"."
+    timeStart: 0
+    timeEnd: 4.5
+  - subtitleID: M004
+    phrase: La canzone fa parte della colonna sonora del film d'animazione Josee,
+    timeStart: 4.5
+    timeEnd: 8
+  - subtitleID: M004
+    phrase: la tigre e il pesce.
+    timeStart: 8
+    timeEnd: 10.5

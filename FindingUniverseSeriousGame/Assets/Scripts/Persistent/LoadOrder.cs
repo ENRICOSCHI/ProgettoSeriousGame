@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class LoadOrder : MonoBehaviour
 {
@@ -7,7 +8,5 @@ public class LoadOrder : MonoBehaviour
     {
         // chiamo load Menu e Navicella
         DelegateClass.LoadEventHandler?.Invoke(PersistentSceneData.Instance.isChangingScene);
-        FindAnyObjectByType<Quest_3_Script>().Init();
     }
-
 }

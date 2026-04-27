@@ -9,9 +9,8 @@ public class Quest_3_Script : Quest_Generic_Script
 
     #region Configurazione variabili
 
+    [Tooltip("true: raccolta oggetti e ritorno al punto della quest; false: solo raccolta oggetti")]
     public bool doesReturnInPlace = false;
-    //true = raccolta oggetti e ritorno al punto della quest
-    //false = solo raccolta oggetti
 
     [Header("Quest Assets")]
     [Tooltip("Lista di riferimenti ai GameObject da far raccogliere")]
@@ -69,15 +68,15 @@ public class Quest_3_Script : Quest_Generic_Script
     public override void Init()
     {
         base.Init();
-        currentAmount = QuestManager_Script.instance.GetQuestAmount(idCodex);
+        currentAmount = QuestManager_Script.instance.GetQuestAmount(idMissionCodex);
         /* controllo se gli oggetti sono stati già sbloccati in un vecchio salvataggio */
         foreach(var oggetto in questItem)
         {
             //c'è un negato perchè se ritorna true l'oggetto deve scomparire
-            oggetto.SetActive(!QuestManager_Script.instance.CheckObjectAlreadyUnlocked(idCodex, oggetto.name));
+            oggetto.SetActive(!QuestManager_Script.instance.CheckObjectAlreadyUnlocked(idMissionCodex, oggetto.name));
             
             //se è false, quindi se l'oggetto non è stato raccolto...
-            if (!QuestManager_Script.instance.CheckObjectAlreadyUnlocked(idCodex, oggetto.name))
+            if (!QuestManager_Script.instance.CheckObjectAlreadyUnlocked(idMissionCodex, oggetto.name))
             {
                 oggetto.GetComponent<Collectable_Item_Quest3>().SetQuestScript(this);//gli assegno lo script
             }
