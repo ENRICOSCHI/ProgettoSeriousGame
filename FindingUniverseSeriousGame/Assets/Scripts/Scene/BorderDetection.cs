@@ -6,16 +6,20 @@ public class BorderDetection : MonoBehaviour
     [SerializeField] Transform spawnRedirect;
     [SerializeField] Transform navicellaTransform;
 
+    [Header("Scene to load reference")]
+    [SerializeField] string LEVELTOGO = "Level1";
+
     [Header("Warnign variables")] 
     [SerializeField] string messageError = "Non puoi ancora andare al prossimo livello";
     [SerializeField] Color messageColor;
+
 
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             if (PersistentSceneData.Instance.isChangeSceneUnlocked)
-                ManagerHandler.ManagerInstance.SceneManager.ChangeLevel();
+                ManagerHandler.ManagerInstance.SceneManager.ChangeLevel(LEVELTOGO);
             else
             {
                 //messaggio d'avviso

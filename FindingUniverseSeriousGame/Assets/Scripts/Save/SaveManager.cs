@@ -20,4 +20,5 @@ public class SaveManager : MonoBehaviour
     public string GetPathForMission() => Path.Combine(Application.persistentDataPath, "missionSave.json");
     public string GetPathForPlayer() => Path.Combine(Application.persistentDataPath, "playerSave.json");
     public string GetPathForPersistentSceneData() => Path.Combine(Application.persistentDataPath, "persistentSceneDataSave.json");
+    public string GetPathForScene() => Path.Combine(Application.persistentDataPath, "scene.json");
 }
