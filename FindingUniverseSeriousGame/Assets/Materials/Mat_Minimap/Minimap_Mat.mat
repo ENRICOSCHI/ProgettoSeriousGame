@@ -51,11 +51,11 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Fresnel_Power: 0.96
+    - _Fresnel_Power: 0.65
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Scanline_Density: 1026.3
-    - _Scanline_Speed: 0.05
+    - _Scanline_Density: 62.08
+    - _Scanline_Speed: 0.25
     - _Unscaled_Time: 27.238222
     m_Colors:
     - _Color: {r: 0.0628272, g: 1.633507, b: 3.999999, a: 0}

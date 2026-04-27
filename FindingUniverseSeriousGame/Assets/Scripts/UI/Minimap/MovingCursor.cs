@@ -3,28 +3,46 @@ using UnityEngine;
 public class MovingCursor : MonoBehaviour
 {
     [Header("Riferimenti")]
-    public Transform spaceship; // La nave nel mondo di gioco
-    public Transform worldCenter; // L'Empty GameObject al centro della mappa vera
-
-    [Header("Proporzione")]
-    [Tooltip("Quante volte è più piccolo il modellino rispetto al mondo? (Es. 100)")]
-    public float fattoreDiScala = 100f; 
+    public Transform naveReale;
+    public BoxCollider volumeMondo;
+    public BoxCollider volumeMinimappa;
 
     void Update()
     {
-        if (spaceship == null || worldCenter == null) return;
+        if (naveReale == null || volumeMondo == null || volumeMinimappa == null) return;
 
-        // 1. CALCOLO POSIZIONE
-        // Quanto è lontana la nave dal centro del mondo? (In metri)
-        Vector3 distanzaDalCentro = spaceship.position - worldCenter.position;
+        // --- 1. POSIZIONE PERFETTA ---
+        // Dove si trova la nave rispetto al centro del cubo gigante?
+        Vector3 posLocaleNave = volumeMondo.transform.InverseTransformPoint(naveReale.position);
 
-        // Rimpiccioliamo questa distanza usando il nostro fattore di scala
-        // Se la nave è a 1000 metri, e la scala è 100, il cursore si sposterà di 10 metri.
-        transform.localPosition = distanzaDalCentro / fattoreDiScala;
+        // Trasformiamo la posizione in percentuale (es. 0.5 = bordo)
+        float pctX = posLocaleNave.x / volumeMondo.size.x;
+        float pctY = posLocaleNave.y / volumeMondo.size.y;
+        float pctZ = posLocaleNave.z / volumeMondo.size.z;
 
-        // 2. CALCOLO ROTAZIONE
-        // Siccome i nostri oggetti "scatola" sono puliti a 0,0,0, possiamo 
-        // semplicemente copiare la rotazione spiaccicata identica!
-        transform.localRotation = spaceship.rotation;
+        // Proiettiamo la percentuale sulle dimensioni del cubo piccolo
+        Vector3 posLocaleMappa = new Vector3(
+            pctX * volumeMinimappa.size.x,
+            pctY * volumeMinimappa.size.y,
+            pctZ * volumeMinimappa.size.z
+        );
+
+        // Applichiamo la posizione assoluta (ignora le scale sballate dei genitori)
+        transform.position = volumeMinimappa.transform.TransformPoint(posLocaleMappa);
+        
+        // --- 2. ROTAZIONE CORRETTA (Metodo dei Vettori Infallibili) ---
+        // Qual è la direzione "Avanti" e "Alto" della nave rispetto al mondo?
+        Vector3 direzioneAvantiLocale = volumeMondo.transform.InverseTransformDirection(naveReale.forward);
+        Vector3 direzioneAltoLocale = volumeMondo.transform.InverseTransformDirection(naveReale.up);
+
+        // Traduciamo queste stesse direzioni dentro la minimappa
+        Vector3 direzioneAvantiMappa = volumeMinimappa.transform.TransformDirection(direzioneAvantiLocale);
+        Vector3 direzioneAltoMappa = volumeMinimappa.transform.TransformDirection(direzioneAltoLocale);
+
+        // Ruotiamo il cursore in quella precisa direzione assoluta
+        if (direzioneAvantiMappa != Vector3.zero)
+        {
+            transform.rotation = Quaternion.LookRotation(direzioneAvantiMappa, direzioneAltoMappa);
+        }
     }
 }
