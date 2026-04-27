@@ -192,4 +192,9 @@ public class MovimentoNavicella : MonoBehaviour
         currentSpeed = oldSpeed; // resetto velcità precedente
         isBoostActive = false;
     }
+
+    public void SetCurrentSpeed(float speed)
+    {
+        currentSpeed = speed;
+    }
 }

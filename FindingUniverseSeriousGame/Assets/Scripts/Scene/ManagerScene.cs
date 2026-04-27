@@ -7,6 +7,9 @@ public class ManagerScene : MonoBehaviour
     string LEVEL2 = "Level2";
     string MENU = "Menu";
 
+    /// <summary>
+    /// Cambio livello in base al livello corrente
+    /// </summary>
     public void ChangeLevel()
     {
         PersistentSceneData.Instance.isChangingScene = true;
@@ -18,8 +21,11 @@ public class ManagerScene : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Torno al menu
+    /// </summary>
     public void ChangeToMenu()
     {
-        /*implementare script per cambiare scena nel menu*/
+        /*implementare script per cambiare scena verso menu*/
     }
 }
