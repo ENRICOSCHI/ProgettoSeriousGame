@@ -19,6 +19,18 @@ MonoBehaviour:
   album: Tokyo Sniper
   year: 2006
   songIDCodex: 6
-  songDescription: "RoverX, i sistemi di bordo sono momentaneamente in stallo. La
-    data segnata \xE8 1982, ma tutti sappiamo che ormai \xE8 passato da un po'...
-    Vero?"
+  subtitleAudioClip: {fileID: 8300000, guid: e1e396426e7655e49af8261019430cc0, type: 3}
+  subtitles:
+  - subtitleID: M006
+    phrase: "La ricostruzione maniacale delle sonorit\xE0 anni Ottanta"
+    timeStart: 0
+    timeEnd: 3
+  - subtitleID: M006
+    phrase: ha permesso a questa canzone di essere classificata come un classico
+      senza tempo,
+    timeStart: 3
+    timeEnd: 7.5
+  - subtitleID: M006
+    phrase: "nonostante la sua giovane et\xE0."
+    timeStart: 7.5
+    timeEnd: 9.5
