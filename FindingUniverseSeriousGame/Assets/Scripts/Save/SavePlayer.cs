@@ -75,7 +75,14 @@ public class SavePlayer : MonoBehaviour, IHandleJSON
 
         string json = JsonConvert.SerializeObject(data, Formatting.Indented);
 
-        File.WriteAllText(path, json);
+        try
+        {
+            File.WriteAllText(path, json);
+        }
+        catch(Exception e)
+        {
+            Debug.Log("Errore nel salvataggio del File Json: \n" + e.Message);
+        }
 
         Debug.Log("salvato in: " + path);
     }
@@ -99,7 +106,17 @@ public class SavePlayer : MonoBehaviour, IHandleJSON
 
         if (path != null)
         {
-            string json = File.ReadAllText(path);
+            string json;
+
+            try
+            {
+                json = File.ReadAllText(path);
+            }
+            catch (Exception e)
+            {
+                Debug.Log("Errore nella lettura del File Json: \n" + e.Message);
+                return new Dictionary<TKey, TValue>();
+            }
 
             return JsonConvert.DeserializeObject<Dictionary<TKey, TValue>>(json);
         }

@@ -80,7 +80,16 @@ public class PersistentSceneData : MonoBehaviour, IHandleJSON
 
         if (path != null)
         {
-            string json = File.ReadAllText(path);
+            string json;
+            try
+            {
+                json = File.ReadAllText(path);
+            }
+            catch(Exception e)
+            {
+                Debug.Log("Errore durante la lettura del file JSON: \n" + e.Message);
+                return new Dictionary<TKey, TValue>();
+            }
 
             return JsonConvert.DeserializeObject<Dictionary<TKey, TValue>>(json);
         }
@@ -119,7 +128,15 @@ public class PersistentSceneData : MonoBehaviour, IHandleJSON
 
         string json = JsonConvert.SerializeObject(data, Formatting.Indented);
 
-        File.WriteAllText(path, json);
+        try
+        {
+            File.WriteAllText(path, json);
+        }
+        catch(Exception e)
+        {
+            Debug.Log("Errore durante il salvataggio del file JSON: \n" + e.Message);
+            return;
+        }
 
         Debug.Log("salvato in: " + path);
     }

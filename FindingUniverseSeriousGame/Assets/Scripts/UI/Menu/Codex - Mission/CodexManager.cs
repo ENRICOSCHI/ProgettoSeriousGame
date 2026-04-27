@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -72,7 +73,14 @@ public class CodexManager : MonoBehaviour, IHandleJSON
 
         string path = ManagerHandler.ManagerInstance.SaveManager.GetPathForCodex();
 
-        File.WriteAllText(path, json);
+        try
+        {
+            File.WriteAllText(path, json);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Errore durante la scrittura del file JSON: \n" + e.Message);
+        }
 
         Debug.Log("salvato in: " + path);
     }
@@ -94,7 +102,16 @@ public class CodexManager : MonoBehaviour, IHandleJSON
 
         if (path != null)
         {
-            string json = File.ReadAllText(path);
+            string json;
+            try
+            {
+                json = File.ReadAllText(path);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("Errore durante la lettura del file JSON: \n" + e.Message);
+                return new Dictionary<TKey, TValue>();
+            }
 
             return JsonConvert.DeserializeObject<Dictionary<TKey, TValue>>(json);
         }

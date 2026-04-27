@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -116,8 +117,16 @@ public class MissionManager : MonoBehaviour, IHandleJSON
 
         string json = JsonConvert.SerializeObject(data, Formatting.Indented);
 
-        File.WriteAllText(path, json);
-
+        try
+        {
+            File.WriteAllText(path, json);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Errore durante il salvataggio del file JSON: \n" + e.Message);
+            return;
+        }
+        
         Debug.Log("salvato in: " + path);
     }
 
@@ -152,9 +161,18 @@ public class MissionManager : MonoBehaviour, IHandleJSON
     {
         string path = ManagerHandler.ManagerInstance.SaveManager.GetPathForMission();
 
+        string json;
         if (path != null)
         {
-            string json = File.ReadAllText(path);
+            try
+            {
+                json = File.ReadAllText(path);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Errore nella lettura del file JSON: {e.Message}");
+                return new Dictionary<TKey, TValue>();
+            }
 
             return JsonConvert.DeserializeObject<Dictionary<TKey, TValue>>(json);
         }
