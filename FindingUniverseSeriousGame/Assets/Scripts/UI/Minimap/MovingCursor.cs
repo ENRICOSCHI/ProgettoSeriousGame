@@ -3,46 +3,46 @@ using UnityEngine;
 public class MovingCursor : MonoBehaviour
 {
     [Header("Riferimenti")]
-    public Transform naveReale;
-    public BoxCollider volumeMondo;
-    public BoxCollider volumeMinimappa;
+    public Transform realSpaceship;
+    public BoxCollider worldVolume;
+    public BoxCollider minimapVolume;
 
     void Update()
     {
-        if (naveReale == null || volumeMondo == null || volumeMinimappa == null) return;
+        if (realSpaceship == null || worldVolume == null || minimapVolume == null) return;
 
-        // --- 1. POSIZIONE PERFETTA ---
-        // Dove si trova la nave rispetto al centro del cubo gigante?
-        Vector3 posLocaleNave = volumeMondo.transform.InverseTransformPoint(naveReale.position);
+        // Dove si trova la nave rispetto al centro dei confini del livello
+        Vector3 posLocalShip = worldVolume.transform.InverseTransformPoint(realSpaceship.position);
 
-        // Trasformiamo la posizione in percentuale (es. 0.5 = bordo)
-        float pctX = posLocaleNave.x / volumeMondo.size.x;
-        float pctY = posLocaleNave.y / volumeMondo.size.y;
-        float pctZ = posLocaleNave.z / volumeMondo.size.z;
+        // Trasforma la posizione in percentuale rispetto alle dimensioni dei confini
+        float pctX = posLocalShip.x / worldVolume.size.x;
+        float pctY = posLocalShip.y / worldVolume.size.y;
+        float pctZ = posLocalShip.z / worldVolume.size.z;
 
-        // Proiettiamo la percentuale sulle dimensioni del cubo piccolo
-        Vector3 posLocaleMappa = new Vector3(
-            pctX * volumeMinimappa.size.x,
-            pctY * volumeMinimappa.size.y,
-            pctZ * volumeMinimappa.size.z
+        // Proietta la percentuale sulle dimensioni dei confini della minimappa
+        Vector3 posLocalMap = new Vector3(
+            pctX * minimapVolume.size.x,
+            pctY * minimapVolume.size.y,
+            pctZ * minimapVolume.size.z
         );
 
-        // Applichiamo la posizione assoluta (ignora le scale sballate dei genitori)
-        transform.position = volumeMinimappa.transform.TransformPoint(posLocaleMappa);
+        // Applichiamo la posizione assoluta (ignora le scale dei genitori)
+        transform.position = minimapVolume.transform.TransformPoint(posLocalMap);
         
-        // --- 2. ROTAZIONE CORRETTA (Metodo dei Vettori Infallibili) ---
-        // Qual è la direzione "Avanti" e "Alto" della nave rispetto al mondo?
-        Vector3 direzioneAvantiLocale = volumeMondo.transform.InverseTransformDirection(naveReale.forward);
-        Vector3 direzioneAltoLocale = volumeMondo.transform.InverseTransformDirection(naveReale.up);
+        // Calcolo delle direzioni corrette della nave rispetto al mondo
+        // InverseTransformDirection ci dà la direzione della nave rispetto al mondo, ma in coordinate locali del volume del mondo
+        Vector3 directionForwardLocal = worldVolume.transform.InverseTransformDirection(realSpaceship.forward);
+        Vector3 directionUpLocal = worldVolume.transform.InverseTransformDirection(realSpaceship.up);
 
-        // Traduciamo queste stesse direzioni dentro la minimappa
-        Vector3 direzioneAvantiMappa = volumeMinimappa.transform.TransformDirection(direzioneAvantiLocale);
-        Vector3 direzioneAltoMappa = volumeMinimappa.transform.TransformDirection(direzioneAltoLocale);
+        // Traduce queste stesse direzioni dentro la minimappa
+        // TransformDirection ci dà la direzione assoluta in coordinate del mondo, ma partendo da quelle locali del volume della minimappa
+        Vector3 directionForwardMap = minimapVolume.transform.TransformDirection(directionForwardLocal);
+        Vector3 directionUpMap = minimapVolume.transform.TransformDirection(directionUpLocal);
 
-        // Ruotiamo il cursore in quella precisa direzione assoluta
-        if (direzioneAvantiMappa != Vector3.zero)
+        // Ruota il cursore in quella precisa direzione assoluta per seguire la rotazione della nave
+        if (directionForwardMap != Vector3.zero)
         {
-            transform.rotation = Quaternion.LookRotation(direzioneAvantiMappa, direzioneAltoMappa);
+            transform.rotation = Quaternion.LookRotation(directionForwardMap, directionUpMap);
         }
     }
 }
