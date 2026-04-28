@@ -19,6 +19,7 @@ public class ManagerLife : MonoBehaviour
     //Dichiarazione evento
     // L'evento è di tipo Action e trasporta un Vector3 (la posizione dell'impatto)
     // Usa Action al posto di delegate per semplicità, è una funzionalità di C# che permette di definire eventi senza dover creare un'intera classe delegate
+    // Questo perchè serve solo qua
     public event Action Collision;
 
 
