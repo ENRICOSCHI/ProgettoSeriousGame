@@ -38,19 +38,32 @@ public class ManagerHandler : MonoBehaviour
 
     private void CreateManagers()
     {
-        SpeedManager = GetComponentInChildren<ManagerSpeed>();
-        MusicManager = GetComponentInChildren<MusicManager>();
-        BatteryManager = GetComponentInChildren<ManagerBattery>();
-        RotationManager = GetComponentInChildren<ManagerRotation>();
-        DialogueManager = GetComponentInChildren<DialogueManager>();
-        NotificationManager = GetComponentInChildren<Notification_Manager>();
-        LifeManager = GetComponentInChildren<ManagerLife>();
-        CodexManager = GetComponentInChildren<CodexManager>();
-        MissionManager = GetComponentInChildren<MissionManager>();
-        SFXManager = GetComponentInChildren<SFXManager>();
-        SubtitleManager = GetComponentInChildren<ManagerSubtiitle>();
-        SaveManager = GetComponentInChildren<SaveManager>();
-        SceneManager = GetComponentInChildren<ManagerScene>();
+        if(GetComponentInChildren<ManagerSpeed>() != null) 
+            SpeedManager = GetComponentInChildren<ManagerSpeed>();
+        if(GetComponentInChildren<MusicManager>() != null)
+            MusicManager = GetComponentInChildren<MusicManager>();
+        if(GetComponentInChildren<ManagerBattery>() != null)
+            BatteryManager = GetComponentInChildren<ManagerBattery>();
+        if(GetComponentInChildren<ManagerRotation>() != null)
+            RotationManager = GetComponentInChildren<ManagerRotation>();
+        if(GetComponentInChildren<DialogueManager>() != null)
+            DialogueManager = GetComponentInChildren<DialogueManager>();
+        if(GetComponentInChildren<Notification_Manager>() != null)
+            NotificationManager = GetComponentInChildren<Notification_Manager>();
+        if(GetComponentInChildren<ManagerLife>() != null)
+            LifeManager = GetComponentInChildren<ManagerLife>();
+        if(GetComponentInChildren<CodexManager>() != null)
+            CodexManager = GetComponentInChildren<CodexManager>();
+        if(GetComponentInChildren<MissionManager>() != null)
+            MissionManager = GetComponentInChildren<MissionManager>();
+        if(GetComponentInChildren<SFXManager>() != null)
+            SFXManager = GetComponentInChildren<SFXManager>();
+        if(GetComponentInChildren<ManagerSubtiitle>() != null)
+            SubtitleManager = GetComponentInChildren<ManagerSubtiitle>();
+        if(GetComponentInChildren<SaveManager>() != null)
+            SaveManager = GetComponentInChildren<SaveManager>();
+        if(GetComponentInChildren<ManagerScene>() != null)
+            SceneManager = GetComponentInChildren<ManagerScene>();
 
 
         // La barra della vita si allinea ai valori attuali al primo frame

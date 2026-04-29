@@ -31,6 +31,16 @@ public class Notification_Manager : MonoBehaviour
     }
 
     /// <summary>
+    /// Mostra un messaggio di notifica generale
+    /// </summary>
+    /// <param name="message"></param>
+    public void ShowNotifcationFromMenu(string message)
+    {
+        Vfx_Typewriter scriptTypeWrite = ShowOnPanel(Color.white);
+        StartCoroutine(DialogueSequence(message, scriptTypeWrite));
+    }
+
+    /// <summary>
     /// Mostro notifica aggiornamento codex
     /// </summary>
     /// <param name="argomento"></param>

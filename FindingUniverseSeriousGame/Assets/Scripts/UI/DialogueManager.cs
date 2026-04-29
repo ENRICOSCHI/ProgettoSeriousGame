@@ -23,6 +23,8 @@ public class DialogueManager : MonoBehaviour
     }
     private void Start()
     {
+        if(animDialogueBox == null)
+            return;
         animDialogueBox = dialogueGameObjectUI.GetComponent<Animator>();
     }
 

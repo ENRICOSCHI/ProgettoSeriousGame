@@ -22,7 +22,7 @@ public class PersistentSceneData : MonoBehaviour, IHandleJSON
 #endregion
 
 #region "Unity Methods"
-    void Awake()
+    void Start()
     {
         if(Instance != null) return;
 

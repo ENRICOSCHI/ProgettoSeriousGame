@@ -125,6 +125,7 @@ public class CodexManager : MonoBehaviour, IHandleJSON
         if (CheckJsonFile())
         {
             OggettiSbloccatiDizionario = LoadJson<string, bool>();
+            Debug.Log("Codex Manager Caricato");
         }
         #endregion
 
@@ -150,7 +151,6 @@ public class CodexManager : MonoBehaviour, IHandleJSON
             }
         }
         #endregion
-        Debug.Log("Codex Manager Caricato");
 
         PersistentSceneData.Instance.isChangingScene = false;
     }

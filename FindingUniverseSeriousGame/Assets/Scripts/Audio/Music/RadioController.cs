@@ -36,6 +36,11 @@ public class RadioController : MonoBehaviour
 
     void Awake()
     {
+        if(GetComponent<MusicManager>() == null)
+        {
+            Debug.LogWarning("RadioController: Non è stato trovato un MusicManager nello stesso GameObject. Assicurati di averlo aggiunto.");
+            return;
+        }
         musicManager = GetComponent<MusicManager>();
 
         // Impostazioni di sicurezza per l'AudioSource

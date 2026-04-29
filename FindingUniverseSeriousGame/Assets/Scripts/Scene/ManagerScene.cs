@@ -6,7 +6,8 @@ using System.IO;
 public class ManagerScene : MonoBehaviour
 {
     /* LoadScene dovranno diventare LoadSceneAsync per evitare blocchi durante il caricamento */
-    string MENU = "Menu";
+    string MENU = "MainMenu";
+    string LEVEL1 = "Level1";
 
     #region "unity cycle"
     private void OnEnable()
@@ -25,7 +26,7 @@ public class ManagerScene : MonoBehaviour
     /// </summary>
     public void ChangeLevel()
     {
-        // bool messo a false perchè tecnicamente non sta cambiando livello
+        // bool messo a false perchÃ¨ tecnicamente non sta cambiando livello
         PersistentSceneData.Instance.isChangingScene = false;
 
         //controllo per sicurezza
@@ -86,7 +87,7 @@ public class ManagerScene : MonoBehaviour
     /// <summary>
     /// Carico il file json con il nome della scena corrente salvata precedentemente
     /// </summary>
-    private string LoadLevel()
+    public string LoadLevel()
     {
         string path = ManagerHandler.ManagerInstance.SaveManager.GetPathForScene();
 
@@ -95,16 +96,42 @@ public class ManagerScene : MonoBehaviour
         try
         {
             sceneLoaded = File.ReadAllText(path);
+            SceneManager.LoadScene(sceneLoaded);
             Debug.Log("scena caricata");
         }
         catch
         {
             //di default gli passo la scena Level1 
             sceneLoaded = "Level1";
+            SceneManager.LoadScene(sceneLoaded);
             Debug.Log("File scene.json non trovato");
         }
 
         return sceneLoaded;
     }
+
+
+    /// <summary>
+    /// Nuova partita, cancellando i file JSON presenti da salvataggi precedenti
+    /// </summary>
+    public void NewGame()
+    {
+        //cancello i file JSON presenti da salvataggi precedenti
+        string pathPlayer = ManagerHandler.ManagerInstance.SaveManager.GetPathForPlayer();
+        string pathCodex = ManagerHandler.ManagerInstance.SaveManager.GetPathForCodex();
+        string pathMission = ManagerHandler.ManagerInstance.SaveManager.GetPathForMission();
+        string pathPersistentSceneData = ManagerHandler.ManagerInstance.SaveManager.GetPathForPersistentSceneData();
+        string pathScene = ManagerHandler.ManagerInstance.SaveManager.GetPathForScene();
+
+        if (File.Exists(pathPlayer)) File.Delete(pathPlayer);
+        if (File.Exists(pathCodex)) File.Delete(pathCodex);
+        if (File.Exists(pathMission)) File.Delete(pathMission);
+        if (File.Exists(pathPersistentSceneData)) File.Delete(pathPersistentSceneData);
+        if (File.Exists(pathScene)) File.Delete(pathScene);
+
+        //carico la scena del menu
+        SceneManager.LoadScene(LEVEL1);
+    }
+    
     #endregion
 }
