@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -18,20 +19,20 @@ public class Life : MonoBehaviour
 
 
     // Controllo di collisione tramite tag (espandibile)
-    private void OnCollisionEnter(Collision collision)
+    private async Awaitable OnCollisionEnter(Collision collision)
     {
         // Controllo dei tag, espandibile a piacere in base a quanti tag abbiamo
         if(collision.gameObject.CompareTag("Debris") ||
            collision.gameObject.CompareTag("Satellite"))
         {
-            DamageApplier();
+            await DamageApplier();
         }
     }
 
 
     //Formula di danno: baseDamage * moltiplicatore
     //Logica moltiplicatore: da 0.5 a 2
-    private void DamageApplier()  
+    private async Task DamageApplier()  
     {
 
         // Recupero del Manager tramite il Singleton
@@ -50,7 +51,7 @@ public class Life : MonoBehaviour
         float finalDamage = baseDamage * multiplier;
 
         // Applicazione del danno
-        handler.LifeManager.TakeDamage(finalDamage);
+         await handler.LifeManager.TakeDamage(finalDamage);
 
         Debug.Log($"Impatto! Velocità: {currentSpeed:F1}. Moltiplicatore: {multiplier:F2}. Danno: {finalDamage:F1}");
     }
