@@ -687,7 +687,9 @@ PrefabInstance:
       propertyPath: lifeFillImage
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2529860144912618722, guid: 54f593bad02ef6641ad8bbc1f13a8378, type: 3}
+    - {fileID: 2419386835524567859, guid: 54f593bad02ef6641ad8bbc1f13a8378, type: 3}
     m_RemovedGameObjects:
     - {fileID: 4858047301497340332, guid: 54f593bad02ef6641ad8bbc1f13a8378, type: 3}
     - {fileID: 3223168245656819731, guid: 54f593bad02ef6641ad8bbc1f13a8378, type: 3}
@@ -1430,6 +1432,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 8058225113082125365, guid: 90143baef1955e04291e91b55cb317fd, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 2084787113}
     - target: {fileID: 8058225113082125365, guid: 90143baef1955e04291e91b55cb317fd, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25

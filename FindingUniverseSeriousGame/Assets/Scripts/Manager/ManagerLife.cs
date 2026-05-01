@@ -103,6 +103,7 @@ public class ManagerLife : MonoBehaviour
     public void SetCurrentLife(float life)
     {
         currentLife = life;
+        UpdateLifeDisplay();
     }
 
     /// <summary>
