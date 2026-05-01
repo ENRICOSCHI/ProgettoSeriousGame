@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
+using UnityEngine.VFX;
 
 /// <summary>
 /// Il presente script è pensato per essere attaccato al gameObject del potenziamento.
@@ -9,6 +10,8 @@ public class CheckPotenziamenti : MonoBehaviour
 {
     [Tooltip("Lista di ID di missioni che è necessario completare per sbloccare il potenziamento.")]
     [SerializeField] List<string> targetMissions;
+    private MeshRenderer visualModel; // Riferimento al MeshRenderer del potenziamento, da assegnare in Start
+    private EnhancementEffect enhancementEffect; // Riferimento allo script EnhancementEffect, da assegnare in Start
 
     #region Gestione eventi
 
@@ -22,6 +25,15 @@ public class CheckPotenziamenti : MonoBehaviour
         DelegateClass.UpdateQuestDataEventHandler -= SbloccaPotenziamento;
     }
 
+    #endregion
+
+    #region Metodi Unity
+    private void Awake()
+    {
+         visualModel = GetComponent<MeshRenderer>();
+         enhancementEffect = GetComponent<EnhancementEffect>();
+
+    }
     #endregion
 
     #region Metodi per controllo e sblocco potenziamento
@@ -39,7 +51,7 @@ public class CheckPotenziamenti : MonoBehaviour
         #region Controlli di validità dei dati
 
         //Caso in cui categoryMissions è vuota.
-        if (categoryMissions.Length == 0 || categoryMissions == null)
+        if (categoryMissions == null ||categoryMissions.Length == 0)
         {
             Debug.LogWarning($"Al potenziamento {gameObject.name} non è stato passato" +
                 $"un Dictionary di riferimento per le missioni valido.");
@@ -47,7 +59,7 @@ public class CheckPotenziamenti : MonoBehaviour
         }
 
         //Caso in cui targetMissions è vuota.
-        if (targetMissions.Count == 0 || targetMissions == null)
+        if (targetMissions == null || targetMissions.Count == 0)
         {
             Debug.LogWarning($"Nel potenziamento {gameObject.name} non sono state assegnate" +
                 $"missioni target.");
@@ -80,7 +92,10 @@ public class CheckPotenziamenti : MonoBehaviour
     {
         if (CheckPotenziamento(categoryMissions))
         {
-            this.gameObject.SetActive(true); //Attivo visivamente il potenziamento
+            visualModel.enabled = true; // Abilita il MeshRenderer per rendere visibile il potenziamento
+            enhancementEffect.ActivateEffect(); // Attiva l'effetto del potenziamento
+            
+            Debug.Log($"Potenziamento {gameObject.name} sbloccato! Tutte le missioni target sono completate.");
             this.enabled = false; // Disabilita lo script dopo aver sbloccato il potenziamento
         }
     }

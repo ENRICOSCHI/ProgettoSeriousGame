@@ -20,4 +20,20 @@ MonoBehaviour:
   year: 2018
   songIDCodex: 9
   subtitleAudioClip: {fileID: 8300000, guid: b7f22889144d00f42a1f1785286df33c, type: 3}
-  subtitles: []
+  subtitles:
+  - subtitleID: M009
+    phrase: "Il titolo Vortex non \xE8 a caso."
+    timeStart: 0
+    timeEnd: 2
+  - subtitleID: M009
+    phrase: L'intero album esplora il dualismo tra l'io interiore e il mondo esterno,
+    timeStart: 2
+    timeEnd: 6
+  - subtitleID: M009
+    phrase: collocando al centro il vortice che scontra questi due mondi.
+    timeStart: 6
+    timeEnd: 9
+  - subtitleID: M009
+    phrase: Il suono crescente fa da padrone.
+    timeStart: 9
+    timeEnd: 12

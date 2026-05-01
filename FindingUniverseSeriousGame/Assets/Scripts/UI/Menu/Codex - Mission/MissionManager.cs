@@ -235,6 +235,17 @@ public class MissionManager : MonoBehaviour, IHandleJSON
         foreach (var mission in missionsListContainer) mission.Init();
         #endregion
         PersistentSceneData.Instance.isChangingScene = false;
+
+        LoadEnhancements();
+    }
+    #endregion
+
+    #region Caricamento potenziamenti
+
+    private void LoadEnhancements()
+    {
+        // Carico lo stato dei potenziamenti, basandomi sulle missioni completate, tramite CheckPotenziamenti
+        DelegateClass.UpdateQuestDataEventHandler?.Invoke(categoryLists);
     }
     #endregion
 }
