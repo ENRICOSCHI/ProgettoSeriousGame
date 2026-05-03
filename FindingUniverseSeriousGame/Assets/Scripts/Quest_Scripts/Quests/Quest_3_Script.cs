@@ -69,14 +69,15 @@ public class Quest_3_Script : Quest_Generic_Script
     {
         base.Init();
         currentAmount = QuestManager_Script.instance.GetQuestAmount(idMissionCodex);
+
         /* controllo se gli oggetti sono stati già sbloccati in un vecchio salvataggio */
         foreach(var oggetto in questItem)
         {
             //c'è un negato perchè se ritorna true l'oggetto deve scomparire
             oggetto.SetActive(!QuestManager_Script.instance.CheckObjectAlreadyUnlocked(idMissionCodex, oggetto.name));
             
-            //se è false, quindi se l'oggetto non è stato raccolto...
-            if (!QuestManager_Script.instance.CheckObjectAlreadyUnlocked(idMissionCodex, oggetto.name))
+            //se è false, quindi se l'oggetto non è stato raccolto ma la quest è già iniziata...
+            if (!QuestManager_Script.instance.CheckObjectAlreadyUnlocked(idMissionCodex, oggetto.name) && questStarted && !questCompleted)
             {
                 oggetto.GetComponent<Collectable_Item_Quest3>().SetQuestScript(this);//gli assegno lo script
             }

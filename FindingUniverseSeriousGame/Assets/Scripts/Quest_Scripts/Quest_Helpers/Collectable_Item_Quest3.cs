@@ -7,7 +7,7 @@ public class Collectable_Item_Quest3 : MonoBehaviour, ICollectable
     Il presente Script va allocato nei Component degli Oggetti da raccogliere
     presneti nell'Array questItem (in riferimento a Quest_3_Script)*/
 
-    private Quest_3_Script questScript; //riferimento allo Script della Quest 3 a cui questo oggetto è associato.
+    private Quest_3_Script questScript = null; //riferimento allo Script della Quest 3 a cui questo oggetto è associato.
 
     #region ICollectable Implementation
     public void OnCollect()  //Raccolta dell'oggetto

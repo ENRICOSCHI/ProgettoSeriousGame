@@ -34,7 +34,7 @@ public class Quest_Trigger : MonoBehaviour
             {
                 Tipo2();
             }
-            else if(!questType.questStarted && questType.questInteractionType != interactableType.scan)//se la quest non è iniziato mostro il comando per attivare la missione
+            else if(!questType.questStarted && questType.questInteractionType != interactableType.scan)//se la quest non è iniziata mostro il comando per attivare la missione
             {
                 Debug.Log("Premi E per interagire con la quest");
             }
