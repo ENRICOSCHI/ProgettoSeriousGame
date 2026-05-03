@@ -64,21 +64,33 @@ public class EnhancementEffect : MonoBehaviour
     private void Armor()
     {
         Debug.Log("Effetto applicato: Riduzione danni subiti!");
+        
+        //Riduzione del danno base subito del 50%
+        DatabaseEnhancement.Instance.lifeScript.baseDamage /= 2f;
     }
 
     private void Speed1()
     {
         Debug.Log("Effetto applicato: Cap velocità alzato!");
+
+        //Aumento del cap di velocità
+        DatabaseEnhancement.Instance.movimentoNavicella.maxSpeed *= 2f;
     }
 
     private void Speed2()
     {
         Debug.Log("Effetto applicato: Cap velocità alzato!");
+
+        //Aumento del cap di velocità
+        DatabaseEnhancement.Instance.movimentoNavicella.maxSpeed *= 2f;
     }
 
     private void MagneticShield()
     {
         Debug.Log("Effetto applicato: Scudo Magnetico Attivato!");
+
+        //Disattivazione degli effetti dell'evento solare
+        DatabaseEnhancement.Instance.ventoSolareEvento.enabled = false;
     }
 
     private void RadiationShield()

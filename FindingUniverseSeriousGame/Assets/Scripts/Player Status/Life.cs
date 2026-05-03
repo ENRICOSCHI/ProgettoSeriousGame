@@ -8,7 +8,7 @@ public class Life : MonoBehaviour
     #region Inizializzazione variabili
 
     [Header("Configurazione Danno")]
-    [SerializeField] float baseDamage = 10f;  // Verrà poi modificato da un moltiplicatore in base alla velocità
+    public float baseDamage = 10f;  // Verrà poi modificato da un moltiplicatore in base alla velocità
 
 
     // Riferimento allo script di movimento della navicella
@@ -26,6 +26,12 @@ public class Life : MonoBehaviour
            collision.gameObject.CompareTag("Satellite"))
         {
             await DamageApplier();
+        }
+
+        //Morte istantanea se si collide con un pianeta
+        if (collision.gameObject.CompareTag("Pianeta"))
+        {
+            await ManagerHandler.ManagerInstance.LifeManager.TakeDamage(ManagerHandler.ManagerInstance.LifeManager.GetCurrentLife());
         }
     }
 

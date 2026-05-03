@@ -13,6 +13,7 @@ public class DatabaseEnhancement : MonoBehaviour
     [Header("Oggetti per missioni target")]
     [Tooltip("Trascina qui il lifeManager, se il potenziamento ha effetti sulla vita del player.")]
     public ManagerLife lifeManager;
+    public Life lifeScript;
 
     [Tooltip("Trascina qui il movimentoNavicella, se il potenziamento ha effetti sulla velocità della navicella.")]
     public MovimentoNavicella movimentoNavicella;
