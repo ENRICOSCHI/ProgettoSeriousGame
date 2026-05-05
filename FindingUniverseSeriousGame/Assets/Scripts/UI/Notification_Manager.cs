@@ -9,6 +9,8 @@ public class Notification_Manager : MonoBehaviour
     [SerializeField] GameObject notifPanel;
     [SerializeField] float tempoNotifica = 2f;
     [SerializeField] Color colorNotificationCodexUpdate;
+    [Header("Sound Effects")]
+    [SerializeField] AudioClip notifica;
 
     private void OnEnable()
     {
@@ -66,6 +68,11 @@ public class Notification_Manager : MonoBehaviour
     /// <returns></returns>
     private Vfx_Typewriter ShowOnPanel(Color textColor)
     {
+        if (notifica != null)
+            ManagerHandler.ManagerInstance.SFXManager.PlaySoundEffect(notifica,MovimentoNavicella.GetNavicellaTransform(),1f);
+        else
+            Debug.LogWarning("Manca notificaSFX in Notification_Manager.cs");
+
         // instanzio il testo all'interno del content object in NotifcationCascade
         GameObject newText = Instantiate(prefabTxtNotification, notifPanel.transform);
         newText.GetComponent<TextMeshProUGUI>().color = textColor; 

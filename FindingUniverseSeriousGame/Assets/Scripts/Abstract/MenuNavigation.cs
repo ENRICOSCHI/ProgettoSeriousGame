@@ -34,6 +34,10 @@ public abstract class MenuNavigation : MonoBehaviour
     [Tooltip("Trascinare qui l'oggetto 'Content' della ScrollView di sinistra. (Serve per il ricalcolo del Layout)")]
     [SerializeField] private RectTransform contentRectTransform;
 
+    [Header("Sound Effects")]
+    [SerializeField] AudioClip scorrimentoTendinaSFX;
+    [SerializeField] AudioClip selezioneSFX;
+
 
     // Riferimenti agli altri script essenziali
     protected MenuAsthetics menuAsthetics;
@@ -253,6 +257,9 @@ public abstract class MenuNavigation : MonoBehaviour
     {
         if (selectableTexts.Count == 0) return;
 
+        if(scorrimentoTendinaSFX != null)
+            ManagerHandler.ManagerInstance.SFXManager.PlaySoundEffect(scorrimentoTendinaSFX, MovimentoNavicella.GetNavicellaTransform(), 1f);
+
         currentCategoryIndex += direction;
 
         // Gestione del Loop (salto da inizio a fine e viceversa)
@@ -308,6 +315,9 @@ public abstract class MenuNavigation : MonoBehaviour
     public void ConfirmSelection()
     {
         if (selectableTexts.Count == 0) return;
+
+        if(selezioneSFX != null)
+            ManagerHandler.ManagerInstance.SFXManager.PlaySoundEffect(selezioneSFX, MovimentoNavicella.GetNavicellaTransform(), 1f);
 
         bool isCategory = isNodeCategory[currentCategoryIndex];
         int linkedIndex = indexLinkedCategory[currentCategoryIndex];

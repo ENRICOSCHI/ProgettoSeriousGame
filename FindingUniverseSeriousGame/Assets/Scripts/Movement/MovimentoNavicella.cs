@@ -2,6 +2,7 @@ using UnityEngine;
 using Unity.Cinemachine;
 using Unity.Profiling;
 using System.Collections;
+using System.Runtime.CompilerServices;
 
 public class MovimentoNavicella : MonoBehaviour
 {
@@ -49,6 +50,9 @@ public class MovimentoNavicella : MonoBehaviour
     [SerializeField] float fluidityInput = 5f;
     private float hInputSmooth = 0f;
     private float vInputSmooth = 0f;
+
+    [Header("Sound Effects")]
+    [SerializeField] AudioClip motoreSFX;
 
     public void SetRotationFromSave(float pitch, float yaw, float roll)
     {
@@ -149,6 +153,11 @@ public class MovimentoNavicella : MonoBehaviour
         if (isAccelerating)
         {
             currentSpeed += acceleration * Time.deltaTime;
+
+            if (motoreSFX != null)
+                ManagerHandler.ManagerInstance.SFXManager.PlaySoundEffect(motoreSFX, gameObject.transform, 1f);
+            else
+                Debug.LogWarning("Manca motoreSFX in MovimentoNavicella.cs");
         }
 
         //Decelerazione con ctrl
@@ -196,5 +205,10 @@ public class MovimentoNavicella : MonoBehaviour
     public void SetCurrentSpeed(float speed)
     {
         currentSpeed = speed;
+    }
+
+    public static Transform GetNavicellaTransform()
+    {
+        return GameObject.FindFirstObjectByType<MovimentoNavicella>().transform;
     }
 }

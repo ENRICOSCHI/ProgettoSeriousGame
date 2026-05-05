@@ -7,12 +7,13 @@ public class Life : MonoBehaviour
 
     #region Inizializzazione variabili
 
+    // Riferimento allo script di movimento della navicella
+    [SerializeField] MovimentoNavicella movimentoNavicella;
+
     [Header("Configurazione Danno")]
     public float baseDamage = 10f;  // Verrà poi modificato da un moltiplicatore in base alla velocità
 
 
-    // Riferimento allo script di movimento della navicella
-    [SerializeField] MovimentoNavicella movimentoNavicella;
 
     #endregion
 

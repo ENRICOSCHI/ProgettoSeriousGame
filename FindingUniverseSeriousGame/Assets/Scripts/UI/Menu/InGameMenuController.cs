@@ -33,6 +33,10 @@ public class InGameMenuController : MonoBehaviour
     [Tooltip("Trascinare qui l'oggetto padre della UI di gioco")]
     [SerializeField] private GameObject inGameUI;  // Riferimento alla UI di gioco
 
+    [Header("Sound Effects")]
+    [SerializeField] AudioClip mapSFX;
+    [SerializeField] AudioClip scorrimentoMenuCategorySFX;
+
     #endregion
 
     void Awake()  // Configurazione iniziale di sicurezza per il riferimento al container del menu
@@ -74,12 +78,12 @@ public class InGameMenuController : MonoBehaviour
         {
             if (isMenuOpen)
             {
-                ManagerHandler.ManagerInstance.SFXManager.PlaySoundEffect(closeMenuSFX, transform,1f); // Suono di chiusura menu
+                ManagerHandler.ManagerInstance.SFXManager.PlaySoundEffect(closeMenuSFX, MovimentoNavicella.GetNavicellaTransform(), 1f); // Suono di chiusura menu
                 ResumeGame();  // Se il menu è aperto, chiudilo
             }
             else
             {
-                ManagerHandler.ManagerInstance.SFXManager.PlaySoundEffect(openMenuSFX, transform, 1f);   // Suono di apertura menu
+                ManagerHandler.ManagerInstance.SFXManager.PlaySoundEffect(openMenuSFX, MovimentoNavicella.GetNavicellaTransform(), 1f);   // Suono di apertura menu
                 PauseGame();  // Se il menu è chiuso, aprilo
             }
         }
@@ -122,6 +126,8 @@ public class InGameMenuController : MonoBehaviour
         Cursor.visible = true;*/
 
         currentPanelIndex = 0;  // Resetta l'indice del pannello attivo al primo pannello (Minimappa) ogni volta che si apre il menu
+
+        CheckPanelSFX(currentPanelIndex);
         ChangeMenuPanel(currentPanelIndex);  // Aggiorna la visualizzazione dei pannelli in base all'indice
     }
 
@@ -165,6 +171,7 @@ public class InGameMenuController : MonoBehaviour
             currentPanelIndex = menuPanels.Length - 1;  // Se supera il limite sinistro, torna all'ultimo pannello
         }
 
+        CheckPanelSFX(currentPanelIndex);
         ChangeMenuPanel(currentPanelIndex);  // Aggiorna la visualizzazione dei pannelli in base all'indice
     }
 
@@ -191,6 +198,27 @@ public class InGameMenuController : MonoBehaviour
         {
             menuAsthetics.UpdateTabVisuals(panelIndex);  // Passa l'indice del pannello attivo a MenuAsthetics per aggiornare i colori dei bottoni
         }
+    }
+
+    /// <summary>
+    /// Attivo il sound effect in base al panel aperto
+    /// </summary>
+    /// <param name="currentPanelIndex"></param>
+    private void CheckPanelSFX(int currentPanelIndex)
+    {
+        if (scorrimentoMenuCategorySFX != null)
+            ManagerHandler.ManagerInstance.SFXManager.PlaySoundEffect(scorrimentoMenuCategorySFX, MovimentoNavicella.GetNavicellaTransform(), 1f);
+        else
+            Debug.LogWarning("Manca scorrimentoMenuCategorySFX in InGameMenuController.cs");
+
+        if (currentPanelIndex == 0)
+        {
+            if (mapSFX != null)
+                ManagerHandler.ManagerInstance.SFXManager.PlaySoundEffect(mapSFX, MovimentoNavicella.GetNavicellaTransform(), 1f);
+            else
+                Debug.LogWarning("Manca mapSFX in InGameMenuController.cs");
+        }
+        
     }
     #endregion
 }

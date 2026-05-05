@@ -4,7 +4,7 @@ public class VFX_Engine : MonoBehaviour
 {
     #region Variabili
     [Header("Riferimenti Motori")]
-    [Tooltip("Trascina qui il Particle System del motore centrale")]
+    [Tooltip("Trascina qui il Particle System del motoreSFX centrale")]
     [SerializeField] private ParticleSystem engineFlareMain;
     [SerializeField] private ParticleSystem engineFlareLeft;
     [SerializeField] private ParticleSystem engineFlareRight;
@@ -47,7 +47,7 @@ public class VFX_Engine : MonoBehaviour
             mainSpeedPercentage = Mathf.Clamp01(currentSpeed / maxSpeed);
         }
         
-        // Passiamo true perché è il motore principale (può rimanere al minimo)
+        // Passiamo true perché è il motoreSFX principale (può rimanere al minimo)
         UpdateSingleEngineVFX(engineFlareMain, mainSpeedPercentage, true);
 
 
@@ -72,8 +72,8 @@ public class VFX_Engine : MonoBehaviour
     }
 
     /// <summary>
-    /// Funzione che aggiorna un singolo motore.
-    /// Il parametro isMainEngine determina se il motore rimane acceso al minimo da fermo (true) o si spegne del tutto (false).
+    /// Funzione che aggiorna un singolo motoreSFX.
+    /// Il parametro isMainEngine determina se il motoreSFX rimane acceso al minimo da fermo (true) o si spegne del tutto (false).
     /// </summary>
     private void UpdateSingleEngineVFX(ParticleSystem ps, float speedPercent, bool isMainEngine)
     {
@@ -82,7 +82,7 @@ public class VFX_Engine : MonoBehaviour
         var flareMain = ps.main;
         var flareEmission = ps.emission;
 
-        // I motori laterali devono avere come minimo 0 se sono spenti, mentre il motore centrale può rimanere acceso al minimo anche a velocità 0
+        // I motori laterali devono avere come minimo 0 se sono spenti, mentre il motoreSFX centrale può rimanere acceso al minimo anche a velocità 0
         float actualMinSpeed = isMainEngine ? minFlareSpeed : 0f;
         float actualMinEmission = isMainEngine ? minEmission : 0f;
 

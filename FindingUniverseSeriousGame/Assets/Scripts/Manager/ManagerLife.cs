@@ -2,7 +2,6 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System;
-using Unity.Mathematics;
 
 public class ManagerLife : MonoBehaviour
 {
@@ -22,6 +21,10 @@ public class ManagerLife : MonoBehaviour
     [Header("Messaggio Game Over")]
     [SerializeField] string messageGameOver = "Navicella distrutta! Respawn in corso...";
     [SerializeField] Color messageColor; //Impostare da Inspector...
+
+    [Header("Sound Effects")]
+    [SerializeField] AudioClip dannoSFX;
+    [SerializeField] AudioClip vita0SFX;
 
     //Dichiarazione evento
     // L'evento è di tipo Action e trasporta un Vector3 (la posizione dell'impatto)
@@ -65,6 +68,11 @@ public class ManagerLife : MonoBehaviour
         currentLife -= amount;
         currentLife = Mathf.Clamp(currentLife, 0, maxLife);  // Così la vita non scende sotto lo zero
 
+        if (dannoSFX != null)
+            ManagerHandler.ManagerInstance.SFXManager.PlaySoundEffect(dannoSFX, gameObject.transform, 1f);
+        else
+            Debug.LogWarning("Manca dannoSFX in ManagerLIfe.cs");
+
         // Aggiorna la grafica
         UpdateLifeDisplay();
 
@@ -87,7 +95,12 @@ public class ManagerLife : MonoBehaviour
             // Messaggio di game over
             ManagerHandler.ManagerInstance.NotificationManager.ShowNotifcation(messageGameOver, messageColor);
 
-            await Awaitable.WaitForSecondsAsync(4f);  // Si da il tempo al giocatore di vedere il game over
+            if (vita0SFX != null)
+                ManagerHandler.ManagerInstance.SFXManager.PlaySoundEffect(vita0SFX, gameObject.transform, 1f);
+            else
+                Debug.LogWarning("Manca vita0SFX in ManagerLife.cs");
+
+                await Awaitable.WaitForSecondsAsync(4f);  // Si da il tempo al giocatore di vedere il game over
 
             Respawn(MV);
 

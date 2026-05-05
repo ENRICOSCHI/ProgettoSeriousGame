@@ -14,6 +14,10 @@ public class UmbraEvento : Eventi
     [SerializeField] private float raggioStella = 1371f;
     [SerializeField] private float spessorePenombra = 0.15f;
 
+    [Header("Sound Effects")]
+    [SerializeField] AudioClip umbraSFX;
+    [SerializeField] AudioClip penumbraSFX;
+
     [Header("Debug")]
     [SerializeField] private bool mostraGizmos = true;
 
@@ -103,7 +107,12 @@ public class UmbraEvento : Eventi
         {
             case StatoOmbra.Penombra:
                 NotificaPersonalizzata(notificaMessaggio[0]);
-                Debug.Log("[UmbraEvento] Entrata in PENOMBRA — eclissi parziale.");
+                
+                if (penumbraSFX != null)
+                    ManagerHandler.ManagerInstance.SFXManager.PlaySoundEffect(penumbraSFX, navicella.transform, 1f);
+                else
+                    Debug.LogWarning("Manca penumbraSFX in UmbraEvento del pianeta: " + gameObject.name);
+
                 break;
 
             case StatoOmbra.Umbra:
@@ -114,7 +123,11 @@ public class UmbraEvento : Eventi
                     UnlockOnCodexMenu();
                     PersistentSceneData.Instance.isDescriptionUmbraHappened = true;
                 }
-                Debug.Log("[UmbraEvento] Entrata in UMBRA — buio totale.");
+
+                if (penumbraSFX != null)
+                    ManagerHandler.ManagerInstance.SFXManager.PlaySoundEffect(umbraSFX, navicella.transform, 1f);
+                else
+                    Debug.LogWarning("Manca penumbraSFX in UmbraEvento del pianeta: " + gameObject.name);
                 break;
 
             case StatoOmbra.Luce:
