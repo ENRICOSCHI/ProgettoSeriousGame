@@ -2,6 +2,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MissionManager : MonoBehaviour, IHandleJSON
@@ -10,6 +11,9 @@ public class MissionManager : MonoBehaviour, IHandleJSON
     [Header("Struttura Missions (Il Database)")]
     [Tooltip("Configura qui le macro-categorie (Pianeti, Fenomeni, Musica).")]
     public CategoryMission[] categoryLists;
+
+    [Header("Icona missioni")]
+    [SerializeField] RectTransform iconMission;
     #endregion
 
 
@@ -70,6 +74,8 @@ public class MissionManager : MonoBehaviour, IHandleJSON
                 DelegateClass.UpdateQuestDataEventHandler?.Invoke(categoryLists);
 
                 Debug.Log($"Menu Aggiornato: Sbloccato {categoryLists[categoryIndex].entries[entryIndex].realName}!");
+
+                ManagerHandler.ManagerInstance.NotificationManager.PlayScaleAnimationIcon(iconMission);
             }
         }
     }
