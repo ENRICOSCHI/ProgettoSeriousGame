@@ -1,3 +1,5 @@
+using System.Collections;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class UmbraEvento : Eventi
@@ -14,6 +16,24 @@ public class UmbraEvento : Eventi
     [SerializeField] private float raggioStella = 1371f;
     [SerializeField] private float spessorePenombra = 0.15f;
 
+    [Header("Impostazioni luce")]
+    [SerializeField] private Light soleDirectionalLight;
+    [SerializeField] private float velocitaTransizione = 2f; // Secondi per completare la transizione
+    
+    [Range(0f, 1f)]
+    [SerializeField] private float moltiplicatoreOriginaleSole = 1f; // Intensità originale della luce del sole, per poterla ripristinare
+    [Range(0f, 1f)]
+    [SerializeField] private float moltiplicatoreUmbra = 0.05f; // Intensità della luce durante l'ombra
+    [Range(0f, 1f)]
+    [SerializeField] private float moltiplicatorePenumbra = 0.5f;
+    
+    private float intensitaOriginaleSole;
+    private float intensitaOriginaleAmbiente;
+    private Coroutine coroutineLuce;
+    private Material skyboxMaterial;
+    private Color coloreOriginaleSkybox;
+
+    
     [Header("Sound Effects")]
     [SerializeField] AudioClip umbraSFX;
     [SerializeField] AudioClip penumbraSFX;
@@ -30,6 +50,40 @@ public class UmbraEvento : Eventi
 
     private void Awake() => CalcolaParametriCono();
     private void OnValidate() => CalcolaParametriCono();
+
+    private void Start()
+    {
+        // Salvataggio dei parametri di default per l'illuminazione
+        if(soleDirectionalLight != null)
+            intensitaOriginaleSole = soleDirectionalLight.intensity;
+            
+        intensitaOriginaleAmbiente = RenderSettings.ambientIntensity;  
+
+        // Gestione skybox
+        if (RenderSettings.skybox != null)
+        {
+            // 1. Creiamo una copia esatta del materiale originale
+            skyboxMaterial = new Material(RenderSettings.skybox);
+            
+            // 2. Diciamo a Unity di usare questa copia nella scena al posto dell'originale
+            RenderSettings.skybox = skyboxMaterial;
+            
+            // 3. CONTROLLO DEBUG: Scopriamo se trova davvero la proprietà!
+            if (skyboxMaterial.HasProperty("_Tint"))
+            {
+                coloreOriginaleSkybox = skyboxMaterial.GetColor("_Tint");
+                Debug.Log("<color=green>[UmbraEvento]</color> Proprietà _Tint trovata con successo!");
+            }
+            else
+            {
+                Debug.LogWarning("<color=red>[UmbraEvento]</color> ATTENZIONE: Il materiale della Skybox NON ha una proprietà _Tint! Non si oscurerà.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("<color=yellow>[UmbraEvento]</color> Nessuna Skybox assegnata nei RenderSettings!");
+        }
+    }
 
     #region"geometria"
 
@@ -106,6 +160,9 @@ public class UmbraEvento : Eventi
         switch (_statoCorrente)
         {
             case StatoOmbra.Penombra:
+
+                CambiaLuminosita(moltiplicatorePenumbra);  //Transizione di luce
+
                 NotificaPersonalizzata(notificaMessaggio[0]);
                 
                 if (penumbraSFX != null)
@@ -116,6 +173,9 @@ public class UmbraEvento : Eventi
                 break;
 
             case StatoOmbra.Umbra:
+
+                CambiaLuminosita(moltiplicatoreUmbra);  //Transizione di luce
+
                 NotificaPersonalizzata(notificaMessaggio[1]);
                 if (!PersistentSceneData.Instance.isDescriptionUmbraHappened)
                 {
@@ -124,13 +184,16 @@ public class UmbraEvento : Eventi
                     PersistentSceneData.Instance.isDescriptionUmbraHappened = true;
                 }
 
-                if (penumbraSFX != null)
+                if (umbraSFX != null)
                     ManagerHandler.ManagerInstance.SFXManager.PlaySoundEffect(umbraSFX, navicella.transform, 1f);
                 else
-                    Debug.LogWarning("Manca penumbraSFX in UmbraEvento del pianeta: " + gameObject.name);
+                    Debug.LogWarning("Manca umbraSFX in UmbraEvento del pianeta: " + gameObject.name);
                 break;
 
             case StatoOmbra.Luce:
+
+                CambiaLuminosita(moltiplicatoreOriginaleSole);  //Transizione di luce
+
                 NotificaPersonalizzata(notificaMessaggio[2]);
                 Debug.Log("[UmbraEvento] Ritorno alla luce solare.");
                 break;
@@ -180,6 +243,64 @@ public class UmbraEvento : Eventi
             if (i > 0) Gizmos.DrawLine(prevPoint, punto);
             Gizmos.DrawLine(punto, apice);
             prevPoint = punto;
+        }
+    }
+    #endregion
+
+    #region Funzioni per il cambio illuminazione
+    private void CambiaLuminosita(float targetIntensita)
+    {
+        if(coroutineLuce != null)
+            StopCoroutine(coroutineLuce);
+
+        coroutineLuce = StartCoroutine(TransizioneLuceRoutine(targetIntensita));
+    }
+
+    private IEnumerator TransizioneLuceRoutine(float moltiplicatore)
+    {
+        if (soleDirectionalLight == null) yield break;
+
+        // Calcoliamo quali sono i bersagli finali esatti per questa transizione
+        float targetSole = intensitaOriginaleSole * moltiplicatore;
+        float targetAmbiente = intensitaOriginaleAmbiente * moltiplicatore;
+
+        // Moltiplicando un colore per un moltiplicatore, Unity lo scurisce verso il nero
+        Color targetColoreSkybox = coloreOriginaleSkybox * moltiplicatore;
+        Color startSkyboxColor = Color.white;
+        if (skyboxMaterial != null && skyboxMaterial.HasProperty("_Tint"))
+            startSkyboxColor = skyboxMaterial.GetColor("_Tint");
+        
+        float startSole = soleDirectionalLight.intensity;
+        float startAmbiente = RenderSettings.ambientIntensity;
+        float elapsed = 0f;
+
+        while (elapsed < velocitaTransizione)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / velocitaTransizione;
+
+            // Transizione di entrambi verso i propri target calcolati
+            soleDirectionalLight.intensity = Mathf.Lerp(startSole, targetSole, t);
+            RenderSettings.ambientIntensity = Mathf.Lerp(startAmbiente, targetAmbiente, t);
+            if (skyboxMaterial != null && skyboxMaterial.HasProperty("_Tint"))
+                skyboxMaterial.SetColor("_Tint", Color.Lerp(startSkyboxColor, targetColoreSkybox, t));
+            yield return null;
+        }
+
+        // Assicuriamoci che i valori finali siano perfetti
+        soleDirectionalLight.intensity = targetSole;
+        RenderSettings.ambientIntensity = targetAmbiente;
+
+        if(skyboxMaterial != null && skyboxMaterial.HasProperty("_Tint"))
+            skyboxMaterial.SetColor("_Tint", targetColoreSkybox);
+    }
+
+    private void OnDestroy()
+    {
+        // Distrugge la copia della Skybox liberando la memoria quando chiudi o cambi scena
+        if (skyboxMaterial != null)
+        {
+            Destroy(skyboxMaterial);
         }
     }
     #endregion
