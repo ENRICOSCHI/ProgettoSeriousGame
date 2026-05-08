@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -12,8 +13,6 @@ public class Life : MonoBehaviour
 
     [Header("Configurazione Danno")]
     public float baseDamage = 10f;  // Verrà poi modificato da un moltiplicatore in base alla velocità
-
-
 
     #endregion
 
