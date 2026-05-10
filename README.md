@@ -2,17 +2,17 @@
 Aggiorna con quello che è stato fatto (aggiungere cose in future)
 ## Unity
 - [x] sistema di movimento
-- [ ] prototipo dell'universo
-- [ ] programmazione eventi cosmici
+- [x] prototipo dell'universo
+- [x] programmazione eventi cosmici
 - [x] sfondo dell'universo
-- [ ] interfaccia utente (menu della navicella con mappa ec..)
+- [x] interfaccia utente (menu della navicella con mappa ec..)
 - [x] quest script
-- [ ] salvataggi
+- [x] salvataggi
 - [ ] più di una scena
 - [ ] sfx
 - [x] musica
 ### Eventi cosmici
-- [ ] Sindrome di Kessler (Detriti artificiali)
+- [x] Sindrome di Kessler (Detriti artificiali)
 - [x] Vento Solare e tempeste geomagnetiche:
 - [x] Fionda Gravitazionale
 - [x] Umbra e Penumbra 
