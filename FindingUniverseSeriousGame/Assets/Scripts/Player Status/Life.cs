@@ -10,6 +10,8 @@ public class Life : MonoBehaviour
 
     // Riferimento allo script di movimento della navicella
     [SerializeField] MovimentoNavicella movimentoNavicella;
+    [SerializeField] AudioClip beginningSound;
+
 
     [Header("Configurazione Danno")]
     public float baseDamage = 10f;  // Verrà poi modificato da un moltiplicatore in base alla velocità
@@ -18,6 +20,12 @@ public class Life : MonoBehaviour
 
 
 
+    private void Start()
+    {
+        ManagerHandler.ManagerInstance.SFXManager.PlaySoundEffect(beginningSound, MovimentoNavicella.GetNavicellaTransform(), 1.0f);
+    }
+
+    
     // Controllo di collisione tramite tag (espandibile)
     private async Awaitable OnCollisionEnter(Collision collision)
     {
