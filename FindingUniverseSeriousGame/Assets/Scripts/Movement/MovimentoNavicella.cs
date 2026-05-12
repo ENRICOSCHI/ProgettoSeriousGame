@@ -52,7 +52,9 @@ public class MovimentoNavicella : MonoBehaviour
     private float vInputSmooth = 0f;
 
     [Header("Sound Effects")]
+    [SerializeField] AudioSource suoniNavicellaAS;
     [SerializeField] AudioClip motoreSFX;
+    bool isSfxMotoreActive = false;
 
     public void SetRotationFromSave(float pitch, float yaw, float roll)
     {
@@ -154,16 +156,26 @@ public class MovimentoNavicella : MonoBehaviour
         {
             currentSpeed += acceleration * Time.deltaTime;
 
-            if (motoreSFX != null)
-                ManagerHandler.ManagerInstance.SFXManager.PlaySoundEffect(motoreSFX, gameObject.transform, 1f);
-            else
-                Debug.LogWarning("Manca motoreSFX in MovimentoNavicella.cs");
+            if (!isSfxMotoreActive && motoreSFX != null && suoniNavicellaAS != null)
+            {
+                suoniNavicellaAS.clip = motoreSFX;
+                suoniNavicellaAS.loop = true;
+                suoniNavicellaAS.Play();
+                isSfxMotoreActive = true;
+            }
         }
 
         //Decelerazione con ctrl
         if (isDecelerating)
         {
             currentSpeed -= acceleration * Time.deltaTime;
+            if (isSfxMotoreActive && currentSpeed <= 0 && motoreSFX != null && suoniNavicellaAS != null)
+            {
+                suoniNavicellaAS.Stop();
+                suoniNavicellaAS.clip = null;
+                suoniNavicellaAS.loop = false;
+                isSfxMotoreActive = false;
+            }
         }
 
         //Limita la velocit� massima e minima
