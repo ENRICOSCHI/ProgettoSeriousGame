@@ -249,7 +249,6 @@ public class RadioController : MonoBehaviour
             {
                 //ManagerHandler.ManagerInstance.DialogueManager.ShowMessage(songData.songDescription);
                 StartCoroutine(ManagerHandler.ManagerInstance.SubtitleManager.PlaySubtitle(songData.subtitles,songData.subtitleAudioClip));
-                ManagerHandler.ManagerInstance.SFXManager.PlayRandomSoundEffect(musicManager.sfxClips,transform,1f); // Suono di apertura dialogo
                 ManagerHandler.ManagerInstance.CodexManager.UnlockMenuEntry(2, songData.songIDCodex);
             }
         }

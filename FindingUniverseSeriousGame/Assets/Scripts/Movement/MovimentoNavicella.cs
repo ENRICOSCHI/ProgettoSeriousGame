@@ -155,7 +155,22 @@ public class MovimentoNavicella : MonoBehaviour
         if (isAccelerating)
         {
             currentSpeed += acceleration * Time.deltaTime;
+        }
 
+        //Decelerazione con ctrl
+        if (isDecelerating)
+        {
+            currentSpeed -= acceleration * Time.deltaTime;
+        }
+
+        //Limita la velocit� massima e minima
+        currentSpeed = Mathf.Clamp(currentSpeed, 0f, maxSpeed);
+
+
+        // Gestione del suono della navicella
+        if (isAccelerating)
+        {
+            // Se stiamo accelerando e il suono non è ancora attivo, lo facciamo partire
             if (!isSfxMotoreActive && motoreSFX != null && suoniNavicellaAS != null)
             {
                 suoniNavicellaAS.clip = motoreSFX;
@@ -164,12 +179,10 @@ public class MovimentoNavicella : MonoBehaviour
                 isSfxMotoreActive = true;
             }
         }
-
-        //Decelerazione con ctrl
-        if (isDecelerating)
+        else
         {
-            currentSpeed -= acceleration * Time.deltaTime;
-            if (isSfxMotoreActive && currentSpeed <= 0 && motoreSFX != null && suoniNavicellaAS != null)
+            // Se NON stiamo accelerando ma il suono è ancora attivo, lo fermiamo
+            if (isSfxMotoreActive && suoniNavicellaAS != null)
             {
                 suoniNavicellaAS.Stop();
                 suoniNavicellaAS.clip = null;
@@ -177,9 +190,6 @@ public class MovimentoNavicella : MonoBehaviour
                 isSfxMotoreActive = false;
             }
         }
-
-        //Limita la velocit� massima e minima
-        currentSpeed = Mathf.Clamp(currentSpeed, 0f, maxSpeed);
     }
 
     /// <summary>
