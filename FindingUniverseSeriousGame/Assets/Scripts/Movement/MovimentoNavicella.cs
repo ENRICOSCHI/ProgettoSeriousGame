@@ -155,6 +155,11 @@ public class MovimentoNavicella : MonoBehaviour
         if (isAccelerating)
         {
             currentSpeed += acceleration * Time.deltaTime;
+            ActiveAudioEngine();
+        }
+        else
+        {
+            DeactiveAudioEngine();
         }
 
         //Decelerazione con ctrl
@@ -165,31 +170,6 @@ public class MovimentoNavicella : MonoBehaviour
 
         //Limita la velocit� massima e minima
         currentSpeed = Mathf.Clamp(currentSpeed, 0f, maxSpeed);
-
-
-        // Gestione del suono della navicella
-        if (isAccelerating)
-        {
-            // Se stiamo accelerando e il suono non è ancora attivo, lo facciamo partire
-            if (!isSfxMotoreActive && motoreSFX != null && suoniNavicellaAS != null)
-            {
-                suoniNavicellaAS.clip = motoreSFX;
-                suoniNavicellaAS.loop = true;
-                suoniNavicellaAS.Play();
-                isSfxMotoreActive = true;
-            }
-        }
-        else
-        {
-            // Se NON stiamo accelerando ma il suono è ancora attivo, lo fermiamo
-            if (isSfxMotoreActive && suoniNavicellaAS != null)
-            {
-                suoniNavicellaAS.Stop();
-                suoniNavicellaAS.clip = null;
-                suoniNavicellaAS.loop = false;
-                isSfxMotoreActive = false;
-            }
-        }
     }
 
     /// <summary>
@@ -232,5 +212,29 @@ public class MovimentoNavicella : MonoBehaviour
     public static Transform GetNavicellaTransform()
     {
         return GameObject.FindFirstObjectByType<MovimentoNavicella>().transform;
+    }
+
+    void ActiveAudioEngine()
+    {
+        // Se stiamo accelerando e il suono non è ancora attivo, lo facciamo partire
+        if (!isSfxMotoreActive && motoreSFX != null && suoniNavicellaAS != null)
+        {
+            suoniNavicellaAS.clip = motoreSFX;
+            suoniNavicellaAS.loop = true;
+            suoniNavicellaAS.Play();
+            isSfxMotoreActive = true;
+        }
+    }
+
+    void DeactiveAudioEngine()
+    {
+        // Se NON stiamo accelerando ma il suono è ancora attivo, lo fermiamo
+        if (isSfxMotoreActive && suoniNavicellaAS != null)
+        {
+            suoniNavicellaAS.Stop();
+            suoniNavicellaAS.clip = null;
+            suoniNavicellaAS.loop = false;
+            isSfxMotoreActive = false;
+        }
     }
 }
