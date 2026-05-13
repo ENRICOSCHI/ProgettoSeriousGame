@@ -12,6 +12,7 @@ public class CheckPotenziamenti : MonoBehaviour
     [SerializeField] List<string> targetMissions;
     private MeshRenderer visualModel; // Riferimento al MeshRenderer del potenziamento, da assegnare in Start
     private EnhancementEffect enhancementEffect; // Riferimento allo script EnhancementEffect, da assegnare in Start
+    Color notificationColor = Color.green;
 
     #region Gestione eventi
 
@@ -88,7 +89,7 @@ public class CheckPotenziamenti : MonoBehaviour
     /// Disabilita quindi lo script dopo aver sbloccato il potenziamento al fine di evitare 
     /// controlli inutili in futuro.
     /// </summary>
-    private void SbloccaPotenziamento(CategoryMission[] categoryMissions)
+    private void SbloccaPotenziamento(CategoryMission[] categoryMissions, bool hasNotification)
     {
         if (CheckPotenziamento(categoryMissions))
         {
@@ -96,6 +97,8 @@ public class CheckPotenziamenti : MonoBehaviour
             enhancementEffect.ActivateEffect(); // Attiva l'effetto del potenziamento
             
             Debug.Log($"Potenziamento {gameObject.name} sbloccato! Tutte le missioni target sono completate.");
+            if (hasNotification)
+                ManagerHandler.ManagerInstance.NotificationManager.ShowNotifcation($"Potenziamento {gameObject.name} sbloccato! Tutte le missioni target sono completate.", notificationColor);
             this.enabled = false; // Disabilita lo script dopo aver sbloccato il potenziamento
         }
     }

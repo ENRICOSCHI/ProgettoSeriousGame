@@ -67,16 +67,16 @@ public class UmbraEvento : Eventi
             if (skyboxMaterial.HasProperty("_Exposure"))
             {
                 esposizioneOriginaleSkybox = skyboxMaterial.GetFloat("_Exposure");
-                Debug.Log("<color=green>[UmbraEvento]</color> Proprietà _Exposure trovata con successo!");
+                Debug.Log("[UmbraEvento] Proprietà _Exposure trovata con successo!");
             }
             else
             {
-                Debug.LogWarning("<color=red>[UmbraEvento]</color> ATTENZIONE: Il materiale della Skybox NON ha una proprietà _Exposure! Non si oscurerà.");
+                Debug.LogWarning("[UmbraEvento] ATTENZIONE: Il materiale della Skybox NON ha una proprietà _Exposure! Non si oscurerà.");
             }
         }
         else
         {
-            Debug.LogWarning("<color=yellow>[UmbraEvento]</color> Nessuna Skybox assegnata nei RenderSettings!");
+            Debug.LogWarning("[UmbraEvento] Nessuna Skybox assegnata nei RenderSettings!");
         }
     }
 

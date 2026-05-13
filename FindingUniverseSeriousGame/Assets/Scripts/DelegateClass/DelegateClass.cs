@@ -30,6 +30,6 @@ public class DelegateClass
     /* Gestione Update Quest Data */
     /*Il seguente evento è pensato in maniera specifica
     per essere catturato dai vari script CheckPotenziamenti*/
-    public delegate void UpdateQuestDataEvent(CategoryMission[] categoryMissions);
+    public delegate void UpdateQuestDataEvent(CategoryMission[] categoryMissions, bool hasNotification);
     public static UpdateQuestDataEvent UpdateQuestDataEventHandler;
 }
