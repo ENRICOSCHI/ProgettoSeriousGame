@@ -99,6 +99,7 @@ public class Notification_Manager : MonoBehaviour
         {
             obj.transform.localScale = Vector3.Lerp(startScale, endScale, elapsedTime / (tempoIconaScale/2)); // Prima metà del tempo per scalare fino a 0.6
             elapsedTime += Time.deltaTime;
+            yield return null; // Attende il prossimo frame prima di continuare l'animazione
         }
 
         yield return new WaitForSeconds(tempoIconaFissa); // Tempo in cui l'icona rimane alla scala finale
@@ -109,6 +110,7 @@ public class Notification_Manager : MonoBehaviour
         {
             obj.transform.localScale = Vector3.Lerp(endScale, startScale, elapsedTime / (tempoIconaScale/2)); // Seconda metà del tempo per scalare da 0.6 a 0
             elapsedTime += Time.deltaTime;
+            yield return null;
         }
         
         obj.transform.localScale = startScale; // Assicurati che la scala finale sia esatta (controllo di sicurezza, per essere certi)

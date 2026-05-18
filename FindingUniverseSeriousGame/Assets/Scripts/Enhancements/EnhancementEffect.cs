@@ -95,6 +95,7 @@ public class EnhancementEffect : MonoBehaviour
 
     private void RadiationShield()
     {
+        PersistentSceneData.Instance.isChangeSceneUnlocked = true;
         Debug.Log("Effetto applicato: Scudo Antiradiazioni Attivato!");
     }
 

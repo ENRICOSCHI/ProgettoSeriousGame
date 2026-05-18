@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Newtonsoft.Json;
 using System.IO;
+using System.Collections;
+using UnityEngine.UI;
 
 public class ManagerScene : MonoBehaviour
 {

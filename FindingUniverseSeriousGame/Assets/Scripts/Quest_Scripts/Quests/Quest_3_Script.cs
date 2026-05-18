@@ -159,4 +159,13 @@ public class Quest_3_Script : Quest_Generic_Script
     }
 
     #endregion
+
+    public bool CheckAllItemsCollected()
+    {
+        if(currentAmount == requiredAmount)
+        {
+            return true;
+        }
+        return false;
+    }
 }
