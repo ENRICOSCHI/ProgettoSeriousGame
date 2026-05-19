@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8e503318967538488b13084b8cc5780, type: 3}
+  m_Name: Vortex
+  m_EditorClassIdentifier: 
+  songID: M009
+  audioFile: {fileID: 8300000, guid: a6fc0aa5cc7a9d54698be169bda34ef2, type: 3}
+  title: Vortex
+  artist: Kamasi Washington
+  album: Heaven and Earth
+  year: 2018
+  songIDCodex: 9
+  subtitleAudioClip: {fileID: 8300000, guid: b7f22889144d00f42a1f1785286df33c, type: 3}
+  subtitles:
+  - subtitleID: M009
+    phrase: "Il titolo Vortex non \xE8 a caso."
+    timeStart: 0
+    timeEnd: 2
+  - subtitleID: M009
+    phrase: L'intero album esplora il dualismo tra l'io interiore e il mondo esterno,
+    timeStart: 2
+    timeEnd: 6
+  - subtitleID: M009
+    phrase: collocando al centro il vortice che scontra questi due mondi.
+    timeStart: 6
+    timeEnd: 9
+  - subtitleID: M009
+    phrase: Il suono crescente fa da padrone.
+    timeStart: 9
+    timeEnd: 12

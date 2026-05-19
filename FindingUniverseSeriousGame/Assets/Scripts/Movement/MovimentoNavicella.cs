@@ -2,6 +2,7 @@ using UnityEngine;
 using Unity.Cinemachine;
 using Unity.Profiling;
 using System.Collections;
+using System.Runtime.CompilerServices;
 
 public class MovimentoNavicella : MonoBehaviour
 {
@@ -49,6 +50,11 @@ public class MovimentoNavicella : MonoBehaviour
     [SerializeField] float fluidityInput = 5f;
     private float hInputSmooth = 0f;
     private float vInputSmooth = 0f;
+
+    [Header("Sound Effects")]
+    [SerializeField] AudioSource suoniNavicellaAS;
+    [SerializeField] AudioClip motoreSFX;
+    bool isSfxMotoreActive = false;
 
     public void SetRotationFromSave(float pitch, float yaw, float roll)
     {
@@ -149,6 +155,11 @@ public class MovimentoNavicella : MonoBehaviour
         if (isAccelerating)
         {
             currentSpeed += acceleration * Time.deltaTime;
+            ActiveAudioEngine();
+        }
+        else
+        {
+            DeactiveAudioEngine();
         }
 
         //Decelerazione con ctrl
@@ -196,5 +207,34 @@ public class MovimentoNavicella : MonoBehaviour
     public void SetCurrentSpeed(float speed)
     {
         currentSpeed = speed;
+    }
+
+    public static Transform GetNavicellaTransform()
+    {
+        return GameObject.FindFirstObjectByType<MovimentoNavicella>().transform;
+    }
+
+    void ActiveAudioEngine()
+    {
+        // Se stiamo accelerando e il suono non è ancora attivo, lo facciamo partire
+        if (!isSfxMotoreActive && motoreSFX != null && suoniNavicellaAS != null)
+        {
+            suoniNavicellaAS.clip = motoreSFX;
+            suoniNavicellaAS.loop = true;
+            suoniNavicellaAS.Play();
+            isSfxMotoreActive = true;
+        }
+    }
+
+    void DeactiveAudioEngine()
+    {
+        // Se NON stiamo accelerando ma il suono è ancora attivo, lo fermiamo
+        if (isSfxMotoreActive && suoniNavicellaAS != null)
+        {
+            suoniNavicellaAS.Stop();
+            suoniNavicellaAS.clip = null;
+            suoniNavicellaAS.loop = false;
+            isSfxMotoreActive = false;
+        }
     }
 }

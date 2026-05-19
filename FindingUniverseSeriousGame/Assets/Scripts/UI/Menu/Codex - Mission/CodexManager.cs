@@ -11,6 +11,9 @@ public class CodexManager : MonoBehaviour, IHandleJSON
     [Tooltip("Configura qui le macro-categorie (Pianeti, Fenomeni, Musica).")]
     public CategoryCodex[] categoryLists;
 
+    [Header("Icona codex")]
+    [SerializeField] RectTransform iconCodex;
+
     private Dictionary<string, bool> OggettiSbloccatiDizionario = new Dictionary<string, bool>();
     #endregion
 
@@ -61,6 +64,9 @@ public class CodexManager : MonoBehaviour, IHandleJSON
                 }
 
                 Debug.Log($"Menu Aggiornato: Sbloccato {categoryLists[categoryIndex].entries[entryIndex].realName}!");
+
+                // Attivo l'animazione dell'icona di aggiornamento del codex
+                ManagerHandler.ManagerInstance.NotificationManager.PlayScaleAnimationIcon(iconCodex);
             }
         }
     }
@@ -125,6 +131,7 @@ public class CodexManager : MonoBehaviour, IHandleJSON
         if (CheckJsonFile())
         {
             OggettiSbloccatiDizionario = LoadJson<string, bool>();
+            Debug.Log("Codex Manager Caricato");
         }
         #endregion
 
@@ -150,7 +157,6 @@ public class CodexManager : MonoBehaviour, IHandleJSON
             }
         }
         #endregion
-        Debug.Log("Codex Manager Caricato");
 
         PersistentSceneData.Instance.isChangingScene = false;
     }

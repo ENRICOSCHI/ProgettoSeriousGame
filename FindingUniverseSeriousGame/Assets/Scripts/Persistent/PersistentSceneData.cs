@@ -19,10 +19,11 @@ public class PersistentSceneData : MonoBehaviour, IHandleJSON
     [HideInInspector] public bool isDescriptionFiondaHappened = false;
     [HideInInspector] public bool isDescriptionVentoSolareHappened = false;
     [HideInInspector] public bool isChangeSceneUnlocked = false;
+
 #endregion
 
 #region "Unity Methods"
-    void Awake()
+    void Start()
     {
         if(Instance != null) return;
 

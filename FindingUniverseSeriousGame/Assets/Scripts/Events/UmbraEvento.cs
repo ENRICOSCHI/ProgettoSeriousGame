@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class UmbraEvento : Eventi
@@ -14,24 +15,72 @@ public class UmbraEvento : Eventi
     [SerializeField] private float raggioStella = 1371f;
     [SerializeField] private float spessorePenombra = 0.15f;
 
+    [Header("Impostazioni luce")]
+    [SerializeField] private Light soleDirectionalLight;
+    [SerializeField] private float velocitaTransizione = 2f; // Secondi per completare la transizione
+
+    [Range(0f, 1f)]
+    [SerializeField] private float moltiplicatoreOriginaleSole = 1f; // Intensità originale della luce del sole, per poterla ripristinare
+    [Tooltip("Mettilo a 0 per avere il nero assoluto e spegnere le stelle!")]
+    [Range(0f, 1f)]
+    [SerializeField] private float moltiplicatoreUmbra = 0f; // Intensità della luce durante l'ombra
+    [Range(0f, 1f)]
+    [SerializeField] private float moltiplicatorePenumbra = 0.5f;
+
+    private float intensitaOriginaleSole;
+    private float intensitaOriginaleAmbiente;
+    private Coroutine coroutineLuce;
+    
+    private Material skyboxMaterial;
+    private float esposizioneOriginaleSkybox = 1f;
+
+    [Header("Sound Effects")]
+    [SerializeField] AudioClip umbraSFX;
+    [SerializeField] AudioClip penumbraSFX;
+
     [Header("Debug")]
     [SerializeField] private bool mostraGizmos = true;
 
     private StatoOmbra _statoCorrente = StatoOmbra.Luce;
     private StatoOmbra _statoPrecedente = StatoOmbra.Luce;
 
-    // Parametri dinamici del cono d'ombra, calcolati in base alla posizione di stella e pianeta
     private float _lunghezzaConoUmbra;
     private float _lunghezzaConoPenombra;
 
     private void Awake() => CalcolaParametriCono();
     private void OnValidate() => CalcolaParametriCono();
 
-    #region"geometria"
+    private void Start()
+    {
+        // Salvataggio dei parametri di default per l'illuminazione
+        if (soleDirectionalLight != null)
+            intensitaOriginaleSole = soleDirectionalLight.intensity;
 
-    /// <summary>
-    /// Calcola la lunghezza dei coni d'ombra (umbra e penombra) basandosi sulla distanza tra stella e pianeta e sui loro raggi.
-    /// </summary>
+        intensitaOriginaleAmbiente = RenderSettings.ambientIntensity;
+
+        // Gestione skybox
+        if (RenderSettings.skybox != null)
+        {
+            // NESSUN CLONE. Prendiamo il materiale originale
+            skyboxMaterial = RenderSettings.skybox;
+
+            if (skyboxMaterial.HasProperty("_Exposure"))
+            {
+                esposizioneOriginaleSkybox = skyboxMaterial.GetFloat("_Exposure");
+                Debug.Log("[UmbraEvento] Proprietà _Exposure trovata con successo!");
+            }
+            else
+            {
+                Debug.LogWarning("[UmbraEvento] ATTENZIONE: Il materiale della Skybox NON ha una proprietà _Exposure! Non si oscurerà.");
+            }
+        }
+        else
+        {
+            Debug.LogWarning("[UmbraEvento] Nessuna Skybox assegnata nei RenderSettings!");
+        }
+    }
+
+    #region"geometria"
     private void CalcolaParametriCono()
     {
         if (stella == null || pianeta == null) return;
@@ -41,41 +90,28 @@ public class UmbraEvento : Eventi
     }
     #endregion
 
-
     private void Update()
     {
         if (stella == null || pianeta == null || navicella == null) return;
 
         CalcolaParametriCono();
         _statoCorrente = CalcolaStatoOmbra(navicella.position);
-        // Gestisce le transizioni di stato e le notifiche solo quando c'è un cambiamento
         GestisciTransizioni();
         _statoPrecedente = _statoCorrente;
     }
 
     #region"Classificazione ombra"
-
-    /// <summary>
-    /// Determina se la navicella si trova in luce, penombra o umbra rispetto alla stella e al pianeta, basandosi sulla posizione della navicella e sulla geometria dei coni d'ombra.
-    /// </summary>
-    /// <param name="posizione"></param>
-    /// <returns></returns>
     public StatoOmbra CalcolaStatoOmbra(Vector3 posizione)
     {
-        //Normalizza il vettore dalla stella al pianeta per ottenere la direzione del cono d'ombra
         Vector3 dirStellaPianeta = (pianeta.position - stella.position).normalized;
-        //Calcola il vettore dalla stella alla navicella, proiettato sulla direzione del cono d'ombra per determinare la posizione lungo l'asse del cono 
         Vector3 vettorePianetaPos = posizione - pianeta.position;
 
-        //Se la proiezione della navicella sull'asse del cono è negativa, significa che è davanti al pianeta rispetto alla stella, quindi è in luce
         float proiezioneAsse = Vector3.Dot(vettorePianetaPos, dirStellaPianeta);
         if (proiezioneAsse <= 0f) return StatoOmbra.Luce;
 
-        //Calcola la distanza radiale della navicella dall'asse del cono d'ombra, che è fondamentale per determinare se è in umbra o penombra
         Vector3 componenteAssiale = dirStellaPianeta * proiezioneAsse;
         float distanzaRadiale = (vettorePianetaPos - componenteAssiale).magnitude;
 
-        //Calcola i raggi dell'umbra e della penombra alla distanza della navicella lungo l'asse del cono, utilizzando la geometria simile dei triangoli formati dalla stella, pianeta e navicella
         float raggioUmbraADistanza = raggioPianeta * (1f - proiezioneAsse / _lunghezzaConoUmbra);
         float raggioPenombraADistanza = raggioPianeta * (1f + proiezioneAsse / _lunghezzaConoPenombra);
 
@@ -84,7 +120,6 @@ public class UmbraEvento : Eventi
         if (distanzaRadiale <= raggioUmbraADistanza)
             return StatoOmbra.Umbra;
 
-        // La soglia per la penombra è interpolata tra i raggi dell'umbra e della penombra, modulata dallo spessore definito dall'utente, per creare una transizione più graduale tra i due stati
         float sogliaPenombra = Mathf.Lerp(raggioUmbraADistanza, raggioPenombraADistanza, spessorePenombra);
         if (distanzaRadiale <= sogliaPenombra)
             return StatoOmbra.Penombra;
@@ -94,7 +129,6 @@ public class UmbraEvento : Eventi
     #endregion
 
     #region"Transizioni e notifiche"
-
     private void GestisciTransizioni()
     {
         if (_statoCorrente == _statoPrecedente) return;
@@ -102,11 +136,17 @@ public class UmbraEvento : Eventi
         switch (_statoCorrente)
         {
             case StatoOmbra.Penombra:
+                CambiaLuminosita(moltiplicatorePenumbra);
                 NotificaPersonalizzata(notificaMessaggio[0]);
-                Debug.Log("[UmbraEvento] Entrata in PENOMBRA — eclissi parziale.");
+                
+                if (penumbraSFX != null)
+                    ManagerHandler.ManagerInstance.SFXManager.PlaySoundEffect(penumbraSFX, navicella.transform, 1f);
+                else
+                    Debug.LogWarning("Manca penumbraSFX in UmbraEvento del pianeta: " + gameObject.name);
                 break;
 
             case StatoOmbra.Umbra:
+                CambiaLuminosita(moltiplicatoreUmbra);
                 NotificaPersonalizzata(notificaMessaggio[1]);
                 if (!PersistentSceneData.Instance.isDescriptionUmbraHappened)
                 {
@@ -114,10 +154,15 @@ public class UmbraEvento : Eventi
                     UnlockOnCodexMenu();
                     PersistentSceneData.Instance.isDescriptionUmbraHappened = true;
                 }
-                Debug.Log("[UmbraEvento] Entrata in UMBRA — buio totale.");
+
+                if (umbraSFX != null)
+                    ManagerHandler.ManagerInstance.SFXManager.PlaySoundEffect(umbraSFX, navicella.transform, 1f);
+                else
+                    Debug.LogWarning("Manca umbraSFX in UmbraEvento del pianeta: " + gameObject.name);
                 break;
 
             case StatoOmbra.Luce:
+                CambiaLuminosita(moltiplicatoreOriginaleSole);
                 NotificaPersonalizzata(notificaMessaggio[2]);
                 Debug.Log("[UmbraEvento] Ritorno alla luce solare.");
                 break;
@@ -128,7 +173,6 @@ public class UmbraEvento : Eventi
     public StatoOmbra GetStatoCorrente() => _statoCorrente;
 
     #region"Gizmo"
-
     private void OnDrawGizmosSelected()
     {
         if (!mostraGizmos || stella == null || pianeta == null) return;
@@ -148,7 +192,7 @@ public class UmbraEvento : Eventi
         Gizmos.DrawWireSphere(pianeta.position, raggioPianeta);
     }
 
-    private void DisegnaCono(Vector3 origine, Vector3 direzione, float raggioBase,float lunghezza, bool espandi = false)                     
+    private void DisegnaCono(Vector3 origine, Vector3 direzione, float raggioBase, float lunghezza, bool espandi = false)
     {
         int segmenti = 16;
         Vector3 apice = origine + direzione * lunghezza;
@@ -167,6 +211,64 @@ public class UmbraEvento : Eventi
             if (i > 0) Gizmos.DrawLine(prevPoint, punto);
             Gizmos.DrawLine(punto, apice);
             prevPoint = punto;
+        }
+    }
+    #endregion
+
+    #region Funzioni per il cambio illuminazione
+    private void CambiaLuminosita(float targetIntensita)
+    {
+        if (coroutineLuce != null)
+            StopCoroutine(coroutineLuce);
+
+        coroutineLuce = StartCoroutine(TransizioneLuceRoutine(targetIntensita));
+    }
+
+    private IEnumerator TransizioneLuceRoutine(float moltiplicatore)
+    {
+        if (soleDirectionalLight == null) yield break;
+
+        float targetSole = intensitaOriginaleSole * moltiplicatore;
+        float targetAmbiente = intensitaOriginaleAmbiente * moltiplicatore;
+        float targetEsposizione = esposizioneOriginaleSkybox * moltiplicatore;
+
+        float startSole = soleDirectionalLight.intensity;
+        float startAmbiente = RenderSettings.ambientIntensity;
+        float startEsposizione = 1f;
+
+        if (skyboxMaterial != null && skyboxMaterial.HasProperty("_Exposure"))
+            startEsposizione = skyboxMaterial.GetFloat("_Exposure");
+
+        float elapsed = 0f;
+
+        while (elapsed < velocitaTransizione)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / velocitaTransizione;
+
+            soleDirectionalLight.intensity = Mathf.Lerp(startSole, targetSole, t);
+            RenderSettings.ambientIntensity = Mathf.Lerp(startAmbiente, targetAmbiente, t);
+            
+            if (skyboxMaterial != null && skyboxMaterial.HasProperty("_Exposure"))
+                skyboxMaterial.SetFloat("_Exposure", Mathf.Lerp(startEsposizione, targetEsposizione, t));
+                
+            yield return null;
+        }
+
+        soleDirectionalLight.intensity = targetSole;
+        RenderSettings.ambientIntensity = targetAmbiente;
+
+        if (skyboxMaterial != null && skyboxMaterial.HasProperty("_Exposure"))
+            skyboxMaterial.SetFloat("_Exposure", targetEsposizione);
+    }
+
+    private void OnDestroy()
+    {
+        // Siccome stiamo modificando il materiale originale, dobbiamo rimetterlo a posto!
+        // Altrimenti la skybox rimarrà nera anche nell'Editor dopo aver chiuso il gioco.
+        if (skyboxMaterial != null && skyboxMaterial.HasProperty("_Exposure"))
+        {
+            skyboxMaterial.SetFloat("_Exposure", esposizioneOriginaleSkybox);
         }
     }
     #endregion

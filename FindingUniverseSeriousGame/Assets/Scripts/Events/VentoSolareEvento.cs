@@ -6,7 +6,10 @@ public class VentoSolareEvento : Eventi
     [Header("Gestione tempo vento solare")]
     [SerializeField] int tempoMINIMO = 5;
     [SerializeField] int tempoMASSIMO = 15;
-    [SerializeField] int durataEvento = 5; 
+    [SerializeField] int durataEvento = 5;
+
+    [Header("Sound Effects")]
+    [SerializeField] AudioClip tempestaSFX;
 
 
     [ContextMenu("Test Evento Vento Solare")]
@@ -46,6 +49,12 @@ public class VentoSolareEvento : Eventi
         }
         NotificaPersonalizzata(notificaMessaggio[0]);
         DelegateClass.VentoSolareEventsHandler?.Invoke(true);
+
+        if (tempestaSFX != null)
+            ManagerHandler.ManagerInstance.SFXManager.PlaySoundEffect(tempestaSFX, MovimentoNavicella.GetNavicellaTransform(), 1f);
+        else
+            Debug.LogWarning("Manca tempestaSFX in VentoSolareEvento.cs");
+
         yield return new WaitForSeconds(durataEvento);
         DelegateClass.VentoSolareEventsHandler?.Invoke(false);
     }

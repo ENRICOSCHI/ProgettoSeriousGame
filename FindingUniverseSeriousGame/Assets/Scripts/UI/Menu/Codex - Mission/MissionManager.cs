@@ -2,6 +2,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MissionManager : MonoBehaviour, IHandleJSON
@@ -10,6 +11,9 @@ public class MissionManager : MonoBehaviour, IHandleJSON
     [Header("Struttura Missions (Il Database)")]
     [Tooltip("Configura qui le macro-categorie (Pianeti, Fenomeni, Musica).")]
     public CategoryMission[] categoryLists;
+
+    [Header("Icona missioni")]
+    [SerializeField] RectTransform iconMission;
     #endregion
 
 
@@ -67,9 +71,11 @@ public class MissionManager : MonoBehaviour, IHandleJSON
 
                 /*Il seguente evento è pensato per essere catturato da CheckPotenziamenti, 
                 al fine di sbloccare potenziamenti legati a quest specifiche.*/
-                DelegateClass.UpdateQuestDataEventHandler?.Invoke(categoryLists);
+                DelegateClass.UpdateQuestDataEventHandler?.Invoke(categoryLists,true);
 
                 Debug.Log($"Menu Aggiornato: Sbloccato {categoryLists[categoryIndex].entries[entryIndex].realName}!");
+
+                ManagerHandler.ManagerInstance.NotificationManager.PlayScaleAnimationIcon(iconMission);
             }
         }
     }
@@ -99,7 +105,7 @@ public class MissionManager : MonoBehaviour, IHandleJSON
 
                 /*Il seguente evento è pensato per essere catturato da CheckPotenziamenti, 
                 al fine di sbloccare potenziamenti legati a quest specifiche.*/
-                DelegateClass.UpdateQuestDataEventHandler?.Invoke(categoryLists);
+                DelegateClass.UpdateQuestDataEventHandler?.Invoke(categoryLists,true);
             }
         }
     }
@@ -235,6 +241,17 @@ public class MissionManager : MonoBehaviour, IHandleJSON
         foreach (var mission in missionsListContainer) mission.Init();
         #endregion
         PersistentSceneData.Instance.isChangingScene = false;
+
+        LoadEnhancements();
+    }
+    #endregion
+
+    #region Caricamento potenziamenti
+
+    private void LoadEnhancements()
+    {
+        // Carico lo stato dei potenziamenti, basandomi sulle missioni completate, tramite CheckPotenziamenti
+        DelegateClass.UpdateQuestDataEventHandler?.Invoke(categoryLists,false);
     }
     #endregion
 }

@@ -24,6 +24,10 @@ public class RadioController : MonoBehaviour
     public KeyCode keyNext = KeyCode.E;
     public KeyCode keyPrevious = KeyCode.Q;
 
+    [Header("Sound Effects")]
+    [SerializeField] AudioClip cambio_musicaSFX;
+    [SerializeField] AudioClip radioOn_OFFsfx;
+
     // Variabili per tracciare lo stato della radio
     private bool isManuallyPaused = false;
 
@@ -36,6 +40,11 @@ public class RadioController : MonoBehaviour
 
     void Awake()
     {
+        if(GetComponent<MusicManager>() == null)
+        {
+            Debug.LogWarning("RadioController: Non è stato trovato un MusicManager nello stesso GameObject. Assicurati di averlo aggiunto.");
+            return;
+        }
         musicManager = GetComponent<MusicManager>();
 
         // Impostazioni di sicurezza per l'AudioSource
@@ -124,6 +133,11 @@ public class RadioController : MonoBehaviour
     /// </summary>
     private void TogglePlayPause()
     {
+        if (radioOn_OFFsfx != null)
+            ManagerHandler.ManagerInstance.SFXManager.PlaySoundEffect(radioOn_OFFsfx, MovimentoNavicella.GetNavicellaTransform(), 1f);
+        else
+            Debug.LogWarning("Manca radioOn_OFFsfx in RadioController.cs");
+
         if (audioSource.isPlaying)
         {
             // Se sta suonando, metti in pausa
@@ -157,6 +171,11 @@ public class RadioController : MonoBehaviour
     /// </summary>
     private void PlayNextSong()
     {
+        if (cambio_musicaSFX != null)
+            ManagerHandler.ManagerInstance.SFXManager.PlaySoundEffect(cambio_musicaSFX, MovimentoNavicella.GetNavicellaTransform(), 1f);
+        else
+            Debug.LogWarning("Manca cambio_musicaSFX in RadioController.cs");
+        
         // Se non siamo all'ultima canzone della nostra cronologia (es. eravamo andati indietro)
         if (historyIndex < playHistory.Count - 1)
         {
@@ -186,6 +205,11 @@ public class RadioController : MonoBehaviour
     /// </summary>
     private void PlayPreviousSong()
     {
+        if (cambio_musicaSFX != null)
+            ManagerHandler.ManagerInstance.SFXManager.PlaySoundEffect(cambio_musicaSFX, MovimentoNavicella.GetNavicellaTransform(), 1f);
+        else
+            Debug.LogWarning("Manca cambio_musicaSFX in RadioController.cs");
+
         // Se l'indice è maggiore di 0, significa che c'è almeno una canzone prima di questa
         if (historyIndex > 0)
         {
@@ -225,7 +249,6 @@ public class RadioController : MonoBehaviour
             {
                 //ManagerHandler.ManagerInstance.DialogueManager.ShowMessage(songData.songDescription);
                 StartCoroutine(ManagerHandler.ManagerInstance.SubtitleManager.PlaySubtitle(songData.subtitles,songData.subtitleAudioClip));
-                ManagerHandler.ManagerInstance.SFXManager.PlayRandomSoundEffect(musicManager.sfxClips,transform,1f); // Suono di apertura dialogo
                 ManagerHandler.ManagerInstance.CodexManager.UnlockMenuEntry(2, songData.songIDCodex);
             }
         }

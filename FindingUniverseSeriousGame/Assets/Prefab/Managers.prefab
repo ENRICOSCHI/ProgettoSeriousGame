@@ -332,7 +332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSourceSubtitles: {fileID: 0}
   audioSourceMusic: {fileID: 0}
-  volumeMusicDuringSubtitle: 0.5
+  volumeMusicDuringSubtitle: 0.2
 --- !u!1 &2596436358536219738
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,6 +422,7 @@ Transform:
   - {fileID: 7311296465601690894}
   - {fileID: 6835702043072946988}
   - {fileID: 3527946302284557998}
+  - {fileID: 8438826084723316078}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2227621358879324505
@@ -610,7 +611,7 @@ MonoBehaviour:
     categoryList: {fileID: 0}
     isOpen: 0
     entries:
-    - ID: P000
+    - ID: C_P000
       uiTextElement: {fileID: 0}
       realName: Mercurio
       description: "CLASSIFICAZIONE:\nPianeta Terrestre\n\nPANORAMICA:\nIl pianeta
@@ -622,7 +623,7 @@ MonoBehaviour:
         a -180 C nella notte. Inoltre, a causa della sua lenta rotazione, un \"giorno\"
         su Mercurio dura il doppio di un suo \"anno\"."
       isDiscovered: 0
-    - ID: P001
+    - ID: C_P001
       uiTextElement: {fileID: 0}
       realName: Venere
       description: "CLASSIFICAZIONE:\nPianeta Terrestre\n\nPANORAMICA:\nSpesso definito
@@ -634,7 +635,7 @@ MonoBehaviour:
         proprio asse in senso retrogrado (da est a ovest), il che significa che il
         Sole sorge a ovest e tramonta a est."
       isDiscovered: 0
-    - ID: P002
+    - ID: C_P002
       uiTextElement: {fileID: 0}
       realName: Terra
       description: "CLASSIFICAZIONE:\nPianeta Terrestre\n\nPANORAMICA:\nIl terzo
@@ -645,7 +646,7 @@ MonoBehaviour:
         per la regolazione del carbonio e il mantenimento di un clima abitabile nel
         corso di miliardi di anni."
       isDiscovered: 0
-    - ID: P003
+    - ID: C_P003
       uiTextElement: {fileID: 0}
       realName: Marte
       description: "CLASSIFICAZIONE:\nPianeta Terrestre\n\nPANORAMICA:\nNoto come
@@ -657,7 +658,7 @@ MonoBehaviour:
         di canyon cos\xEC vasto che, se fosse sulla Terra, si estenderebbe da New
         York a Los Angeles."
       isDiscovered: 0
-    - ID: P004
+    - ID: C_P004
       uiTextElement: {fileID: 0}
       realName: Giove
       description: "CLASSIFICAZIONE:\nGigante Gassoso\n\nPANORAMICA:\nIl colosso
@@ -670,7 +671,7 @@ MonoBehaviour:
         di Giove funge da \"scudo\" per i pianeti interni, deviando o catturando
         asteroidi e comete pericolosi."
       isDiscovered: 1
-    - ID: P005
+    - ID: C_P005
       uiTextElement: {fileID: 0}
       realName: Saturno
       description: "CLASSIFICAZIONE:\nGigante Gassoso\n\nPANORAMICA:\nIl sesto pianeta,
@@ -681,7 +682,7 @@ MonoBehaviour:
         grande, il pianeta vi galleggerebbe. Al suo polo nord infuria una tempesta
         perpetua dalla perfetta, e inspiegabile, forma esagonale."
       isDiscovered: 1
-    - ID: P006
+    - ID: C_P006
       uiTextElement: {fileID: 0}
       realName: Urano
       description: "CLASSIFICAZIONE:\nGigante Ghiacciato\n\nPANORAMICA:\nUn mondo
@@ -693,7 +694,7 @@ MonoBehaviour:
         anomalia estrema sia il risultato di una collisione apocalittica con un corpo
         grande quanto la Terra nelle prime fasi di vita del sistema solare."
       isDiscovered: 1
-    - ID: P007
+    - ID: C_P007
       uiTextElement: {fileID: 0}
       realName: Nettuno
       description: "CLASSIFICAZIONE:\nGigante Ghiacciato\n\nPANORAMICA:\nL'ottavo
@@ -709,7 +710,7 @@ MonoBehaviour:
     categoryList: {fileID: 0}
     isOpen: 0
     entries:
-    - ID: E000
+    - ID: C_E000
       uiTextElement: {fileID: 0}
       realName: Fionda Gravitazionale
       description: "CLASSIFICAZIONE:\nManovra Astrodinamica\n\nPANORAMICA:\nUna tecnica
@@ -723,8 +724,8 @@ MonoBehaviour:
         dalla nave viene letteralmente \"rubata\" al pianeta. Ad esempio, quando
         una sonda sfrutta Giove per accelerare, l'orbita dell'immenso gigante gassoso
         rallenta impercettibilmente (circa un millimetro ogni miliardo di anni)."
-      isDiscovered: 1
-    - ID: E001
+      isDiscovered: 0
+    - ID: C_E001
       uiTextElement: {fileID: 0}
       realName: Disturbi Elettromagnetici
       description: "CLASSIFICAZIONE: \nAttivit\xE0 Stellare / Tempesta Geomagnetica\n\nPANORAMICA:\nFluttuazioni
@@ -738,8 +739,8 @@ MonoBehaviour:
         che i fili dei telegrafi presero letteralmente fuoco spontaneamente, e le
         aurore boreali furono visibili fino all'equatore. Una tempesta di simile
         portata oggi riporterebbe la rete globale all'et\xE0 della pietra digitale."
-      isDiscovered: 1
-    - ID: E002
+      isDiscovered: 0
+    - ID: C_E002
       uiTextElement: {fileID: 0}
       realName: Umbra e Penumbra
       description: "CLASSIFICAZIONE: \nFenomeno Ottico / Allineamento Orbitale\n\nPANORAMICA:\nLe
@@ -753,12 +754,12 @@ MonoBehaviour:
         esattamente 400 volte pi\xF9 lontano. Questo allineamento geometrico perfetto
         fa s\xEC che, dall'Umbra, la Luna copra in modo esatto il disco solare, rivelando
         solo l'eterea corona di plasma della stella."
-      isDiscovered: 1
+      isDiscovered: 0
   - categoryTitle: {fileID: 0}
     categoryList: {fileID: 0}
     isOpen: 0
     entries:
-    - ID: M000
+    - ID: C_M000
       uiTextElement: {fileID: 0}
       realName: Tokyo Reggie
       description: "CLASSIFICAZIONE:\nJazz-Fusion & City Pop\n\nDATI TRACCIA:\nAutore:
@@ -773,7 +774,7 @@ MonoBehaviour:
         Ryuichi Sakamoto, cambiando per sempre la storia della musica elettronica
         mondiale."
       isDiscovered: 0
-    - ID: M001
+    - ID: C_M001
       uiTextElement: {fileID: 0}
       realName: Kissin' in the Rainbow
       description: "CLASSIFICAZIONE:\nJazz-Funk & Synth-Boogie\n\nDATI TRACCIA:\nAutore:
@@ -788,7 +789,7 @@ MonoBehaviour:
         di Keiko Matsui, diventando una delle compositrici smooth jazz pi\xF9 celebri
         e premiate al mondo."
       isDiscovered: 0
-    - ID: M002
+    - ID: C_M002
       uiTextElement: {fileID: 0}
       realName: Michiteiku Taion
       description: "CLASSIFICAZIONE:\nNu-Jazz & Neo City Pop\n\nDATI TRACCIA: \nAutore:
@@ -803,7 +804,7 @@ MonoBehaviour:
         un inno \"underground\", considerato la colonna sonora definitiva per guidare
         di notte attraverso uno skyline illuminato dai neon."
       isDiscovered: 0
-    - ID: M003
+    - ID: C_M003
       uiTextElement: {fileID: 0}
       realName: 4:00 AM
       description: "CLASSIFICAZIONE:\nCity Pop & Soul\n\nDATI TRACCIA:\nAutore: Taeko
@@ -818,7 +819,7 @@ MonoBehaviour:
         globale di internet l'ha resuscitato, trasformandolo in un successo di culto
         internazionale a scoppio ritardato."
       isDiscovered: 0
-    - ID: M004
+    - ID: C_M004
       uiTextElement: {fileID: 0}
       realName: Shinkai
       description: "CLASSIFICAZIONE:\nModern J-Pop & J-Rock\n\nDATI TRACCIA:\nAutore:
@@ -832,7 +833,7 @@ MonoBehaviour:
         come colonna sonora per il pluripremiato film d'animazione Josee, the Tiger
         and the Fish."
       isDiscovered: 0
-    - ID: M005
+    - ID: C_M005
       uiTextElement: {fileID: 0}
       realName: Midnight Cruisin
       description: "CLASSIFICAZIONE:\nCity Pop & AOR (Adult Oriented Rock)\n\nDATI
@@ -847,7 +848,7 @@ MonoBehaviour:
         perfetta\" da ascoltare nello stereo dell'auto correndo a tarda notte sulla
         Shuto Expressway di Tokyo."
       isDiscovered: 0
-    - ID: M006
+    - ID: C_M006
       uiTextElement: {fileID: 0}
       realName: Time Machine Love
       description: "CLASSIFICAZIONE:\nNeo City Pop\n\nDATI TRACCIA:\nAutore: Ryusenkei\nAlbum:
@@ -861,7 +862,7 @@ MonoBehaviour:
         del \"Neo City Pop\": una capsula del tempo cos\xEC accurata che molti ascoltatori
         moderni sono tuttora convinti che il brano sia stato registrato nel 1982."
       isDiscovered: 0
-    - ID: M007
+    - ID: C_M007
       uiTextElement: {fileID: 0}
       realName: Noa Noa
       description: "CLASSIFICAZIONE:\nResort Pop & Fusion\n\nDATI TRACCIA:\nAutore:
@@ -917,6 +918,50 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: caf3f74b9495a954fa776dc5b6d7287b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &4858047301497340332
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8438826084723316078}
+  - component: {fileID: 7263078599136921749}
+  m_Layer: 0
+  m_Name: OptionsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8438826084723316078
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4858047301497340332}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5698369315328781363}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7263078599136921749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4858047301497340332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83cee3b719ac875429d98e2a504ab743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7776202616573886855
@@ -1061,55 +1106,75 @@ MonoBehaviour:
     categoryList: {fileID: 0}
     isOpen: 0
     entries:
-    - ID: C_D000
+    - ID: M_D000
       uiTextElement: {fileID: 0}
       realName: 'Scoperta Mercurio '
-      description: 
+      description: "Informazioni sulla scoperta:\n\nPrima osservazione:\nGalileo
+        Galilei (1610)\n\nDiametro:\n4879 km\n\nEscursione termina:\n-173  -  427
+        C\n\nGravit\xE0: \n0.38 g\n\nComposizione:\nNucleo di ferro (75% del raggio
+        del pianeta)"
       isDiscovered: 0
       isStarted: 0
       isCompleted: 0
       amount: 0
-    - ID: C_D001
+    - ID: M_D001
       uiTextElement: {fileID: 0}
       realName: Scoperta Venere
-      description: 
+      description: "Informazioni sulla scoperta:\n\nPrima osservazione:\nMichail
+        Lomonosov (1761), studio sull'atmosfera\n\nDiametro:\n12104 km\n\nEscursione
+        termina:\n464 C di media\n\nGravit\xE0: \n0.90 g\n\nComposizione:\nRocce
+        basaltiche, atmosfera di CO2 al 98%"
       isDiscovered: 0
       isStarted: 0
       isCompleted: 0
       amount: 0
-    - ID: C_D002
+    - ID: M_D002
       uiTextElement: {fileID: 0}
       realName: Scoperta Terra
-      description: 
+      description: "Informazioni sulla scoperta:\n\nAccertamento:\nLa sua posizione
+        orbitale eliocentrica \xE8 stata formalizzata da Copernico nel 1543\n\nDiametro:\n12756
+        km\n\nEscursione termina:\n15 C\n\nGravit\xE0: \n1.00 g (valore di riferimento
+        universale)\n\nComposizione:\nAzoto (78%) e Ossigeno (21%). Crosta solida
+        di silicati suddivisa in placche tettoniche, nucleo esterno liquido e interno
+        solido (ferro-nichel)."
       isDiscovered: 0
       isStarted: 0
       isCompleted: 0
       amount: 0
-    - ID: C_D003
+    - ID: M_D003
       uiTextElement: {fileID: 0}
       realName: Scoperta Marte
-      description: 
+      description: "Informazioni sulla scoperta:\n\nPrima osservazione:\nGalileo
+        Galilei (1610)\n\nDiametro:\n6779 km\n\nTemperatura media:\n-63 C\n\nGravit\xE0:
+        \n0.37 g\n\nComposizione:\nOssido di ferro in superficie, nucleo di ferro
+        e zolfo"
       isDiscovered: 0
       isStarted: 0
       isCompleted: 0
       amount: 0
-    - ID: C_D004
+    - ID: M_D004
       uiTextElement: {fileID: 0}
       realName: Scoperta Giove
-      description: 
+      description: "Informazioni sulla scoperta:\n\nPrima osservazione:\nSatelliti
+        osservati da Galileo Galilei (1610)\n\nDiametro:\n139820 km\n\nTemperatura
+        media:\n-110 C\n\nGravit\xE0: \n2.52 g\n\nComposizione:\nIdrogeno (90%) ed
+        Elio (10%). Probabile nucleo solido metallico"
       isDiscovered: 0
       isStarted: 0
       isCompleted: 0
       amount: 0
-    - ID: C_D005
+    - ID: M_D005
       uiTextElement: {fileID: 0}
       realName: Scoperta Saturno
-      description: 
+      description: "Informazioni sulla scoperta:\n\nPrima osservazione:\nChristiaan
+        Huygens (1655)\n\nDiametro:\n116460 km\n\nTemperatura media:\n-140 C\n\nGravit\xE0:
+        \n1.06 g\n\nComposizione:\nIdrogeno, Elio e tracce di Metano. Anelli composti
+        da ghiaccio e polveri"
       isDiscovered: 0
       isStarted: 0
       isCompleted: 0
       amount: 0
-    - ID: C_D006
+    - ID: M_D006
       uiTextElement: {fileID: 0}
       realName: Scoperta Urano
       description: 
@@ -1117,7 +1182,7 @@ MonoBehaviour:
       isStarted: 0
       isCompleted: 0
       amount: 0
-    - ID: C_D007
+    - ID: M_D007
       uiTextElement: {fileID: 0}
       realName: Scoperta Nettuno
       description: 
@@ -1128,11 +1193,50 @@ MonoBehaviour:
   - categoryTitle: {fileID: 0}
     categoryList: {fileID: 0}
     isOpen: 0
-    entries: []
+    entries:
+    - ID: M_C000
+      uiTextElement: {fileID: 0}
+      realName: Riparazione satellite
+      description: Questo satellite ha un malfunzionamento. Recuperare le sue componenti
+        per rimetterlo in sesto.
+      isDiscovered: 0
+      isStarted: 0
+      isCompleted: 0
+      amount: 0
+    - ID: M_C001
+      uiTextElement: {fileID: 0}
+      realName: Raccolta materiale
+      description: "Ci sono degli oggetti dispersi in questa fascia di asteroidi.
+        Raccoglili tutti, e la tua astronave ricever\xE0 delle migliorie."
+      isDiscovered: 0
+      isStarted: 0
+      isCompleted: 0
+      amount: 0
   - categoryTitle: {fileID: 0}
     categoryList: {fileID: 0}
     isOpen: 0
-    entries: []
+    entries:
+    - ID: M_R000
+      uiTextElement: {fileID: 0}
+      realName: Recupero equipaggio
+      description: A bordo del satellite era presente un equipaggio di ricerca sulla
+        composizione rocciosa degli asteroidi. Purtroppo, uno di questi li ha colpiti
+        durante una loro analisi. Sono stati fortunati a trovarti da quelle parti.
+      isDiscovered: 0
+      isStarted: 0
+      isCompleted: 0
+      amount: 0
+    - ID: M_R001
+      uiTextElement: {fileID: 0}
+      realName: Recupero dati di bordo
+      description: 'All''interno di quel satellite erano conservati dei dati preziosi
+        relativi a studi sulle fonti luminose delle galassie vicine alla nostra.
+        Sono un tassello importante per la comprensione di cosa ci sta attorno. Ben
+        fatto, RoverX. '
+      isDiscovered: 0
+      isStarted: 0
+      isCompleted: 0
+      amount: 0
 --- !u!1 &8573596838074759575
 GameObject:
   m_ObjectHideFlags: 0

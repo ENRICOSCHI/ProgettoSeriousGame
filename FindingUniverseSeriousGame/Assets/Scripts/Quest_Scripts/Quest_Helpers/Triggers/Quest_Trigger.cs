@@ -3,6 +3,7 @@ using UnityEngine;
 public class Quest_Trigger : MonoBehaviour
 {
     [SerializeField] private KeyCode interactionKey; //tasto da premere per attivare la quest
+    [SerializeField] private GameObject interactionText;
 
     private bool isPlayerInside = false;  //Indica se il player è dentro la zona di quest
     private Quest_Generic_Script questType;  //Tipo di quest
@@ -16,6 +17,7 @@ public class Quest_Trigger : MonoBehaviour
     {
         if (isPlayerInside && Input.GetKeyDown(interactionKey) && questType.questInteractionType == interactableType.keyWord)
         {
+            interactionText.SetActive(false); //nascondo il testo di interazione
             Tipo3();
         }
     }
@@ -34,9 +36,10 @@ public class Quest_Trigger : MonoBehaviour
             {
                 Tipo2();
             }
-            else if(!questType.questStarted && questType.questInteractionType != interactableType.scan)//se la quest non è iniziato mostro il comando per attivare la missione
+            else if(!questType.questStarted && questType.questInteractionType != interactableType.scan || !questType.questCompleted &&  (questType as Quest_3_Script).CheckAllItemsCollected())//se la quest non è iniziata mostro il comando per attivare la missione
             {
                 Debug.Log("Premi E per interagire con la quest");
+                interactionText.SetActive(true);
             }
         }
     }
@@ -89,6 +92,8 @@ public class Quest_Trigger : MonoBehaviour
             {
                 q3.FinishQuest();
             }
+
+
         }
     }
     #endregion
