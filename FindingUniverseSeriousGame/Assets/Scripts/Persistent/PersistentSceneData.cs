@@ -19,6 +19,7 @@ public class PersistentSceneData : MonoBehaviour, IHandleJSON
     [HideInInspector] public bool isDescriptionFiondaHappened = false;
     [HideInInspector] public bool isDescriptionVentoSolareHappened = false;
     [HideInInspector] public bool isChangeSceneUnlocked = false;
+    [HideInInspector] public bool isStarSceneEventHappenend = false;
 
 #endregion
 
@@ -151,4 +152,5 @@ public class FlagSavableData
     public bool DescriptionFiondaHappened;
     public bool DescriptionVentoSolareHappened;
     public bool ChangeSceneUnlcoked;
+    public bool isStarSceneEventHappenend;
 }
