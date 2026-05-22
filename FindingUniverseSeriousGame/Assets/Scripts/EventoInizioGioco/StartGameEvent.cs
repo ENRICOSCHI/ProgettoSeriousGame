@@ -5,13 +5,22 @@ public class StartGameEvent : MonoBehaviour
     [SerializeField] AudioClip audioSottotitoli; 
     [SerializeField] Subtitles[] sottotitoli;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void OnEnable()
+    {
+        DelegateClass.StartFirstMissionEventHandler += ActiveStartMission;
+    }
+
+    private void OnDisable()
+    {
+        DelegateClass.StartFirstMissionEventHandler -= ActiveStartMission;
+    }
+
+    void ActiveStartMission()
     {
         if (!PersistentSceneData.Instance.isStarSceneEventHappenend)
         {
-            ManagerHandler.ManagerInstance.SubtitleManager.PlaySubtitle(sottotitoli, audioSottotitoli);
             PersistentSceneData.Instance.isStarSceneEventHappenend = true;
+            StartCoroutine(ManagerHandler.ManagerInstance.SubtitleManager.PlaySubtitle(sottotitoli, audioSottotitoli));
         }
     }
 }

@@ -15,7 +15,7 @@ public class FadeLoading : MonoBehaviour
 
     private IEnumerator FadeAnimation()
     {
-        Debug.Log("Animazione icona");
+        //Debug.Log("Animazione icona");
         float elapsedTime = 0f;
 
         yield return new WaitForSeconds(fadeStop); // Tempo in cui l'immagine rimane completamente nera
@@ -24,9 +24,10 @@ public class FadeLoading : MonoBehaviour
 
         while (elapsedTime < fadeDuration) // Durata dell'animazione (metà del tempo totale della notifica)
         {
-            FadeToBlack.color = new Color(0f, 0f, 0f, Mathf.Lerp(1f, 0f, elapsedTime / (fadeDuration / 2))); // Seconda metà del tempo per sfumare da nero a trasparente
+            FadeToBlack.color = new Color(0f, 0f, 0f, Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration));
             elapsedTime += Time.deltaTime;
             yield return null; // Attende il prossimo frame prima di continuare l'animazione
         }
+        DelegateClass.StartFirstMissionEventHandler.Invoke();
     }
 }

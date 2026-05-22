@@ -32,4 +32,8 @@ public class DelegateClass
     per essere catturato dai vari script CheckPotenziamenti*/
     public delegate void UpdateQuestDataEvent(CategoryMission[] categoryMissions, bool hasNotification);
     public static UpdateQuestDataEvent UpdateQuestDataEventHandler;
+
+    /* Gestione inizio prima missione */
+    public delegate void StartFirstMission();
+    public static StartFirstMission StartFirstMissionEventHandler;
 }
