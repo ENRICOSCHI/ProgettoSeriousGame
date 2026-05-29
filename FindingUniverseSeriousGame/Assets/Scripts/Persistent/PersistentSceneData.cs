@@ -146,6 +146,22 @@ public class PersistentSceneData : MonoBehaviour, IHandleJSON
         Debug.Log("salvato in: " + path);
     }
 #endregion
+
+public void ResetData()
+    {
+        isDescriptionFiondaHappened = false;
+        isDescriptionUmbraHappened = false;
+        isDescriptionVentoSolareHappened = false;
+        isChangeSceneUnlocked = false;
+        isStarSceneEventHappenend = false;
+
+        if (persistentSceneDataDictionary.ContainsKey(KEYPERSISTENTSCENEDATA))
+        {
+            persistentSceneDataDictionary.Remove(KEYPERSISTENTSCENEDATA);
+            Save(false); //salvo subito dopo aver resettato i dati
+            Debug.Log("PersistentSceneData resettato");
+        }
+    }
 }
 
 [System.Serializable]
