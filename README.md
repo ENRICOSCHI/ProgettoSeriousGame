@@ -12,7 +12,7 @@ Aggiorna con quello che è stato fatto (aggiungere cose in future)
 - [x] sfx
 - [x] musica
 - [ ] Fine gioco
-- [ ] Messaggio di nuova partita
+- [x] Messaggio di nuova partita
 - [ ] Modello 3D del mini sistema nella scena 2
 ### Eventi cosmici
 - [x] Sindrome di Kessler (Detriti artificiali)
