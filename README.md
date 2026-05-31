@@ -11,7 +11,7 @@ Aggiorna con quello che è stato fatto (aggiungere cose in future)
 - [x] più di una scena
 - [x] sfx
 - [x] musica
-- [ ] Fine gioco
+- [x] Fine gioco
 - [x] Messaggio di nuova partita
 - [ ] Modello 3D del mini sistema nella scena 2
 ### Eventi cosmici
