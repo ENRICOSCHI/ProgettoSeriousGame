@@ -15,6 +15,7 @@ public class EnhancementEffect : MonoBehaviour
         MagneticShield,
         RadiationShield,
         Music,
+        GiocoLibero
     }
 
     [Header("Configurazione Effetto")]
@@ -53,6 +54,9 @@ public class EnhancementEffect : MonoBehaviour
                 Music();
                 break;
 
+            case EnhancementType.GiocoLibero:
+                GiocoLibero();
+                break;
             default:
                 Debug.LogWarning($"Attenzione: Al potenziamento {gameObject.name} non è stato assegnato nessun effetto dal menu a tendina.");
                 break;
@@ -104,6 +108,11 @@ public class EnhancementEffect : MonoBehaviour
         DatabaseEnhancement.Instance.radioController.enabled = true;
         DatabaseEnhancement.Instance.musicUI.SetActive(true);
         Debug.Log("Effetto applicato: Musica Sbloccata!");
+    }
+
+    private void GiocoLibero()
+    {
+        ManagerHandler.ManagerInstance.NotificationManager.ShowNotifcation("Ora puoi liberamente esplorare l'universo!",Color.magenta);
     }
 
     #endregion

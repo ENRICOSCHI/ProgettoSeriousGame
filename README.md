@@ -8,9 +8,12 @@ Aggiorna con quello che è stato fatto (aggiungere cose in future)
 - [x] interfaccia utente (menu della navicella con mappa ec..)
 - [x] quest script
 - [x] salvataggi
-- [ ] più di una scena
-- [ ] sfx
+- [x] più di una scena
+- [x] sfx
 - [x] musica
+- [x] Fine gioco
+- [x] Messaggio di nuova partita
+- [ ] Modello 3D del mini sistema nella scena 2
 ### Eventi cosmici
 - [x] Sindrome di Kessler (Detriti artificiali)
 - [x] Vento Solare e tempeste geomagnetiche:
@@ -18,7 +21,7 @@ Aggiorna con quello che è stato fatto (aggiungere cose in future)
 - [x] Umbra e Penumbra 
 ## Blender
 - [x] modellazione navicella
-- [ ] modellazione pianeti
+- [x] modellazione pianeti
 - [x] modellazione meteoriti
 
 # LINK MIRO

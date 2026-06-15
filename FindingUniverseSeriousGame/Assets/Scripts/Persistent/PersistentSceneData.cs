@@ -19,13 +19,14 @@ public class PersistentSceneData : MonoBehaviour, IHandleJSON
     [HideInInspector] public bool isDescriptionFiondaHappened = false;
     [HideInInspector] public bool isDescriptionVentoSolareHappened = false;
     [HideInInspector] public bool isChangeSceneUnlocked = false;
+    public bool isStarSceneEventHappenend = false;
 
 #endregion
 
 #region "Unity Methods"
     void Start()
     {
-        if(Instance != null) return;
+        if (Instance != null) { Destroy(gameObject); return; }
 
         Instance = this;
 
@@ -60,7 +61,9 @@ public class PersistentSceneData : MonoBehaviour, IHandleJSON
         {
             isDescriptionFiondaHappened = persistentSceneDataDictionary[KEYPERSISTENTSCENEDATA].DescriptionFiondaHappened;
             isDescriptionUmbraHappened = persistentSceneDataDictionary[KEYPERSISTENTSCENEDATA].DescriptionUmbraHappened;
-            isDescriptionVentoSolareHappened = persistentSceneDataDictionary[KEYPERSISTENTSCENEDATA].DescriptionVentoSolareHappened; 
+            isDescriptionVentoSolareHappened = persistentSceneDataDictionary[KEYPERSISTENTSCENEDATA].DescriptionVentoSolareHappened;
+            isChangeSceneUnlocked = persistentSceneDataDictionary[KEYPERSISTENTSCENEDATA].ChangeSceneUnlcoked;
+            isStarSceneEventHappenend = persistentSceneDataDictionary[KEYPERSISTENTSCENEDATA].IsStarSceneEventHappenend;
             Debug.Log("PersistentSceneData caricato");
         }
         else
@@ -113,8 +116,8 @@ public class PersistentSceneData : MonoBehaviour, IHandleJSON
                 DescriptionFiondaHappened = isDescriptionFiondaHappened,
                 DescriptionUmbraHappened = isDescriptionUmbraHappened,
                 DescriptionVentoSolareHappened = isDescriptionVentoSolareHappened,
-                ChangeSceneUnlcoked = isChangeSceneUnlocked
-
+                ChangeSceneUnlcoked = isChangeSceneUnlocked,
+                IsStarSceneEventHappenend = isStarSceneEventHappenend
             });
         }
         else
@@ -123,6 +126,7 @@ public class PersistentSceneData : MonoBehaviour, IHandleJSON
             persistentSceneDataDictionary[KEYPERSISTENTSCENEDATA].DescriptionUmbraHappened = isDescriptionUmbraHappened;
             persistentSceneDataDictionary[KEYPERSISTENTSCENEDATA].DescriptionVentoSolareHappened = isDescriptionVentoSolareHappened;
             persistentSceneDataDictionary[KEYPERSISTENTSCENEDATA].ChangeSceneUnlcoked = isChangeSceneUnlocked;
+            persistentSceneDataDictionary[KEYPERSISTENTSCENEDATA].IsStarSceneEventHappenend = isStarSceneEventHappenend;
         }
 
         string path = ManagerHandler.ManagerInstance.SaveManager.GetPathForPersistentSceneData();
@@ -142,6 +146,22 @@ public class PersistentSceneData : MonoBehaviour, IHandleJSON
         Debug.Log("salvato in: " + path);
     }
 #endregion
+
+public void ResetData()
+    {
+        isDescriptionFiondaHappened = false;
+        isDescriptionUmbraHappened = false;
+        isDescriptionVentoSolareHappened = false;
+        isChangeSceneUnlocked = false;
+        isStarSceneEventHappenend = false;
+
+        if (persistentSceneDataDictionary.ContainsKey(KEYPERSISTENTSCENEDATA))
+        {
+            persistentSceneDataDictionary.Remove(KEYPERSISTENTSCENEDATA);
+            Save(false); //salvo subito dopo aver resettato i dati
+            Debug.Log("PersistentSceneData resettato");
+        }
+    }
 }
 
 [System.Serializable]
@@ -151,4 +171,5 @@ public class FlagSavableData
     public bool DescriptionFiondaHappened;
     public bool DescriptionVentoSolareHappened;
     public bool ChangeSceneUnlcoked;
+    public bool IsStarSceneEventHappenend;
 }

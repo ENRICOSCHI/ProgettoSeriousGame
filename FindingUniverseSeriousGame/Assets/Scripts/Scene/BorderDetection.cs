@@ -2,37 +2,66 @@ using UnityEngine;
 
 public class BorderDetection : MonoBehaviour
 {
-    [Header("Transform variables")]
+    public enum BorderType { Esterno_Exit, Interno_Enter }
+
+    [Header("Impostazioni Bordo")]
+    [Tooltip("Scegli se il trigger scatta quando ESCI (Bordi Esterni) o quando ENTRI (Bordi Interni)")]
+    [SerializeField] private BorderType tipoDiBordo = BorderType.Esterno_Exit;
+    
+    [Tooltip("Questo bordo richiede di aver sbloccato il cambio scena? (Togli la spunta per tornare indietro liberamente)")]
+    [SerializeField] private bool richiedeSblocco = true;
+
+    [Header("Riferimenti e Navigazione")]
+    [SerializeField] string LEVELTOGO = "Level1";
     [SerializeField] Transform spawnRedirect;
     [SerializeField] Transform navicellaTransform;
 
-    [Header("Scene to load reference")]
-    [SerializeField] string LEVELTOGO = "Level1";
-
-    [Header("Warnign variables")] 
+    [Header("Variabili Avviso")] 
     [SerializeField] string messageError = "Non puoi ancora andare al prossimo livello";
-    [SerializeField] Color messageColor;
+    [SerializeField] Color messageColor = Color.red;
 
+    // Scatta quando il giocatore entra nel trigger (per il trigger di bordo interno (ritorno al livello 1))
+    private void OnTriggerEnter(Collider other)
+    {
+        if (tipoDiBordo == BorderType.Interno_Enter && other.CompareTag("Player"))
+        {
+            EseguiControlloCambioScena();
+        }
+    }
 
+    // Scatta quando il giocatore esce dal trigger (per il trigger di bordo esterno (passaggio al livello successivo))
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (tipoDiBordo == BorderType.Esterno_Exit && other.CompareTag("Player"))
         {
-            if (PersistentSceneData.Instance.isChangeSceneUnlocked)
-                ManagerHandler.ManagerInstance.SceneManager.ChangeLevel(LEVELTOGO);
-            else
+            EseguiControlloCambioScena();
+        }
+    }
+
+    // Centralizziamo la logica così non duplichiamo il codice
+    private void EseguiControlloCambioScena()
+    {
+        // Se non richiede sblocco, OPPURE se lo richiede ed è sbloccato -> Cambia Scena
+        if (!richiedeSblocco || PersistentSceneData.Instance.isChangeSceneUnlocked)
+        {
+            ManagerHandler.ManagerInstance.SceneManager.ChangeLevel(LEVELTOGO);
+        }
+        else
+        {
+            // Fallimento: Ricarica posizione e dai l'avviso
+            Debug.Log("Cambio scena bloccato.");
+            ManagerHandler.ManagerInstance.NotificationManager.ShowNotifcation(messageError, messageColor);
+            
+            MovimentoNavicella MV = FindAnyObjectByType<MovimentoNavicella>();
+            if (MV != null)
             {
-                //messaggio d'avviso
-                Debug.Log("non hai ancora sbloccato il livello 2");
-                ManagerHandler.ManagerInstance.NotificationManager.ShowNotifcation(messageError, messageColor);
-                //mettere sfondo nero per caricamento pos.
-                // disattivare velocit� navicella
-                MovimentoNavicella MV = FindAnyObjectByType<MovimentoNavicella>();
                 MV.SetCurrentSpeed(0f);
-                // dare nuova posizione navicella
+            }
+            
+            if (navicellaTransform != null && spawnRedirect != null)
+            {
                 navicellaTransform.position = spawnRedirect.position;
             }
-                
         }
     }
 }
