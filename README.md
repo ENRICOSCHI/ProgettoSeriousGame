@@ -13,7 +13,7 @@ Aggiorna con quello che è stato fatto (aggiungere cose in future)
 - [x] musica
 - [x] Fine gioco
 - [x] Messaggio di nuova partita
-- [ ] Modello 3D del mini sistema nella scena 2
+- [x] Modello 3D del mini sistema nella scena 2
 ### Eventi cosmici
 - [x] Sindrome di Kessler (Detriti artificiali)
 - [x] Vento Solare e tempeste geomagnetiche:
