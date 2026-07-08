@@ -8,8 +8,6 @@ public class BorderDetection : MonoBehaviour
     [Tooltip("Scegli se il trigger scatta quando ESCI (Bordi Esterni) o quando ENTRI (Bordi Interni)")]
     [SerializeField] private BorderType tipoDiBordo = BorderType.Esterno_Exit;
     
-    [Tooltip("Questo bordo richiede di aver sbloccato il cambio scena? (Togli la spunta per tornare indietro liberamente)")]
-    [SerializeField] private bool richiedeSblocco = true;
 
     [Header("Riferimenti e Navigazione")]
     [SerializeField] string LEVELTOGO = "Level1";
@@ -41,8 +39,8 @@ public class BorderDetection : MonoBehaviour
     // Centralizziamo la logica così non duplichiamo il codice
     private void EseguiControlloCambioScena()
     {
-        // Se non richiede sblocco, OPPURE se lo richiede ed è sbloccato -> Cambia Scena
-        if (!richiedeSblocco || PersistentSceneData.Instance.isChangeSceneUnlocked)
+        
+        if (PersistentSceneData.Instance.isChangeSceneUnlocked)
         {
             ManagerHandler.ManagerInstance.SceneManager.ChangeLevel(LEVELTOGO);
         }
