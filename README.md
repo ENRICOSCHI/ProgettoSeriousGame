@@ -28,7 +28,6 @@ Aggiorna con quello che è stato fatto (aggiungere cose in future)
 [Miro](https://miro.com/app/board/uXjVG0NHrxI=/)
 
 # CREDITI 
-- Nicholas Bradach 
 - Stefano Cadalt
 - Enrico Fiore
 - Davide Pica
