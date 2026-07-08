@@ -84,7 +84,11 @@ public class UmbraEvento : Eventi
     private void CalcolaParametriCono()
     {
         if (stella == null || pianeta == null) return;
+
+        //calcolo distanza tra stella e pianeta
         float d = Vector3.Distance(stella.position, pianeta.position);
+
+        //calcolo lunghezza del cono d'ombra e del cono di penombra
         _lunghezzaConoUmbra = d * raggioPianeta / Mathf.Max(raggioStella - raggioPianeta, 0.001f);
         _lunghezzaConoPenombra = d * raggioPianeta / Mathf.Max(raggioStella + raggioPianeta, 0.001f);
     }
@@ -103,24 +107,42 @@ public class UmbraEvento : Eventi
     #region"Classificazione ombra"
     public StatoOmbra CalcolaStatoOmbra(Vector3 posizione)
     {
+        /*Calcolo vettori di riferimento*/
+        // Vettore unitario (lunghezza 1) che definisce la direzione dell'asse dell'ombra (da Stella a Pianeta)
         Vector3 dirStellaPianeta = (pianeta.position - stella.position).normalized;
-        Vector3 vettorePianetaPos = posizione - pianeta.position;
+        // Vettore che va dal centro del pianeta fino alla posizione dell'oggetto/navicella
+        Vector3 vettorePianetaPos = posizione - pianeta.position; 
 
+        /*Proizione sull'asse e verifica se è davati o dietro*/
+        // Tramite prodotto scalare (Dot) calcolo la proiezione della navicella sull'asse dell'ombra.
         float proiezioneAsse = Vector3.Dot(vettorePianetaPos, dirStellaPianeta);
+        // Se la proiezione è <= 0, l'oggetto si trova davanti o a fianco del pianeta rispetto alla stella.
         if (proiezioneAsse <= 0f) return StatoOmbra.Luce;
-
+        
+        /*Distanza radiale dall'asse (distanza minima assoluta tra due punti*/
+        // Vettore della posizione proiettata esattamente lungo l'asse centrale dell'ombra
         Vector3 componenteAssiale = dirStellaPianeta * proiezioneAsse;
+        // Calcolo della distanza perpendicolare (radiale) dell'oggetto dall'asse centrale del cono d'ombra
         float distanzaRadiale = (vettorePianetaPos - componenteAssiale).magnitude;
-
+        
+        /*Dimensioni dei coni alla distanza dell'oggetto*/
+        // Il cono di Umbra (ombra totale) si restringe man mano che ci si allontana dal pianeta.   
+        // A proiezioneAsse = _lunghezzaConoUmbra, il raggio diventa 0 (vertice del cono).
         float raggioUmbraADistanza = raggioPianeta * (1f - proiezioneAsse / _lunghezzaConoUmbra);
         float raggioPenombraADistanza = raggioPianeta * (1f + proiezioneAsse / _lunghezzaConoPenombra);
 
+        /*Classificazione dello stato dell'ombra*/
+
+        // Se l'oggetto supera la lunghezza massima del cono d'ombra allora è in piena luce
         if (proiezioneAsse > _lunghezzaConoUmbra) return StatoOmbra.Luce;
 
+        // se la distanza è minore del raggio del cono d'ombra allora siamo in piena ombra
         if (distanzaRadiale <= raggioUmbraADistanza)
             return StatoOmbra.Umbra;
 
+        //calcolo la soglia di penobra come interpolazione lineare tra il raggio del cono d'ombra e il raggio del cono di penombra, in base allo spessore della penombra
         float sogliaPenombra = Mathf.Lerp(raggioUmbraADistanza, raggioPenombraADistanza, spessorePenombra);
+        //se è all'interno della soglia...
         if (distanzaRadiale <= sogliaPenombra)
             return StatoOmbra.Penombra;
 
