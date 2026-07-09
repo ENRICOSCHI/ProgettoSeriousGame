@@ -148,11 +148,12 @@ public class UmbraEvento : Eventi
 
         return StatoOmbra.Luce;
     }
-    #endregion
+    #endregion-
 
     #region"Transizioni e notifiche"
     private void GestisciTransizioni()
     {
+        //se lo stato non è cambiato esco dalla funzione
         if (_statoCorrente == _statoPrecedente) return;
 
         switch (_statoCorrente)
@@ -202,14 +203,18 @@ public class UmbraEvento : Eventi
         CalcolaParametriCono();
         Vector3 dir = (pianeta.position - stella.position).normalized;
 
+        //disegno cono umbra
         Gizmos.color = new Color(0.05f, 0.05f, 0.4f, 0.5f);
         DisegnaCono(pianeta.position, dir, raggioPianeta, _lunghezzaConoUmbra);
 
+        //disegno cono penumbra
         Gizmos.color = new Color(0.3f, 0.3f, 0.8f, 0.25f);
         DisegnaCono(pianeta.position, dir, raggioPianeta, _lunghezzaConoPenombra * (1f + spessorePenombra), espandi: true);
 
+        //disegno la sfera della stella
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(stella.position, raggioStella * 0.05f);
+        //disegno la sfera dei pianeti
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(pianeta.position, raggioPianeta);
     }
