@@ -32,10 +32,16 @@ public class SavePlayer : MonoBehaviour, IHandleJSON
 
     public void SaveGame<TKey, TValue>(Dictionary<TKey, TValue> data)
     {
+        /*Siccome uso generici devo indicare quali sono i valori per TKey e TValue.
+          Per farlo uso i cast.
+        */
+        
+        TKey key = (TKey)(object)KEYPLAYER; // Cast della chiave da string a TKey
+
         //se non sono stati creati dati per il player, li creo...
-        if (!playerDataDictionary.ContainsKey(KEYPLAYER))
+        if (!data.ContainsKey(key))
         {
-            playerDataDictionary.Add(KEYPLAYER, new PlayerData
+            data.Add(key, (TValue)(object)new PlayerData //converto PlayerData in TValue
             {
                 //position
                 positionPlayerX = playerPosition.position.x,
@@ -55,19 +61,20 @@ public class SavePlayer : MonoBehaviour, IHandleJSON
         }
         else //... altrimenti li sovrascrivo
         {
+            PlayerData playerData = (PlayerData)(object)data[key]; // Converto TValue in PlayerData
             //position
-            playerDataDictionary[KEYPLAYER].positionPlayerX = playerPosition.position.x;
-            playerDataDictionary[KEYPLAYER].positionPlayerY = playerPosition.position.y;
-            playerDataDictionary[KEYPLAYER].positionPlayerZ = playerPosition.position.z;
+            playerData.positionPlayerX = playerPosition.position.x;
+            playerData.positionPlayerY = playerPosition.position.y;
+            playerData.positionPlayerZ = playerPosition.position.z;
             //rotation
-            playerDataDictionary[KEYPLAYER].rotationPlayerX = playerPosition.eulerAngles.x;
-            playerDataDictionary[KEYPLAYER].rotationPlayerY = playerPosition.eulerAngles.y;
-            playerDataDictionary[KEYPLAYER].rotationPlayerZ = playerPosition.eulerAngles.z;
+            playerData.rotationPlayerX = playerPosition.eulerAngles.x;
+            playerData.rotationPlayerY = playerPosition.eulerAngles.y;
+            playerData.rotationPlayerZ = playerPosition.eulerAngles.z;
 
             //battery
-            playerDataDictionary[KEYPLAYER].battery = ManagerHandler.ManagerInstance.BatteryManager.GetCurrentBattery();
+            playerData.battery = ManagerHandler.ManagerInstance.BatteryManager.GetCurrentBattery();
             //life
-            playerDataDictionary[KEYPLAYER].life = ManagerHandler.ManagerInstance.LifeManager.GetCurrentLife();
+            playerData.life = ManagerHandler.ManagerInstance.LifeManager.GetCurrentLife();
         }
 
 
@@ -78,13 +85,12 @@ public class SavePlayer : MonoBehaviour, IHandleJSON
         try
         {
             File.WriteAllText(path, json);
+            Debug.Log("salvato in: " + path);
         }
         catch(Exception e)
         {
             Debug.Log("Errore nel salvataggio del File Json: \n" + e.Message);
         }
-
-        Debug.Log("salvato in: " + path);
     }
 
     public void Save(bool isChangingLevel)

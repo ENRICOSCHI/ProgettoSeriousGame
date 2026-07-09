@@ -126,14 +126,13 @@ public class MissionManager : MonoBehaviour, IHandleJSON
         try
         {
             File.WriteAllText(path, json);
+            Debug.Log("salvato in: " + path);
         }
         catch (Exception e)
         {
             Debug.LogError("Errore durante il salvataggio del file JSON: \n" + e.Message);
             return;
         }
-        
-        Debug.Log("salvato in: " + path);
     }
 
     /// <summary>

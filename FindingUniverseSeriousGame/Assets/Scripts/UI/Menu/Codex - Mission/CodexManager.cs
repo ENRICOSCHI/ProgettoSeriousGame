@@ -82,13 +82,12 @@ public class CodexManager : MonoBehaviour, IHandleJSON
         try
         {
             File.WriteAllText(path, json);
+            Debug.Log("salvato in: " + path);
         }
         catch (Exception e)
         {
             Debug.LogError("Errore durante la scrittura del file JSON: \n" + e.Message);
         }
-
-        Debug.Log("salvato in: " + path);
     }
 
 
