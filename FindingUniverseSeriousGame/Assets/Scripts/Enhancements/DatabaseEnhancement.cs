@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.UI; // Se hai riferimenti UI
+using UnityEngine.UI; 
 using TMPro;
 
 /// <summary>

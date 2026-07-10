@@ -90,8 +90,6 @@ public class ManagerLife : MonoBehaviour
             MV.SetCurrentSpeed(0f); // Ferma la navicella
             MV.enabled = false; //Disabilita la facoltà di movimento
 
-            // todo: esplosione 
-
             // Messaggio di game over
             ManagerHandler.ManagerInstance.NotificationManager.ShowNotifcation(messageGameOver, messageColor);
 
