@@ -46,7 +46,7 @@ public class BorderDetection : MonoBehaviour
         }
         else
         {
-            // Fallimento: Ricarica posizione e dai l'avviso
+            // Se non ho completato la missione, ritorno in uno spawn centrale...
             Debug.Log("Cambio scena bloccato.");
             ManagerHandler.ManagerInstance.NotificationManager.ShowNotifcation(messageError, messageColor);
             

@@ -19,7 +19,7 @@ public class PersistentSceneData : MonoBehaviour, IHandleJSON
     [HideInInspector] public bool isDescriptionFiondaHappened = false;
     [HideInInspector] public bool isDescriptionVentoSolareHappened = false;
     [HideInInspector] public bool isChangeSceneUnlocked = false;
-    public bool isStarSceneEventHappenend = false;
+    [HideInInspector] public bool isStarSceneEventHappenend = false;
 
 #endregion
 
@@ -136,14 +136,13 @@ public class PersistentSceneData : MonoBehaviour, IHandleJSON
         try
         {
             File.WriteAllText(path, json);
+            Debug.Log("salvato in: " + path);
         }
         catch(Exception e)
         {
             Debug.Log("Errore durante il salvataggio del file JSON: \n" + e.Message);
             return;
         }
-
-        Debug.Log("salvato in: " + path);
     }
 #endregion
 

@@ -61,12 +61,12 @@ public class CodexManager : MonoBehaviour, IHandleJSON
                         categoryLists[categoryIndex].entries[entryIndex].ID,
                         categoryLists[categoryIndex].entries[entryIndex].isDiscovered
                     );
+                    
+                    Debug.Log($"Menu Aggiornato: Sbloccato {categoryLists[categoryIndex].entries[entryIndex].realName}!");
+
+                    // Attivo l'animazione dell'icona di aggiornamento del codex
+                    ManagerHandler.ManagerInstance.NotificationManager.PlayScaleAnimationIcon(iconCodex);
                 }
-
-                Debug.Log($"Menu Aggiornato: Sbloccato {categoryLists[categoryIndex].entries[entryIndex].realName}!");
-
-                // Attivo l'animazione dell'icona di aggiornamento del codex
-                ManagerHandler.ManagerInstance.NotificationManager.PlayScaleAnimationIcon(iconCodex);
             }
         }
     }
