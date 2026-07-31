@@ -1,28 +1,6 @@
-# SCHEDULE
-Aggiorna con quello che è stato fatto (aggiungere cose in future)
-## Unity
-- [x] sistema di movimento
-- [x] prototipo dell'universo
-- [x] programmazione eventi cosmici
-- [x] sfondo dell'universo
-- [x] interfaccia utente (menu della navicella con mappa ec..)
-- [x] quest script
-- [x] salvataggi
-- [x] più di una scena
-- [x] sfx
-- [x] musica
-- [x] Fine gioco
-- [x] Messaggio di nuova partita
-- [x] Modello 3D del mini sistema nella scena 2
-### Eventi cosmici
-- [x] Sindrome di Kessler (Detriti artificiali)
-- [x] Vento Solare e tempeste geomagnetiche:
-- [x] Fionda Gravitazionale
-- [x] Umbra e Penumbra 
-## Blender
-- [x] modellazione navicella
-- [x] modellazione pianeti
-- [x] modellazione meteoriti
+# PROGETTO D'ESAME 
+L'esame richiedeva la creazione di un gioco serious game a piacere, il nostro gruppo ha optato per un gioco ambientato nello spazio e all'esplorazione di quest'ultimo. 
+La tematica serious del gioco è caratterizzata dalla presenza di un codex che tiene aggiornato il giocatore delle scoperte fatte con tanto di approfondimento.
 
 # LINK MIRO
 [Miro](https://miro.com/app/board/uXjVG0NHrxI=/)
